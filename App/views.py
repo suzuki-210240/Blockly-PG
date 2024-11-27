@@ -8,7 +8,10 @@ import json
 
 # Create your views here.
 def home(request):
-    return HttpResponse("Hello, Django!")
+    return render(
+        request,
+        'main.html',
+    )
 
 
 def test_html(request):
