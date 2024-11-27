@@ -14,10 +14,10 @@ def home(request):
     )
 
 
-def test_html(request):
+def test_page(request):
     return render(
-        request, 
-        'hello/template_test.html'
+        request,
+        'index.html'
     )
 
 
