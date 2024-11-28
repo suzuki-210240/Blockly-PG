@@ -1,0 +1,56 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>自由製作画面</title>
+        <!-- Load Blockly core -->
+        <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+        <!-- Load the default blocks -->
+        <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+        <!-- Load a generator -->
+        <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+        <!-- Load a message file -->
+        <script src="https://unpkg.com/blockly/msg/ja.js"></script>
+        <script src="https://unpkg.com/blockly/python_compressed"></script>
+        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+        <script>
+            const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
+        </script>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
+
+</head>
+<body>
+    <h1>Blockly のテスト</h1>
+    <div class="field">
+        <div id="blocklyDiv"></div>
+
+        <!--コードを表示するエリア-->
+        <div>
+            <h3>コード</h3>
+            <textarea id="codeOutput" rows="10" cols="50"></textarea>
+        
+        <!--出力結果を表示するエリア-->
+        
+            <h3>出力結果</h3>
+            <textarea id="output" rows="10" cols="50"></textarea>
+        </div>
+    </div>
+    <!-- 実行ボタン -->
+    <button onclick="runCode()">実行</button>
+    <button onclick="runText()">プリント</button>
+    
+    <!-- 保存ボタン -->
+    <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
+    
+    <!-- XML ファイルを読み込むボタン -->
+    <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
+    
+
+    <!--組んだブロックのコード変換と送信-->
+    <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+</body>
+    <script type="text/javascript" src="{% static 'js/src_free.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Block.js' %}"></script>
+    
+</html>

@@ -9,5 +9,5 @@ import json
 def Home (request):
     return render(
         request,
-        'main.html',
+        'home/main.html',
     )
