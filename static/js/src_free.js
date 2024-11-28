@@ -13,19 +13,19 @@ function runCode() {
 }
 
 
-function runText() {
-    var code = Blockly.JavaScript.workspaceToCode(workspace);
-    var output = '';
-    try {
-        // eval を使ってコードを実行し、結果を表示
-        output = eval(code);
-    } catch (e) {
-        // エラーが発生した場合
-        output = "エラー: " + e.message;
-    }
+// function runText() {
+//     var code = Blockly.JavaScript.workspaceToCode(workspace);
+//     var output = '';
+//     try {
+//         // eval を使ってコードを実行し、結果を表示
+//         output = eval(code);
+//     } catch (e) {
+//         // エラーが発生した場合
+//         output = "エラー: " + e.message;
+//     }
 
-    document.getElementById('output').textContent = output;
-}
+//     document.getElementById('output').textContent = output;
+// }
 
 
 
@@ -91,27 +91,6 @@ if (typeof workspace !== 'undefined' && workspace !== null) {
     var code = python.pythonGenerator.workspaceToCode(workspace);
     // 生成されたコードを表示する
     document.getElementById('codeOutput').value = code;
-
-    // サーバーにPythonコードを送信して一致を確認
-    fetch('/check-code/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken // CSRFトークンを追加
-        },
-        body: JSON.stringify({ code: code })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.isCorrect) {
-            alert("正解です！");
-        } else {
-            alert("不正解です。");
-        }
-    })
-    .catch(error => {
-        console.error("エラーが発生しました:", error);
-    });
 } else {
     console.error('workspaceが未定義です。');
     alert('Blocklyワークスペースが正しく初期化されていません。');

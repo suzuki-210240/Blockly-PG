@@ -21,7 +21,7 @@
 
 </head>
 <body>
-    <h1>Blockly のテスト</h1>
+    <h1>フリーモード</h1>
     <div class="field">
         <div id="blocklyDiv"></div>
 
@@ -38,17 +38,15 @@
     </div>
     <!-- 実行ボタン -->
     <button onclick="runCode()">実行</button>
-    <button onclick="runText()">プリント</button>
     
     <!-- 保存ボタン -->
     <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
     
     <!-- XML ファイルを読み込むボタン -->
     <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
-    
 
     <!--組んだブロックのコード変換と送信-->
-    <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+    <button id="generateCodeButton" onclick="generateCode()">コードを確認</button>
 </body>
     <script type="text/javascript" src="{% static 'js/src_free.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/Block.js' %}"></script>
