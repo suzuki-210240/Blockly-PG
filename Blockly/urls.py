@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.urls import include,path
 
 urlpatterns = [
-    path("test/", include("App.urls")),
-    path("master/", include("AdminApp.urls")),
-    path("", include("UserApp.urls")),
-    path('admin/', admin.site.urls),
+    path("test/", include("App.urls")), #検証用アプリケーション
+    path("master/", include("AdminApp.urls")), #管理者ユーザー用アプリケーション
+    path("", include("UserApp.urls")), #一般ユーザー用アプリケーション
+    path('admin/', admin.site.urls), #プロジェクトの管理者画面
 ]
