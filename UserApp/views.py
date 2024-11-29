@@ -15,7 +15,7 @@ def Home (request):
 def Kadai_list (request):
     return render(
         request,
-
+        "Kadai/list.html",
     )
 
 
