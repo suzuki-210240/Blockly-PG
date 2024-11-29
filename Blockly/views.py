@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
+
 # Create your views here.
 
 def index(request):
@@ -14,9 +15,10 @@ def sort(request):
     #ログインしたユーザーの所属グループによってアプリを振り分ける
     #userグループに所属しているならユーザーの、adminグループに所属しているなら管理者のメニュー画面へリダイレクト
     if request.user.groups.filter(name="user").exists():
-        return redirect(UserApp:menyu)
+        return redirect('UserApp:menyu')
     else:
-        return redirect(AdminApp:menyu)
+        return redirect('AdminApp:menyu')
+    #エラー修正しときました　：鈴木
 
 
 
