@@ -20,7 +20,6 @@ from . import views
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-<<<<<<< HEAD
     path("", views.index, name="index"),    #タイトル画面表示メソッドへ
     path("login/", LoginView.as_view(), name="login"),  #ログイン画面メソッドへ
     path("/sort", views.sort, name="sort"), #アプリを振り分けるメソッドへ
@@ -31,10 +30,4 @@ urlpatterns = [
     path("master/", include("AdminApp.urls")),
     path("user/", include("UserApp.urls")),
     path('admin/', admin.site.urls),
-=======
-    path("test/", include("App.urls")), #検証用アプリケーション
-    path("master/", include("AdminApp.urls")), #管理者ユーザー用アプリケーション
-    path("", include("UserApp.urls")), #一般ユーザー用アプリケーション
-    path('admin/', admin.site.urls), #プロジェクトの管理者画面
->>>>>>> 4e8e3a80cfd79aec6bf25f18ea00fc7714fba30d
 ]
