@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',  # For Google login
     'App',
-    'UserApp',
-    'AdminApp',
+    'UserApp',  #ユーザー用アプリ
+    'AdminApp', #管理者用アプリ
 ]
 
 # Google OAuth Settings
@@ -67,7 +67,7 @@ ROOT_URLCONF = 'Blockly.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],   #プロジェクトルートのtemplatesディレクトリを指定
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,3 +146,5 @@ LOGIN_URL = '/login/'
 #LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL ='/admin/menu/' 
 LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/sort'    #ログイン後に遷移するURL
+LOGOUT_REDIRECT_URL = '/login'    #ログアウト後に遷移するURL
