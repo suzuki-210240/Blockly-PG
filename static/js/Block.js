@@ -1,3 +1,5 @@
+//-------------Blockly設定用javascript------------------
+
 //---Blockly のワークスペースを設定---
 var workspace = Blockly.inject('blocklyDiv', {
     toolbox: `

@@ -12,7 +12,36 @@ def Home (request):
         'home/main.html',
     )
 
+def Kadai_list (request):
+    return render(
+        request,
 
+    )
+
+
+def Kadai_open(request, kadai_id):
+    if kadai_id == 1:
+        message = "kadai1"
+    elif kadai_id == 2:
+        message = "kadai2"
+    elif kadai_id == 3:
+        message = "kadai3"
+    elif kadai_id == 4:
+        message = "kadai4"
+    elif kadai_id == 5:
+        message = "kadai5"
+    elif kadai_id == 6:
+        message = "kadai6"
+    else:
+        message = "エラー"
+    return render(
+        request,
+        'Kadai/kadai.html',
+        {
+            'number': kadai_id,
+            'message': message,
+        }
+    )
 
 #あらかじめ用意する解答
 CORRECT_CODE = '''

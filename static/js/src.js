@@ -1,3 +1,5 @@
+//-------------課題制作用javascript------------------
+
 // Blockly で作成されたコードを実行する関数
 function runCode() {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
