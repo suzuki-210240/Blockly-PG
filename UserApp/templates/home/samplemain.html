@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blocklyサイト</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #000;
+        }
+
+        .login-container {
+            background-color: #cccccc;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            border-bottom: 2px solid #ff0000;
+        }
+
+        .login-text {
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .login-button {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+        }
+
+        .start-button {
+            background-color: #3b82f6;
+        }
+
+        .student-button {
+            background-color: #7dd3fc;
+        }
+
+        .admin-button {
+            background-color: #e0f2fe;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span>Blocklyサイト</span></h1>
+        <div class="login-container">
+            <div class="login-text">ログイン</div>
+            <div class="button-container">
+                <button class="login-button start-button">ログインなしで始める</button>
+                <a href="{% url 'guest_login' %}">ゲストログイン</a>
+                <button class="login-button student-button">受講者ログイン</button>
+                <a href="{% url 'login' %}">ログイン</a>
+                <button class="login-button admin-button">管理者ログイン</button>
+                <a href="{% url 'login' %}">ログイン</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -37,10 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',  # For Google login
     'App',
     'UserApp',
     'AdminApp',
 ]
+
+# Google OAuth Settings
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'your_google_client_id'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your_google_client_secret'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -131,3 +141,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRFの設定
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+
+LOGIN_URL = '/login/'
+#LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL ='/admin/menu/' 
+LOGOUT_REDIRECT_URL = '/'

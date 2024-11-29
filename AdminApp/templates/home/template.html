@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>管理者メニュー</h1>
+<ul>
+    <li><a href="#">アカウント管理</a></li>
+    <li><a href="#">教材管理</a></li>
+    <li><a href="{% url 'task_list' %}">課題管理</a></li>
+    <li><a href="{% url 'logout' %}">ログアウト</a></li>
+</ul>
+{% endblock %}

@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
-
+from AdminApp import views
 urlpatterns = [
     path("test/", include("App.urls")), #検証用アプリケーション
     path("master/", include("AdminApp.urls")), #管理者ユーザー用アプリケーション
     path("", include("UserApp.urls")), #一般ユーザー用アプリケーション
     path('admin/', admin.site.urls), #プロジェクトの管理者画面
+    #path('', include('social_django.urls', namespace='social')),
+    path('admin/menu/', views.admin_menu, name='admin_menu'),
+    path('admin/tasks/', views.task_list, name='task_list'),
+    path('admin/tasks/create/', views.task_create, name='task_create'),
+    path('admin/tasks/edit/<int:task_id>/', views.task_edit, name='task_edit'),
 ]

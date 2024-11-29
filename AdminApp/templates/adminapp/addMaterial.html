@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'app/css/template.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'app/css/addMaterials.css' %}"
+    />
+    <title>ページ名[BlocklyCodeAcademy]</title>
+  </head>
+
+  <body>
+    <header>
+      <p class="logo">BlocklyCodeAcademy</p>
+      <!-- ユーザー名 -->
+      <div class="selectdiv">
+        <label>
+          <select>
+            <option selected>ユーザー名</option>
+            <option>設定</option>
+            <option>アカウント管理</option>
+            <option>ログアウト</option>
+          </select>
+        </label>
+      </div>
+      <!-- ユーザー名 -->
+    </header>
+    <div class="Box">
+      <!-- メニューバー -->
+      <div class="container">
+        <a href="#" class="button1">教材一覧</a>
+        <a href="#" class="button2">課題一覧</a>
+        <a href="#" class="button3">フリーモード</a>
+      </div>
+
+      <!-- メイン -->
+      <div class="main">
+        <h1>教材新規追加</h1>
+        <div class="addMaterials">
+          <p>教材タイトル</p>
+          <input type="text" class="title" required maxlength="40" size="40" />
+          <p>教材ファイル</p>
+          <input type="file" class="file" />
+          <a href="#" class="back-button">戻る</a>
+          <button class="add-button">登録</button>
+        </div>
+      </div>
+
+      <!-- 表示項目はここに追加 
+    <div></div>
+    --></div>
+  </body>
+</html>

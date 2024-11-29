@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ホーム画面</title>
+</head>
+<body>
+    {% if request.user.username == 'guest_user' %}
+        <h2>ゲストとしてようこそ！</h2>
+    {% else %}
+        <h2>ようこそ {{ request.user.username }} さん</h2>
+    {% endif %}
+    
+    <button onclick="openModal()">ユーザー情報管理</button>
+
+    <div id="userModal" style="display: none;">
+        <h3>ユーザー情報</h3>
+        {% if request.user.username == 'guest_user' %}
+            <p>ゲストユーザーには情報がありません。</p>
+        {% else %}
+            <p>ここにユーザー情報を表示</p>
+        {% endif %}
+        <button onclick="closeModal()">閉じる</button>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('userModal').style.display = 'block';
+        }
+        function closeModal() {
+            document.getElementById('userModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
