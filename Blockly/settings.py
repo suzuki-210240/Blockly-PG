@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'App',
-    'UserApp',
-    'AdminApp',
+    'UserApp',  #ユーザー用アプリ
+    'AdminApp', #管理者用アプリ
 ]
 
 MIDDLEWARE = [
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Blockly.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],   #プロジェクトルートのtemplatesディレクトリを指定
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRFの設定
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+
+LOGIN_REDIRECT_URL = '/sort'    #ログイン後に遷移するURL
+LOGOUT_REDIRECT_URL = '/login'    #ログアウト後に遷移するURL

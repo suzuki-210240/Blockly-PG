@@ -16,14 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
+from . import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path("", views.index, name="index"),    #タイトル画面表示メソッドへ
     path("login/", LoginView.as_view(), name="login"),  #ログイン画面メソッドへ
     path("/sort", views.sort, name="sort"), #アプリを振り分けるメソッドへ
     path("logout/", LogoutView.as_view(), name="logout"),   #ログアウトするメソッドへ
- 
- 
+
+
     path("test/", include("App.urls")),
     path("master/", include("AdminApp.urls")),
     path("user/", include("UserApp.urls")),
