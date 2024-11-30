@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/addMaterials.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}"/>
     <title>教材編集[BlocklyCodeAcademy]</title>
   </head>
 
@@ -35,7 +35,7 @@
       <!-- メイン -->
       <div class="main">
         <h1>教材編集</h1>
-        <form method="POST" enctype="multipart/form-data" action= {% url 'add_material' %}>
+        <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:add_material' %}>
             {% csrf_token %}
             <div class="sub-title-box">
                 <label id="sub-title" for="title">教材タイトル</label>
