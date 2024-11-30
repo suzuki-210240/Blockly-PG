@@ -1,0 +1,87 @@
+.addMaterials { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin-left: 15px;
+}
+
+form {
+    margin-left: 110px;
+}
+
+input {
+    margin-top: 6px;
+    margin-left: 14px;
+    margin-bottom: 3px;
+    font-size: 14px;
+    padding: 8px; /* 少し余白を追加 */
+    border: solid 1px #ccc; /* 入力フィールドに枠線を追加 */
+    border-radius: 4px; /* 入力フィールドの角を丸く */
+}
+
+#sub-title {
+    border-bottom: solid 2px #191970;
+}
+
+.rule {
+    margin: 1px 0 0 0;
+    font-size: 14px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold; /* エラーメッセージを強調 */
+    padding-top: 5px; /* エラーメッセージと入力フィールドの間に余白 */
+}
+
+.file-box {
+    margin-right: 63px;
+}
+
+.button-box {
+    margin-top: 20px;
+}
+
+button {
+    background-color: whitesmoke;
+    border: solid 2px #191970;
+    color: #000;
+    border-radius: 50px; /* 楕円形を作るための角丸 */
+    margin: 20px;
+    padding: 10px 50px; /* 内側の余白 */
+    text-align: center; /* テキストの中央揃え */
+    font-size: 18px; /* フォントサイズ */
+    text-decoration: none; /* 下線を消す */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* ホバー時のアニメーション */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* ボタンに影を追加 */
+}
+
+/* ホバー時の背景色変更とアニメーション */
+button:hover {
+    background-color: #ecfa24; /* ホバー時の背景色 */
+    transform: scale(1.05); /* ボタンが少し大きくなる */
+}
+
+/* 戻るボタン */
+.back-button {
+    background-color: #f0f0f0;
+    border: solid 2px #333;
+    color: #333;
+    border-radius: 50px;
+    margin: 20px;
+    padding: 10px 50px;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+}

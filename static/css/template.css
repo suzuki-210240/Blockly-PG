@@ -1,0 +1,125 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  height: 80px;
+  margin-top: 20px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+.selectdiv {
+  min-width: 110px;
+  margin-right: 10px;
+}
+
+.selectdiv:after {
+  content: '<>';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  transform: rotate(90deg);
+  /* 矢印を90度回転 */
+  right: 20px;
+  /* 矢印の位置調整 */
+  top: 30px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  /* 矢印下の線 */
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  max-width: 300px;
+  height: 33px;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
+body {
+  background: #f2f2f2;
+  min-width: 600px;
+}
+
+.Box {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 200px;
+  height: 100vh;
+  padding-left: 10px;
+  gap: 40px;
+  /*flexのmargin*/
+
+}
+
+.container a {
+  border: solid 2px #191970;
+  color: #000;
+  border-radius: 20px;
+  padding: 10px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  box-shadow: 0 5px 0 #191970;
+  width: 120px;
+  text-align: center;
+  transition: .3s;
+  margin-right: 15px;
+}
+
+.button1 {
+  background-color: #4fb0f1;
+}
+
+.button2 {
+  background-color: #85b7d3;
+}
+
+.button3 {
+  background-color: #67bac5;
+}
+
+.button4 {
+  background-color: #6190d8;
+}
+
+.button1:hover,
+.button2:hover,
+.button3:hover,
+.button4:hover {
+  color: #ffffff;
+  transform: translateY(5px);
+  box-shadow: 0 0 0 #ffffff;
+}
+
+.main {
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  min-width: 600px;
+  background-color: #d1e3e7;
+  border: solid 2px #1d78b1;
+  /*角丸*/
+  border-radius: 10px;
+}
