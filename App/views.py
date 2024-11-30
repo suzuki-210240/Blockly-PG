@@ -17,7 +17,7 @@ def home(request):
 def test_page(request):
     return render(
         request,
-        'index.html'
+        'index_S.html'
     )
 
 

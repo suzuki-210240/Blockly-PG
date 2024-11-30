@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockly Test</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <style>
+        /* Blockly のエリアのスタイル */
+        #blocklyDiv {
+            height: 480px;
+            width: 600px;
+            border: solid 1px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockly のテスト</h1>
+    <div id="blocklyDiv"></div>
+    
+    <!-- 実行ボタン -->
+    <button onclick="runCode()">実行</button>
+    
+    <!-- 保存ボタン -->
+    <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
+    
+    <pre id="output"></pre>
+
+    <script>
+        // Blockly のワークスペースを設定
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: `
+            <xml xmlns="https://developers.google.com/blockly/xml">
+                <block type="math_number">
+                    <field name="NUM">5</field>
+                </block>
+                <block type="math_number">
+                    <field name="NUM">10</field>
+                </block>
+                <block type="math_arithmetic">
+                    <field name="OP">ADD</field>
+                    <value name="A">
+                        <block type="math_number">
+                            <field name="NUM">5</field>
+                        </block>
+                    </value>
+                    <value name="B">
+                        <block type="math_number">
+                            <field name="NUM">10</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="text_print">
+                    <value name="TEXT">
+                        <block type="math_arithmetic">
+                            <field name="OP">ADD</field>
+                            <value name="A">
+                                <block type="math_number">
+                                    <field name="NUM">5</field>
+                                </block>
+                            </value>
+                            <value name="B">
+                                <block type="math_number">
+                                    <field name="NUM">10</field>
+                                </block>
+                            </value>
+                        </block>
+                    </value>
+                </block>
+            </xml>
+            `
+        });
+
+        // Blockly で作成されたコードを実行する関数
+        function runCode() {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            try {
+                // eval を使ってコードを実行し、結果を表示
+                var result = eval(code);
+                // 結果を表示
+                document.getElementById('output').innerText = result;
+            } catch (e) {
+                // エラーが発生した場合
+                document.getElementById('output').innerText = "エラー: " + e.message;
+            }
+        }
+
+        // ワークスペースを XML として保存する関数
+        function saveWorkspaceAsXML() {
+            // Blockly ワークスペースの内容を XML としてエクスポート
+            var xml = Blockly.Xml.workspaceToDom(workspace);
+            var xmlText = Blockly.Xml.domToText(xml);
+
+            // XML テキストを Blob に変換
+            var blob = new Blob([xmlText], { type: 'application/xml' });
+
+            // ダウンロードリンクを作成してクリック
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            var fileName = 'save' + '2' + '.xml';
+            link.download = fileName;  // ダウンロードするファイル名
+            link.click();
+        }
+    </script>
+</body>
+</html>

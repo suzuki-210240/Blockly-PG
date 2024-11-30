@@ -55,7 +55,7 @@ def add_Materials(request):
     return render(request, 'add_Materials.html')
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'AdminApp:index.html')
 
 def edit_materials(request):
     return render(request, 'edit_Materials.html')
