@@ -1,7 +1,6 @@
 import re
 import os
 from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -52,13 +51,13 @@ def task_edit(request, task_id):
 
 
 def add_Materials(request):
-    return render(request, 'add_Materials.html')
+    return render(request, 'Materials/add_Materials.html')
 
 def index(request):
-    return render(request, 'AdminApp:index.html')
+    return render(request, 'Materials/AdminApp:index.html')
 
 def edit_materials(request):
-    return render(request, 'edit_Materials.html')
+    return render(request, 'Materials/edit_Materials.html')
 
 #------------------------------------------教材新規追加----------------------------------------
 def add_material(request):
@@ -89,21 +88,21 @@ def add_material(request):
                 for chunk in uploaded_file.chunks():
                     destination.write(chunk)
 
-            return render(request, 'index.html')    
+            return render(request, 'Materials/index.html')    
         else:
             # フォームが無効な場合の処理
-            return render(request, 'add_material.html', {'form': form})
+            return render(request, 'Materials/add_material.html', {'form': form})
     else:
         # 初回表示時
         form = AddMaterialForm()
-    return render(request, 'add_material.html', {'form': form})
+    return render(request, 'Materials/add_material.html', {'form': form})
 
 #-------------------------------------------------------------------------------------------------------
 
 
+#**要注意**
+#-----------------------------------------------------課題編集（views.pyの編集）-----------------------------------------------------
 
-#*****************************************************課題編集（views.pyの編集）*****************************************************
-#要注意
 def edit_views(request):
     views_file_path = os.path.join(settings.BASE_DIR, 'UserApp', 'views.py')  # views.pyのパス
 
@@ -125,4 +124,4 @@ def edit_views(request):
 
     return render(request, 'edit_view/edit.html', {'view_code': view_code})
 
-#*************************************************************************************************************************************
+#------------------------------------------------------------------------------------------------------------------------------------
