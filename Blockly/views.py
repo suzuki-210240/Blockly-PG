@@ -2,13 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import ModelForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 # Create your views here.
 
 def index(request):
     #Blocklyアプリのタイトル画面を表示
-    return HttpResponse("<h1>タイトル画面</h1>")
+    return render(request, 'title.html')
 
 @login_required
 def sort(request):
@@ -19,6 +20,21 @@ def sort(request):
     else:
         return redirect('AdminApp:menyu')
     #エラー修正しときました　：鈴木
+
+    #アカウント一覧（仮）↓
+    """
+    ・ユーザー用アカウント
+        アカウント名：YakuwaMizuki
+        パスワード：mizuki0111
+        所属グループ：user
+    ・管理者用アカウント
+        アカウント名：YakuwaYudai
+        パスワード：yudai0929
+        所属グループ：admin
+    ・スーパーユーザー
+        アカウント名：210826
+        パスワード：000111
+    """
 
 
 
