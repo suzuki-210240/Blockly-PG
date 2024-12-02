@@ -17,7 +17,7 @@
         <script>
             const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
         </script>
-    <link rel="stylesheet" type="text/css" href="{%static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/Block_style.css' %}">
 
 </head>
 <body>
@@ -28,7 +28,7 @@
         <!--コードを表示するエリア-->
         <div>
             <h3>問題文</h3>
-            <tp id="codeOutput" rows="10" cols="50" >{{ message }}</textarea>
+            <textarea id="codeOutput" rows="10" cols="50" >{{ message }}</textarea>
         
         <!--出力結果を表示するエリア-->
         

@@ -12,13 +12,14 @@ def Home (request):
         'home/main.html',
     )
 
+#課題一覧
 def Kadai_list (request):
     return render(
         request,
         "Kadai/list.html",
     )
 
-
+#課題表示
 def Kadai_open(request, kadai_id):
     if kadai_id == 1:
         message = "kadai1"
@@ -48,6 +49,7 @@ CORRECT_CODE = '''
 print(5 + 10)
 print(15)
 '''
+#正誤判定
 @csrf_exempt
 def check_code(request):
     global CORRECT_CODE
@@ -64,7 +66,9 @@ def check_code(request):
 
     return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
 
+#フリーモード
 def FreeMode (request):   
+    
     return render(
         request,
         'free/Free.html',
