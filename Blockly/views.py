@@ -16,9 +16,9 @@ def sort(request):
     #ログインしたユーザーの所属グループによってアプリを振り分ける
     #userグループに所属しているならユーザーの、adminグループに所属しているなら管理者のメニュー画面へリダイレクト
     if request.user.groups.filter(name="user").exists():
-        return redirect('UserApp:menyu')
+        return redirect('UserApp:index')    #ユーザー側のメニュー画面へ
     else:
-        return redirect('AdminApp:menyu')
+        return redirect('AdminApp:index')   #管理者側のメニュー画面へ
     #エラー修正しときました　：鈴木
 
     #アカウント一覧（仮）↓
