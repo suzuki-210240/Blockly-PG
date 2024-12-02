@@ -60,7 +60,7 @@ def index(request):
 def edit_materials(request):
     return render(request, 'edit_Materials.html')
 
-# 教材新規追加
+#------------------------------------------教材新規追加----------------------------------------
 def add_material(request):
     print('maru ')
     if request.method == 'POST' and request.FILES:
@@ -97,3 +97,32 @@ def add_material(request):
         # 初回表示時
         form = AddMaterialForm()
     return render(request, 'add_material.html', {'form': form})
+
+#-------------------------------------------------------------------------------------------------------
+
+
+
+#*****************************************************課題編集（views.pyの編集）*****************************************************
+#要注意
+def edit_views(request):
+    views_file_path = os.path.join(settings.BASE_DIR, 'UserApp', 'views.py')  # views.pyのパス
+
+    # 初期状態でファイルの内容を取得
+    if request.method == 'GET':
+        try:
+            with open(views_file_path, 'r', encoding='utf-8') as file:
+                view_code = file.read()
+        except FileNotFoundError:
+            view_code = "views.py が見つかりませんでした。"
+    elif request.method == 'POST':
+        # 編集した内容をPOSTで受け取り、ファイルに書き込む
+        view_code = request.POST.get('view_code', '')
+        try:
+            with open(views_file_path, 'w', encoding='utf-8') as file:
+                file.write(view_code)
+        except Exception as e:
+            view_code = f"エラーが発生しました: {str(e)}"
+
+    return render(request, 'edit_view/edit.html', {'view_code': view_code})
+
+#*************************************************************************************************************************************
