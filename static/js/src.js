@@ -14,23 +14,6 @@ function runCode() {
     }
 }
 
-
-// function runText() {
-//     var code = Blockly.JavaScript.workspaceToCode(workspace);
-//     var output = '';
-//     try {
-//         // eval を使ってコードを実行し、結果を表示
-//         output = eval(code);
-//     } catch (e) {
-//         // エラーが発生した場合
-//         output = "エラー: " + e.message;
-//     }
-
-//     document.getElementById('output').textContent = output;
-// }
-
-
-
 // ワークスペースを XML として保存する関数
 function saveWorkspaceAsXML() {
     // Blockly ワークスペースの内容を XML としてエクスポート

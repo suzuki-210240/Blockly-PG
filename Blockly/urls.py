@@ -26,8 +26,8 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),   #ログアウトするメソッドへ
 
 
-    path("test/", include("App.urls")),
-    path("master/", include("AdminApp.urls")),
-    path("user/", include("UserApp.urls")),
-    path('admin/', admin.site.urls),
+    path("test/", include("App.urls")), #テスト領域のURL
+    path("master/", include("AdminApp.urls")),#管理者用アプリのURL
+    path("user/", include("UserApp.urls")),#一般ユーザー用アプリのURL
+    path('admin/', admin.site.urls),#プロジェクト全体の管理者URL
 ]
