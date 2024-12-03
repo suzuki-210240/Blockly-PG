@@ -2,10 +2,9 @@
 import re
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from django.utils.timezone import datetime
-from django.http import HttpResponse
 from django.http import JsonResponse
-import json
+from django.conf import settings
+import json,os,urllib.parse
 
 def Home (request):
     return render(
@@ -20,7 +19,9 @@ def Kadai_list (request):
         "Kadai/list.html",
     )
 
-#課題表示
+
+#------------------------------課題表示---------------------------------------------
+
 def Kadai_open(request, kadai_id):
     if kadai_id == 1:
         message = "kadai1"
@@ -45,12 +46,16 @@ def Kadai_open(request, kadai_id):
         }
     )
 
+#------------------------------------------------------------------------------------
+
+
+#-------------------------------正誤判定----------------------------------------------
+
 #あらかじめ用意する解答
 CORRECT_CODE = '''
 print(5 + 10)
 print(15)
 '''
-#正誤判定
 @csrf_exempt
 def check_code(request):
     global CORRECT_CODE
@@ -67,9 +72,41 @@ def check_code(request):
 
     return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
 
+#-------------------------------------------------------------------------------------
+
 #フリーモード
 def FreeMode (request):
     return render(
         request,
         'free/Free.html',
     )
+
+
+#--------------------------教材一覧リスト--------------------------------
+
+def list_files(request):
+    # uploadsディレクトリのパス
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+
+    # フォルダ内のファイルとディレクトリを取得
+    try:
+        files_and_dirs = os.listdir(folder_path)
+    except FileNotFoundError:
+        # フォルダが存在しない場合のエラーハンドリング
+        files_and_dirs = []
+        error_message = "指定されたフォルダが見つかりませんでした。"
+        return render(request, '.html', {'error_message': error_message})
+
+    # ファイルのURLを作成 (エンコード処理を追加)
+    file_urls = [
+        os.path.join(settings.MEDIA_URL, 'uploads', urllib.parse.quote(file)) 
+        for file in files_and_dirs
+    ]
+    # ファイル名とURLを組み合わせたタプルのリストを作成
+    files_with_urls = zip(files_and_dirs, file_urls)
+
+    # フォルダ内のファイルがある場合に表示
+    return render(request, 'list_files.html', {'files_with_urls': files_with_urls})
+
+
+#-----------------------------------------------------------------------

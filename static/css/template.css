@@ -7,15 +7,19 @@ header {
 }
 
 .logo {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
-  color: #000;
+  background: linear-gradient(135deg, #f88400 50%, #4d9bc1 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0;
+  padding-left: 10px;
+  transform: skewX(-30deg);
 }
 
 .selectdiv {
   min-width: 110px;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .selectdiv:after {
@@ -24,10 +28,10 @@ header {
   color: #333;
   transform: rotate(90deg);
   /* 矢印を90度回転 */
-  right: 20px;
+  right: 25px;
   /* 矢印の位置調整 */
   top: 30px;
-  padding: 0 0 2px;
+  padding: 3px 4px 1px;
   border-bottom: 1px solid #999;
   /* 矢印下の線 */
   position: absolute;
@@ -46,14 +50,15 @@ header {
   font-size: 16px;
   line-height: 1.75;
   color: #333;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
+  background-color: #fdfdfd;
+  border: 2px solid #a1a0a0;
+  border-radius: 10px;
   -ms-word-break: normal;
   word-break: normal;
 }
 
 body {
-  background: #f2f2f2;
+  background: #fafafa;
   min-width: 600px;
 }
 
@@ -68,6 +73,7 @@ body {
   justify-content: flex-start;
   width: 200px;
   height: 100vh;
+  padding-top: 40px;
   padding-left: 10px;
   gap: 40px;
   /*flexのmargin*/
@@ -85,7 +91,6 @@ body {
   width: 120px;
   text-align: center;
   transition: .3s;
-  margin-right: 15px;
 }
 
 .button1 {
@@ -93,11 +98,11 @@ body {
 }
 
 .button2 {
-  background-color: #85b7d3;
+  background-color: #9ed9fc;
 }
 
 .button3 {
-  background-color: #67bac5;
+  background-color: #bbf8f8;
 }
 
 .button4 {
@@ -116,10 +121,102 @@ body {
 .main {
   align-items: center;
   justify-content: center;
-  height: 400px;
-  min-width: 600px;
-  background-color: #d1e3e7;
+  height: 100vh;
+  width: 100%;
+  background-color: #c8e1e2;
   border: solid 2px #1d78b1;
   /*角丸*/
-  border-radius: 10px;
+  border-radius: 30px;
+  margin: 0 15px;
+}
+.main h1 {
+  font: 45px  monospace;
+  color: #333; 
+  margin: 15px; 
+  padding: 10px; 
+  line-height: 1.5; 
+}
+
+.table-container {
+  width: 85%;
+  margin: 30px auto;
+  background-color: #d9d9d9; /* 背景色 */
+  padding:50px 30px 120px 30px;
+  border-radius: 15px; /* 全体の角丸 */
+  
+}
+
+/* ヘッダー */
+.table-header {
+  display: flex;
+  font-size: 28px;
+  justify-content: space-between; /* 左右に要素を配置 */
+  padding: 30px 5px;
+  font-weight: bold;
+  border-bottom: 3px solid #858585; /* 下線を追加 */
+  color: #000000;
+}
+
+.material {
+  margin-right:170px;
+}
+
+/* 各行のレイアウト */
+.table-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 各要素の間隔を均等に */
+  padding: 20px 0;
+  border-bottom: 3px solid #b4b4b4; /* 各行の間に線 */
+}
+
+/* 各要素のスタイル */
+.row-title, .row-material {
+  flex: 2; /* 要素のサイズを均等に */
+  padding: 10px;
+  font-size: 20px;
+}
+.row-material {
+  flex: 1; /* 要素のサイズを均等に */
+  margin-left:160px;
+  font-size: 20px;
+}
+
+/* ボタンのスタイル */
+.status-button {
+  background-color: #ffffff; /* ボタンの背景色 */
+  color: #000000; /* 文字色 */
+  border: none;
+  border-radius: 15px; /* 角丸 */
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 17px;
+  cursor: pointer; 
+}
+.status-button2 {
+  background-color: #ffffff; /* ボタンの背景色 */
+  color: #000000; /* 文字色 */
+  border: none;
+  border-radius: 15px; /* 角丸 */
+  padding: 5px 18px;
+  margin-right: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.action-button {
+  background-color: #ffffff; /* ボタンの背景色 */
+  color: #000000; /* 文字色 */
+  border: none;
+  border-radius: 15px; /* 角丸 */
+  padding: 5px 18px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+
+/* ボタンのホバー効果 */
+.status-button:hover,.status-button2:hover,.action-button:hover {
+  background-color: #cceaff; /* ホバー時の色変更 */
 }
