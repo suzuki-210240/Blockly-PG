@@ -91,11 +91,9 @@ function generateCode(event){
     if (typeof workspace !== 'undefined' && workspace !== null) {
         // BlocklyのワークスペースからPythonコードを生成
         var code = python.pythonGenerator.workspaceToCode(workspace);
-        // 生成されたコードを表示する
-        document.getElementById('codeOutput').value = code;
 
         // サーバーにPythonコードを送信して一致を確認
-        fetch('/check-code/', {
+        fetch('/user/check-code/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
