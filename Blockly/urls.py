@@ -28,7 +28,7 @@ urlpatterns = [
 
 
     path("test/", include("App.urls")), #テスト領域のURL
-    path("master/", include("AdminApp.urls")),#管理者用アプリのURL
+    path("master/", include("AdminApp.urls")),#管理者用アプリのURL-
     path("user/", include("UserApp.urls")),#一般ユーザー用アプリのURL
     path('admin/', admin.site.urls),#プロジェクト全体の管理者URL
 ]
