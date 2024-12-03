@@ -3,6 +3,10 @@ from django.forms import ModelForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group
+from .forms import CustomUserCreationForm
+from django.contrib.auth import login
 
 
 # Create your views here.
@@ -35,16 +39,17 @@ def sort(request):
         アカウント名：210826
         パスワード：000111
     """
-
-
-
-#↓サンプルで作った権限によってアプリを振り分けるメソッド
-"""
-@login_required
-def index(request):
-    #ユーザーが属しているグループを取得
-    if request.user.groups.filter(name='user').exists():
-        return redirect('sample_app:read_post')
+#アカウント新規作成のためのメソッド
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = form.cleaned_data['group']
+            user.groups.add(group)  #選択したグループをユーザーに追加する
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')    #ログインも同時に行う
+            return redirect('index')    #タイトル画面にリダイレクト
     else:
-        return redirect('ads_sample_app:read_post')
-"""
+        form = CustomUserCreationForm()
+
+    return render(request, 'registration/register.html', {'form':form})
