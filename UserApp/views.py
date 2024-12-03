@@ -68,8 +68,7 @@ def check_code(request):
     return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
 
 #フリーモード
-def FreeMode (request):   
-    
+def FreeMode (request):
     return render(
         request,
         'free/Free.html',
