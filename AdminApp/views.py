@@ -11,7 +11,7 @@ from django.core.files.storage import default_storage
 
 @login_required
 def admin_menu(request):
-    return render(request, 'home/menu.html')
+    return render(request, 'home/admin_menu.html')
 
 @staff_member_required
 def task_list(request):
