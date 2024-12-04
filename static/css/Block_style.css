@@ -1,7 +1,40 @@
 
-/* 課題・自由制作のスタイル*/
+/* 課題・自由制作のblocklyのスタイル*/
+
 
 @charset "utf-8";
+body {
+        margin: 0;
+        padding: 0;
+        background-color: #28726ccb;
+    }
+header {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    height: 25px;
+    margin-top: 10px;
+  }
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #f88400 50%, #4d9bc1 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    padding-left: 10px;
+    transform: skewX(-30deg);
+}
+
+.main {
+    margin-left: 20px;
+}
+
+h2 {
+    color: #ccc;
+}
+
 #blocklyDiv {
     height: 700px;
     width: 1000px;
@@ -25,3 +58,4 @@
     width: 500px;
     border-color: black;
 }
+

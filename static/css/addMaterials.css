@@ -1,3 +1,5 @@
+/*ファイルアップロード画面のスタイル*/
+
 .addMaterials { 
     display: flex;
     flex-direction: column;
