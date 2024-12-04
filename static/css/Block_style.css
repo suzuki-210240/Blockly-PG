@@ -7,7 +7,7 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #28726ccb;
+    background-color: #586263cb;
 }
       
 
@@ -16,7 +16,7 @@ header {
     justify-content: space-between;
     width: auto;
     height: 40px;
-    background-color: #bbf8f8;
+    background-color: #8cebc69a;
     padding: 5px;
     padding-top: 10px;
   }
@@ -71,23 +71,33 @@ header {
     word-break: normal;
 }
 
+main{
+    background-color: lightskyblue;
+}
 
-h3 {
+h3,h4 {
     color: #ccc;
+    margin: 1px;
+}
 
+#sub_file h4 {
+    background-color: #a1a0a0;
 }
 
 .field {
     width: 100%;
     display: flex;
-    
     gap: 20px;
+}
+
+textarea{
+    resize: none;
 }
 
 #blocklyDiv {
     height: 700px;
     width: 1000px;
-    border: solid 1px #9e9c9c;
+    border: solid 1px #9e9c9c; 
 }
 #sub_field {
     width: 800px;
