@@ -1,15 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>タイトルページ</title>
+        <link rel="stylesheet" href="{% static 'css/title.css' %}">
     </head>
     <body>
         <h1>BlocklyCodeAcademy</h1>
         <div>
             <h2>ログイン</h2>
-            <button>ログインなしで始める</button>
+            <button onclick="window.location.href='/user/free'">フリーモードで始める</button>
             <button onclick="window.location.href='/login'">受講者ログイン</button>
             <button onclick="window.location.href='/login'">管理者ログイン</button>
         </div>
