@@ -1,0 +1,86 @@
+/*タイトルページ用のCSSファイル*/
+/* static/css/title.css */
+
+/*全体のレイアウト*/
+body{
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /*縦並び*/
+    height: 100vh;
+    text-align: center;
+}
+
+/*タイトルのスタイル*/
+h1{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #e74c3c;
+    background: linear-gradient(45deg, #e74c3c, #8e44ad, #3498db);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
+}
+
+/*サブタイトルのスタイル*/
+h2{
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+
+/*コンテンツを囲むボックスのスタイル*/
+div{
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+/*ボタンのスタイル*/
+button{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*ボタンをホバーしたときのスタイル*/
+button:hover{
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/*新規登録のリンクのスタイル*/
+p{
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+a{
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
