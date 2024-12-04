@@ -91,18 +91,18 @@ def add_material(request):
             return render(request, 'Materials/index.html')    
         else:
             # フォームが無効な場合の処理
-            return render(request, 'Materials/add_material.html', {'form': form})
+            return render(request, 'Materials/add_Materials.html', {'form': form})
     else:
         # 初回表示時
         form = AddMaterialForm()
-    return render(request, 'Materials/add_material.html', {'form': form})
+    return render(request, 'Materials/add_Materials.html', {'form': form})
 
 #-------------------------------------------------------------------------------------------------------
 
 
+
 #*********要注意**********
 #-----------------------------------------------------課題編集（views.pyの編集）-----------------------------------------------------
-
 def edit_views(request):
     views_file_path = os.path.join(settings.BASE_DIR, 'UserApp', 'views.py')  # views.pyのパス
 

@@ -21,34 +21,40 @@
 
 </head>
 <body>
-    <h1>・問題{{ number }}</h1>
-    <div class="field">
-        <div id="blocklyDiv"></div>
+    <header>
+        <p class="logo">BlocklyCodeAcademy</p>
+    </header>
+    <div class = "main">
+        <h2 id="name">・問題{{ number }}</h2>
+        
+        <div class="field">
+            <div id="blocklyDiv"></div>
 
-        <!--コードを表示するエリア-->
-        <div>
-            <h3>問題文</h3>
-            <textarea id="codeOutput" rows="10" cols="50" >{{ message }}</textarea>
-        
-        <!--出力結果を表示するエリア-->
-        
-            <h3>出力結果</h3>
-            <textarea id="output" rows="10" cols="50"></textarea>
+            <!--コードを表示するエリア-->
+            <div>
+                <h3>問題文</h3>
+                <textarea id="codeOutput" rows="10" cols="50" >{{ message }}</textarea>
+            
+            <!--出力結果を表示するエリア-->
+            
+                <h3>出力結果</h3>
+                <textarea id="output" rows="10" cols="50"></textarea>
+            </div>
         </div>
-    </div>
-    <!-- 実行ボタン -->
-    <button onclick="runCode()">実行</button>
-    <button onclick="runText()">プリント</button>
-    
-    <!-- 保存ボタン -->
-    <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
-    
-    <!-- XML ファイルを読み込むボタン -->
-    <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
-    
+        <!-- 実行ボタン -->
+        <button onclick="runCode()">実行</button>
+        <button onclick="runText()">プリント</button>
+        
+        <!-- 保存ボタン -->
+        <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
+        
+        <!-- XML ファイルを読み込むボタン -->
+        <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
+        
 
-    <!--組んだブロックのコード変換と送信-->
-    <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+        <!--組んだブロックのコード変換と送信-->
+        <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+    </div>
 </body>
     <script type="text/javascript" src="{% static 'js/src.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/Block.js' %}"></script>
