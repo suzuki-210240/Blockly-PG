@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 #Templateと組み合わせて新規登録ページを作る
 
 class CustomUserCreationForm(UserCreationForm):
-    group = forms.ModelChoiceField(queryset=Group.objects.all(), required=True)
+    group = forms.ModelChoiceField(queryset=Group.objects.all(), required=False)
 
     class Meta:
         model = User
