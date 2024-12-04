@@ -50,6 +50,6 @@ def register(request):
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')    #ログインも同時に行う
             return redirect('index')    #タイトル画面にリダイレクト
     else:
-        form = CustomUserCreationForm()
+        form = CustomUserCreationForm(initial={'group':Group.objects.get(name='user')})
 
     return render(request, 'registration/register.html', {'form':form})
