@@ -23,12 +23,13 @@ def Kadai_list (request):
 #------------------------------課題表示---------------------------------------------
 
 def Kadai_open(request, kadai_id):
+    message = "次の規則に沿って/n"
     if kadai_id == 1:
         message = "kadai1"
     elif kadai_id == 2:
         message = "kadai2"
     elif kadai_id == 3:
-        message = "書き換えeee"
+        message = message + "「こんにちは」と三回出力するループ"
     elif kadai_id == 4:
         message = "kadai4"
     elif kadai_id == 5:
@@ -53,8 +54,12 @@ def Kadai_open(request, kadai_id):
 
 #あらかじめ用意する解答
 CORRECT_CODE = '''
-print(5 + 10)
-print(15)
+i = None
+
+
+for i in range(4):
+  print('こんにちは')
+
 '''
 @csrf_exempt
 def check_code(request):
