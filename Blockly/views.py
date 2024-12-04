@@ -45,11 +45,12 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            group = form.cleaned_data['group']
+            group = Group.objects.get(name='user')  #直接userグループを設定
             user.groups.add(group)  #選択したグループをユーザーに追加する
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')    #ログインも同時に行う
             return redirect('index')    #タイトル画面にリダイレクト
     else:
+        #フォームを表示する際にグループの初期値を設定
         form = CustomUserCreationForm(initial={'group':Group.objects.get(name='user')})
 
     return render(request, 'registration/register.html', {'form':form})
