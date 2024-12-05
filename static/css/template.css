@@ -1,5 +1,3 @@
-/*全体のテンプレートスタイル*/
-
 header {
   display: flex;
   justify-content: space-between;
@@ -52,7 +50,7 @@ header {
   font-size: 16px;
   line-height: 1.75;
   color: #333;
-  background-color: #fdfdfd;
+  background-color: #ffffff;
   border: 2px solid #a1a0a0;
   border-radius: 10px;
   -ms-word-break: normal;
@@ -60,7 +58,7 @@ header {
 }
 
 body {
-  background: #fafafa;
+  background: #ffffff;
   min-width: 600px;
 }
 
@@ -84,7 +82,7 @@ body {
 
 .container a {
   border: solid 2px #191970;
-  color: #000;
+  color: #000000;
   border-radius: 20px;
   padding: 10px 30px;
   text-decoration: none;
@@ -123,102 +121,24 @@ body {
 .main {
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100%;
   background-color: #c8e1e2;
   border: solid 2px #1d78b1;
   /*角丸*/
   border-radius: 30px;
   margin: 0 15px;
 }
+
 .main h1 {
-  font: 45px  monospace;
-  color: #333; 
-  margin: 15px; 
-  padding: 10px; 
-  line-height: 1.5; 
-}
-
-.table-container {
-  width: 85%;
-  margin: 30px auto;
-  background-color: #d9d9d9; /* 背景色 */
-  padding:50px 30px 120px 30px;
-  border-radius: 15px; /* 全体の角丸 */
-  
-}
-
-/* ヘッダー */
-.table-header {
-  display: flex;
-  font-size: 28px;
-  justify-content: space-between; /* 左右に要素を配置 */
-  padding: 30px 5px;
-  font-weight: bold;
-  border-bottom: 3px solid #858585; /* 下線を追加 */
-  color: #000000;
-}
-
-.material {
-  margin-right:170px;
-}
-
-/* 各行のレイアウト */
-.table-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* 各要素の間隔を均等に */
-  padding: 20px 0;
-  border-bottom: 3px solid #b4b4b4; /* 各行の間に線 */
-}
-
-/* 各要素のスタイル */
-.row-title, .row-material {
-  flex: 2; /* 要素のサイズを均等に */
+  font: 45px monospace;
+  color: #333;
+  margin: 15px;
   padding: 10px;
-  font-size: 20px;
-}
-.row-material {
-  flex: 1; /* 要素のサイズを均等に */
-  margin-left:160px;
-  font-size: 20px;
+  line-height: 1.5;
 }
 
-/* ボタンのスタイル */
-.status-button {
-  background-color: #ffffff; /* ボタンの背景色 */
-  color: #000000; /* 文字色 */
-  border: none;
-  border-radius: 15px; /* 角丸 */
-  padding: 5px 10px;
-  margin-right: 5px;
-  font-size: 17px;
-  cursor: pointer; 
-}
-.status-button2 {
-  background-color: #ffffff; /* ボタンの背景色 */
-  color: #000000; /* 文字色 */
-  border: none;
-  border-radius: 15px; /* 角丸 */
-  padding: 5px 18px;
-  margin-right: 5px;
-  font-size: 17px;
-  cursor: pointer;
-}
-
-.action-button {
-  background-color: #ffffff; /* ボタンの背景色 */
-  color: #000000; /* 文字色 */
-  border: none;
-  border-radius: 15px; /* 角丸 */
-  padding: 5px 18px;
-  font-size: 17px;
-  cursor: pointer;
-  margin-left: 20px;
-}
-
-
-/* ボタンのホバー効果 */
-.status-button:hover,.status-button2:hover,.action-button:hover {
-  background-color: #cceaff; /* ホバー時の色変更 */
+@media (max-width: 768px) {
+  .button-container {
+    justify-content: space-evenly;
+    /* ボタンを均等に配置 */
+  }
 }
