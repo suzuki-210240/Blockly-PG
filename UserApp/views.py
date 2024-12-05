@@ -23,7 +23,7 @@ def Kadai_list (request):
 #------------------------------課題表示---------------------------------------------
 
 def Kadai_open(request, kadai_id):
-    message = "次の規則に沿って/n"
+    message = "次の規則に沿って\n"
     if kadai_id == 1:
         message = "kadai1"
     elif kadai_id == 2:
@@ -38,6 +38,8 @@ def Kadai_open(request, kadai_id):
         message = "kadai6"
     else:
         message = "エラー"
+
+    message = message + "\nを実装してください"
     return render(
         request,
         'Kadai/kadai.html',
