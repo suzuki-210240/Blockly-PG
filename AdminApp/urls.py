@@ -8,6 +8,7 @@ app_name = "AdminApp"
 urlpatterns = [
     path('', views.admin_menu, name="index"),   #メニュー画面
     path('account-management/', views.account_management, name='account_management'),   #アカウント情報管理ページ
+    path('account-management/delete/<int:user_id>/', views.account_management_delete, name='account_management_delete'),  #アカウント削除用メソッド  
     path('add_Materials/', views.add_Materials, name='addMaterials'),  # 教材新規追加ページ
     path('edit_Materials/', views.edit_materials, name='editMaterials'),  # 教材編集ページ
     path('add-material/', views.add_material, name='add_material'),    

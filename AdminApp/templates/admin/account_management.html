@@ -16,12 +16,13 @@
             </nav>
         </header>
         <main>
-            <h2>ユーザーリスト</h2>
+            <h2>アカウント一覧</h2>
             <table border="1">
                 <thead>
                     <tr>
                         <th>ユーザー名</th>
                         <th>現在のグループ</th>
+                        <th>アクション</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,13 @@
                         <tr>
                             <td>{{ user.username }}</td>
                             <td>{{ user.groups.all|join:", " }}</td>
+                            <td>
+                                <!--削除ボタン-->
+                                <form action="{% url 'AdminApp:account_management_delete' user.id %}" method="POST", class="delete-form">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger" onclick="return confirmDelete('{{ user.username }}')">削除</button>
+                                </form>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -44,5 +52,13 @@
         <footer>
             <p>&copy; 2024 My Django Application</p>
         </footer>
+
+        <!--確認用ポップアップ用処理-->
+        <script>
+            function confirmDelete(username){
+                return confirm('「'+ username + '」を削除します。よろしいですか？')
+            }
+        </script>
+
     </body>
 </html>

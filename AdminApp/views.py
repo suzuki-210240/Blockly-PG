@@ -7,7 +7,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import Task
 from .forms import TaskForm, AddMaterialForm, FileUploadForm
 from django.core.files.storage import default_storage
-
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
 
@@ -20,7 +19,7 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_admin)
 def account_management(request):
-    users = User.objects.all()  #すべてのユーザーを取得
+    users = User.objects.exclude(is_superuser=True)  #すべてのユーザーを取得（スーパーユーザーを除く）
     if request.method == 'POST':
         form = UserGroupForm(request.POST)
         if form.is_valid():
@@ -41,6 +40,16 @@ def account_management(request):
         form = UserGroupForm()
 
     return render(request, 'admin/account_management.html', {'users': users, 'form': form})
+
+#アカウント削除メソッド
+@login_required
+@user_passes_test(is_admin)
+def account_management_delete(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    #ユーザーを削除
+    user.delete()
+    #削除後にアカウント管理ページにリダイレクト
+    return redirect('AdminApp:account_management')
 
 
 
