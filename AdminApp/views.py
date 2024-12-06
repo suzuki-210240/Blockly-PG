@@ -24,13 +24,19 @@ def account_management(request):
     if request.method == 'POST':
         form = UserGroupForm(request.POST)
         if form.is_valid():
-            user_id = form.cleaned_data['user']
-            group_name = form.cleaned_data['group']
-            user = User.objects.get(id=user_id)
+            #フォームから取得したユーザーIDとグループ名を使って、ユーザーオブジェクトとグループを取得
+            user = form.cleaned_data['user']  #ここでUserオブジェクトを取得
+            group_name = form.cleaned_data['group'] #グループ名
+
+            #グループオブジェクトを取得
             group = Group.objects.get(name=group_name)
-            user.groups.clear() #既存のグループを削除
+
+            #ユーザーのグループを変更
+            user.groups.clear() #現在のグループを削除
             user.groups.add(group)  #新しいグループを追加
-            return redirect('account_management')   #更新後にリダイレクト
+
+            #更新後にリダイレクト
+            return redirect('AdminApp:account_management')
     else:
         form = UserGroupForm()
 
