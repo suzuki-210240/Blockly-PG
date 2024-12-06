@@ -21,15 +21,27 @@
                 <thead>
                     <tr>
                         <th>ユーザー名</th>
-                        <th>現在のグループ</th>
+                        <th>権限</th>
                         <th>アクション</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
                         <tr>
+                            <!--ユーザー名-->
                             <td>{{ user.username }}</td>
-                            <td>{{ user.groups.all|join:", " }}</td>
+                            <!--権限-->
+                            <td>
+                                {% for group in user.groups.all %}
+                                    {% if group.name == 'admin' %}
+                                        管理者
+                                    {% elif group.name == 'user' %}
+                                        一般ユーザー
+                                    {% else %}
+                                        その他
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
                             <td>
                                 <!--削除ボタン-->
                                 <form action="{% url 'AdminApp:account_management_delete' user.id %}" method="POST", class="delete-form">
@@ -42,11 +54,11 @@
                 </tbody>
             </table>
 
-            <h2>ユーザーのグループ変更</h2>
+            <h2>ユーザーの権限変更</h2>
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">グループ変更</button>
+                <button type="submit">権限変更</button>
             </form>
         </main>
         <footer>
