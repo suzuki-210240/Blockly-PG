@@ -1,12 +1,16 @@
 <!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+</head>
 <html>
-  <head>
+  <header>
     <title>Index</title>
-  </head>
+  </header>
   <body>
     <h1>Index Page</h1>
     <!-- 追加、編集リンク -->
-    <a href="{% url 'AdminApp:addMaterials' %}">教材新規追加</a>
-    <a href="{% url 'AdminApp:editMaterials' %}">教材編集</a>
+    <a href="{% url 'App:add_materials' %}">教材新規追加</a>
+    <a href="{% url 'App:edit_materials' %}">教材編集</a>
+    <a href="{% url 'App:list_files' %}">教材一覧</a> <!--関数を呼びに行く-->
   </body>
 </html>

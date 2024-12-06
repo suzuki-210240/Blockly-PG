@@ -26,31 +26,40 @@ class TaskForm(forms.ModelForm):
                 raise forms.ValidationError('HTMLまたはPythonファイルのみアップロードできます。')
         return file
     
-#バリデーション関数
+#--------------------------教材ファイル新規追加--------------------------------
+ 
 class AddMaterialForm(forms.Form):
-    title = forms.CharField(max_length=40, min_length=2, required=True)
-    file = forms.FileField(required=True)
-
-    def clean_title(self):
-        title = self.cleaned_data.get('title')
-        if len(title) < 2:
-            raise ValidationError('教材タイトルは2文字以上で入力してください。')
-        if len(title) > 40:
-            raise ValidationError('教材タイトルは40文字以内で入力してください。')
-        return title
-
-    def clean_file(self):
-        file = self.cleaned_data.get('file')
-        if not file:
-            raise ValidationError('htmlファイルを選択してください。')
-        return file
+    title = forms.CharField(
+        label='教材タイトル',
+        max_length=40,
+        required=True,
+        error_messages={
+            'required': '教材タイトルを入力してください。',
+            'max_length': '教材タイトルは40文字以内で入力してください。',
+        }
+    )
+    html_file_name = forms.CharField(
+        max_length=200,
+        required=False
+    )
 
 
-#ファイルアップロード
-class FileUploadForm(forms.ModelForm):
-    class Meta:
-        model = FileUpload
-        fields = ['file']
+def clean_title(self):
+    title = self.cleaned_data.get('title')
+
+def clean_file(self):
+    file = self.cleaned_data.get('file')
+
+    # ファイルが選択されているか確認
+    if not file:
+        raise ValidationError('ファイルを選択してください。')
+
+    # ファイルの種類を検証 
+    if not file.name.endswith('.html'):
+        raise ValidationError('HTMLファイルのみアップロード可能です。')
+    return file
+
+#--------------------------教材ファイル新規追加--------------------------------
 
 
 #アカウント情報管理用

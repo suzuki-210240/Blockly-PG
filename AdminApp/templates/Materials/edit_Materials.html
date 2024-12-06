@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/addMaterials.css' %}"/>
     <title>教材編集[BlocklyCodeAcademy]</title>
   </head>
 
@@ -27,29 +27,33 @@
     <div class="Box">
       <!-- メニューバー -->
       <div class="container">
-        <a href="#" class="button1">教材一覧</a>
+        <a href="{% url 'App:list_files' %}" class="button1">教材一覧</a>
         <a href="#" class="button2">課題一覧</a>
         <a href="#" class="button3">フリーモード</a>
       </div>
-
       <!-- メイン -->
       <div class="main">
         <h1>教材編集</h1>
-        <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:add_material' %}>
+        <form method="POST" enctype="multipart/form-data" action= {% url 'App:add_file' %}>
             {% csrf_token %}
             <div class="sub-title-box">
                 <label id="sub-title" for="title">教材タイトル</label>
                 <p class="rule">(日本語・半角英数)</p>
-                <input type="text" id="title" name="title" pattern="^[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}\dA-Za-z]+$" value="{{ form.title.value }}" required maxlength="40" size="40"/>
+                {% if error_message %}
+                  <p class="error-message">{{ error_message }}</p>
+                {% endif %}
+                <input type="text" id="title" name="title" 
+                pattern="^[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}0-9A-Za-z!#$%&'*+/=?^_`{|}~-]+$"
+                value="{{ form.title.value }}" required maxlength="40" size="40"/>
                 {% if form.title.errors %}
-                    <p class="error-message">{{ form.title.errors }}</p>
+                  <p class="error-message">{{ form.title.errors }}</p>
                 {% endif %}
             </div>
             <div class="file-box">
                 <label id="sub-title" for="file">教材ファイル</label>
                 <input type="file" id="file" name="file" required accept=".html"/>
                 {% if form.file.errors %}
-                    <p class="error-message">{{ form.file.errors }}</p>
+                  <p class="error-message">{{ form.file.errors }}</p>
                 {% endif %}
             </div>
             <button class="back-button">戻る</button>
@@ -59,3 +63,12 @@
     </div>
   </body>
 </html>
+<script>
+  document.getElementById('userMenu').addEventListener('change', function (event) {
+    const selectedValue = event.target.value; // 選択された値を取得
+    if (selectedValue !== 'username') {
+    }
+    // 常に「ユーザー名」に戻す
+    event.target.value = 'username'; 
+  });
+</script>
