@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>アカウント情報管理</title>
+    </head>
+    <body>
+        <header>
+            <h1>アカウント情報管理</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">ホーム</a></li>
+                    <li><a href="/master/account-management/">アカウント管理</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>ユーザーリスト</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ユーザー名</th>
+                        <th>現在のグループ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.groups.all|join:", " }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h2>ユーザーのグループ変更</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">グループ変更</button>
+            </form>
+        </main>
+        <footer>
+            <p>&copy; 2024 My Django Application</p>
+        </footer>
+    </body>
+</html>

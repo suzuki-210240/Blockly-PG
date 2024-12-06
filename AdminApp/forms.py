@@ -2,6 +2,7 @@ from django import forms
 from .models import Task
 from .models import FileUpload
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User, Group
 
 class TaskForm(forms.ModelForm):
     file_upload = forms.FileField(
@@ -50,3 +51,9 @@ class FileUploadForm(forms.ModelForm):
     class Meta:
         model = FileUpload
         fields = ['file']
+
+
+#アカウント情報管理用
+class UserGroupForm(forms.Form):
+    user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
+    group = forms.ModelChoiceField(queryset=Group.objects.all(), required=True)

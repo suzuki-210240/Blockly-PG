@@ -2,11 +2,40 @@ import re
 import os
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Task
 from .forms import TaskForm, AddMaterialForm, FileUploadForm
 from django.core.files.storage import default_storage
+
+from django.contrib.auth.models import User, Group
+from .forms import UserGroupForm
+
+
+#管理者のみがアクセスできるビューのデコレーター
+def is_admin(user):
+    return user.groups.filter(name='admin').exists()
+
+#管理者用のアカウント管理ページ
+@login_required
+@user_passes_test(is_admin)
+def account_management(request):
+    users = User.objects.all()  #すべてのユーザーを取得
+    if request.method == 'POST':
+        form = UserGroupForm(request.POST)
+        if form.is_valid():
+            user_id = form.cleaned_data['user']
+            group_name = form.cleaned_data['group']
+            user = User.objects.get(id=user_id)
+            group = Group.objects.get(name=group_name)
+            user.groups.clear() #既存のグループを削除
+            user.groups.add(group)  #新しいグループを追加
+            return redirect('account_management')   #更新後にリダイレクト
+    else:
+        form = UserGroupForm()
+
+    return render(request, 'admin/account_management.html', {'users': users, 'form': form})
+
 
 
 @login_required
