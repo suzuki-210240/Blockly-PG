@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/materials_list.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}"/>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
 
@@ -29,7 +29,7 @@
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="{% url 'App:list_files' %}" class="button1">教材一覧</a>
+      <a href="{% url 'AdminApp:list_files' %}" class="button1">教材一覧</a>
       <a href="#" class="button2">課題一覧</a>
       <a href="#" class="button3">フリーモード</a>
     </div>
@@ -45,7 +45,7 @@
                 <p style="color: red;">{{ error_message }}</p>
             {% else %}
               {% for title, url in files_with_urls %}
-              <form method="POST" action="{% url 'App:send_material' %}">
+              <form method="POST" action="{% url 'AdminApp:send_material' %}">
                 {% csrf_token %}
                 <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
                 <input type="hidden" name="title" value="{{ title }}">

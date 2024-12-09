@@ -97,22 +97,22 @@ def task_edit(request, task_id):
 
 
 def admin_materials_list(request):
-    return render(request, 'admin_materials_list.html')
+    return render(request, 'Materials/admin_materials_list.html')
 
 def add_materials(request):
-    return render(request, 'add_materials.html')
+    return render(request, 'Materials/add_materials.html')
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'Materials/index.html')
 
 def edit_materials(request):
-    return render(request, 'edit_materials.html')
+    return render(request, 'Materials/edit_materials.html')
 
 #def material_display(request):
     #return render(request, 'material_display.html')
 
 def send_material(request):
-    return render(request, 'material_display.html')
+    return render(request, 'Materials/material_display.html')
 
 
 #----------------------------教材一覧リスト------------------------------------
@@ -144,12 +144,12 @@ def list_files(request):
         # フォルダが存在しない場合のエラーハンドリング
         files_and_dirs = []
         error_message = "指定されたフォルダが見つかりませんでした。"
-        return render(request, 'admin_materials_list.html', {'error_message': error_message})
+        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
     except Exception as e:
         # その他の例外が発生した場合のエラーハンドリング
         files_and_dirs = []
         error_message = "エラーが発生しました。"
-        return render(request, 'admin_materials_list.html', {'error_message': error_message})
+        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
 
     print('ファイルのurl作成')
     # ファイルのURLを作成 (エンコード処理を追加)
@@ -160,7 +160,7 @@ def list_files(request):
     # ファイル名とURLを組み合わせたタプルのリストを作成
     files_with_urls = zip(db_material_names, file_urls)
     # フォルダ内のファイルがある場合に表示
-    return render(request, 'admin_materials_list.html', {'files_with_urls': files_with_urls})
+    return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
 #----------------------------教材一覧リスト-----------------------------------
 
 #----------------------------教材表示-----------------------------------
@@ -181,7 +181,7 @@ def send_material(request):
             #例外処理
             print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
 
-        return render(request, 'material_display.html', {'title': material_title, 'url': material_url})
+        return render(request, 'Materials/material_display.html', {'title': material_title, 'url': material_url})
 
     return HttpResponse('Invalid request', status=400)
 #----------------------------教材表示-----------------------------------
@@ -223,24 +223,24 @@ def add_file(request):
                             destination.write(chunk)
                 
                 # 正常終了時
-                return render(request, 'index.html')
+                return render(request, 'Materials/index.html')
 
             except IntegrityError:
                 # 一意制約違反などのデータベースエラー処理
                 error_message = 'このタイトルは既に使用されています。'
-                return render(request, 'add_materials.html', {'form': form, 'error_message': error_message})
+                return render(request, 'Materials/add_materials.html', {'form': form, 'error_message': error_message})
 
             except Exception as e:
                 # 他のエラー処理
-                return render(request, 'add_materials.html', {'form': form, 'error_message': str(e)})
+                return render(request, 'Materials/add_materials.html', {'form': form, 'error_message': str(e)})
 
         else:
             # フォームが無効な場合、エラーメッセージとともに再レンダリング
-            return render(request, 'add_materials.html', {'form': form, 'error_message': 'フォームにエラーがあります。'})
+            return render(request, 'Materials/add_materials.html', {'form': form, 'error_message': 'フォームにエラーがあります。'})
     else:
         # 初回表示時
         form = AddMaterialForm()
-    return render(request, 'add_materials.html', {'form': form})
+    return render(request, 'Materials/add_materials.html', {'form': form})
 #--------------------------教材ファイル新規追加--------------------------------
  
 

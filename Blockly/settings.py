@@ -86,10 +86,22 @@ WSGI_APPLICATION = 'Blockly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#----DB設定-----
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blockly_pg', # データベース名
+        'USER': 'user',  # または 'ユーザー名'
+        'PASSWORD': 'pass',  # パスワード
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -151,3 +163,5 @@ LOGOUT_REDIRECT_URL = '/login'    #ログアウト後に遷移するURL
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000'

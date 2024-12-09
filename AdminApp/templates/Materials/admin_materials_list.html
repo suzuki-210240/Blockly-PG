@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/materials_list.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}"/>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
 
@@ -29,14 +29,14 @@
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="{% url 'App:list_files' %}" class="button1">教材一覧</a>
+      <a href="{% url 'AdminApp:list_files' %}" class="button1">教材一覧</a>
       <a href="#" class="button2">課題一覧</a>
       <a href="#" class="button3">フリーモード</a>
     </div>
     <!-- メイン -->
     <div class="main">
       <h1>教材一覧</h1>
-      <a href="{% url 'App:add_materials' %}">教材新規登録</a>
+      <a href="{% url 'AdminApp:add_materials' %}">教材新規登録</a>
       <div class="table-container">
         <div class="table-header">
             <span class="title">タイトル</span>

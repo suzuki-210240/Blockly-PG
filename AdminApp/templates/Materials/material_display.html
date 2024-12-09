@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>教材[BlocklyCodeAcademy]</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
   </head>
   <body>
     <header>
@@ -25,13 +25,13 @@
         <!-- ユーザー名 -->
       </div>
       <div class="navigation">
-        <a href="{% url 'App:list_files' %}" class="back-button">一覧に戻る</a>
+        <a href="{% url 'AdminApp:list_files' %}" class="back-button">一覧に戻る</a>
       </div>
     </header>
     <!--教材表示-->
     <div class="Box">
       <div class="container">
-        <a href="{% url 'App:list_files' %}" class="button1">教材一覧</a>
+        <a href="{% url 'AdminApp:list_files' %}" class="button1">教材一覧</a>
         <a href="#" class="button2">課題一覧</a>
         <a href="#" class="button3">フリーモード</a>
       </div>

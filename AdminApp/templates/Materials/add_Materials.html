@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'app/css/addMaterials.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}"/>
     <title>教材新規追加[BlocklyCodeAcademy]</title>
   </head>
 
@@ -27,14 +27,14 @@
     <div class="Box">
       <!-- メニューバー -->
       <div class="container">
-        <a href="{% url 'App:list_files' %}" class="button1">教材一覧</a>
+        <a href="{% url 'AdminApp:list_files' %}" class="button1">教材一覧</a>
         <a href="#" class="button2">課題一覧</a>
         <a href="#" class="button3">フリーモード</a>
       </div>
       <!-- メイン -->
       <div class="main">
         <h1>教材新規追加</h1>
-        <form method="POST" enctype="multipart/form-data" action= {% url 'App:add_file' %}>
+        <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:add_file' %}>
             {% csrf_token %}
             <div class="sub-title-box">
                 <label id="sub-title" for="title">教材タイトル</label>
