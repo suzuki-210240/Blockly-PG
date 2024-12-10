@@ -9,8 +9,8 @@ urlpatterns = [
     path("kadai/", views.Kadai_list, name="kadailist"),#課題一覧
     path('kadai/<int:kadai_id>/', views.Kadai_open, name='Kadai'),#課題表示
     path("free/", views.FreeMode,name="freemode"),#自由制作モード
-    path('check-code/',views.check_code, name='check_code'),#正誤判定
-    path('list/',views.list_files, name='list'),
+    path('check-code/', views.check_code, name='check_code'),#正誤判定
+    path('list/', views.list_files, name='list'),
 ]
 
 if settings.DEBUG:

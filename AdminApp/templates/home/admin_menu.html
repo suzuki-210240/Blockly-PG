@@ -4,8 +4,20 @@
 <head>
   <meta charset="UTF-8">
   {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'app/css/template.css' %}">
   <title>ページ名[BlocklyCodeAcademy]</title>
+  <style>
+    /*.user-infoを右上に固定配置*/
+    .user-info{
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        z-index: 1000;
+    }
+  </style>
 </head>
 
 <body>
@@ -21,6 +33,13 @@
           <option>ログアウト</option>
         </select>
       </label>
+    </div>
+    <div class="user-info">
+      {% if user_info %}
+          {{ user_info.group }} : {{ user_info.username }}
+      {% else %}
+          ゲスト
+      {% endif %}
     </div>
     <!-- ユーザー名 -->
   </header>

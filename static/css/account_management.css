@@ -1,5 +1,4 @@
 /*アカウント情報管理画面のデザイン*/
-
 /*基本のスタイル*/
 body{
     font-family: Arial, sans-serif;
@@ -121,7 +120,7 @@ footer{
     color: white;
     text-align: center;
     padding: 10px 0;
-    position: 10px 0;
+    position: fixed;
     width: 100%;
     bottom: 0;
 }
