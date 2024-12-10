@@ -4,12 +4,12 @@ from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Task,Material
-from .forms import TaskForm, AddMaterialForm
+from .models import Material, Kadai, Answer
+from .forms import  AddMaterialForm,KadaiForm,AnswerForm
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
 from django.db import transaction, IntegrityError
 
 
@@ -59,41 +59,41 @@ def account_management_delete(request, user_id):
 def admin_menu(request):
     return render(request, 'home/admin_menu.html')
 
-@staff_member_required
-def task_list(request):
-    tasks = Task.objects.filter(created_by=request.user)
-    return render(request, 'adminapp/task_list.html', {'tasks': tasks})
+# @staff_member_required
+# def task_list(request):
+#     tasks = Task.objects.filter(created_by=request.user)
+#     return render(request, 'adminapp/task_list.html', {'tasks': tasks})
 
-@staff_member_required
-def task_create(request):
-    if request.method == 'POST':
-        form = TaskForm(request.POST, request.FILES)
-        if form.is_valid():
-            task = form.save(commit=False)
-            task.created_by = request.user
-            task.file_content = request.FILES['file_upload'].read().decode('utf-8')
-            task.file_type = request.FILES['file_upload'].name.split('.')[-1].lower()
-            task.save()
-            return redirect('task_list')
-    else:
-        form = TaskForm()
-    return render(request, 'adminapp/task_create.html', {'form': form})
+# @staff_member_required
+# def task_create(request):
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             task = form.save(commit=False)
+#             task.created_by = request.user
+#             task.file_content = request.FILES['file_upload'].read().decode('utf-8')
+#             task.file_type = request.FILES['file_upload'].name.split('.')[-1].lower()
+#             task.save()
+#             return redirect('task_list')
+#     else:
+#         form = TaskForm()
+#     return render(request, 'adminapp/task_create.html', {'form': form})
 
-@staff_member_required
-def task_edit(request, task_id):
-    task = get_object_or_404(Task, id=task_id, created_by=request.user)
-    if request.method == 'POST':
-        form = TaskForm(request.POST, request.FILES, instance=task)
-        if form.is_valid():
-            task = form.save(commit=False)
-            if 'file_upload' in request.FILES:
-                task.file_content = request.FILES['file_upload'].read().decode('utf-8')
-                task.file_type = request.FILES['file_upload'].name.split('.')[-1].lower()
-            task.save()
-            return redirect('task_list')
-    else:
-        form = TaskForm(instance=task)
-    return render(request, 'adminapp/edit.html', {'form': form})
+# @staff_member_required
+# def task_edit(request, task_id):
+#     task = get_object_or_404(Task, id=task_id, created_by=request.user)
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST, request.FILES, instance=task)
+#         if form.is_valid():
+#             task = form.save(commit=False)
+#             if 'file_upload' in request.FILES:
+#                 task.file_content = request.FILES['file_upload'].read().decode('utf-8')
+#                 task.file_type = request.FILES['file_upload'].name.split('.')[-1].lower()
+#             task.save()
+#             return redirect('task_list')
+#     else:
+#         form = TaskForm(instance=task)
+#     return render(request, 'adminapp/edit.html', {'form': form})
 
 
 def admin_materials_list(request):
@@ -244,28 +244,127 @@ def add_file(request):
 #--------------------------教材ファイル新規追加--------------------------------
  
 
+#--------------------------------問題・解答設定----------------------------------------
 
-#*********要注意**********
-#-----------------------------------------------------課題編集（views.pyの編集）-----------------------------------------------------
-def edit_views(request):
-    views_file_path = os.path.join(settings.BASE_DIR, 'UserApp', 'views.py')  # views.pyのパス
 
-    # 初期状態でファイルの内容を取得
-    if request.method == 'GET':
-        try:
-            with open(views_file_path, 'r', encoding='utf-8') as file:
-                view_code = file.read()
-        except FileNotFoundError:
-            view_code = "views.py が見つかりませんでした。"
-    elif request.method == 'POST':
-        # 編集した内容をPOSTで受け取り、ファイルに書き込む
-        view_code = request.POST.get('view_code', '')
-        try:
-            with open(views_file_path, 'w', encoding='utf-8') as file:
-                file.write(view_code)
-        except Exception as e:
-            view_code = f"エラーが発生しました: {str(e)}"
+#プレフィックスの追加（基本問題はb、追加問題はa）
+def create_number(kadai):
+    if kadai.number:  # numberが空でないとき
+        if kadai.category:
+            # プレフィックスが既に含まれていない場合にのみプレフィックスを追加
+            if not (kadai.number.startswith('b') or kadai.number.startswith('a')):
+                # プレフィックス設定
+                category_prefix = 'b' if kadai.category == 'basic' else 'a'
+                # プレフィックスと番号を組み合わせて設定
+                kadai.number = f"{category_prefix}{kadai.number}"
 
-    return render(request, 'edit_view/edit.html', {'view_code': view_code})
 
-#------------------------------------------------------------------------------------------------------------------------------------
+def add_kadai_and_answer(request, kadai_id=None):
+    if kadai_id:
+        kadai = get_object_or_404(Kadai, id=kadai_id)
+        answers = Answer.objects.filter(kadai=kadai)
+    else:
+        kadai = None
+        answers = []
+
+    # 問題フォーム
+    if request.method == "POST":
+        kadai_form = KadaiForm(request.POST, instance=kadai)
+        answer_form = AnswerForm(request.POST)  # 解答フォーム
+
+        if kadai_form.is_valid():
+            kadai_instance = kadai_form.save(commit=False)  # 問題データを保存
+            create_number(kadai_instance)  # プレフィックスを設定
+            kadai_instance.save()  # 問題データの保存
+
+            # 解答フォームが有効な場合にのみ解答を保存
+            if answer_form.is_valid():
+                answer_instance = answer_form.save(commit=False)
+                answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
+                answer_instance.save()
+
+            return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+
+    else:
+        kadai_form = KadaiForm(instance=kadai)
+        answer_form = AnswerForm()
+
+    return render(request, 'kadai/Kadai_add.html', {
+        'kadai_form': kadai_form,
+        'answer_form': answer_form,
+        'kadai': kadai,
+        'answers': answers,
+    })
+
+def edit_kadai_and_answer(request, kadai_id):
+    # 問題データを取得
+    kadai = get_object_or_404(Kadai, number=kadai_id)
+    answers = Answer.objects.filter(kadai=kadai)
+
+    # 問題と解答のフォームを編集
+    if request.method == "POST":
+        # 問題フォームの処理
+        kadai_form = KadaiForm(request.POST, instance=kadai)
+
+        # 解答フォームの処理（解答が無い場合でも空フォームを表示）
+        answer_forms = [
+            AnswerForm(request.POST, prefix=f"answer_{i}", instance=answer)
+            for i, answer in enumerate(answers)
+        ]
+
+        if kadai_form.is_valid():
+            kadai_instance = kadai_form.save(commit=False)
+            kadai_instance.save()  # 問題データを保存
+
+            # 解答フォームの保存
+            for answer_form in answer_forms:
+                if answer_form.is_valid():
+                    answer_instance = answer_form.save(commit=False)
+                    answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
+                    answer_instance.save()
+
+            return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+
+    else:
+        kadai_form = KadaiForm(instance=kadai)
+        # 解答フォームの初期化
+        answer_forms = [
+            AnswerForm(prefix=f"answer_{i}", instance=answer)
+            for i, answer in enumerate(answers)
+        ]
+
+
+    return render(request, 'kadai/Kadai_edit.html', {
+        'kadai_form': kadai_form,
+        'answer_forms': answer_forms,
+        'kadai': kadai,
+        'answers': answers,
+    })
+
+
+#--------------------------------問題・解答設定----------------------------------------
+
+#------------------------------------課題管理------------------------------------------
+
+def admin_kadai_list(request):
+    kadais_by_category = Kadai.objects.values('category').distinct()  # カテゴリごとにグループ化
+    categories = {}
+    for category in kadais_by_category:
+        category_name = category['category']
+        categories[category_name] = Kadai.objects.filter(category=category_name)
+
+    return render(request, 'kadai/Kadai_admin_list.html', {'categories': categories})
+
+def delete_kadai(request, kadai_id):
+    # 複数のKadaiオブジェクトが返ってくることに対応
+    kadais = Kadai.objects.filter(number=kadai_id)
+    
+    if kadais.exists():
+        # 1つだけ削除する（最初の1件）
+        kadai = kadais.first()
+        kadai.delete()
+        return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+    else:
+        raise Http404("問題が見つかりません")
+    
+#------------------------------------課題管理------------------------------------------

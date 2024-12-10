@@ -1,30 +1,29 @@
 from django import forms
-from .models import Task
-from .models import FileUpload
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User, Group
+from .models import Kadai, Answer ,Material
 
-class TaskForm(forms.ModelForm):
-    file_upload = forms.FileField(
-        label='課題ファイル', 
-        help_text='HTML または Pythonファイルをアップロードしてください'
-    )
+# class TaskForm(forms.ModelForm):
+#     file_upload = forms.FileField(
+#         label='課題ファイル', 
+#         help_text='HTML または Pythonファイルをアップロードしてください'
+#     )
 
-    class Meta:
-        model = Task
-        fields = ['title', 'category']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.RadioSelect(),
-        }
+#     class Meta:
+#         model = Task
+#         fields = ['title', 'category']
+#         widgets = {
+#             'title': forms.TextInput(attrs={'class': 'form-control'}),
+#             'category': forms.RadioSelect(),
+#         }
     
-    def clean_file_upload(self):
-        file = self.cleaned_data.get('file_upload')
-        if file:
-            ext = file.name.split('.')[-1].lower()
-            if ext not in ['html', 'py']:
-                raise forms.ValidationError('HTMLまたはPythonファイルのみアップロードできます。')
-        return file
+#     def clean_file_upload(self):
+#         file = self.cleaned_data.get('file_upload')
+#         if file:
+#             ext = file.name.split('.')[-1].lower()
+#             if ext not in ['html', 'py']:
+#                 raise forms.ValidationError('HTMLまたはPythonファイルのみアップロードできます。')
+#         return file
     
 #--------------------------教材ファイル新規追加--------------------------------
  
@@ -60,6 +59,35 @@ def clean_file(self):
     return file
 
 #--------------------------教材ファイル新規追加--------------------------------
+
+#------------------------------課題関係----------------------------------------
+
+class KadaiForm(forms.ModelForm):
+    class Meta:
+        model = Kadai
+        fields = ['number', 'category', 'name' ,'q_text']
+    
+    def sva(self,commit=True,number=None):
+        isinstance = super().save(commit=False)
+
+        if number:
+            isinstance.number = number
+
+        if commit:
+            isinstance.save()
+        return isinstance
+
+
+class AnswerForm(forms.ModelForm):
+    class Meta:
+        model = Answer
+        fields = ['a_text']
+
+#------------------------------課題関係----------------------------------------
+
+
+
+
 
 
 #アカウント情報管理用
