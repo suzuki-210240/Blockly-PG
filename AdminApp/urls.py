@@ -16,8 +16,10 @@ urlpatterns = [
     path('add_file/', views.add_file, name='add_file'), #教材追加関数呼び出し
     path('list_files/', views.list_files, name='list_files'), #教材一覧関数呼び出し
     path('send_material/', views.send_material, name='send_material') ,#教材表示関数呼び出し
-    
-    path('edit/',views.edit_views, name='edit'), 
+    path('admin_kadai_list/',views.admin_kadai_list,name='admin_kadai_list'),#課題一覧
+    path('add_kadai/',views.add_kadai_and_answer,name='add_kadai'),#課題追加関数呼び出し
+    path('edit_kadai/<str:kadai_id>',views.edit_kadai_and_answer,name='edit_kadai'),#課題編集関数呼び出し
+    path('delete_kadai/<str:kadai_id>',views.delete_kadai,name='delete_kadai'),#課題削除関数呼び出し
 
 ]
 

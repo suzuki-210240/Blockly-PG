@@ -1,0 +1,26 @@
+<!-- kadai_list.html -->
+<h2>問題一覧</h2>
+
+{% for category, kadais in categories.items %}
+    <h3>{{ category }}</h3>
+    <ul>
+        {% for kadai in kadais %}
+            <li>
+                <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
+                <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}">編集</a>
+                <!-- 管理者のみ削除ボタンを表示 -->
+                <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                   <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>問題がありません。</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+<a href="{% url 'AdminApp:add_kadai' %}">新規作成</a>
+
+
+
