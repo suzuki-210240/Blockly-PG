@@ -5,8 +5,38 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WelCome,Blockly!</title>
+        <style>
+            /*.user-infoを右上に固定配置*/
+            .user-info{
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                background-color: rgba(255, 255, 255, 0.7);
+                padding: 5px 15px;
+                border-radius: 5px;
+                font-size: 14px;
+                z-index: 1000;
+            }
+            /*ヘッダーの基本スタイル*/
+            header{
+                padding: 20px;
+                background-color: #f8f9fa;
+                border-bottom: 1px solid #e0e0e0;
+            }
+        </style>
     </head>
     <body>
+
+        <header>
+            <div class="user-info">
+                {% if user_info %}
+                    {{ user_info.group }} : {{ user_info.username }}
+                {% else %}
+                    ゲスト
+                {% endif %}
+            </div>
+        </header>
+
         <h1>利用者用ページ</h1>
         <p>利用者用メニュー画面</p>
     </body>

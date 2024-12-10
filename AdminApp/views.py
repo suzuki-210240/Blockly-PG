@@ -57,7 +57,24 @@ def account_management_delete(request, user_id):
 
 @login_required
 def admin_menu(request):
-    return render(request, 'home/admin_menu.html')
+    context = {}    #ユーザー名と権限名の入れ物
+    #↓ログインされていればユーザー名と権限名取得
+    if request.user.is_authenticated:
+        user = request.user
+        group_names = [group.name for group in user.groups.all()]
+
+        if 'admin' in group_names:
+            group_display = "管理者"
+        elif 'user' in group_names:
+            group_display = "一般ユーザー"
+        else:
+            group_display = "未分類"
+            
+        context['user_info'] = {
+            'username' : user.username,
+            'group' : group_display
+        }
+    return render(request, 'home/admin_menu.html', context)
 
 # @staff_member_required
 # def task_list(request):

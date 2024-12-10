@@ -7,9 +7,30 @@ from django.conf import settings
 import json,os,urllib.parse
 
 def Home (request):
+
+    context = {}    #ユーザー名と権限名の入れ物
+    #↓ログインされていればユーザー名と権限名取得
+    if request.user.is_authenticated:
+        user = request.user
+        group_names = [group.name for group in user.groups.all()]
+
+        if 'admin' in group_names:
+            group_display = "管理者"
+        elif 'user' in group_names:
+            group_display = "一般ユーザー"
+        else:
+            group_display = "未分類"
+        
+        context['user_info'] = {
+            'username' : user.username,
+            'group' : group_display
+        }
+
+    #↓contextと一緒にページをレンダリング
     return render(
         request,
         'home/main.html',
+        context
     )
 
 #課題一覧

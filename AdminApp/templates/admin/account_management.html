@@ -1,19 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>アカウント情報管理</title>
+        <link rel="stylesheet" href="{% static 'css/account_management.css' %}">
     </head>
     <body>
         <header>
-            <h1>アカウント情報管理</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">ホーム</a></li>
-                    <li><a href="/master/account-management/">アカウント管理</a></li>
-                </ul>
-            </nav>
+            <h1>アカウント情報管理</h1>                
         </header>
         <main>
             <h2>アカウント一覧</h2>

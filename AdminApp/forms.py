@@ -92,5 +92,12 @@ class AnswerForm(forms.ModelForm):
 
 #アカウント情報管理用
 class UserGroupForm(forms.Form):
-    user = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
-    group = forms.ModelChoiceField(queryset=Group.objects.all(), required=True)
+    #ユーザーを選択するフィールド
+    user = forms.ModelChoiceField(queryset=User.objects.all(), label="ユーザー名")
+
+    #グループを選択するフィールド
+    group_choices = [
+        ('user', '一般ユーザー'),
+        ('admin', '管理者'),
+    ]
+    group = forms.ChoiceField(choices=group_choices, label="権限")
