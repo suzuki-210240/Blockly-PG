@@ -39,5 +39,11 @@
 
         <h1>利用者用ページ</h1>
         <p>利用者用メニュー画面</p>
+
+        <!--ログアウトボタン-->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">ログアウト</button>
+    </form>
     </body>
 </html>
