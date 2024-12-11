@@ -1,0 +1,52 @@
+<!-- kadai_list.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/kadai.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
+        <title>課題一覧[BlocklyCodeAcademy]</title>
+    </head>
+    <body>
+        <header>
+            <p class="logo">BlocklyCodeAcademy</p>
+            <!-- ユーザー名 -->
+            <div class="selectdiv">
+              <label>
+                <select id="userMenu">
+                  <option value="username" selected> ユーザー名 </option>
+                  <option value="settings">設定</option>
+                  <option value="account">アカウント管理</option>
+                  <option value="logout">ログアウト</option>
+                </select>
+              </label>
+            </div>
+            <!-- ユーザー名 -->
+        </header>
+          <div class="Box">
+            <!-- メニューバー -->
+            <div class="container">
+              <a href="{% url 'UserApp:Material_list' %}" class="button1">教材一覧</a>
+              <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
+              <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
+            </div>
+        <div class="main">
+            <h2>課題一覧</h2>
+            {% for category, kadais in categories.items %}
+                <h3>{{ category }}</h3>
+                <ul>
+                    {% for kadai in kadais %}
+                        <li>
+                            <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
+                            <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}">課題を開く</a>
+                        </li>
+                    {% empty %}
+                        <li>問題がありません。</li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+        <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+    </body>
+</html>
