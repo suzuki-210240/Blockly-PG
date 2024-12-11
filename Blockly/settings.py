@@ -158,7 +158,7 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL ='/admin/menu/' 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/sort'    #ログイン後に遷移するURL
-LOGOUT_REDIRECT_URL = '/login'    #ログアウト後に遷移するURL
+LOGOUT_REDIRECT_URL = '/'    #ログアウト後に遷移するURL
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

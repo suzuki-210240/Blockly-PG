@@ -37,6 +37,7 @@ def Home (request):
         context
     )
 
+@login_required
 #課題一覧
 def Kadai_list (request):
     kadais_by_category = Kadai.objects.values('category').distinct()  # カテゴリごとにグループ化
@@ -50,7 +51,18 @@ def Kadai_list (request):
 
 #------------------------------課題表示---------------------------------------------
 
+@login_required
 def Kadai_open(request, kadai_id):
+
+    #現在のユーザーのグループを取得
+    groups = request.user.groups.all()
+    #グループ名に基づいて表示する内容を決定
+    user_type = "一般ユーザー"  #デフォルト
+    for group in groups:
+        if group.name == "admin":
+            user_type = "管理者"
+            break
+
     try:
         # `kadai_id`に対応する問題を取得
         kadai = Kadai.objects.get(number=kadai_id)
@@ -69,6 +81,8 @@ def Kadai_open(request, kadai_id):
             'kadai_number': kadai_number,
             'kadai_name': kadai_name,
             'message': message,
+            'user_type': user_type,
+            'username': request.user.username   #ユーザー名も渡す
         }
     )
 
