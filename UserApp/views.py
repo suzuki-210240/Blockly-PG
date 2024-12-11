@@ -7,8 +7,9 @@ from django.conf import settings
 import json,os,urllib.parse
 from .models import Kadai,Answer,Material
 from .forms import KadaiForm,AnswerForm
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def Home (request):
 
     context = {}    #ユーザー名と権限名の入れ物
