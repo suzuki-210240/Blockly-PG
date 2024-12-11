@@ -31,22 +31,38 @@
               <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
               <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
             </div>
-        <div class="main">
-            <h2>課題一覧</h2>
-            {% for category, kadais in categories.items %}
-                <h3>{{ category }}</h3>
-                <ul>
-                    {% for kadai in kadais %}
-                        <li>
-                            <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
-                            <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}">課題を開く</a>
-                        </li>
-                    {% empty %}
-                        <li>問題がありません。</li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
-        </div>
+            <div class="main">
+                <h2>課題一覧</h2>
+                <hr>
+                {% for category, kadais in categories.items %}
+
+                    {% comment %} <div style="
+                        {% if category == '基本区分' %}
+                            background-color: #ffcccc;
+                        {% elif category == '応用区分' %}
+                            background-color: #ccffcc;
+                        {% elif category == 'チュートリアル' %}
+                            background-color: #ccccff;
+                        {% else %}
+                            background-color: #f0f0f0;
+                        {% endif %}
+                    padding: 10px; margin-bottom: 20px; border-radius: 5px;"> {% endcomment %}
+                    <div id="categ">
+                        <h3>{{ category }}</h3>
+                        <ul>
+                            {% for kadai in kadais %}
+                                <li>
+                                    <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
+                                    <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}" class="btn">課題を開く</a>
+                                </li>
+                            {% empty %}
+                                <li>問題がありません。</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+                <hr>
+            </div>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>
 </html>

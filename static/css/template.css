@@ -125,6 +125,7 @@ body {
   /*角丸*/
   border-radius: 30px;
   margin: 0 15px;
+  width: 1500px;
 }
 
 .main h1 {
