@@ -35,10 +35,13 @@ def sort(request):
         アカウント名：YakuwaYudai
         パスワード：yudai0929
         所属グループ：admin
+
     ・スーパーユーザー
         アカウント名：210826
         パスワード：000111
     """
+
+    #
 #アカウント新規作成のためのメソッド
 def register(request):
     if request.method == 'POST':

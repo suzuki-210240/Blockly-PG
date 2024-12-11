@@ -1,11 +1,11 @@
 
-import re
+import re,requests
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render,redirect,get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.conf import settings
 import json,os,urllib.parse
-from .models import Kadai,Answer
+from .models import Kadai,Answer,Material
 from .forms import KadaiForm,AnswerForm
 
 
@@ -44,7 +44,7 @@ def Kadai_list (request):
         category_name = category['category']
         categories[category_name] = Kadai.objects.filter(category=category_name)
 
-    return render(request, 'Kadai/list.html', {'categories': categories})
+    return render(request, 'Kadai/kadai_list.html', {'categories': categories})
 
 
 #------------------------------課題表示---------------------------------------------
@@ -145,31 +145,73 @@ def FreeMode (request):
     )
 
 
-#--------------------------教材一覧リスト--------------------------------
+#------------------------------------------------教材一覧リスト----------------------------------------------------
 
 def list_files(request):
+
     # uploadsディレクトリのパス
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
 
     # フォルダ内のファイルとディレクトリを取得
     try:
+        # mediaフォルダ内のファイル取得(リスト)
         files_and_dirs = os.listdir(folder_path)
+        print('files_and_dirs', files_and_dirs)
+        # dbから二次元リストとして作成[{material_name},{html_file_name}]
+        db_files_name = Material.objects.values('material_name', 'html_file_name').filter(html_file_name__in=files_and_dirs)
+        # db_files_nameをリストに変換
+        db_files_list = list(db_files_name)
+        # db_files_nameの内容を確認
+        print(f"db_files_name: {db_files_list}")
+        # db_files_listをhtml_file_name順に並べ替え、files_and_dirsの順番でmaterial_nameを取得
+        material_dict = {material['html_file_name']: material['material_name'] for material in db_files_list}
+        # files_and_dirsの順番に従って、対応するmaterial_nameを取得
+        db_material_names = [material_dict[file_name] for file_name in files_and_dirs if file_name in material_dict]
+        # 並び替えた結果を表示
+        print(f"db_material_names: {db_material_names}")
+
     except FileNotFoundError:
         # フォルダが存在しない場合のエラーハンドリング
         files_and_dirs = []
         error_message = "指定されたフォルダが見つかりませんでした。"
-        return render(request, '.html', {'error_message': error_message})
+        return render(request, 'Materials/materials_list.html', {'error_message': error_message})
+    except Exception as e:
+        # その他の例外が発生した場合のエラーハンドリング
+        files_and_dirs = []
+        error_message = "エラーが発生しました。"
+        return render(request, 'Materials/materials_list.html', {'error_message': error_message})
 
+    print('ファイルのurl作成')
     # ファイルのURLを作成 (エンコード処理を追加)
     file_urls = [
         os.path.join(settings.MEDIA_URL, 'uploads', urllib.parse.quote(file)) 
         for file in files_and_dirs
     ]
     # ファイル名とURLを組み合わせたタプルのリストを作成
-    files_with_urls = zip(files_and_dirs, file_urls)
-
+    files_with_urls = zip(db_material_names, file_urls)
     # フォルダ内のファイルがある場合に表示
-    return render(request, 'list_files.html', {'files_with_urls': files_with_urls})
+    return render(request, 'Materials/materials_list.html', {'files_with_urls': files_with_urls})
+#-----------------------------------------------教材一覧リスト--------------------------------------------------
 
+#----------------------------教材表示-----------------------------------
+def send_material(request):
 
-#-----------------------------------------------------------------------
+    # 教材一覧で選択した教材情報を取得
+    if(request.method == 'POST'):
+        material_title = request.POST.get('title')
+        material_url = request.POST.get('url') #medhia/uploads\ファイル名
+        print(material_title, material_url)
+
+        try:
+            # MEDIA_ROOT を基準に絶対パスを作成
+            material_url = os.path.join(settings.MEDIA_URL, material_url.replace("\\", "/"))
+            print(material_url)
+
+        except requests.exceptions.RequestException as e:
+            #例外処理
+            print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
+
+        return render(request, 'Materials/material_display.html', {'title': material_title, 'url': material_url})
+
+    return HttpResponse('Invalid request', status=400)
+#----------------------------教材表示-----------------------------------

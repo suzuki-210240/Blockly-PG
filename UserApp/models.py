@@ -1,5 +1,5 @@
 from django.db import models
-from AdminApp.models import Kadai,Answer
+from AdminApp.models import Kadai,Answer,Material
 from django.contrib.auth.models import User
 
 class Test(models.Model):

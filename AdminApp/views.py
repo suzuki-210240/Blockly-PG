@@ -161,12 +161,12 @@ def list_files(request):
         # フォルダが存在しない場合のエラーハンドリング
         files_and_dirs = []
         error_message = "指定されたフォルダが見つかりませんでした。"
-        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
+        return render(request, 'UserApp:Materials/materials_list.html', {'error_message': error_message})
     except Exception as e:
         # その他の例外が発生した場合のエラーハンドリング
         files_and_dirs = []
         error_message = "エラーが発生しました。"
-        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
+        return render(request, 'UserApp:Materials/materials_list.html', {'error_message': error_message})
 
     print('ファイルのurl作成')
     # ファイルのURLを作成 (エンコード処理を追加)
@@ -177,7 +177,7 @@ def list_files(request):
     # ファイル名とURLを組み合わせたタプルのリストを作成
     files_with_urls = zip(db_material_names, file_urls)
     # フォルダ内のファイルがある場合に表示
-    return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
+    return render(request, 'UserApp:Materials/materials_list.html', {'files_with_urls': files_with_urls})
 #----------------------------教材一覧リスト-----------------------------------
 
 #----------------------------教材表示-----------------------------------
@@ -198,7 +198,7 @@ def send_material(request):
             #例外処理
             print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
 
-        return render(request, 'Materials/material_display.html', {'title': material_title, 'url': material_url})
+        return render(request, 'UserApp:Materials/material_display.html', {'title': material_title, 'url': material_url})
 
     return HttpResponse('Invalid request', status=400)
 #----------------------------教材表示-----------------------------------
