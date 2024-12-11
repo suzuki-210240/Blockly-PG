@@ -58,7 +58,8 @@ class Kadai(models.Model):
     #課題区分
     CATEGORY_CHOICES = [
         ('基本区分', '基本'),
-        ('応用区分', '応用')
+        ('応用区分', '応用'),
+        ('チュートリアル','チュートリアル')
     ]
     category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='基本区分', verbose_name="問題区分")
     #課題番号

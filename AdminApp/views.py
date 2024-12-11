@@ -269,9 +269,9 @@ def create_number(kadai):
     if kadai.number:  # numberが空でないとき
         if kadai.category:
             # プレフィックスが既に含まれていない場合にのみプレフィックスを追加
-            if not (kadai.number.startswith('b') or kadai.number.startswith('a')):
+            if not (kadai.number.startswith('b') or kadai.number.startswith('a') or kadai.number.startswith('t')):
                 # プレフィックス設定
-                category_prefix = 'b' if kadai.category == 'basic' else 'a'
+                category_prefix = 'b' if kadai.category == '基本区分'else ('t' if kadai.category == 'チュートリアル' else 'a')
                 # プレフィックスと番号を組み合わせて設定
                 kadai.number = f"{category_prefix}{kadai.number}"
 

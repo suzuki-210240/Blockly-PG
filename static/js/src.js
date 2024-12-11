@@ -82,7 +82,7 @@ function generateCode(event){
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken // CSRFトークンを追加
             },
-            body: JSON.stringify({ code: code })
+            body: JSON.stringify({ code: code ,kadai_id:kadaiId})
         })
         .then(response => response.json())
         .then(data => {

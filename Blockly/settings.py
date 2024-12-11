@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',  # For Google login
-    'App',
     'UserApp',  #ユーザー用アプリ
     'AdminApp', #管理者用アプリ
 ]
@@ -87,23 +86,23 @@ WSGI_APPLICATION = 'Blockly.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 #----DB設定-----
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'blockly_pg', # データベース名
-#         'USER': 'user',  # または 'ユーザー名'
-#         'PASSWORD': 'pass',  # パスワード
-#         'HOST': 'localhost',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blockly_pg', # データベース名
+        'USER': 'user',  # または 'ユーザー名'
+        'PASSWORD': 'pass',  # パスワード
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
