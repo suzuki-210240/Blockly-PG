@@ -92,8 +92,8 @@ class AnswerForm(forms.ModelForm):
 
 #アカウント情報管理用
 class UserGroupForm(forms.Form):
-    #ユーザーを選択するフィールド
-    user = forms.ModelChoiceField(queryset=User.objects.all(), label="ユーザー名")
+    #ユーザーを選択するフィールド（スーパーユーザーを除外）
+    user = forms.ModelChoiceField(queryset=User.objects.exclude(is_superuser=True), label="ユーザー名")
 
     #グループを選択するフィールド
     group_choices = [
