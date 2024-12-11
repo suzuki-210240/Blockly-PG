@@ -1,10 +1,13 @@
 
 import re
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import JsonResponse
 from django.conf import settings
 import json,os,urllib.parse
+from .models import Kadai,Answer
+from .forms import KadaiForm,AnswerForm
+
 
 def Home (request):
 
@@ -35,37 +38,35 @@ def Home (request):
 
 #課題一覧
 def Kadai_list (request):
-    return render(
-        request,
-        "Kadai/list.html",
-    )
+    kadais_by_category = Kadai.objects.values('category').distinct()  # カテゴリごとにグループ化
+    categories = {}
+    for category in kadais_by_category:
+        category_name = category['category']
+        categories[category_name] = Kadai.objects.filter(category=category_name)
+
+    return render(request, 'Kadai/list.html', {'categories': categories})
 
 
 #------------------------------課題表示---------------------------------------------
 
 def Kadai_open(request, kadai_id):
-    message = "次の規則に沿って\n"
-    if kadai_id == 1:
-        message = "kadai1"
-    elif kadai_id == 2:
-        message = "kadai2"
-    elif kadai_id == 3:
-        message = message + "「こんにちは」と三回出力するループ"
-    elif kadai_id == 4:
-        message = "kadai4"
-    elif kadai_id == 5:
-        message = "kadai5"
-    elif kadai_id == 6:
-        message = "kadai6"
-    else:
-        message = "エラー"
+    try:
+        # `kadai_id`に対応する問題を取得
+        kadai = Kadai.objects.get(number=kadai_id)
+        message = kadai.q_text  # 問題文
+        kadai_number = kadai.number  # 問題番号
+        kadai_name = kadai.name  # 問題名
+    except Kadai.DoesNotExist:
+        message = "指定された問題が存在しません"
+        kadai_number = None
+        kadai_name = None
 
-    message = message + "\nを実装してください"
     return render(
         request,
-        'Kadai/kadai.html',
+        'Kadai/Kadai.html',
         {
-            'number': kadai_id,
+            'kadai_number': kadai_number,
+            'kadai_name': kadai_name,
             'message': message,
         }
     )
@@ -76,32 +77,66 @@ def Kadai_open(request, kadai_id):
 #-------------------------------正誤判定----------------------------------------------
 
 #あらかじめ用意する解答/--複数行の文字列リテラル--/
-CORRECT_CODE = '''
-i = None
-
-
-for i in range(4):
-  print('こんにちは')
-
-'''
 @csrf_exempt
 def check_code(request):
-    global CORRECT_CODE
+    print('start1')
+
     if request.method == 'POST':
-        # 受け取ったPythonコードを取得
-        data = json.loads(request.body)
-        submitted_code = data.get('code')
+        print('start2')
+        
+        try:
+            # リクエストボディをJSONとしてパース
+            data = json.loads(request.body)
+            submitted_code = data.get('code')
+            kadai_id = data.get('kadai_id')  # 送信された問題番号
 
-        # 受け取ったコードと正しい答えを比較
-        if submitted_code.strip() == CORRECT_CODE.strip():
-            return JsonResponse({"isCorrect": True})
-        else:
-            return JsonResponse({"isCorrect": False})
+            #kadai_id = kadai_id.replace(" ","") #空白を削除
+            print(f'問題番号: {kadai_id}')
+            
+            # 問題の取得（見つからなければ404エラーを発生させる）
+            
+            kadai = get_object_or_404(Kadai, number=kadai_id)
+            #print(f'取得した問題: {kadai.name} - {kadai.q_text}')
+            
+            # 解答の取得
+            correct_answer = Answer.objects.get(kadai=kadai)
 
+            print(f'解答: {submitted_code.strip()}')
+            print(f'正解: {correct_answer.a_text.strip()}')
+
+            
+            # 提出されたコードと正解コードの比較
+            if submitted_code.splitlines() == correct_answer.a_text.splitlines():
+                print('end3 - 正解')
+                return JsonResponse({"isCorrect": True})
+            else:
+                print('end4 - 不正解')
+                return JsonResponse({"isCorrect": False})
+
+        except json.JSONDecodeError as e:
+            # JSONのデコードエラー
+            print(f'JSONデコードエラー: {e}')
+            return JsonResponse({"error": "無効なJSONデータです"}, status=400)
+
+        except Kadai.DoesNotExist:
+            # 問題が見つからない場合
+            print(f'問題 {kadai_id} は存在しません')
+            return JsonResponse({"error": f"問題 {kadai_id} は存在しません"}, status=404)
+
+        except Answer.DoesNotExist:
+            # 解答が見つからない場合
+            print(f'問題 {kadai_id} に対する解答が見つかりません')
+            return JsonResponse({"error": "該当する解答が存在しません"}, status=404)
+
+        except Exception as e:
+            # その他のエラー
+            print(f'予期しないエラー: {e}')
+            return JsonResponse({"error": str(e)}, status=500)
+
+    # POSTメソッド以外でリクエストされた場合
     return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
 
 #-------------------------------------------------------------------------------------
-
 #フリーモード
 def FreeMode (request):
     return render(

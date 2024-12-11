@@ -1,16 +1,16 @@
-<!-- example_list.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Example List</title>
-</head>
-<body>
-    <h1>Example List</h1>
+<!-- kadai_list.html -->
+<h2>問題一覧</h2>
+
+{% for category, kadais in categories.items %}
+    <h3>{{ category }}</h3>
     <ul>
-        <li><a href="{% url 'UserApp:Kadai' kadai_id=1 %}">Item 1</a></li>
-        <li><a href="{% url 'UserApp:Kadai' kadai_id=2 %}">Item 2</a></li>
-        <li><a href="{% url 'UserApp:Kadai' kadai_id=3 %}">Item 3</a></li>
-        <!-- 他のアイテムも追加可能 -->
+        {% for kadai in kadais %}
+            <li>
+                <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
+                <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}">課題を開く</a>
+            </li>
+        {% empty %}
+            <li>問題がありません。</li>
+        {% endfor %}
     </ul>
-</body>
-</html>
+{% endfor %}

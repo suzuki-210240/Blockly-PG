@@ -57,12 +57,12 @@ class Material(models.Model):
 class Kadai(models.Model):
     #課題区分
     CATEGORY_CHOICES = [
-        ('basic', '基本'),
-        ('advance', '応用')
+        ('基本区分', '基本'),
+        ('応用区分', '応用')
     ]
-    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='basic', verbose_name="問題区分")
+    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='基本区分', verbose_name="問題区分")
     #課題番号
-    number = models.CharField(max_length=100, verbose_name="問題番号", primary_key=True, unique=True,default="a1")
+    number = models.CharField(max_length=100, verbose_name="問題番号", primary_key=True, unique=True,default="1")
     #課題名
     name = models.CharField(max_length=100, default="問題名")
     #問題文
