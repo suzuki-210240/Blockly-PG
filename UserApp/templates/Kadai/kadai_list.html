@@ -63,6 +63,10 @@
                 {% endfor %}
                 <hr>
             </div>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">ログアウト</button>
+            </form>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>
 </html>
