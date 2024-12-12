@@ -1,7 +1,12 @@
+li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .btn {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 5px ;
+    font-size: 15px;
     color: #fff;
     background-color: #007bff;
     text-decoration: none;
@@ -9,13 +14,20 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    float:right;
+    margin-right: 50px;
 }
 
 .btn:hover {
-    background-color: #68b30057;
+    background-color: #14b9d69e;
 }
 
 #categ {
-
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: #25e6ffa0 2px solid;
+    border-radius: 30px;
+    background-color: rgba(197, 253, 255, 0.789);
 }
   

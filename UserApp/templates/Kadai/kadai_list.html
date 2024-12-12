@@ -33,20 +33,8 @@
             </div>
             <div class="main">
                 <h2>課題一覧</h2>
-                <hr>
+                
                 {% for category, kadais in categories.items %}
-
-                    {% comment %} <div style="
-                        {% if category == '基本区分' %}
-                            background-color: #ffcccc;
-                        {% elif category == '応用区分' %}
-                            background-color: #ccffcc;
-                        {% elif category == 'チュートリアル' %}
-                            background-color: #ccccff;
-                        {% else %}
-                            background-color: #f0f0f0;
-                        {% endif %}
-                    padding: 10px; margin-bottom: 20px; border-radius: 5px;"> {% endcomment %}
                     <div id="categ">
                         <h3>{{ category }}</h3>
                         <ul>
@@ -54,6 +42,7 @@
                                 <li>
                                     <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
                                     <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}" class="btn">課題を開く</a>
+                                    <hr>
                                 </li>
                             {% empty %}
                                 <li>問題がありません。</li>
@@ -61,8 +50,10 @@
                         </ul>
                     </div>
                 {% endfor %}
-                <hr>
+                
             </div>
+            
+
             <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
                 <button type="submit">ログアウト</button>
