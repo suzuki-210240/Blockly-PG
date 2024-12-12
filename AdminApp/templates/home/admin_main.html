@@ -8,5 +8,8 @@
     </head>
     <body>
         <h1>管理者用ページ<h1>
+            <a href="{% url 'AdminApp:admin_materials_list' %}" class="button1">教材管理</a>
+            <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
+            <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント情報管理</a>
     </body>
 </html>

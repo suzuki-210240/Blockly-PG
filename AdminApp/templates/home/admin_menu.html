@@ -46,8 +46,8 @@
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="#" class="button1">教材一覧</a>
-      <a href="#" class="button2">課題一覧</a>
+      <a href="{% url 'AdminApp:admin_materials_list' %}" class="button1">教材管理画面</a>
+      <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題</a>
       <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント情報管理</a>
     </div>
 
