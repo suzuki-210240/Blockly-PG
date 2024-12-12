@@ -5,8 +5,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from django.conf import settings
 import json,os,urllib.parse
-from .models import Kadai,Answer,Material
-from .forms import KadaiForm,AnswerForm
+from .models import Kadai,Answer,Material,KadaiProgress
+from .forms import KadaiForm,AnswerForm,KadaiProgress
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -233,3 +233,17 @@ def send_material(request):
 
     return HttpResponse('Invalid request', status=400)
 #----------------------------教材表示-----------------------------------
+
+#------------------------------課題進行状況--------------------------------
+
+@login_required
+def user_progress(request):
+    # ログイン中のユーザーを取得
+    current_user = request.user
+    
+    # ユーザーに紐付いた課題進捗データを取得
+    progress_data = KadaiProgress.objects.filter(user=current_user).select_related('kadai')
+
+    return render(request, 'Progress/progress.html', {'progress_data': progress_data})
+
+#------------------------------課題進行状況--------------------------------

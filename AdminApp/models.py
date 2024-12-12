@@ -112,13 +112,13 @@ class KadaiProgress(models.Model):
     update_at = models.DateTimeField(auto_now_add=True, verbose_name="更新日時")
 
     class Meta:
-        db_table = 'kadai_proguress_table'
+        db_table = 'progress_table'
         unique_together = ('user', 'kadai')
         verbose_name = "課題進捗"
         verbose_name_plural = "課題進捗"
     
     def __str__(self):
-        return f"{self.user.username} - {self.kadai.number} - {self.proguress}"
+        return f"{self.user.username} - {self.kadai.number} - {self.progress}"
     
 @receiver(post_save, sender=User)
 def create_proguress_for_new_user(sender, instance, created, **kwargs):
