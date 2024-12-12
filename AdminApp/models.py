@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User, Group
 from pathlib import Path
 from django.conf import settings
+from django.dispatch import receiver
 
 # class Task(models.Model):
 #     CATEGORY_CHOICES = [
@@ -94,6 +96,49 @@ class Answer(models.Model):
 #--------------------------課題解答テーブル--------------------------------
 
 #--------------------------課題実績テーブル--------------------------------
+class KadaiProgress(models.Model):
+    #進捗状況のフラグ
+    PROGURESS_FLAGS = [
+        ('未着手',0),
+        ('実行中',1),
+        ('完了',2)
+    ]
+    #ユーザーID
+    user = models.ForeignKey(User, on_delete=models.CASCADE,limit_choices_to={'groups_name':'user'}, verbose_name="user")
+    #課題ID
+    kadai = models.ForeignKey(Kadai, on_delete=models.CASCADE, verbose_name="課題")
+    #進捗状況
+    progress = models.CharField(max_length=10, choices=PROGURESS_FLAGS, default='未着手', verbose_name="進捗状況")
+    update_at = models.DateTimeField(auto_now_add=True, verbose_name="更新日時")
+
+    class Meta:
+        db_table = 'kadai_proguress_table'
+        unique_together = ('user', 'kadai')
+        verbose_name = "課題進捗"
+        verbose_name_plural = "課題進捗"
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.kadai.number} - {self.proguress}"
+    
+@receiver(post_save, sender=User)
+def create_proguress_for_new_user(sender, instance, created, **kwargs):
+    #ユーザーの新規登録時に既存課題の進捗を作成
+    if created:
+        all_kadai = Kadai.objects.all()
+        KadaiProgress.objects.bulk_create([
+            KadaiProgress(user=instance, kadai=kadai) 
+            for kadai in all_kadai
+        ])
+
+@receiver(post_save, sender=Kadai)
+def create_proguress_for_new_kadai(sender, instance, created, **kwargs):
+    #課題の新規登録時に既存ユーザーの進捗を作成
+    if created:
+        all_user = User.objects.all()
+        KadaiProgress.objects.bulk_create([
+            KadaiProgress(user=user, kadai=instance) 
+            for user in all_user
+        ])
 
 # class KadaiResult(models.Model):
 #     #ユーザーID
