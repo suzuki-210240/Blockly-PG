@@ -123,6 +123,16 @@ def check_code(request):
             # 提出されたコードと正解コードの比較
             if submitted_code.splitlines() == correct_answer.a_text.splitlines():
                 print('end3 - 正解')
+                try:
+                    user = request.user
+                    progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+                    progress.progress = '完了'
+                    progress.save()
+                    print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 完了')
+                except Exception as e:
+                    print(f'進捗更新エラー: {e}')
+                    return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
+
                 return JsonResponse({"isCorrect": True})
             else:
                 print('end4 - 不正解')

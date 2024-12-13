@@ -40,6 +40,8 @@
         <h1>利用者用ページ</h1>
         <p>利用者用メニュー画面</p>
 
+        <a href="{% url 'UserApp:progress' %}" class="button1">進捗状況の確認</a>
+
         <!--ログアウトボタン-->
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
