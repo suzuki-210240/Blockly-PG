@@ -1,0 +1,97 @@
+/*user_info.css*/
+/*ユーザー情報管理画面のデザイン*/
+
+/*全体のコンテナ*/
+.container{
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3{
+    margin-top: 20px;
+}
+
+/*フォーム*/
+.form-group{
+    margin-bottom: 20px;
+}
+
+label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input{
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus{
+    border-color: #007bff;
+    outline: none;
+}
+
+/*エラーメッセージ*/
+.error-messages{
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid red;
+    background-color: #f8d7da;
+}
+
+.error{
+    margin: 0;
+}
+
+/*提出ボタン*/
+.submit-btn{
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover{
+    background-color: #0056b3;
+}
+
+/*メッセージの表示*/
+.messages ul{
+    padding: 0;
+    list-style: none;
+    margin-top: 20px;
+}
+
+.messages li{
+    background-color: #e2e3e5;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.messages li.success{
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.messages li.error{
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
