@@ -294,6 +294,8 @@ def user_info(request):
         'user_form': user_form,
         'password_form': password_form,
     })
+
+
 #------------------------------課題進行状況--------------------------------
 
 @login_required
