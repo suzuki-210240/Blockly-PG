@@ -38,26 +38,47 @@
                 <div class="list">
                     {% for category, kadais in categories.items %}
                         <div id="categ">
-                            <h3>{{ category }}</h3>
-                            <ul>
-                                {% for kadai in kadais %}
-                                    <li>
-                                        <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
-                                        <!-- 課題の進捗状況を表示 -->
-                                        {% if kadai.progress %}
-                                            <p>進捗状況: {{ kadai.progress }}</p>
-                                        {% else %}
-                                            <p>進捗状況: <font color="red">------</font></p>
-                                        {% endif %}
-                                        <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}" class="btn">課題を開く</a>
-                                    </li>
-                                {% empty %}
-                                    <li>問題がありません。</li>
-                                {% endfor %}
-                            </ul>
+                            <h3>----{{ category }}----</h3>
+                            <!-- カテゴリごとにテーブルを表示 -->
+                            <table class="kadai-table">
+                                <thead>
+                                    <tr>
+                                        <th>課題番号</th>
+                                        <th>課題タイトル</th>
+                                        <th>ステータス</th>
+                                        <th>実行</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for kadai in kadais %}
+                                        <tr>
+                                            <td>{{ kadai.number }}</td>
+                                            <td>{{ kadai.name }}</td>
+                                                <td>
+                                                <!-- 課題の進捗状況を表示 -->
+                                                    {% if kadai.progress == '未着手' %}
+                                                        <font color="green" id="not">未着手</font>
+                                                    {% elif kadai.progress == '実行中' %}
+                                                        <font color="orange" id="running">実行中</font>
+                                                    {% elif kadai.progress == '完了' %}
+                                                        <font color="red" id="success">完了！</font>
+                                                    {% endif %}
+                                                </td>
+                                            <td>
+                                                <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number %}" class="btn">課題を開く</a>
+                                            </td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="4">問題がありません。</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
+                        <hr>
                     {% endfor %}
-                </div>
+                </div> 
             </div>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>

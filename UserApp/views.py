@@ -94,7 +94,7 @@ def Kadai_open(request, kadai_id):
         request,
         'Kadai/Kadai.html',
         {
-            'kadai_number': kadai_number,
+            'number': kadai_number,
             'kadai_name': kadai_name,
             'message': message,
             'user_type': user_type,
@@ -269,9 +269,28 @@ def send_material(request):
     return HttpResponse('Invalid request', status=400)
 #----------------------------教材表示-----------------------------------
 
+#------------------------------課題進行状況--------------------------------
+
+@login_required
+def user_progress(request):
+    # ログイン中のユーザーを取得
+    current_user = request.user
+    
+    # ユーザーに紐付いた課題進捗データを取得
+    progress_data = KadaiProgress.objects.filter(user=current_user).select_related('kadai')
+
+    return render(request, 'Progress/progress.html', {'progress_data': progress_data})
+
+#------------------------------課題進行状況--------------------------------
 
 
-#ユーザー情報変更画面（一般ユーザー用）
+
+
+
+
+
+
+# #ユーザー情報変更画面（一般ユーザー用）
 @login_required
 def user_info(request):
     #ユーザーがuserグループに所属しているか確認
@@ -310,14 +329,3 @@ def user_info(request):
 
 #------------------------------課題進行状況--------------------------------
 
-@login_required
-def user_progress(request):
-    # ログイン中のユーザーを取得
-    current_user = request.user
-    
-    # ユーザーに紐付いた課題進捗データを取得
-    progress_data = KadaiProgress.objects.filter(user=current_user).select_related('kadai')
-
-    return render(request, 'Progress/progress.html', {'progress_data': progress_data})
-
-#------------------------------課題進行状況--------------------------------
