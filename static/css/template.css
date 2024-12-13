@@ -58,9 +58,9 @@ header {
   word-break: normal;
 }
 
-body {
+/* body {
   background: #ffffff;
-}
+} */
 
 .Box {
   display: flex;
@@ -127,6 +127,7 @@ body {
   border-radius: 30px;
   margin: 0 15px;
   width: 1500px;
+  height: auto;
 }
 
 .main h1 {

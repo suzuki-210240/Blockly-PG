@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockly Test</title>
+        <!-- Load Blockly core -->
+        <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+        <!-- Load the default blocks -->
+        <script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+        <!-- Load a generator -->
+        <script src="https://unpkg.com/blockly/javascript_compressed.js"></script>
+        <!-- Load a message file -->
+        <script src="https://unpkg.com/blockly/msg/en.js"></script>
+    <style>
+        /* Blockly のエリアのスタイル */
+        #blocklyDiv {
+            height: 480px;
+            width: 600px;
+            border: solid 1px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Blockly のテスト</h1>
+    <div id="blocklyDiv"></div>
+    
+    <!-- 実行ボタン -->
+    <button onclick="runCode()">実行</button>
+    
+    <!-- 保存ボタン -->
+    <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
+    
+    <!-- XML ファイルを読み込むボタン -->
+    <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
+    
+    <pre id="output"></pre>
+
+    <script>
+        // Blockly のワークスペースを設定
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: `
+            <xml xmlns="https://developers.google.com/blockly/xml">
+                <category name="計算" colour="210">
+                    <block type="math_number">
+                        <field name="NUM">5</field>
+                    </block>
+                    <block type="math_arithmetic">
+                        <field name="OP">ADD</field>
+                        <value name="A">
+                            <block type="math_number">
+                                <field name="NUM">5</field>
+                            </block>
+                        </value>
+                        <value name="B">
+                            <block type="math_number">
+                                <field name="NUM">10</field>
+                            </block>
+                        </value>
+                    </block>
+                </category>
+                <category name="テキスト" colour="220">
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <block type="math_arithmetic">
+                                <field name="OP">ADD</field>
+                                <value name="A">
+                                    <block type="math_number">
+                                        <field name="NUM">5</field>
+                                    </block>
+                                </value>
+                                <value name="B">
+                                    <block type="math_number">
+                                        <field name="NUM">10</field>
+                                    </block>
+                                </value>
+                            </block>
+                        </value>
+                    </block>
+                </category>
+            </xml>
+            `
+        });
+
+        // Blockly で作成されたコードを実行する関数
+        function runCode() {
+            var code = Blockly.JavaScript.workspaceToCode(workspace);
+            try {
+                // eval を使ってコードを実行し、結果を表示
+                var result = eval(code);
+                // 結果を表示
+                document.getElementById('output').innerText = result;
+            } catch (e) {
+                // エラーが発生した場合
+                document.getElementById('output').innerText = "エラー: " + e.message;
+            }
+        }
+
+        // ワークスペースを XML として保存する関数
+        function saveWorkspaceAsXML() {
+            // Blockly ワークスペースの内容を XML としてエクスポート
+            var xml = Blockly.Xml.workspaceToDom(workspace);
+            var xmlText = Blockly.Xml.domToText(xml);
+
+            // XML テキストを Blob に変換
+            var blob = new Blob([xmlText], { type: 'application/xml' });
+
+            // ダウンロードリンクを作成してクリック
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'workspace.xml';  // ダウンロードするファイル名
+            link.click();
+        }
+
+        // XML ファイルを読み込んでワークスペースに展開する関数
+        function loadWorkspaceFromXML(event) {
+            // 選択されたファイルを取得
+            var file = event.target.files[0];
+            if (!file) {
+                console.error("ファイルが選択されていません！");
+                return;
+            }
+            console.log(Blockly.Xml);  // これで Blockly.Xml が存在するか確認
+
+            // FileReader でファイルを読み込む
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // 読み込んだ XML テキスト
+                var xmlText = e.target.result;
+
+                // デバッグ: XML テキストをコンソールに表示
+                console.log("読み込んだ XML: ", xmlText);
+
+                try {
+                    // 修正後：Blockly.Xml.parse を使う
+                    // const parser = new DOMParser();
+                    // var xmlDom = parser.parseFromString(xmlText, 'application/xml');
+                    var xmlDom = Blockly.utils.xml.textToDom(xmlText); //xmlファイルをDOMに変換
+                    Blockly.Xml.domToWorkspace(xmlDom, workspace); //ワークスペースに展開
+                } catch (error) {
+                    console.error("XML 読み込みエラー: ", error);
+                    alert("XML の読み込みに失敗しました。");
+                }
+            };
+
+            // ファイルを読み込む
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>

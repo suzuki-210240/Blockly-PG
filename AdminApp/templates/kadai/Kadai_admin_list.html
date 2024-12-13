@@ -33,28 +33,46 @@
         </div>
         <div class="main">
             <h2>問題一覧</h2>
-
+            <div class="list">
             {% for category, kadais in categories.items %}
                 <div id="categ">
                     <h3>{{ category }}</h3>
-                    <ul>
-                        {% for kadai in kadais %}
-                            <li>
-                                <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
-                                <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}">編集</a>
-                                <!-- 管理者のみ削除ボタンを表示 -->
-                                <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
-                                    {% csrf_token %}
-                                <button type="submit" onclick="return confirm('本当に削除しますか？')">削除</button>
-                                </form>
-                            </li>
-                        {% empty %}
-                            <li>問題がありません。</li>
-                        {% endfor %}
-                    </ul>
+                    <!-- カテゴリごとにテーブルを表示 -->
+                    <table class="kadai-table">
+                        <thead>
+                            <tr>
+                                <th>課題番号</th>
+                                <th>課題タイトル</th>
+                                <th>編集</th>
+                                <th>削除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for kadai in kadais %}
+                                <tr>
+                                    <td>{{ kadai.number }}</td>
+                                    <td>{{ kadai.name }}</td>
+                                    <td>
+                                        <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}" class="btn">編集</a>
+                                    </td>
+                                    <td>
+                                        <!-- 管理者のみ削除ボタンを表示 -->
+                                        <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" onclick="return confirm('本当に削除しますか？')">削除</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4">問題がありません。</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             {% endfor %}
-
+            </div>
             <a href="{% url 'AdminApp:add_kadai' %}">新規作成</a>
         </div>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
