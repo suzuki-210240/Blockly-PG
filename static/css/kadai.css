@@ -1,12 +1,26 @@
 @charset "utf-8";
+.list{
+    margin: 10px;
+}
+
+ul {
+    list-style-position: inside;
+}
+
 li {
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+    padding-left: 60px;
+    border: #6141a8a0 2px solid;
+    display: flex;
 }
 
 .btn {
     display: inline-block;
-    padding: 5px ;
+    padding: 5px;
     font-size: 15px;
     color: #fff;
     background-color: #007bff;
@@ -15,9 +29,14 @@ li {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    float:right;
-    margin-right: 50px;
-}
+
+    /* position: absolute; /* ボタンをリスト内で絶対位置に配置 
+    right: 0; /リストアイテムの右端に配置 
+    top: 50%; /縦方向中央揃えのため 
+    transform: translateY(-50%);  縦方向中央揃えを正確に 
+    margin-right: 150px;*/
+    
+} 
 
 .btn:hover {
     background-color: #14b9d69e;
