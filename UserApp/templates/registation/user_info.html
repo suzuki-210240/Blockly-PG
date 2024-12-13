@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ユーザー情報の管理</title>
+        <link rel="stylesheet" href="{% static 'css/user_info.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <h2>ユーザー情報の管理</h2>
+            <p>ここで、ユーザー名やパスワードを変更できます。</p>
+
+            <!--ユーザー名変更フォーム-->
+            <h3>ユーザー名の変更</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <button type="submit" name="update_user">ユーザー名を更新</button>
+            </form>
+
+            <!--パスワード変更フォーム-->
+            <h3>パスワードの変更</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ password_form.as_p }}
+                <button type="submit" name="update_password">パスワードを更新</button>
+            </form>
+
+            {% if messages %}
+                <div class="messages">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>

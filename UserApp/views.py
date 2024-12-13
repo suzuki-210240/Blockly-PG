@@ -8,6 +8,10 @@ import json,os,urllib.parse
 from .models import Kadai,Answer,Material,KadaiProgress
 from .forms import KadaiForm,AnswerForm,KadaiProgress
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
+from django.contrib.auth.models import Group
+from .forms import UserUpdateForm, PasswordChangeFormCustom
 
 @login_required
 def Home (request):
@@ -265,6 +269,43 @@ def send_material(request):
     return HttpResponse('Invalid request', status=400)
 #----------------------------教材表示-----------------------------------
 
+
+
+#ユーザー情報変更画面（一般ユーザー用）
+@login_required
+def user_info(request):
+    #ユーザーがuserグループに所属しているか確認
+    if not request.user.groups.filter(name='user').exists():
+        messages.error(request, "このページにアクセスする権限がありません")
+        return redirect('home') #適切なページにリダイレクト
+    
+    if request.method == 'POST':
+        #ユーザー名を更新するフォームを処理
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        password_form = PasswordChangeFormCustom(user=request.user, data=request.POST)
+
+        #ユーザー名変更の処理
+        if 'update_user' in request.POST and user_form.is_valid():
+            user_form.save()
+            messages.success(request, "ユーザー名が更新されました。")
+            return redirect('UserApp:user_info')    #更新後にリダイレクト
+        
+        #パスワード変更の処理
+        elif 'update_password' in request.POST and password_form.is_valid():
+            password_form.save()
+            update_session_auth_hash(request, request.user) #パスワード変更後にセッションを更新
+            messages.success(request, "パスワードが更新されました。")
+            return redirect('UserApp:user_info')    #更新後にリダイレクト
+        
+    else:
+        #GETリクエストの際はフォームを表示
+        user_form = UserUpdateForm(instance=request.user)
+        password_form = PasswordChangeFormCustom(user=request.user)
+
+    return render(request, 'registation/user_info.html', {
+        'user_form': user_form,
+        'password_form': password_form,
+    })
 #------------------------------課題進行状況--------------------------------
 
 @login_required
