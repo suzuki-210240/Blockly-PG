@@ -13,6 +13,7 @@ urlpatterns = [
     path('send_material/', views.send_material, name='send_material') ,#教材表示関数呼び出し
     path("free/", views.FreeMode,name="freemode"),#自由制作モード
     path('check-code/', views.check_code, name='check_code'),#正誤判定
+    path('progress/', views.user_progress, name='progress'),
     #path('list/', views.list_files, name='list'),
 ]
 

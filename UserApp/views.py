@@ -5,8 +5,8 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from django.conf import settings
 import json,os,urllib.parse
-from .models import Kadai,Answer,Material
-from .forms import KadaiForm,AnswerForm
+from .models import Kadai,Answer,Material,KadaiProgress
+from .forms import KadaiForm,AnswerForm,KadaiProgress
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
@@ -127,8 +127,27 @@ def check_code(request):
             # 提出されたコードと正解コードの比較
             if submitted_code.splitlines() == correct_answer.a_text.splitlines():
                 print('end3 - 正解')
+                try:
+                    user = request.user
+                    progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+                    progress.progress = '完了'
+                    progress.save()
+                    print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 完了')
+                except Exception as e:
+                    print(f'進捗更新エラー: {e}')
+                    return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
+
                 return JsonResponse({"isCorrect": True})
             else:
+                try:
+                    user = request.user
+                    progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+                    progress.progress = '実行中'
+                    progress.save()
+                    print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 実行中')
+                except Exception as e:
+                    print(f'進捗更新エラー: {e}')
+                    return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
                 print('end4 - 不正解')
                 return JsonResponse({"isCorrect": False})
 
@@ -275,3 +294,16 @@ def user_info(request):
         'user_form': user_form,
         'password_form': password_form,
     })
+#------------------------------課題進行状況--------------------------------
+
+@login_required
+def user_progress(request):
+    # ログイン中のユーザーを取得
+    current_user = request.user
+    
+    # ユーザーに紐付いた課題進捗データを取得
+    progress_data = KadaiProgress.objects.filter(user=current_user).select_related('kadai')
+
+    return render(request, 'Progress/progress.html', {'progress_data': progress_data})
+
+#------------------------------課題進行状況--------------------------------

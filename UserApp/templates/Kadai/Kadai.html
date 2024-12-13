@@ -19,14 +19,13 @@
         </script>
         <script>
             const kadaiId = "{{ kadai_number }}";
-            alert(kadaiId);
         </script>
     <link rel="stylesheet" type="text/css" href="{%static 'css/Block_style.css' %}">
 
 </head>
 <body>
     <header>
-        <p class="logo">BlocklyCodeAcademy</p>
+        <p class="logo" href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</p>
         <div class="file">
             <!-- 保存ボタン -->
             <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
