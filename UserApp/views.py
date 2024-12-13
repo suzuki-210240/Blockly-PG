@@ -44,11 +44,23 @@ def Home (request):
 @login_required
 #課題一覧
 def Kadai_list (request):
+    current_user = request.user
+
     kadais_by_category = Kadai.objects.values('category').distinct()  # カテゴリごとにグループ化
     categories = {}
     for category in kadais_by_category:
         category_name = category['category']
-        categories[category_name] = Kadai.objects.filter(category=category_name)
+        # 各カテゴリの課題を取得
+        kadais = Kadai.objects.filter(category=category_name)
+
+        # 課題ごとに進捗状況を取得して付加
+        kadai_list = []
+        for kadai in kadais:
+            progress = KadaiProgress.objects.filter(user=current_user, kadai=kadai).first()
+            kadai.progress = progress.progress if progress else "未着手"
+            kadai_list.append(kadai)
+
+        categories[category_name] = kadai_list
 
     return render(request, 'Kadai/kadai_list.html', {'categories': categories})
 

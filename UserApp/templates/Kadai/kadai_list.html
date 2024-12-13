@@ -33,32 +33,32 @@
               <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
             </div>
             <div class="main">
+                
                 <h2>課題一覧</h2>
-                
-                {% for category, kadais in categories.items %}
-                    <div id="categ">
-                        <h3>{{ category }}</h3>
-                        <ul>
-                            {% for kadai in kadais %}
-                                <li>
-                                    <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
-                                    <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}" class="btn">課題を開く</a>
-                                    <hr>
-                                </li>
-                            {% empty %}
-                                <li>問題がありません。</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endfor %}
-                
+                <div class="list">
+                    {% for category, kadais in categories.items %}
+                        <div id="categ">
+                            <h3>{{ category }}</h3>
+                            <ul>
+                                {% for kadai in kadais %}
+                                    <li>
+                                        <strong>{{ kadai.number }} - {{ kadai.name }}</strong>
+                                        <!-- 課題の進捗状況を表示 -->
+                                        {% if kadai.progress %}
+                                            <p>進捗状況: {{ kadai.progress }}</p>
+                                        {% else %}
+                                            <p>進捗状況: <font color="red">------</font></p>
+                                        {% endif %}
+                                        <a href="{% url 'UserApp:kadai_open' kadai_id=kadai.number%}" class="btn">課題を開く</a>
+                                    </li>
+                                {% empty %}
+                                    <li>問題がありません。</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-            
-
-            {% comment %} <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">ログアウト</button>
-            </form> {% endcomment %}
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>
 </html>
