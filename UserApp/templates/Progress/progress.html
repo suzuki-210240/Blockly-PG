@@ -1,37 +1,49 @@
+{% load static%}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "css/template.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/progress_table.css" %}">
     <title>進捗状況</title>
 </head>
 <body>
-    <h1>{{ user.username }} の課題進捗状況</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>課題番号</th>
-                <th>課題名</th>
-                <th>進捗状況</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for progress in progress_data %}
-            <tr>
-                <td>{{ progress.kadai.number }}</td>
-                <td>{{ progress.kadai.name }}</td>
-                <td>
-                    {% if progress.progress == '未着手' %}
-                        未着手
-                    {% elif progress.progress == '実行中' %}
-                        実行中
-                    {% elif progress.progress == '完了' %}
-                        完了
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>あなた の課題進捗状況</h1>
+    <div class="Box">
+        <!-- メニューバー -->
+        <div class="container">
+          <a href="{% url 'UserApp:Material_list' %}" class="button1">教材一覧</a>
+          <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
+          <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
+          <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
+        </div>
+        <table border="1" class="main2">
+            <thead>
+                <tr>
+                    <th>課題番号</th>
+                    <th>課題名</th>
+                    <th>進捗状況</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for progress in progress_data %}
+                <tr>
+                    <td id="kadai_number"><p>{{ progress.kadai.number }}</p></td>
+                    <td id="kadai_name">{{ progress.kadai.name }}</td>
+                    <td>
+                        {% if progress.progress == '未着手' %}
+                            <font color="red" id="not">未着手</font>
+                        {% elif progress.progress == '実行中' %}
+                            <font color="green" id="running">実行中</font>
+                        {% elif progress.progress == '完了' %}
+                            <font color="orange" id="success">完了！</font>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

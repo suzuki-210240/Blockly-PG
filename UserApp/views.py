@@ -135,6 +135,15 @@ def check_code(request):
 
                 return JsonResponse({"isCorrect": True})
             else:
+                try:
+                    user = request.user
+                    progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+                    progress.progress = '実行中'
+                    progress.save()
+                    print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 実行中')
+                except Exception as e:
+                    print(f'進捗更新エラー: {e}')
+                    return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
                 print('end4 - 不正解')
                 return JsonResponse({"isCorrect": False})
 
