@@ -1,5 +1,7 @@
 //-------------Blockly設定用javascript------------------
 
+Blockly.setLocale(Blockly.Msg);
+
 //---Blockly のワークスペースを設定---
 var workspace = Blockly.inject('blocklyDiv', {
     toolbox: `
@@ -7,12 +9,12 @@ var workspace = Blockly.inject('blocklyDiv', {
         <!-- コントローラ カテゴリ -->
         <category name="コントローラ" colour="210">
             <block type="controls_if"></block>
-            <block type="controls_whileUntil"></block>
-            <block type="controls_for"></block>
         </category>
         <!-- ループ カテゴリ -->
         <category name="ループ" colour="120">
             <block type="controls_repeat_ext"></block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for"></block>
         </category>
 
         <!-- ロジック カテゴリ -->
@@ -55,13 +57,28 @@ var workspace = Blockly.inject('blocklyDiv', {
 
 
     </xml>
-    `
+    `,
+    "zoom": {
+      controls: true,
+      wheel: true,
+      startScale: 1.0,
+      maxScale: 3,
+      minScale: 0.3,
+      scaleSpeed: 1.2,
+    },
+    "grid": {
+      spacing: 20,
+      length: 3,
+      colour: "#888",
+      snap: true,
+    }
+
 });
 
 //---lists_insertのカスタム設定定義---
 Blockly.defineBlocksWithJsonArray([{
   "type": "lists_insert",
-  "message0": "insert %1 at index %2 in list %3",
+  "message0": "リスト %3 に値 %1 を位置 %2 に挿入する",
   "args0": [
     {
       "type": "input_value",
@@ -77,6 +94,7 @@ Blockly.defineBlocksWithJsonArray([{
     }
   ],
   "colour": 260,
-  "tooltip": "Insert an item at a specific index in a list.",
-  "helpUrl": ""
+  "tooltip": "リストの特定の位置にアイテムを挿入します。",
+  "helpUrl": "",
+  
 }]);

@@ -36,7 +36,7 @@
             <div class="list">
             {% for category, kadais in categories.items %}
                 <div id="categ">
-                    <h3>{{ category }}</h3>
+                    <h3>----{{ category }}----</h3>
                     <!-- カテゴリごとにテーブルを表示 -->
                     <table class="kadai-table">
                         <thead>
@@ -71,6 +71,7 @@
                         </tbody>
                     </table>
                 </div>
+                <hr>
             {% endfor %}
             </div>
             <a href="{% url 'AdminApp:add_kadai' %}">新規作成</a>

@@ -7,7 +7,7 @@ function runCode() {
         // eval を使ってコードを実行し、結果を表示
         var result = eval(code);
         // 結果を表示
-        document.getElementById('output').innerText = result;
+        document.getElementById('output').innerText = "結果: " + result;
     } catch (e) {
         // エラーが発生した場合
         document.getElementById('output').innerText = "エラー: " + e.message;

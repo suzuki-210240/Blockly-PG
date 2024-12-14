@@ -1,9 +1,9 @@
 {%load static %}
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Blockly Test</title>
+    <title>{{ kadai_number }}の課題</title>
         <!-- Load Blockly core -->
         <script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
         <!-- Load the default blocks -->
@@ -15,10 +15,8 @@
         <script src="https://unpkg.com/blockly/python_compressed"></script>
         <script src="https://unpkg.com/blockly/blockly.min.js"></script>
         <script>
-            const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
-        </script>
-        <script>
             const kadaiId = "{{ kadai_number }}";
+            const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
         </script>
     <link rel="stylesheet" type="text/css" href="{%static 'css/Block_style.css' %}">
 
@@ -61,7 +59,7 @@
                 <!--出力結果を表示するエリア-->
             
                 <h4>出力結果</h4>
-                <textarea id="output" rows="10" cols="50" disabled></textarea>
+                <textarea id="output" rows="10" cols="50" disabled>ここに結果が出ます</textarea>
                 
                 <div class="button_area">
                     <!-- 実行ボタン -->

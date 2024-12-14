@@ -85,16 +85,28 @@ def Kadai_open(request, kadai_id):
         message = kadai.q_text  # 問題文
         kadai_number = kadai.number  # 問題番号
         kadai_name = kadai.name  # 問題名
+        try:
+            user = request.user
+            progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+            progress.progress = '実行中'
+            progress.save()
+            print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 実行中')
+        except Exception as e:
+            print(f'進捗更新エラー: {e}')
+            return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
+        
     except Kadai.DoesNotExist:
         message = "指定された問題が存在しません"
         kadai_number = None
         kadai_name = None
 
+    
+
     return render(
         request,
         'Kadai/Kadai.html',
         {
-            'number': kadai_number,
+            'kadai_number': kadai_number,
             'kadai_name': kadai_name,
             'message': message,
             'user_type': user_type,
@@ -151,15 +163,7 @@ def check_code(request):
 
                 return JsonResponse({"isCorrect": True})
             else:
-                try:
-                    user = request.user
-                    progress, created = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
-                    progress.progress = '実行中'
-                    progress.save()
-                    print(f'進捗状況を更新: {user.username} - 課題 {kadai.number} - 実行中')
-                except Exception as e:
-                    print(f'進捗更新エラー: {e}')
-                    return JsonResponse({"error": "進捗状況の更新に失敗しました"}, status=500)
+                
                 print('end4 - 不正解')
                 return JsonResponse({"isCorrect": False})
 
