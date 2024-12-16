@@ -131,3 +131,46 @@ textarea:disabled {
 #button_area{
     display: flex;
 }
+
+
+/* メディアクエリ: 高解像度14インチ (1920px x 1080px) */
+@media(max-width: 2000px) and (max-height: 1200px) {
+    #blocklyDiv {
+        height: 500px; /* 若干調整 */
+        width: 800px;
+    }
+
+    #sub_field {
+        width: 750px;
+    }
+
+    #output {
+        height: 90px;
+        width: 400px;
+        font-size: 30px;
+    }
+
+    #codeOutput {
+        height: 380px;
+        width: 400px;
+    }
+
+    #exampleOutput {
+        height: 380px;
+        width: 400px;
+        font-size: 10px;
+    }
+
+    header {
+        height: 38px; /* 若干縮小 */
+        padding: 5px;
+    }
+
+    .logo {
+        font-size: 19px; /* フォントサイズを微調整 */
+    }
+
+    .selectdiv {
+        min-width: 105px;
+    }
+}
