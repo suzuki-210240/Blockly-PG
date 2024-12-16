@@ -1,0 +1,148 @@
+/* 管理者用メニュー画面のデザイン */
+@charset "utf-8";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #f88400 50%, #4d9bc1 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  padding-left: 10px;
+  transform: skewX(-30deg);
+}
+
+.user-info {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+body {
+  background: #ffffff;
+}
+
+.Box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Box h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1200px;
+}
+
+.Box p {
+  font-size: 20px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* メニューバー */
+.container {
+  display: flex;
+  flex-direction: column;  /* 縦並びに変更 */
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+/* ボタンスタイル */
+.container a,
+.container form button {
+  border: solid 2px #191970;
+  color: #000000;
+  border-radius: 20px;
+  padding: 10px 30px;
+  text-decoration: none;
+  font-size: 20px;
+  box-shadow: 0 5px 0 #191970;
+  width: 200px;
+  text-align: center;
+  transition: .3s;
+  background-color: #4fb0f1;
+}
+
+.button1 {
+  background-color: #4fb0f1;
+}
+
+.button2 {
+  background-color: #9ed9fc;
+}
+
+.button3 {
+  background-color: #bbf8f8;
+}
+
+.button4 {
+  background-color: #6190d8;
+}
+
+.container a:hover,
+.container form button:hover {
+  color: #ffffff;
+  transform: translateY(5px);
+  box-shadow: 0 0 0 #ffffff;
+}
+
+/* メインコンテンツ */
+.main {
+  align-items: center;
+  justify-content: center;
+  background-color: #c8e1e2;
+  border: solid 2px #1d78b1;
+  border-radius: 30px;
+  margin: 0 15px;
+  width: 1500px;
+}
+
+.main h1 {
+  font: 45px monospace;
+  color: #333;
+  margin: 15px;
+  padding: 10px;
+  line-height: 1.5;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .container a,
+  .container form button {
+    width: 100%; /* ボタンを横幅いっぱいに */
+    font-size: 18px;
+  }
+}

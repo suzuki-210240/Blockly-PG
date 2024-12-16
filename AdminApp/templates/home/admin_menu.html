@@ -2,75 +2,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  {% load static %}
-  <title>ページ名[BlocklyCodeAcademy]</title>
-  <style>
-    /*.user-infoを右上に固定配置*/
-    .user-info{
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        background-color: rgba(255, 255, 255, 0.7);
-        padding: 5px 15px;
-        border-radius: 5px;
-        font-size: 14px;
-        z-index: 1000;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <p class="logo">BlocklyCodeAcademy</p>
-    <!-- ユーザー名 -->
-    <div class="selectdiv">
-      <label>
-        <select>
-          <option selected> ユーザー名 </option>
-          <option>設定</option>
-          <option>アカウント管理</option>
-          <option>ログアウト</option>
-        </select>
-      </label>
-    </div>
-    <div class="user-info">
-      {% if user_info %}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者用メニュー画面</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_menu.css' %}">
+  </head>
+  <body>
+    <header>
+      <div class="logo">BlocklyCodeAcademy</div>
+      <div class="user-info">
+        {% if user_info %}
           {{ user_info.group }} : {{ user_info.username }}
-      {% else %}
+        {% else %}
           ゲスト
-      {% endif %}
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="Box">
+      <h1>Admin Menu</h1>
+      <p>管理者用アクション一覧</p>
+      <!-- メニューバー -->
+      <div class="container">
+        <!-- 教材管理ボタン -->
+        <a href="{% url 'AdminApp:admin_materials_list' %}" class="button1">教材管理</a>
+        <!-- 課題管理ボタン -->
+        <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
+        <!-- アカウント管理ボタン -->
+        <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント管理</a>
+        <!-- ログアウトボタン -->
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="button4">ログアウト</button>
+        </form>
+      </div>
     </div>
-    <!-- ユーザー名 -->
-  </header>
-  <div class="Box">
-    <!-- メニューバー -->
-    <div class="container">
-      <a href="{% url 'AdminApp:admin_materials_list' %}" class="button1">教材管理画面</a>
-      <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題</a>
-      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント情報管理</a>
-    </div>
-
-    <!-- メイン -->
-    <div class="main">
-      <h1>{{ massage }}</h1>
-      <p>Random Number:</p>
-      <p>{{ name }} {{ numbers }}</p>
-
-    </div>
-
-    <!-- 表示項目はここに追加 
-    <div></div>
-    -->
-  </div>
-
-  <!--ログアウトボタン-->
-  <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button type="submit">ログアウト</button>
-  </form>
-
-</body>
+  </body>
 </html>
