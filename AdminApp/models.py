@@ -48,6 +48,7 @@ class Material(models.Model):
     material_id = models.CharField(
         max_length=32,  # UUIDの16進数形式は32文字
         primary_key=True,  # 主キー
+        #null=True,
         default=generate_uuid,  # 関数を指定
         editable=False  # 編集不可
     )
