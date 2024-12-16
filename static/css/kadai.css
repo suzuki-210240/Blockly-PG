@@ -16,6 +16,17 @@ h2 {
     margin: 10px;
 }
 
+#c_name{
+    background-color: #ffffff7f;
+    font-weight: bold;
+    font-size: 150%;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
+
 .kadai-table {
     width: 100%;
     border-collapse: collapse;
@@ -45,13 +56,13 @@ h2 {
 .kadai-table th:nth-child(1),
 .kadai-table td:nth-child(1) {
     text-align: center;
-    width: 5%; /* 課題番号 */
+    width: 10%; /* 課題番号 */
 }
 
 .kadai-table th:nth-child(2),
 .kadai-table td:nth-child(2) {
     text-align: left;
-    width: 65%; /* 課題タイトル */
+    width: 70%; /* 課題タイトル */
 }
 
 .kadai-table th:nth-child(3),
@@ -83,4 +94,7 @@ h2 {
     background-color: #14b9d69e;
 }
 
-
+#border {
+    border: #f1f8ffc6 10px solid;
+    border-radius: 10px;
+}
