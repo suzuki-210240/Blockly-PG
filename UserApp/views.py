@@ -5,7 +5,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import JsonResponse,HttpResponse
 from django.conf import settings
 import json,os,urllib.parse
-from .models import Kadai,Answer,Material,KadaiProgress
+from .models import Kadai,Answer,KadaiProgress,Material
 from .forms import KadaiForm,AnswerForm,KadaiProgress
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash

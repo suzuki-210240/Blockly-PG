@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User, Group
@@ -40,12 +41,21 @@ class FileUpload(models.Model):
 
 #--------------------------教材テーブル--------------------------------
 class Material(models.Model):
+    # UUIDを生成する関数
+    def generate_uuid():
+        return uuid.uuid4().hex
+    # 教材ID
+    material_id = models.CharField(
+        max_length=32,  # UUIDの16進数形式は32文字
+        primary_key=True,  # 主キー
+        #null=True,
+        default=generate_uuid,  # 関数を指定
+        editable=False  # 編集不可
+    )
     #教材タイトル
     material_name = models.CharField(max_length=40, unique=True)  # VARCHAR(40) に対応
     #htmlファイル名
     html_file_name = models.CharField(max_length=40) # VARCHAR(40) に対応
-    # アップロード日（使用なし）
-    #upload_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table = 'materials_table'  # MySQLのテーブル名を指定
 
