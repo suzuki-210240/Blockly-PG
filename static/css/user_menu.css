@@ -42,11 +42,34 @@ body{
     align-items: center;
 }
 
+/*タイトル（User Menu）*/
+.Box h1{
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.Box p{
+    font-size: 20px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
 .container{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
     gap: 20px;
     margin-top: 40px;
 }
@@ -61,6 +84,7 @@ button{
     font-size: 20px;
     box-shadow: 0 5px 0 #191970;
     width: 200px;
+    margin: 10px 0;
     text-align: center;
     transition: .3s;
     background-color: #4fb0f1;
@@ -109,11 +133,19 @@ button:hover{
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-    .container{
+    /* ボタンを縦並びにする */
+    .container {
         width: 100%;
-        gap: 10px;
+        gap: 15px;
+        padding: 10px;
     }
-    button{
-        width: 80%;
+    /* ボタンのサイズと配置を調整 */
+    .container .button-wrapper {
+        width: 100%;
+        padding: 10px;
+    }
+    button {
+        width: 100%;  /* スマホではボタンを横幅いっぱいに */
+        font-size: 18px;
     }
 }
