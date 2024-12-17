@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}" />
+  <script src="{% static 'js/preview.js' %}?v=1.0"></script>
+  <script src="{% static 'js/menu.js' %}?v=1.0"></script>
+  <title>教材削除[BlocklyCodeAcademy]</title>
+</head>
+
+<body>
+  <header>
+    <p class="logo">BlocklyCodeAcademy</p>
+    <!-- ユーザー名 -->
+    <div class="selectdiv">
+      <label>
+        <select id="userMenu">
+          <option selected>ユーザー名</option>
+          <option>設定</option>
+          <option>アカウント管理</option>
+          <option>ログアウト</option>
+        </select>
+      </label>
+    </div>
+    <!-- ユーザー名 -->
+  </header>
+
+  <div class="Box">
+    <!-- メニューバー -->
+    <div class="container">
+      <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
+      <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
+      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="main">
+      <h1>教材削除</h1>
+
+      <!-- フォーム開始 -->
+      <form method="POST" action="{% url 'AdminApp:delete_item' %}">
+          {% csrf_token %}
+
+          <!-- 教材タイトル -->
+          <div class="sub-title-box">
+          <div class="title-box">
+              <label id="sub-title" for="title">教材タイトル</label>
+              <input type="text" id="title" name="title" style="background-color: #a9a9a9" value="{{ title }}" readonly />
+              <input type="hidden" name="url" value="{{ url }}">
+          </div>
+          </div>
+          <!-- 戻るボタン -->
+          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button">戻る</a>
+          <!-- 削除ボタン -->
+          <button type="submit">削除</button>
+      </form>
+      <!-- フォーム終了 -->
+      <!-- プレビューボックス -->
+      <div class="preview-box">
+        <label id="sub-title" for="file">プレビュー</label>
+        <div class="show-html">
+          <iframe id="preview" title="ファイルプレビュー" sandbox="allow-same-origin">
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

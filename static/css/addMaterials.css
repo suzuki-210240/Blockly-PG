@@ -13,9 +13,8 @@ body {
 .main {
     align-items: center;
     justify-content: center;
-    height: 400px;
     max-width: 600px;
-    min-width: 600px;
+    min-width: 800px;
     background-color: #d1e3e7;
     border: solid 2px #1d78b1;
     /*角丸*/
@@ -62,6 +61,7 @@ input {
 }
 
 .file-box {
+    margin-top: 10px;
     margin-right: 63px;
 }
 
@@ -116,4 +116,25 @@ button:hover {
 .back-button:hover {
     background-color: #ccc;
     transform: scale(1.05);
+}
+
+.new-title-box {
+    margin-top: 20px;
+}
+
+#preview {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.radio-button {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type="file"] {
+    display: inline-block;
 }

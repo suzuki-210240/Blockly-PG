@@ -5,11 +5,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Material, Kadai, Answer
-from .forms import  AddMaterialForm,KadaiForm,AnswerForm
+from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404, JsonResponse
 from django.db import transaction, IntegrityError
 
 
@@ -112,7 +112,7 @@ def admin_menu(request):
 #         form = TaskForm(instance=task)
 #     return render(request, 'adminapp/edit.html', {'form': form})
 
-
+#-----------------------------------教材画面遷移----------------------------------------------
 def admin_materials_list(request):
     return render(request, 'Materials/admin_materials_list.html')
 
@@ -123,66 +123,16 @@ def index(request):
     return render(request, 'Materials/index.html')
 
 def edit_materials(request):
-    return render(request, 'Materials/edit_materials.html')
+     # 教材一覧で選択した教材情報を取得
+    if(request.method == 'POST'):
+        old_title = request.POST.get('title')
+        old_url = request.POST.get('url') #medhia/uploads\ファイル名
+        print(old_title, old_url)
+        old_url = os.path.join(settings.MEDIA_URL, old_url.replace("\\", "/"))
+        print(old_url)
+    return render(request, 'Materials/edit_materials.html', {'old_title': old_title, 'old_url': old_url})
 
-#def material_display(request):
-    #return render(request, 'material_display.html')
-
-def send_material(request):
-    return render(request, 'Materials/material_display.html')
-
-
-#----------------------------教材一覧リスト------------------------------------
-
-def list_files(request):
-
-    # uploadsディレクトリのパス
-    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
-
-    # フォルダ内のファイルとディレクトリを取得
-    try:
-        # mediaフォルダ内のファイル取得(リスト)
-        files_and_dirs = os.listdir(folder_path)
-        print('files_and_dirs', files_and_dirs)
-        # dbから二次元リストとして作成[{material_name},{html_file_name}]
-        db_files_name = Material.objects.values('material_name', 'html_file_name').filter(html_file_name__in=files_and_dirs)
-        # db_files_nameをリストに変換
-        db_files_list = list(db_files_name)
-        # db_files_nameの内容を確認
-        print(f"db_files_name: {db_files_list}")
-        # db_files_listをhtml_file_name順に並べ替え、files_and_dirsの順番でmaterial_nameを取得
-        material_dict = {material['html_file_name']: material['material_name'] for material in db_files_list}
-        # files_and_dirsの順番に従って、対応するmaterial_nameを取得
-        db_material_names = [material_dict[file_name] for file_name in files_and_dirs if file_name in material_dict]
-        # 並び替えた結果を表示
-        print(f"db_material_names: {db_material_names}")
-
-    except FileNotFoundError:
-        # フォルダが存在しない場合のエラーハンドリング
-        files_and_dirs = []
-        error_message = "指定されたフォルダが見つかりませんでした。"
-        return render(request, 'UserApp:Materials/materials_list.html', {'error_message': error_message})
-    except Exception as e:
-        # その他の例外が発生した場合のエラーハンドリング
-        files_and_dirs = []
-        error_message = "エラーが発生しました。"
-        return render(request, 'UserApp:Materials/materials_list.html', {'error_message': error_message})
-
-    print('ファイルのurl作成')
-    # ファイルのURLを作成 (エンコード処理を追加)
-    file_urls = [
-        os.path.join(settings.MEDIA_URL, 'uploads', urllib.parse.quote(file)) 
-        for file in files_and_dirs
-    ]
-    # ファイル名とURLを組み合わせたタプルのリストを作成
-    files_with_urls = zip(db_material_names, file_urls)
-    # フォルダ内のファイルがある場合に表示
-    return render(request, 'UserApp:Materials/materials_list.html', {'files_with_urls': files_with_urls})
-#----------------------------教材一覧リスト-----------------------------------
-
-#----------------------------教材表示-----------------------------------
-def send_material(request):
-
+def delete_materials(request):
     # 教材一覧で選択した教材情報を取得
     if(request.method == 'POST'):
         material_title = request.POST.get('title')
@@ -198,39 +148,105 @@ def send_material(request):
             #例外処理
             print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
 
-        return render(request, 'UserApp:Materials/material_display.html', {'title': material_title, 'url': material_url})
+        return render(request, 'Materials/delete_materials.html', {'title': material_title, 'url': material_url})
 
     return HttpResponse('Invalid request', status=400)
-#----------------------------教材表示-----------------------------------
 
+#-----------------------------------画面遷移----------------------------------------------
+
+
+#----------------------------教材一覧リスト------------------------------------
+
+def admin_list_files(request):
+    print('admin_list_files')
+    # uploadsディレクトリのパス
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+
+    # フォルダ内のファイルとディレクトリを取得
+    try:
+        # mediaフォルダ内のファイル取得(リスト)
+        files_and_dirs = os.listdir(folder_path)
+        print('files_and_dirs', files_and_dirs)
+
+        # DBから material_id と material_name を取得
+        files_title_list = Material.objects.values('material_name', 'material_id')
+        print(f"files_title_list: {files_title_list}")
+
+        # ファイル名とDBの情報を結合
+        files_with_urls = []
+        for material in files_title_list:
+            # 各material_idに対応するファイル名を作成
+            file_name = f"{material['material_id']}.html"
+            
+            if file_name in files_and_dirs:
+                # ファイルURLの作成
+                file_url = os.path.join(settings.MEDIA_URL, 'uploads', file_name)
+
+                files_with_urls.append((material['material_name'], file_url.replace("\\", "/")))
+
+        print(f"files_with_urls: {files_with_urls}")
+
+    except FileNotFoundError:
+        # フォルダが存在しない場合のエラー
+        files_and_dirs = []
+        error_message = "指定されたフォルダが見つかりませんでした。"
+        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
+    except Exception as e:
+        # その他の例外が発生した場合のエラー
+        files_and_dirs = []
+        error_message = "エラーが発生しました。"
+        return render(request, 'Materials/admin_materials_list.html', {'error_message': error_message})
+
+    # ファイルのURLを作成 (エンコード処理を追加)
+    file_urls = [
+        os.path.join(settings.MEDIA_URL, 'uploads', urllib.parse.quote(file)) 
+        for file in files_and_dirs
+    ]
+
+    # フォルダ内のファイルがある場合に表示
+    return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
+
+#----------------------------教材一覧リスト-----------------------------------
 
 #--------------------------教材ファイル新規追加--------------------------------
 
 def add_file(request):
-    
-    if request.method == 'POST' and request.FILES:
-        # フォームインスタンスを1回だけ作成
-        form = AddMaterialForm(request.POST, request.FILES)
+    print('add_file')
+    if request.method == 'POST':
+        print("Uploaded files:", request.FILES)
         
-        if form.is_valid():
+        # バリデーションフォームインスタンス作成
+        form = ValidateMaterialForm(request.POST, request.FILES)
+        
+        if form.is_valid():  # バリデーションが有効な場合
             # 教材タイトルの取得 
             title = form.cleaned_data['title']
+            
             # アップロードされたファイルの取得
-            uploaded_file = request.FILES['file']
-            # アップロードされたファイル名の取得
-            file_name = uploaded_file.name
+            uploaded_file = request.FILES['html_file']
+            # アップロードされたファイル名の取得（元のファイル名）
+            original_file_name = uploaded_file.name
 
             # トランザクションを開始
             try:
                 with transaction.atomic():
-                    # データベースに保存
-                    Material.objects.create(
+                    # データベースに新しい教材を保存し、material_id を取得
+                    material = Material.objects.create(
                         material_name=title,
-                        html_file_name=file_name
+                        html_file_name=original_file_name  # ファイル名は元の名前
                     )
+                    print(material)
+                    material.save()
 
-                    # 保存先のパスを作成
-                    file_path = os.path.join(settings.MEDIA_ROOT, 'uploads', uploaded_file.name)
+                    # 保存した最新の教材IDを取得(DB)
+                    material_id = material.material_id  # すでに作成したオブジェクトから取得
+                    print('material_id', material_id)
+
+                    # 保存先のパスを作成（ファイル名は material_id）
+                    file_name_with_id = f"{material_id}.html"  # 例：ファイル名を material_id.html として保存
+                    file_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name_with_id)
+                    print(file_path)
+
                     # ディレクトリが存在しない場合、作成
                     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
@@ -238,9 +254,9 @@ def add_file(request):
                     with default_storage.open(file_path, 'wb+') as destination:
                         for chunk in uploaded_file.chunks():
                             destination.write(chunk)
-                
-                # 正常終了時
-                return render(request, 'Materials/index.html')
+
+                    # 正常終了時
+                    return render(request, 'Materials/index.html')
 
             except IntegrityError:
                 # 一意制約違反などのデータベースエラー処理
@@ -250,16 +266,113 @@ def add_file(request):
             except Exception as e:
                 # 他のエラー処理
                 return render(request, 'Materials/add_materials.html', {'form': form, 'error_message': str(e)})
-
         else:
             # フォームが無効な場合、エラーメッセージとともに再レンダリング
+            print("Form errors:", form.errors)
             return render(request, 'Materials/add_materials.html', {'form': form, 'error_message': 'フォームにエラーがあります。'})
     else:
         # 初回表示時
-        form = AddMaterialForm()
+        form = ValidateMaterialForm()
+    
     return render(request, 'Materials/add_materials.html', {'form': form})
+
 #--------------------------教材ファイル新規追加--------------------------------
  
+#--------------------------教材ファイル編集・削除--------------------------------
+
+#編集
+def edit_item(request):
+    if request.method == "POST":
+        # 現在のファイル取得
+        old_file = request.POST.get("old-url", "").strip()
+        # material_idを抽出
+        match = re.search(r'/media/uploads/(.+?)\.html', old_file)
+        old_file_id = match.group(1) if match else None
+
+        if not old_file_id:
+            return HttpResponse("No valid file name found", status=400)
+
+        # 変更したい項目を取得
+        title_choice = request.POST.get("title-choice")
+        file_choice = request.POST.get("file-choice")
+
+        # material_idを使ってDBから教材を取得
+        material = get_object_or_404(Material, material_id=old_file_id)
+        
+        if title_choice == "no" and file_choice == "no":
+            # 両方を選択しない場合
+            print('title-choice == no and file-choice == no')
+
+            return render(request, 'Materials/edit_materials.html', {'choice_error_message': 'タイトルまたはファイルを登録してください。'})
+        else:
+            # タイトル変更(DB)
+            if title_choice == "yes":
+                print('title-choice == yes')
+                new_title = request.POST.get("new-title")
+                print('new_title', new_title)
+                material.material_name = new_title
+                material.save()
+
+            # ファイル変更(DB) & /media/uploads/フォルダ内のファイル変更
+            if file_choice == "yes":
+                print('file-choice == yes')
+                uploaded_file = request.FILES.get("new-file")
+                original_file_name = uploaded_file.name
+                file_name_with_id = f"{material.material_id}.html"
+                file_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name_with_id)
+
+                with default_storage.open(file_path, 'wb+') as destination:
+                    for chunk in uploaded_file.chunks():
+                        destination.write(chunk)
+                # ファイル名(DB)を変更
+                material.html_file_name = original_file_name
+                material.save()
+        
+        return render(request, 'Materials/index.html')
+
+    return HttpResponse("Method not allowed", status=405)
+
+
+#削除
+def delete_item(request):
+    if request.method == 'POST':
+
+        # uploadsディレクトリのパス
+        folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+        print('folder_path:', folder_path)
+        # ファイルパスの取得
+        file_path = request.POST.get("url")
+
+        # ファイルパスがNone または`/media/uploads/`で始まらない場合
+        if not file_path or not file_path.startswith("/media/uploads/"):
+            return JsonResponse({"error": "Invalid file path"}, status=400)
+        
+        match = re.search(r'/media/uploads/(.+?)\.html', file_path)
+        file_id = match.group(1)
+        print('file_id:', file_id)
+
+        file_path = os.path.join(folder_path, file_id + ".html")
+
+        # 削除処理
+        try:
+            if os.path.exists(file_path):
+                #medhia/uploads/ファイル名.html削除
+                os.remove(file_path)
+                
+                # 削除するDBレコードを取得
+                material = get_object_or_404(Material, material_id=file_id)
+                material.delete()  # レコードを削除
+
+                return render(request, 'Materials/index.html')
+            else:
+                return JsonResponse({'status': 'error', 'message': 'not material'})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+    
+    return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
+
+#--------------------------教材ファイル編集・削除--------------------------------
+
 
 #--------------------------------問題・解答設定----------------------------------------
 

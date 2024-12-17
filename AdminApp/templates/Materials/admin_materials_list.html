@@ -7,6 +7,7 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}"/>
+  <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
 
@@ -16,7 +17,7 @@
     <!-- ユーザー名 -->
     <div class="selectdiv">
       <label>
-        <select>
+        <select id="userMenu">
           <option selected>ユーザー名</option>
           <option>設定</option>
           <option>アカウント管理</option>
@@ -29,9 +30,9 @@
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="{% url 'AdminApp:admin_materials_list' %}" class="button1">教材管理</a>
+      <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
       <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
-      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント情報管理</a>
+      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
     </div>
     <!-- メイン -->
     <div class="main">
@@ -51,8 +52,8 @@
                 <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
                 <input type="hidden" name="title" value="{{ title }}">
                 <input type="hidden" name="url" value="{{ url }}">
-                <button class="action-button" type="submit" value="post" formaction="/edit_item">編集</button>
-                <button class="action-button" type="submit" value="delete" formaction="/delete_item">削除</button>
+                <button class="action-button" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
+                <button class="action-button" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
               </form>  
               {% endfor %}
             {% endif %}
@@ -61,12 +62,4 @@
   </div>
 </body>
 </html>
-<script>
-  document.getElementById('userMenu').addEventListener('change', function (event) {
-    const selectedValue = event.target.value; // 選択された値を取得
-    if (selectedValue !== 'username') {
-    }
-    // 常に「ユーザー名」に戻す
-    event.target.value = 'username'; 
-  });
-</script>
+

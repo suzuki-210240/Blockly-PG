@@ -41,6 +41,78 @@ def Home (request):
         context
     )
 
+#------------------------------教材一覧---------------------------------------------
+def user_list_files(request):
+    # uploadsディレクトリのパス
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+
+    # フォルダ内のファイルとディレクトリを取得
+    try:
+        # mediaフォルダ内のファイル取得(リスト)
+        files_and_dirs = os.listdir(folder_path)
+        print('files_and_dirs', files_and_dirs)
+
+        # DBから material_id と material_name を取得
+        files_title_list = Material.objects.values('material_name', 'material_id')
+        print(f"files_title_list: {files_title_list}")
+
+        # ファイル名とDBの情報を結合
+        files_with_urls = []
+        for material in files_title_list:
+            # 各material_idに対応するファイル名を作成
+            file_name = f"{material['material_id']}.html"
+            
+            if file_name in files_and_dirs:
+                # ファイルURLの作成
+                file_url = os.path.join(settings.MEDIA_URL, 'uploads', urllib.parse.quote(file_name))
+
+                files_with_urls.append((material['material_name'], file_url))
+
+        print(f"files_with_urls: {files_with_urls}")
+
+    except FileNotFoundError:
+        # フォルダが存在しない場合のエラー
+        files_and_dirs = []
+        error_message = "指定されたフォルダが見つかりませんでした。"
+        return render(request, 'Materials/materials_list.html', {'error_message': error_message})
+    except Exception as e:
+        # その他の例外が発生した場合のエラー
+        files_and_dirs = []
+        error_message = "エラーが発生しました。"
+        return render(request, 'Materials/materials_list.html', {'error_message': error_message})
+
+    # フォルダ内のファイルがある場合に表示
+    return render(request, 'Materials/materials_list.html', {'files_with_urls': files_with_urls})
+#------------------------------教材一覧---------------------------------------------
+
+
+#------------------------------教材表示---------------------------------------------
+def send_material(request):
+
+    folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
+
+    # 教材一覧で選択した教材情報を取得
+    if(request.method == 'POST'):
+        material_title = request.POST.get('title')
+        material_url = request.POST.get('url') #medhia/uploads/ファイル名
+        print(material_title, material_url)
+
+        try:
+            # MEDIA_ROOT を基準に絶対パスを作成
+            material_url = os.path.join(settings.MEDIA_URL, material_url.replace("\\", "/"))
+            print(material_url)
+
+        except requests.exceptions.RequestException as e:
+            #例外処理
+            print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
+
+        return render(request, 'Materials/material_display.html', {'title': material_title, 'url': material_url})
+
+    return HttpResponse('Invalid request', status=400)
+
+#------------------------------教材表示---------------------------------------------
+
+
 @login_required
 #課題一覧
 def Kadai_list (request):

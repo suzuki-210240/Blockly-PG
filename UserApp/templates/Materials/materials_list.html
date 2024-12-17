@@ -7,6 +7,7 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}"/>
+  <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
 
@@ -16,7 +17,7 @@
     <!-- ユーザー名 -->
     <div class="selectdiv">
       <label>
-        <select>
+        <select id="userMenu">
           <option selected>ユーザー名</option>
           <option>設定</option>
           <option>アカウント管理</option>
@@ -29,7 +30,7 @@
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="{% url 'UserApp:Material_list' %}" class="button1">教材一覧</a>
+      <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
       <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
       <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
       <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
@@ -60,12 +61,4 @@
   </div>
 </body>
 </html>
-<script>
-  document.getElementById('userMenu').addEventListener('change', function (event) {
-    const selectedValue = event.target.value; // 選択された値を取得
-    if (selectedValue !== 'username') {
-    }
-    // 常に「ユーザー名」に戻す
-    event.target.value = 'username'; 
-  });
-</script>
+
