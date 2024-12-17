@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.contrib.auth.models import User, Group
 from .models import Kadai, Answer,KadaiProgress,Material
 
@@ -27,7 +28,7 @@ from .models import Kadai, Answer,KadaiProgress,Material
     
 #--------------------------教材ファイル新規追加--------------------------------
  
-class AddMaterialForm(forms.Form):
+class ValidateMaterialForm(forms.Form):
     title = forms.CharField(
         label='教材タイトル',
         max_length=40,
@@ -35,28 +36,41 @@ class AddMaterialForm(forms.Form):
         error_messages={
             'required': '教材タイトルを入力してください。',
             'max_length': '教材タイトルは40文字以内で入力してください。',
+        },
+        validators=[
+            RegexValidator(
+                regex=r'^[ぁ-ゔァ-ヴー々〆〤一-龥a-zA-Z0-9!#$%&\'*+/=?^_`{|}~-]+$',
+                message='タイトルに使用できるのは日本語、半角英数字、一部の特殊文字のみです。'
+            )
+        ]
+    )
+
+    html_file = forms.FileField(
+        label='教材ファイル',
+        required=True,
+        error_messages={
+            'required': '教材ファイルを選択してください。',
         }
     )
-    html_file_name = forms.CharField(
-        max_length=200,
-        required=False
-    )
 
+    # タイトルのクリーンメソッド
+    def clean_title(self):
+        title = self.cleaned_data.get('title')
+        return title
 
-def clean_title(self):
-    title = self.cleaned_data.get('title')
+    # ファイルのクリーンメソッド
+    def clean_html_file(self):
+        file = self.cleaned_data.get('html_file')
 
-def clean_file(self):
-    file = self.cleaned_data.get('file')
+        # ファイルが選択されているか確認
+        if not file:
+            raise ValidationError('ファイルを選択してください。')
 
-    # ファイルが選択されているか確認
-    if not file:
-        raise ValidationError('ファイルを選択してください。')
+        # ファイルの種類を検証 (HTMLファイルのみ許可)
+        if not file.name.endswith('.html'):
+            raise ValidationError('HTMLファイルのみアップロード可能です。')
 
-    # ファイルの種類を検証 
-    if not file.name.endswith('.html'):
-        raise ValidationError('HTMLファイルのみアップロード可能です。')
-    return file
+        return file
 
 #--------------------------教材ファイル新規追加--------------------------------
 

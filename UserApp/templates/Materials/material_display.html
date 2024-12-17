@@ -6,6 +6,7 @@
     <title>{{title}}[BlocklyCodeAcademy]</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+    <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   </head>
   <body>
     <header>
@@ -14,7 +15,7 @@
         <!-- ユーザー名 -->
         <div class="selectdiv">
           <label>
-            <select>
+            <select id="userMenu">
               <option selected>ユーザー名</option>
               <option>設定</option>
               <option>アカウント管理</option>
@@ -25,13 +26,13 @@
         <!-- ユーザー名 -->
       </div>
       <div class="navigation">
-        <a href="{% url 'UserApp:Material_list' %}" class="back-button">一覧に戻る</a>
+        <a href="{% url 'UserApp:user_list_files' %}" class="back-button">一覧に戻る</a>
       </div>
     </header>
     <!--教材表示-->
     <div class="Box">
       <div class="container">
-        <a href="{% url 'UserApp:Material_list' %}" class="button1">教材一覧</a>
+        <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
         <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
         <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
         <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>

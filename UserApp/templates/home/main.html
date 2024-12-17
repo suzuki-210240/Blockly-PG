@@ -28,7 +28,7 @@
             <!--メニューバー-->
             <div class="container">
                 <!--教材一覧ボタン-->
-                <form method="post" action="{% url 'UserApp:Material_list' %}">
+                <form method="post" action="{% url 'UserApp:user_list_files' %}">
                     {% csrf_token %}
                     <button type="submit" class="button1">教材一覧</button>
                 </form>

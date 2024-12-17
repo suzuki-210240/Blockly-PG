@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,7 +143,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
@@ -161,8 +162,10 @@ LOGIN_REDIRECT_URL = '/sort'    #ログイン後に遷移するURL
 LOGOUT_REDIRECT_URL = '/'    #ログアウト後に遷移するURL
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000'
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_CHARSET = 'utf-8'
+
