@@ -109,24 +109,31 @@ textarea{
     width: 800px;
     height: 1000%;
     padding-left: 15px;
+    padding-bottom: 5px;
     background-color: #fffdfd63;
 }
 
 #output {
-    height: 50px;
-    width: 500px;
-    font-size: 40px;
-    border-color: black;
+    background-color: black;
+    color: white;
+    font-family: Consolas, "Courier New", monospace;
+    padding: 10px;
+    border-radius: 5px;
+    width: 550px;
+    height: 200px;  /* 高さを固定 */
+    overflow-y: auto;  /* コンテンツが多くなるとスクロールバーを表示 */
+    white-space: pre-wrap; /* 改行を保持 */
+    word-wrap: break-word;  /* 長い単語を改行 */
 }
 
 #codeOutput {
-    height: 650px;
+    height: 500px;
     width: 550px;
     border-color: black;
 }
 
 #exampleOutput {
-    height: 650px;
+    height: 500px;
     width: 600px;
     font-weight: 250;
     border-color: black;
