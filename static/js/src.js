@@ -1,3 +1,11 @@
+/**
+ * This project uses Blockly, an open-source visual programming editor developed by Google.
+ * 
+ * Blockly is licensed under the Apache License, Version 2.0.
+ * See: http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+
 //-------------課題制作用javascript------------------
 var flg = 0;
 // Blockly で作成されたコードを実行する関数
