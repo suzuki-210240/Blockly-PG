@@ -33,7 +33,7 @@
               <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
             </div>
             <div class="main">
-                <h2>課題一覧</h2>
+                <h1>課題一覧</h1>
                 <div class="list">
                     {% for category, kadais in categories.items %}
                         <div id="categ">
@@ -45,7 +45,7 @@
                                         <th>課題番号</th>
                                         <th>課題タイトル</th>
                                         <th>ステータス</th>
-                                        <th>実行</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

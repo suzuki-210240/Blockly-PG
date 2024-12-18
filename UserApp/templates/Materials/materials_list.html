@@ -38,25 +38,47 @@
     <!-- メイン -->
     <div class="main">
       <h1>教材一覧</h1>
+      <p>・閲覧したい教材を選択してください</p>
       <div class="table-container">
-        <div class="table-header">
-            <span class="title">タイトル</span>
-        </div>
-        <div class="table-row">
-            {% if error_message %}
-                <p style="color: red;">{{ error_message }}</p>
-            {% else %}
+        {% if error_message %}
+          <!-- エラー表示 -->
+          <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+
+        <!-- テーブル表示 -->
+        <table class="material-table">
+          <thead>
+            <tr>
+              <th>教材名</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if files_with_urls %}
               {% for title, url in files_with_urls %}
-              <form method="POST" action="{% url 'UserApp:send_material' %}">
-                {% csrf_token %}
-                <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
-                <input type="hidden" name="title" value="{{ title }}">
-                <input type="hidden" name="url" value="{{ url }}">
-                <button class="action-button" type="submit">開始</button>
-              </form>  
+                <tr>
+                  <!-- 教材名 -->
+                  <td>
+                    <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
+                  </td>
+                  <!-- ボタンフォーム -->
+                  <td>
+                    <form method="POST" action="{% url 'UserApp:send_material' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="title" value="{{ title }}">
+                      <input type="hidden" name="url" value="{{ url }}">
+                      <button class="action-button" type="submit">開始</button>
+                    </form>
+                  </td>
+                </tr>
               {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="2">利用可能な教材がありません。</td>
+              </tr>
             {% endif %}
-        </div>
+          </tbody>
+        </table>
       </div>
   </div>
 </body>

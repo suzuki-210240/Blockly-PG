@@ -16,6 +16,44 @@ a {
     height: 100vh;
 }
 
+.material-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+.material-table th,
+.material-table td {
+    border: 1px solid #71a0a6;
+    text-align: center;
+    padding: 8px;
+}
+
+.material-table th {
+    background-color: #e5f2f0ac;
+    font-weight: bold;
+}
+
+.material-table td {
+    background-color: #9fc5e6;
+    font-weight: bold;
+}
+
+
+/* 列ごとの幅を設定 */
+.material-table th:nth-child(1),
+.material-table td:nth-child(1) {
+    text-align: left;
+    width: 90%; /* 教材名 */
+}
+
+.material-table th:nth-child(2),
+.material-table td:nth-child(2) {
+    text-align: center;
+    width: 10%; /* 課題タイトル */
+}
+
 .table-container {
     width: 85%;
     margin: 30px auto;

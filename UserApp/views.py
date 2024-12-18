@@ -96,14 +96,8 @@ def send_material(request):
         
 
         try:
-            # MEDIA_ROOT を基準に絶対パスを作成
-            # return_url = folder_path  + filename
-            # print("return_url:",return_url)
-            # return_url = 'UserApp:index'
-            directory, filename = os.path.split(material_url)
+            directory, filename = os.path.split(material_url) #取得したurlを分割
             print(directory, filename)
-            folder_path = os.path.join(settings.MEDIA_URL, 'uploads/')
-            print("folder_path:",folder_path)
 
         except requests.exceptions.RequestException as e:
             #例外処理
@@ -115,6 +109,7 @@ def send_material(request):
 
 #------------------------------教材表示---------------------------------------------
 
+#------------------------------埋込教材ページの展開-------------------------------------
 def load_file(request, file_name):
     # ファイルのパスを取得
     file_path = str(settings.MEDIA_ROOT)+ '/uploads/'+ file_name
@@ -128,12 +123,13 @@ def load_file(request, file_name):
 
     except FileNotFoundError:
         return HttpResponse('File not found', status=404)
+    
+#-------------------------------------------------------------------------------------
 
 
 
 
-
-
+#----------------------------------------------課題一覧---------------------------------------------
 @login_required
 #課題一覧
 def Kadai_list (request):
@@ -157,8 +153,9 @@ def Kadai_list (request):
 
     return render(request, 'Kadai/kadai_list.html', {'categories': categories})
 
+#---------------------------------------------------------------------------------------------------
 
-#------------------------------課題表示---------------------------------------------
+#-----------------------------------------課題表示---------------------------------------------
 
 @login_required
 def Kadai_open(request, kadai_id):
