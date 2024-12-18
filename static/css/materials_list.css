@@ -11,152 +11,131 @@ a {
     text-decoration: none;
 }
 
-.main{
-    width: 100%;
+.main {
+    align-items: center;
+    justify-content: center;
     height: 100vh;
-}
-
-.table-container {
+    width: 100%;
+    background-color: #c8e1e2;
+    border: solid 2px #1d78b1;
+    border-radius: 30px;
+    margin: 0 15px;
+  }
+  
+  .main h1 {
+    font: 45px monospace;
+    color: #333;
+    margin: 15px;
+    padding: 10px;
+    line-height: 1.5;
+  }
+  
+  .table-container {
     width: 85%;
     margin: 30px auto;
     background-color: #d9d9d9;
-    /* 背景色 */
     padding: 50px 30px 120px 30px;
     border-radius: 15px;
-    /* 全体の角丸 */
-
-}
-
-/* ヘッダー */
-.table-header {
+  }
+  
+  .table-header {
     display: flex;
     font-size: 28px;
     justify-content: space-between;
-    /* 縦並びを防ぎ、横並びにする 追加 */
-    flex-wrap: nowrap;
-    /* 左右に要素を配置 */
     padding: 30px 5px;
     font-weight: bold;
     border-bottom: 3px solid #858585;
-    /* 下線を追加 */
     color: #000000;
-    /* 親要素にrelativeを指定 　追加*/
-    position: relative;
-    /* 垂直方向に中央揃え 追加*/
-    align-items: center;
-
-}
-
-.material {
-    /*admin_cssに移行*/
-    flex-grow: 1;
-    text-align: right;
-    padding-right: 34.2%;
-    font-size: 1.7rem;
-    /* フォントサイズを調整 */
-}
-
-/* 各行のレイアウト */
-.table-row {
+  }
+  
+  .material {
+    margin-right: 170px;
+  }
+  
+  .table-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* 各要素の間隔を均等に */
     padding: 20px 0;
     border-bottom: 3px solid #b4b4b4;
-    /* 各行の間に線 */
-}
-
-/* 各要素のスタイル */
-.row-title,
-.row-material {
-    white-space: nowrap;
-    /* テキストの改行を防止 */
+  }
+  
+  .row-title, .row-material {
     flex: 2;
-    /* 要素のサイズを均等に */
     padding: 10px;
-    font-size: 1.5rem;
-}
-
-.row-material {
+    font-size: 20px;
+  }
+  
+  .row-material {
     flex: 1;
-    /* 要素のサイズを均等に */
     margin-left: 160px;
-    font-size: 1.4rem;
-}
-
-/* 各行のレイアウト */
-.table-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* 各要素の間隔を均等に */
-    padding: 1.5rem 0;
-    border-bottom: 3px solid #b4b4b4;
-    /* 各行の間に線 */
-}
-
-/* ボタンの親要素 クラス名変更*/
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* ボタンが折り返す */
-    justify-content: space-evenly;
-    /* ボタン間の余白を均等に配置 */
-    /* ボタン間の間隔 */
-    width: 100%;
-    /* 親要素の幅を100%に設定 */
-}
-
-
-/* ボタンのスタイル */
-.status-button {
+    font-size: 20px;
+  }
+  
+  .status-button {
     background-color: #ffffff;
-    /* ボタンの背景色 */
     color: #000000;
-    /* 文字色 */
     border: none;
     border-radius: 15px;
-    /* 角丸 */
     padding: 5px 10px;
     margin-right: 5px;
     font-size: 17px;
     cursor: pointer;
-}
-
-.status-button2 {
+  }
+  
+  .status-button2 {
     background-color: #ffffff;
-    /* ボタンの背景色 */
     color: #000000;
-    /* 文字色 */
     border: none;
     border-radius: 15px;
-    /* 角丸 */
     padding: 5px 18px;
     margin-right: 5px;
     font-size: 17px;
     cursor: pointer;
-}
-
-.action-button {
+  }
+  
+  .action-button {
     background-color: #ffffff;
-    /* ボタンの背景色 */
     color: #000000;
-    /* 文字色 */
     border: none;
     border-radius: 15px;
-    /* 角丸 */
     padding: 5px 18px;
     font-size: 17px;
     cursor: pointer;
     margin-left: 20px;
-}
-
-
-/* ボタンのホバー効果 */
-.status-button:hover,
-.status-button2:hover,
-.action-button:hover {
+  }
+  
+  .status-button:hover, .status-button2:hover, .action-button:hover {
     background-color: #cceaff;
-    /* ホバー時の色変更 */
-}
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1px;
+    justify-content: flex-start;
+  }
+  
+  .header-container h1 {
+    margin: 0;
+  }
+  
+  .header-container .button5 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-container .button5:hover {
+    background-color: #45a049;
+  }
+  
+  .button-container {
+    margin-right: 20px;
+  }
