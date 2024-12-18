@@ -39,7 +39,7 @@
       </div>
       <div class="main">
         <h2 id="materialTitle">{{ title }}</h2>
-        <iframe src="{{ url }}"></iframe>
+        <iframe src="{%url  'UserApp:load_file'  file_name=filename%}" width="800" height="600"></iframe>
       </div>
     </div>
     <!--教材表示-->

@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin_list_files/', views.admin_list_files, name='admin_list_files'), # 管理者用教材一覧関数呼び出し
     path('edit_item/', views.edit_item, name='edit_item'), # 教材編集関数呼び出し
     path('delete_item/', views.delete_item, name='delete_item'), # 教材削除関数呼び出し
+    path('load/<str:file_name>/', views.load_file, name='load_file'),#埋込むの教材読み込み
     path('add_file', views.add_file, name='add_file'), # 教材追加関数呼び出し
     path('admin_kadai_list/',views.admin_kadai_list,name='admin_kadai_list'),#課題一覧
     path('add_kadai/',views.add_kadai_and_answer,name='add_kadai'),#課題追加関数呼び出し

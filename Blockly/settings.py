@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_http_referrer_policy.middleware.ReferrerPolicyMiddleware', #----------
 ]
 
 ROOT_URLCONF = 'Blockly.urls'
@@ -161,11 +162,12 @@ LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/sort'    #ログイン後に遷移するURL
 LOGOUT_REDIRECT_URL = '/'    #ログアウト後に遷移するURL
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'  # URLとして使うパス
+MEDIA_ROOT = BASE_DIR.joinpath('media') # 実際のファイルパス
 
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 DEFAULT_CHARSET = 'utf-8'
 
+REFERRER_POLICY = 'no-referrer-when-downgrade'

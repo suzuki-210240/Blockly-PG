@@ -140,18 +140,34 @@ def delete_materials(request):
         print(material_title, material_url)
 
         try:
-            # MEDIA_ROOT を基準に絶対パスを作成
-            material_url = os.path.join(settings.MEDIA_URL, material_url.replace("\\", "/"))
-            print(material_url)
+            directory, filename = os.path.split(material_url)
+            print(directory, filename)
+            folder_path = os.path.join(settings.MEDIA_URL, 'uploads/')
+            print("folder_path:",folder_path)
 
         except requests.exceptions.RequestException as e:
             #例外処理
             print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
 
-        return render(request, 'Materials/delete_materials.html', {'title': material_title, 'url': material_url})
+        return render(request, 'Materials/delete_materials.html', {'title': material_title, 'filename': filename})
 
     return HttpResponse('Invalid request', status=400)
 
+
+def load_file(request, file_name):
+    # ファイルのパスを取得
+    file_path = str(settings.MEDIA_ROOT)+ '/uploads/'+ file_name
+    print(file_path)
+
+    try:
+        with open(file_path, 'r' ,encoding='utf-8') as f:
+            file_content = f.read()
+        
+        return HttpResponse(file_content, content_type='text/html')
+
+    except FileNotFoundError:
+        return HttpResponse('File not found', status=404)
+    
 #-----------------------------------画面遷移----------------------------------------------
 
 

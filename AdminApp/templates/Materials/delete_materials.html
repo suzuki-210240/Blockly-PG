@@ -62,7 +62,7 @@
       <div class="preview-box">
         <label id="sub-title" for="file">プレビュー</label>
         <div class="show-html">
-          <iframe id="preview" title="ファイルプレビュー" sandbox="allow-same-origin">
+          <iframe src="{%url 'AdminApp:load_file' file_name=filename%}"></iframe>
         </div>
       </div>
     </div>
