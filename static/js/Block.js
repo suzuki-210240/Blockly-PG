@@ -1,3 +1,11 @@
+/**
+ * This project uses Blockly, an open-source visual programming editor developed by Google.
+ * 
+ * Blockly is licensed under the Apache License, Version 2.0.
+ * See: http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+
 //-------------Blockly設定用javascript------------------
 
 Blockly.setLocale(Blockly.Msg);

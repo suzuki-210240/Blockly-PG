@@ -26,7 +26,7 @@
             <h1>User Menu</h1>
             <p>Action List</p>
             <!--メニューバー-->
-            <div class="container">
+            <div class="containers">
                 <!--教材一覧ボタン-->
                 <form method="post" action="{% url 'UserApp:user_list_files' %}">
                     {% csrf_token %}
@@ -51,7 +51,11 @@
                     <button type="submit" class="button4">ユーザー編集</button>
                 </form>
 
-                <a href="{% url 'UserApp:progress' %}" class="button3">進捗状況の確認</a>
+
+                <form action="{% url 'UserApp:progress' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="button4">進捗状況の確認</button>
+                </form>
 
                 <!--ログアウトボタン-->
                 <form action="{% url 'logout' %}" method="post">

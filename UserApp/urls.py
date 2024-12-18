@@ -13,9 +13,7 @@ urlpatterns = [
     path('send_material/', views.send_material, name='send_material') ,#教材表示関数呼び出し
     path("free/", views.FreeMode,name="freemode"),#自由制作モード
     path('check-code/', views.check_code, name='check_code'),#正誤判定
-    path('progress/', views.user_progress, name='progress'),
+    path('progress/', views.user_progress, name='progress'), #課題進捗画面
+    path('load/<str:file_name>/', views.load_file, name='load_file'),#埋込むの教材読み込み
     #path('list/', views.list_files, name='list'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
