@@ -63,10 +63,6 @@ header {
   word-break: normal;
 }
 
-/* body {
-  background: #ffffff;
-} */
-
 .Box {
   display: flex;
 }
@@ -130,7 +126,7 @@ header {
   border: solid 2px #1d78b1;
   /*角丸*/
   border-radius: 30px;
-  margin: 0 15px;
+  margin: 0 15px 15px 15px;
   width: 1500px;
   height: auto;
 }
