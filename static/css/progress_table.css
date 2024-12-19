@@ -1,37 +1,51 @@
 @charset "utf-8";
+
+body {
+  min-width: 880px;
+}
+
 .main2 {
-    align-items: center;
-    justify-content: center;
-    background-color: #c8e1e2;
-    border: solid 2px #1d78b1;
-    margin: 0 15px;
-    width: 1500px;
-    height: 100%;
-  }
-  
-  .main2 h1 {
-    font: 45px monospace;
-    color: #333;
-    margin: 15px;
-    padding: 10px;
-    line-height: 1.5;
-  }
+  align-items: center;
+  justify-content: center;
+  background-color: #c8e1e2;
+  border: solid 2px #1d78b1;
+  margin: 0 15px;
+  width: 1500px;
+  height: 100%;
+}
 
-  .main2 table {
-    border-collapse: collapse;
-    border: 1px solid #73c2fabd;
-    margin: 20px;
-    width: 100%;
-    height: auto;
-  }
+.main2 h1 {
+  font: 45px monospace;
+  color: #333;
+  margin: 15px;
+  padding: 10px;
+  line-height: 1.5;
+}
 
-   th, td {
-    border: 1px solid #000; /* 枠線 */
-    width: 150px; /* 幅を固定 */
-    height: 100px; /* 高さを固定 */
-    text-align: center; /* 中央揃え */
-    vertical-align: middle; /* 垂直方向の中央揃え */
-    overflow: hidden; /* コンテンツのオーバーフローを非表示 */
-    white-space: nowrap; /* テキストを折り返さない */
-    box-sizing: border-box; /* パディングやボーダーを含めたサイズ設定 */
-  }
+.main2 table {
+  border-collapse: collapse;
+  border: 1px solid #73c2fabd;
+  margin: 20px;
+  width: 100%;
+  height: auto;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  /* 枠線 */
+  width: 150px;
+  /* 幅を固定 */
+  height: 100px;
+  /* 高さを固定 */
+  text-align: center;
+  /* 中央揃え */
+  vertical-align: middle;
+  /* 垂直方向の中央揃え */
+  overflow: hidden;
+  /* コンテンツのオーバーフローを非表示 */
+  white-space: nowrap;
+  /* テキストを折り返さない */
+  box-sizing: border-box;
+  /* パディングやボーダーを含めたサイズ設定 */
+}

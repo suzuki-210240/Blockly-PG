@@ -1,4 +1,9 @@
 @charset "utf-8";
+
+body {
+  min-width: 880px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -133,7 +138,7 @@ header {
 .main h1 {
   font: 45px monospace;
   color: #333;
-  margin: 15px;
+  margin: 10px;
   padding: 10px;
   line-height: 1.5;
 }
@@ -142,5 +147,10 @@ header {
   .button-container {
     justify-content: space-evenly;
     /* ボタンを均等に配置 */
+  }
+
+  .main {
+    width: 90%;
+    /* 横幅を調整 */
   }
 }

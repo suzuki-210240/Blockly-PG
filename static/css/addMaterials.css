@@ -1,24 +1,24 @@
-.addMaterials {
+body {
+    background-color: #ffffffd1;
+    background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    width: 100%;
+    height: 10vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-
-body {
-    min-width: 600px;
+header {
+    margin-top: 12px;
+    margin-bottom: 34px;
+    margin-left: 10px;
 }
 
 .main {
     align-items: center;
     justify-content: center;
-    max-width: 600px;
-    min-width: 800px;
-    background-color: #d1e3e7;
-    border: solid 2px #1d78b1;
-    /*角丸*/
-    border-radius: 10px;
+    height: 100vh;
 }
 
 h1 {

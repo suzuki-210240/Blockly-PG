@@ -39,11 +39,13 @@
     <!-- メイン -->
     <div class="main">
       <h1>教材一覧</h1>
-      <a href="{% url 'AdminApp:add_materials' %}">教材新規登録</a>
-      
       <div class="table-container">
+        <div class="add-container">
+          <a href="{% url 'AdminApp:add_materials' %}" class="add-button">教材新規登録</a>
+        </div>
         <div class="table-header">
           <span class="title">タイトル</span>
+          <span class="title">操作</span>
         </div>
 
         <div class="table-row">
