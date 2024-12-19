@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}" />
   <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
@@ -16,71 +16,60 @@
     <p class="logo">BlocklyCodeAcademy</p>
     <!-- ユーザー名 -->
     <div class="selectdiv">
-      <label>
-        <select id="userMenu">
-          <option selected>ユーザー名</option>
-          <option>設定</option>
-          <option>アカウント管理</option>
-          <option>ログアウト</option>
-        </select>
-      </label>
+      <select id="userMenu">
+        <option selected>ユーザー名</option>
+        <option>設定</option>
+        <option>アカウント管理</option>
+        <option>ログアウト</option>
+      </select>
     </div>
-    <!-- ユーザー名 -->
   </header>
+
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
       <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
       <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
       <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
-      <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
+      <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗<br>確認</a>
     </div>
+
     <!-- メイン -->
     <div class="main">
       <h1>教材一覧</h1>
       <p>・閲覧したい教材を選択してください</p>
       <div class="table-container">
-        {% if error_message %}
-          <!-- エラー表示 -->
-          <p style="color: red;">{{ error_message }}</p>
-        {% endif %}
+        <div class="table-header">
+          <span class="table-title">タイトル</span>
+          <span id="action-title">操作</span>
+        </div>
 
-        <!-- テーブル表示 -->
-        <table class="material-table">
-          <thead>
-            <tr>
-              <th>教材名</th>
-              <th></th>
+        <!-- 教材リスト -->
+        <table class="table-row">
+          {% if error_message %}
+            <tr><!--教材が存在しない場合 エラーメッセージ-->
+              <td colspan="2" style="color: red;">{{ error_message }}</td>
             </tr>
-          </thead>
-          <tbody>
-            {% if files_with_urls %}
-              {% for title, url in files_with_urls %}
-                <tr>
-                  <!-- 教材名 -->
-                  <td>
-                    <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
-                  </td>
-                  <!-- ボタンフォーム -->
-                  <td>
-                    <form method="POST" action="{% url 'UserApp:send_material' %}">
-                      {% csrf_token %}
-                      <input type="hidden" name="title" value="{{ title }}">
-                      <input type="hidden" name="url" value="{{ url }}">
-                      <button class="action-button" type="submit">開始</button>
-                    </form>
-                  </td>
-                </tr>
-              {% endfor %}
-            {% else %}
-              <tr>
-                <td colspan="2">利用可能な教材がありません。</td>
-              </tr>
-            {% endif %}
-          </tbody>
+          {% else %}
+            {% for title, url in files_with_urls %}
+              <form method="POST" action="{% url 'UserApp:send_material' %}">
+                {% csrf_token %}
+                <div class="table-item">
+                  <span class="row-title"><span class="number">{{ forloop.counter }}.&emsp;</span>{{ title }}</span>
+                  <input type="hidden" name="title" value="{{ title }}">
+                  <input type="hidden" name="url" value="{{ url }}">
+                  <div class="button-container">
+                    <button class="action-button" type="submit">開始</button>
+                  </div>
+                </div>
+              </form>
+              <hr>
+            {% endfor %}
+          {% endif %}
         </table>
       </div>
+    </div>
   </div>
 </body>
-</html>
 
+</html>
