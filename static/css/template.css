@@ -28,22 +28,9 @@ header {
   margin-right: 20px;
 }
 
-/*
-.selectdiv:after {
-  content: '<>';
-  font: 17px "Consolas", monospace;
-  color: #333;
-  transform: rotate(90deg);
-
-  right: 25px;
-
-  top: 30px;
-  padding: 3px 4px 1px;
-  border-bottom: 1px solid #999;
-
-  position: absolute;
-  pointer-events: none;
-}*/
+.kigou {
+  font-size: 16px;
+}
 
 .selectdiv select {
   -webkit-appearance: none;

@@ -14,22 +14,23 @@
     <header>
       <div class="header-content">
         <p class="logo">BlocklyCodeAcademy</p>
-        <button onclick="goBack()" class="back-button back-button-flat">
-          <span class="arrow">＜</span>
-          <span>一覧に戻る</span>
-        </button>
-        <!-- ユーザー名 -->
-        <div class="selectdiv">
-          <label>
-            <select id="userMenu">
-              <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
-              <option>設定</option>
-              <option>アカウント管理</option>
-              <option>ログアウト</option>
-            </select>
-          </label>
+        <div class="header-right">
+          <a href="{% url 'UserApp:user_list_files' %}" class="back-button back-button-flat">
+            <span class="arrow">＜</span><span>一覧に戻る</span>
+          </a>
+          <!-- ユーザー名 -->
+          <div class="selectdiv">
+            <label>
+              <select id="userMenu">
+                <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
+                <option>設定</option>
+                <option>アカウント管理</option>
+                <option>ログアウト</option>
+              </select>
+            </label>
+          </div>
+          <!-- ユーザー名 -->
         </div>
-        <!-- ユーザー名 -->
       </div>
     </header>
       <!--教材表示-->

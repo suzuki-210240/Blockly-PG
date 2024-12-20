@@ -4,6 +4,7 @@ iframe {
     width: 95%;
     height: 95%;
     background-color: antiquewhite;
+    border-radius: 10px;
 }
 
 .view-box {
