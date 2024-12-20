@@ -6,6 +6,7 @@
     <title>{{title}}[BlocklyCodeAcademy]</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/material_display.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   </head>
@@ -13,11 +14,15 @@
     <header>
       <div class="header-content">
         <p class="logo">BlocklyCodeAcademy</p>
+        <button onclick="goBack()" class="back-button back-button-flat">
+          <span class="arrow">＜</span>
+          <span>一覧に戻る</span>
+        </button>
         <!-- ユーザー名 -->
         <div class="selectdiv">
           <label>
             <select id="userMenu">
-              <option selected>ユーザー名</option>
+              <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
               <option>設定</option>
               <option>アカウント管理</option>
               <option>ログアウト</option>
@@ -26,27 +31,22 @@
         </div>
         <!-- ユーザー名 -->
       </div>
-      <div class="navigation">
-        <a href="{% url 'UserApp:user_list_files' %}" class="back-button">一覧に戻る</a>
-      </div>
     </header>
-    <main>
       <!--教材表示-->
-      <div class="Box">
-        <div class="container">
-          <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
-          <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
-          <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
-          <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
-        </div>
-        <div class="main">
-          <h2 id="materialTitle">{{ title }}</h2>
-          <div id="view_box">
-          <iframe src="{%url  'UserApp:load_file'  file_name=filename%}" ></iframe>
-          </div>
-        </div>
+    <div class="Box">
+      <div class="container">
+        <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
+        <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
+        <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
+        <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗<br>確認</a>
       </div>
-  </main>
+      <main>
+        <h2 id="materialTitle">{{ title }}</h2>
+        <div class="view-box">
+        <iframe id="contentFrame" src="{%url 'UserApp:load_file'  file_name=filename%}" frameborder="0"></iframe>
+        </div>
+      </main>
+    </div>
     <!--教材表示-->
   </body>
 </html>
