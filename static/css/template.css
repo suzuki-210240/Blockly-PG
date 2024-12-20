@@ -1,4 +1,9 @@
 @charset "utf-8";
+
+body {
+  min-width: 880px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -58,10 +63,6 @@ header {
   word-break: normal;
 }
 
-/* body {
-  background: #ffffff;
-} */
-
 .Box {
   display: flex;
 }
@@ -106,7 +107,7 @@ header {
 }
 
 .button4 {
-  background-color: #6190d8;
+  background-color: #bfddff;
 }
 
 .button1:hover,
@@ -125,7 +126,7 @@ header {
   border: solid 2px #1d78b1;
   /*角丸*/
   border-radius: 30px;
-  margin: 0 15px;
+  margin: 0 15px 15px 15px;
   width: 1500px;
   height: auto;
 }
@@ -133,7 +134,7 @@ header {
 .main h1 {
   font: 45px monospace;
   color: #333;
-  margin: 15px;
+  margin: 10px;
   padding: 10px;
   line-height: 1.5;
 }
@@ -142,5 +143,10 @@ header {
   .button-container {
     justify-content: space-evenly;
     /* ボタンを均等に配置 */
+  }
+
+  .main {
+    width: 90%;
+    /* 横幅を調整 */
   }
 }

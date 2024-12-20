@@ -149,7 +149,7 @@ def Kadai_list (request):
         kadai_list = []
         for kadai in kadais:
             progress = KadaiProgress.objects.filter(user=current_user, kadai=kadai).first()
-            kadai.progress = progress.progress if progress else "未着手"
+            kadai.progress = progress.progress if progress else "未着手" # type: ignore
             kadai_list.append(kadai)
 
         categories[category_name] = kadai_list

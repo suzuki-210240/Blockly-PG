@@ -39,11 +39,13 @@
     <!-- メイン -->
     <div class="main">
       <h1>教材一覧</h1>
-      <a href="{% url 'AdminApp:add_materials' %}">教材新規登録</a>
-      
       <div class="table-container">
+        <div class="add-container">
+          <a href="{% url 'AdminApp:add_materials' %}" class="add-button">教材新規登録</a>
+        </div>
         <div class="table-header">
-          <span class="title">タイトル</span>
+          <span class="table-title">タイトル</span>
+          <span class="action-title">操作</span>
         </div>
 
         <div class="table-row">
@@ -54,16 +56,18 @@
               <form method="POST" action="?">
                 {% csrf_token %}
                 <div class="table-item">
-                  <span class="row-title">{{ forloop.counter }}.&emsp;{{ title }}</span>
+                  <span class="row-title"><span class="number">{{ forloop.counter }}.&emsp;</span>{{ title }}</span>
                   <input type="hidden" name="title" value="{{ title }}">
                   <input type="hidden" name="url" value="{{ url }}">
-                  <!-- 編集ボタン -->
-                  <button class="action-button" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
-
-                  <!-- 削除ボタン -->
-                  <button class="action-button" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
+                  <div class="button-container">
+                    <!-- 編集ボタン -->
+                    <button class="action-button" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
+                    <!-- 削除ボタン -->
+                    <button class="action-button" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
+                  </div>
                 </div>
               </form>
+              <hr>
             {% endfor %}
           {% endif %}
         </div>

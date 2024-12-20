@@ -1,72 +1,74 @@
 /*アカウント情報管理画面のデザイン*/
 /*基本のスタイル*/
-body{
+body {
     font-family: Arial, sans-serif;
     background-color: #f4f7fc;
     margin: 0;
     padding: 0;
+    min-width: 880px;
 }
 
-header{
+header {
     background-color: #4CAF50;
     color: white;
     padding: 20px 0;
     text-align: center;
 }
 
-h1{
+h1 {
     margin: 0;
     font-size: 2em;
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
     padding: 0;
 }
 
-nav ul li{
+nav ul li {
     display: inline-block;
     margin: 0 15px;
 }
 
-nav ul li a{
+nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-main{
+main {
     padding: 30px;
 }
 
-h2{
+h2 {
     color: #333;
     font-size: 1.8em;
     margin-bottom: 20px;
 }
 
-table{
+table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
 }
 
-table th, table td{
+table th,
+table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
-table th{
+table th {
     background-color: #4CAF50;
     color: white;
 }
 
-table tr:nth-child(even){
+table tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-button{
+button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -76,21 +78,21 @@ button{
     font-size: 1.1em;
 }
 
-button:hover{
+button:hover {
     background-color: #45a049;
 }
 
 /*削除ボタン用*/
-.btn-danger{
+.btn-danger {
     background-color: #f44336;
 }
 
-.btn-danger:hover{
+.btn-danger:hover {
     background-color: #e53935;
 }
 
 /*フォームのスタイル*/
-form{
+form {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -98,16 +100,17 @@ form{
     margin-top: 30px;
 }
 
-form p{
+form p {
     margin: 15px 0;
 }
 
-label{
+label {
     font-weight: bold;
     font-size: 1.1em;
 }
 
-input, select{
+input,
+select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -115,7 +118,7 @@ input, select{
     border-radius: 5px;
 }
 
-footer{
+footer {
     background-color: #4CAF50;
     color: white;
     text-align: center;
@@ -125,6 +128,6 @@ footer{
     bottom: 0;
 }
 
-footer p{
+footer p {
     margin: 0;
 }

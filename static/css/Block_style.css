@@ -1,14 +1,15 @@
-
 /* 課題・自由制作のblocklyのスタイル*/
 
 @charset "utf-8";
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
     background-color: #586263cb;
+    min-width: 880px;
 }
 
 main{
@@ -25,18 +26,9 @@ header {
     height: 5%;
     background-color: #8cebc69a;
     padding: 5px;
-}
+    padding-top: 10px;
+  }
 
-
-footer {
-    height: 5%;
-    width: 100%;
-    font-size: 10px;
-    background-color: #8cebc69a;
-    display: flex;
-    justify-content: center;
-    align-items: right;
-}
 .logo {
     font-size: 20px;
     font-weight: bold;
@@ -52,19 +44,19 @@ footer {
     min-width: 110px;
     margin-right: 20px;
 }
-  
+
 /* .selectdiv:after {
     content: '<>';
     font: 17px "Consolas", monospace;
     color: #333;
     transform: rotate(90deg);
     /* 矢印を90度回転 */
-    /* right: 25px;
+/* right: 25px;
     /* 矢印の位置調整 */
-    /* top: 30px;
+/* top: 30px;
     border-bottom: 1px solid #999; */
-    /* 矢印下の線 */
-    /* position: absolute;
+/* 矢印下の線 */
+/* position: absolute;
     pointer-events: none; */
 /* } */
 
@@ -87,9 +79,13 @@ footer {
     word-break: normal;
 }
 
+main{
+    background-color: lightskyblue;
+    height: 70%;
+}
 
 h3,h4 {
-    color: #1c1c1c;
+    color: #ccc;
     margin: 1px;
 }
 
@@ -107,16 +103,17 @@ h3,h4 {
 
 
 
-textarea{
+textarea {
     resize: none;
 }
 
 #blocklyDiv {
     height: 750px;
-    width: 1205px;
-    margin-left: 20px;
+    width: 1200px;
+    margin-left: 25px;
     border: solid 1px #9e9c9c; 
 }
+
 .sub_field {
     width: 100%;
     height: 100%;
@@ -131,7 +128,7 @@ textarea{
     padding: 10px;
     border-radius: 5px;
     width: 550px;
-    height: 150px;  /* 高さを固定 */
+    height: 200px;  /* 高さを固定 */
     overflow-y: auto;  /* コンテンツが多くなるとスクロールバーを表示 */
     white-space: pre-wrap; /* 改行を保持 */
     word-wrap: break-word;  /* 長い単語を改行 */
@@ -154,52 +151,27 @@ textarea:disabled {
     background-color: #f5f5f5;
 }
 
-.button_area button {
-    font-size: 16px; /* ボタンの文字サイズ */
-    padding: 10px 20px; /* ボタン内の余白 */
-    border: none; /* ボーダーを削除 */
-    width: 150px;
-    border-radius: 5px; /* 角を丸める */
-    background-color: #4CAF50; /* 背景色 */
-    color: white; /* 文字色 */
-    cursor: pointer; /* カーソルをポインタに変更 */
-    transition: background-color 0.3s; /* ホバー時の背景色変更をスムーズに */
-  }
+#button_area{
+    display: flex;
+}
 
-  /* ホバー時のスタイル */
-  .button_area button:hover {
-    background-color: #45a049; /* ホバー時の背景色 */
-  }
-
-  /* クリック時のスタイル */
-  .button_area button:active {
-    background-color: #397d3c; /* クリック時の背景色 */
-  }
-
-  /* 特定のボタンに別の色を適用したい場合 */
-  #generateCodeButton {
-    background-color: #008CBA; /* 背景色を青に */
-  }
-  #generateCodeButton:hover {
-    background-color: #007BB5; /* ホバー時の背景色を濃い青に */
-  }
+footer {
+    height: 20px;
+    width: 100%;
+    font-size: 10px;
+    background-color: #8cebc69a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
-
-
-/* 画面幅が1200px未満のとき */
-@media screen and (max-width: 1500px) {
-
-    h3,h4 {
-        font-size: 75%;
-    }
-
-    .main_filed{ 
-        width: 70%;
-        height: 100%;
-        padding-bottom: 5px;
-        gap: 20px;
+/* メディアクエリ: 高解像度14インチ (1920px x 1080px) */
+@media(max-width: 1000px) and (max-height: 500px) {
+    #blocklyDiv {
+        height: 500px; /* 若干調整 */
+        width: 800px;
     }
 
     .sub_field {
@@ -221,21 +193,14 @@ textarea:disabled {
         font-size: 10px;
     }
 
-    #codeOutput {
-        width: 90%; /* 横幅を90%に変更 */
-        height: 50%; /* 高さを600pxに変更 */
+    header {
+        height: 38px; /* 若干縮小 */
+        padding: 5px;
     }
 
-
-    #output {
-        width: 90%; /* 出力エリアを画面幅に合わせる */
-        height: 30%; /* 高さを縮小 */
+    .logo {
+        font-size: 19px; /* フォントサイズを微調整 */
     }
-
-    .button_area button {
-        font-size: 10px; /* ボタンの文字サイズ */
-        width: 100px;
-      }
 
     .selectdiv {
         min-width: 90px;
