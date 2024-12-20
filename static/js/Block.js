@@ -43,6 +43,7 @@ var workspace = Blockly.inject('blocklyDiv', {
             <block type="math_number"></block>
             <block type="math_arithmetic"></block>
             <block type="math_round"></block>
+            <block type="math_modulo"></block>
         </category>
 
         <!-- 変数 カテゴリ -->

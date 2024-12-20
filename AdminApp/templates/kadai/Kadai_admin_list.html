@@ -1,6 +1,5 @@
-<!-- kadai_list.html -->
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
@@ -34,10 +33,13 @@
         <main>
             <div class="main">
                 <h2>問題一覧</h2>
+                <div class="add-container">
+                    <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
+                </div>
                 <div class="list">
                 {% for category, kadais in categories.items %}
                     <div id="categ">
-                        <h3>----{{ category }}----</h3>
+                        <h3 id="c_name">----{{ category }}----</h3>
                         <!-- カテゴリごとにテーブルを表示 -->
                         <table class="kadai-table">
                             <thead>
@@ -75,7 +77,6 @@
                     <hr>
                 {% endfor %}
                 </div>
-                <a href="{% url 'AdminApp:add_kadai' %}">新規作成</a>
             </div>
         </main>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
