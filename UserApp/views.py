@@ -42,6 +42,7 @@ def Home (request):
     )
 
 #------------------------------教材一覧---------------------------------------------
+@login_required
 def user_list_files(request):
     # uploadsディレクトリのパス
     folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
@@ -87,6 +88,7 @@ def user_list_files(request):
 
 
 #------------------------------教材表示---------------------------------------------
+@login_required
 def send_material(request):
     # 教材一覧で選択した教材情報を取得
     if(request.method == 'POST'):
@@ -110,6 +112,7 @@ def send_material(request):
 #------------------------------教材表示---------------------------------------------
 
 #------------------------------埋込教材ページの展開-------------------------------------
+
 def load_file(request, file_name):
     # ファイルのパスを取得
     file_path = str(settings.MEDIA_ROOT)+ '/uploads/'+ file_name
