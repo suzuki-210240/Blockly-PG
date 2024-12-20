@@ -1,0 +1,96 @@
+<!-- kadai.html -->
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'app/css/kadai.css' %}">
+        <title>ページ名[BlocklyCodeAcademy]</title>
+    </head>
+<body>
+    <header>
+        <p class="logo">BlocklyCodeAcademy</p>
+        <!-- ユーザー名 -->
+        <div class="selectdiv">
+          <label>
+            <select id="userMenu">
+              <option value="username" selected> ユーザー名 </option>
+              <option value="settings">設定</option>
+              <option value="account">アカウント管理</option>
+              <option value="logout">ログアウト</option>
+            </select>
+          </label>
+        </div>
+        <!-- ユーザー名 -->
+    </header>
+      <div class="Box">
+        <!-- メニューバー -->
+        <div class="container">
+          <a href="#" class="button1">教材一覧</a>
+          <a href="#" class="button2">課題一覧</a>
+          <a href="#" class="button3">フリーモード</a>
+        </div>
+
+  <div class="main">     
+      <h1>Example List</h1>
+    <div class="main2 Isometric">   
+    <div class="_a">  
+        <div class="button">タイトル</div>
+    </div>  
+        <div class="table-container">
+          <!-- ヘッダー -->
+          <div class="table-header">
+              <span class="title">基本</span>
+          </div>  
+      
+          <!-- 行: Item 1 -->
+          <div class="table-row">  
+              <ul>
+                  <li>
+                      <a href="{% url 'UserApp:Kadai' kadai_id=1 %}">
+                          <span class="row-title">Item 1</span>
+                      </a>
+                  </li>
+              </ul>  
+              <div class="button-group"> <!-- ボタンをまとめる -->
+                <button class="status-button">未着手</button>
+                <button class="action-button">開始</button>
+              </div>
+          </div>
+      
+          <!-- 行: Item 2 -->
+          <div class="table-row">  
+              <ul>           
+                  <li>
+                      <a href="{% url 'UserApp:Kadai' kadai_id=2 %}">
+                          <span class="row-title">Item 2</span>
+                      </a>
+                  </li>
+              </ul>   
+          </div>       
+      
+          <!-- 行: Item 3 -->
+          <div class="table-row">    
+              <ul>    
+                  <li>
+                      <a href="{% url 'UserApp:Kadai' kadai_id=3 %}">
+                          <span class="row-title">Item 3</span>
+                      </a>
+                  </li>
+              </ul>   
+          </div>
+        </div>   
+    </div>  
+  </div>     
+    <script>
+        document.getElementById('userMenu').addEventListener('change', function (event) {
+            const selectedValue = event.target.value; // 選択された値を取得
+            if (selectedValue !== 'username') {
+            }
+            // 常に「ユーザー名」に戻す
+            event.target.value = 'username'; 
+        });
+    </script>  
+</body>
+</html>
+ 
