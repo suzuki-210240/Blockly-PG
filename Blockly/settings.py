@@ -102,6 +102,7 @@ DATABASES = {
         'USER': 'user',  # または 'ユーザー名'
         'PASSWORD': 'pass',  # パスワード
         'HOST': 'localhost',
+        #'HOST': 'blockly-pg-rds.cmadu8gaa330.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
