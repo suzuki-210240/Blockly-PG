@@ -1,13 +1,33 @@
-<!-- add_kadai_and_answer.html -->
-<form method="POST">
-    {% csrf_token %}
-    <h3>問題の追加</h3>
-    {{ kadai_form.as_p }}  <!-- 問題フォーム -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Kadai/kadai_admin_style.css' %}"/>
+    <title>課題新規追加[BlocklyCodeAcademy]</title>
+
+  </head>
+  <body>
+    <header>
+        <p><a href="{% url 'AdminApp:admin_kadai_list' %}" id="back">戻る</a></p>   
+    </header>
+    
+    <main>
+
+        <div class="fild">
+            <!-- add_kadai_and_answer.html -->
+            <form method="POST">
+                {% csrf_token %}
+                <h3>問題の追加</h3>
+                {{ kadai_form.as_p }}  <!-- 問題フォーム -->
+            
+                <h3>解答の追加</h3>
+                {{ answer_form.as_p }}  <!-- 解答フォーム -->
+            
+                <button type="submit">保存</button>
+            </form>
+        </div>
+    </main>
+  </body>
+</html>
   
-    <h3>解答の追加</h3>
-    {{ answer_form.as_p }}  <!-- 解答フォーム -->
-  
-    <button type="submit">保存</button>
-</form>
-  
-<a href="{% url 'AdminApp:admin_kadai_list' %}">戻る</a>

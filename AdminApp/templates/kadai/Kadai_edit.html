@@ -1,35 +1,45 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Kadai/kadai_admin_style.css' %}"/>
     <title>課題新規追加[BlocklyCodeAcademy]</title>
   </head>
   <body>
-    <form method="POST">
-        {% csrf_token %}
-        <h3>問題の編集</h3>
-        {{ kadai_form.as_p }}  <!-- 問題フォーム -->
+    <header>
       
-        <h3>解答の編集</h3>
-        {% for form in answer_forms %}
-            <div>
-                {{ form.as_p }}  <!-- 各解答フォーム -->
-            </div>
-        {% endfor %}
-      
-        <button type="submit">保存</button>
-      </form>
-      
-      {% if kadai %}
-        <h3>現在の解答</h3>
-        <ul>
-          {% for answer in answers %}
-            <li>{{ answer.a_text }}</li>
+    </header>
+    
+    <main>
+      <a href="{% url 'AdminApp:admin_kadai_list' %}" id="back">戻る</a>
+      <div class="fild">
+        <form method="POST">
+          {% csrf_token %}
+          <h3>問題の編集</h3>
+          {{ kadai_form.as_p }}  <!-- 問題フォーム -->
+        
+          <h3>解答の編集</h3>
+          {% for form in answer_forms %}
+              <div>
+                  {{ form.as_p }}  <!-- 各解答フォーム -->
+              </div>
           {% endfor %}
-        </ul>
-      {% endif %}
-
-      <a href="{% url 'AdminApp:admin_kadai_list' %}">戻る</a>
+        
+          <button type="submit">保存</button>
+        </form>
+        
+        {% if kadai %}
+          <h3>現在の解答</h3>
+          <ul>
+            {% for answer in answers %}
+              <li>{{ answer.a_text }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </main>
+    
   </body>
 </html>
   

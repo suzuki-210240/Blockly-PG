@@ -15,9 +15,17 @@
       <div class="header-content">
         <p class="logo">BlocklyCodeAcademy</p>
         <div class="header-right">
+          <div id="sa">
+             <!-- ボタンはリンクの代わりにも、戻る機能にも使える -->
+            {% comment %} <button onclick="goBack()" class="back-button back-button-flat">
+              <span class="arrow">＜</span>
+              <span>一覧に戻る</span>
+            </button> {% endcomment %}
+             <!-- リンクのバージョン -->
           <a href="{% url 'UserApp:user_list_files' %}" class="back-button back-button-flat">
             <span class="arrow">＜</span><span>一覧に戻る</span>
           </a>
+        </div>
           <!-- ユーザー名 -->
           <div class="selectdiv">
             <label>
@@ -31,6 +39,10 @@
           </div>
           <!-- ユーザー名 -->
         </div>
+        <!-- ユーザー名 -->
+      </div>
+      <div class="navigation">
+        <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
       </div>
     </header>
       <!--教材表示-->
