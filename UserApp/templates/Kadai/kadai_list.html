@@ -4,7 +4,7 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/kadai.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Kadai/kadai.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
         <title>課題一覧[BlocklyCodeAcademy]</title>
     </head>
@@ -24,6 +24,7 @@
             </div>
             <!-- ユーザー名 -->
         </header>
+        <main>
           <div class="Box">
             <!-- メニューバー -->
             <div class="container">
@@ -79,6 +80,7 @@
                     {% endfor %}
                 </div> 
             </div>
-        <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+        </main>
     </body>
 </html>
