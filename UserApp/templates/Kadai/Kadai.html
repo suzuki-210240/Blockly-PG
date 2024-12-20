@@ -15,12 +15,12 @@
                 const kadaiId = "{{ kadai_number }}";
                 const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
             </script>
-        <link rel="stylesheet" type="text/css" href="{%static 'css/Block_style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
 
     </head>
     <body>
         <header>
-            <p class="logo" href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</p>
+            <p class="logo"><a  href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</a></p>
             <div class="file">
                 <!-- 保存ボタン -->
                 <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
