@@ -5,8 +5,7 @@ __pycache__/
 # SQLite database files
 *.sqlite3
 
-# Ignore Django settings file
-settings.py
+
 
 # Ignore all migrations files
 **/migrations/*.py
