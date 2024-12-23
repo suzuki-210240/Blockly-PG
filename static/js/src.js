@@ -40,6 +40,21 @@ function runCode() {
     }
 }
 
+
+function change(mode_id){
+    const modes = document.querySelectorAll('.mode');
+    modes.forEach(mode => mode.classList.remove('active'));
+    const show = document.getElementById(mode_id);
+    if (show){
+        show.classList.add('active');
+    }
+}
+
+window.onload = function() {
+    change('mode1');
+}
+
+
 function clearConsole() {
     document.getElementById('output').innerHTML = '--------ここに結果出力されます-------- '; // 出力エリアを空にする
 }
@@ -57,8 +72,8 @@ function saveWorkspaceAsXML() {
     // ダウンロードリンクを作成してクリック
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    file_name = ''+'.xml'
-    link.download = 'workspace.xml';  // ダウンロードするファイル名
+    file_name = kadaiId +'.xml'
+    link.download = file_name;  // ダウンロードするファイル名
     link.click();
 }
 
@@ -101,7 +116,7 @@ function loadWorkspaceFromXML(event) {
 
 
 
-function generateCode(event){
+function checkCode(event){
     // workspaceが未定義でないことを確認
     if (typeof workspace !== 'undefined' && workspace !== null) {
         // BlocklyのワークスペースからPythonコードを生成
@@ -127,6 +142,19 @@ function generateCode(event){
         .catch(error => {
             console.error("エラーが発生しました:", error);
         });
+    } else {
+        console.error('workspaceが未定義です。');
+        alert('Blocklyワークスペースが正しく初期化されていません。');
+    }
+}
+
+function generateCode(event){
+    // workspaceが未定義でないことを確認
+    if (typeof workspace !== 'undefined' && workspace !== null) {
+        // BlocklyのワークスペースからPythonコードを生成
+        var code = python.pythonGenerator.workspaceToCode(workspace);
+        // 生成されたコードを表示する
+        document.getElementById('codeOutput').value = code;
     } else {
         console.error('workspaceが未定義です。');
         alert('Blocklyワークスペースが正しく初期化されていません。');

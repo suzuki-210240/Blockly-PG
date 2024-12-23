@@ -185,7 +185,21 @@ textarea:disabled {
     background-color: #007BB5; /* ホバー時の背景色を濃い青に */
   }
 
+.tab {
+    display: flex;
+}
 
+.tab h4 {
+    background-color: #a1a0a0;
+    border: #fdfdfd solid 1px;
+}
+
+.mode{
+    display: none;
+}
+.mode.active {
+    display: block;
+}
 
 
 
