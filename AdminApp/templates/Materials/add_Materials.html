@@ -5,6 +5,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
     <script src="{% static 'js/preview.js' %}?v=1.0"></script>
     <title>教材新規追加[BlocklyCodeAcademy]</title>
@@ -60,10 +61,10 @@
           <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >戻る</a>
           <button type="submit">登録</button>
         </form>
-        <div class="preview-box">
-          <label id="sub-title" for="file">プレビュー</label>
+        <div class="view-box">
+          <label id="sub-title" for="file">プレビュー(一部表示)</label>
           <div class="show-html">
-            <iframe id="preview" title="ファイルプレビュー" sandbox="allow-same-origin">
+            <iframe id="contentFrame" title="ファイルプレビュー" style="pointer-events: none; overflow: hidden; scrollbar-width: none;">
               <strong>ここにプレビューが表示されます</strong>
             </iframe>
           </div>
