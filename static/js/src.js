@@ -57,6 +57,7 @@ function saveWorkspaceAsXML() {
     // ダウンロードリンクを作成してクリック
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
+    file_name = ''+'.xml'
     link.download = 'workspace.xml';  // ダウンロードするファイル名
     link.click();
 }
