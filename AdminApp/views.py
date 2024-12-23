@@ -117,7 +117,7 @@ def admin_materials_list(request):
     return render(request, 'Materials/admin_materials_list.html')
 
 def add_materials(request):
-    return render(request, 'Materials/add_materials.html')
+    return render(request, 'Materials/add_Materials.html')
 
 def index(request):
     return render(request, 'Materials/index.html')
