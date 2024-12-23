@@ -107,24 +107,11 @@ header {
   box-shadow: 0 0 0 #ffffff;
 }
 
-.main {
-  align-items: center;
-  justify-content: center;
-  background-color: #c8e1e2;
-  border: solid 2px #1d78b1;
-  /*角丸*/
-  border-radius: 30px;
-  margin: 0 15px 15px 15px;
-  width: 1500px;
-  height: auto;
-}
-
 main {
   align-items: center;
   justify-content: center;
   background-color: #c8e1e2;
   border: solid 2px #1d78b1;
-  /*角丸*/
   border-radius: 30px;
   margin: 0 15px 15px 15px;
   width: 1500px;
@@ -139,7 +126,7 @@ main {
   line-height: 1.5;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 880px) {
   .button-container {
     justify-content: space-evenly;
     /* ボタンを均等に配置 */

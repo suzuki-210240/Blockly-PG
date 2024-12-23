@@ -36,7 +36,7 @@
         <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
       </div>
       <!-- メイン -->
-      <div class="main">
+      <main>
         <h1>教材編集</h1>
         <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:edit_item' %}>
           {% csrf_token %}
@@ -93,7 +93,7 @@
             </iframe>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   </body>
 </html>
