@@ -47,13 +47,27 @@ header {
   background-color: #0056b3;
   /* ホバー時の背景色変更 */
 }
-
+/*
 .table-container {
   width: 85%;
   margin: 30px auto;
   background-color: #e6e5e5;
   padding: 50px 30px 120px 30px;
   border-radius: 15px;
+}*/
+
+.table-container {
+  width: 85%;
+  margin: 30px auto;
+  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  /* 白をベースにした淡い水色のグラデーション */
+  padding: 50px 30px 120px 30px;
+  border-radius: 15px;
+  /* 角を丸くする */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 控えめなシャドウ */
+  border: 2px solid rgba(220, 230, 240, 0.8);
+  /* 白寄りの薄い境界線 */
 }
 
 .table-header {
