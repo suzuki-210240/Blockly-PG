@@ -43,6 +43,7 @@ h2 {
 
 .kadai-table {
     width: 100%;
+    min-width: 880px;
     border-collapse: collapse;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -107,6 +108,7 @@ h2 {
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn:hover {

@@ -24,7 +24,6 @@
             </div>
             <!-- ユーザー名 -->
         </header>
-        <main>
           <div class="Box">
             <!-- メニューバー -->
             <div class="container">
@@ -33,7 +32,7 @@
               <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
               <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗<br>確認</a>
             </div>
-            <div class="main">
+            <main>
                 <h1>課題一覧</h1>
                 <div class="list">
                     {% for category, kadais in categories.items %}
@@ -46,7 +45,7 @@
                                         <th>課題番号</th>
                                         <th>課題タイトル</th>
                                         <th>ステータス</th>
-                                        <th></th>
+                                        <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -79,8 +78,7 @@
                         <p id="border"></p>
                     {% endfor %}
                 </div> 
-            </div>
-            <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
-        </main>
+            </main>
+        <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>
 </html>

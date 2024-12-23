@@ -75,6 +75,28 @@
                         <div id="output">--------ここに結果出力されます--------</div>
                     </div>
                 </div>
+
+                <!--コードを表示するエリア-->
+                <div class = "sub_field">
+                    <h4>問題文</h4>
+                    <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>
+                
+                    <!--出力結果を表示するエリア-->
+                
+                    
+                    
+                    <div class="button_area">
+                        <!-- 実行ボタン -->
+                        <button onclick="runCode()">実行</button>
+
+                        <!--組んだブロックのコード変換と送信-->
+                        <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+                        <button onclick="clearConsole()">クリア</button>
+                    </div>
+                    <h4>出力結果</h4>
+                    <div id="output">--------ここに結果出力されます--------</div>
+                </div>
+            </div>
         </main>
         <footer>
             <p>このアプリケーションはGoogleのBlocklyを使用しています。BlocklyはApache License 2.0の下で提供されています。</p>
