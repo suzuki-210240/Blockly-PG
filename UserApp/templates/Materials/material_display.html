@@ -13,7 +13,7 @@
   <body>
     <header>
       <div class="header-content">
-        <p class="logo">BlocklyCodeAcademy</p>
+        <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
         <div class="header-right">
           <div id="sa">
              <!-- ボタンはリンクの代わりにも、戻る機能にも使える -->
@@ -40,9 +40,6 @@
           <!-- ユーザー名 -->
         </div>
         <!-- ユーザー名 -->
-      </div>
-      <div class="navigation">
-        <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
       </div>
     </header>
       <!--教材表示-->

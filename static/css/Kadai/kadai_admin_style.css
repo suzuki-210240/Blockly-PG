@@ -15,7 +15,7 @@ body {
 header {
     width: 100%;
     height: 5%;
-    padding-top: 5px;
+    padding-top: 1%;
     margin: 0px;
     background-color: aliceblue;
 }
@@ -29,13 +29,13 @@ main{
     background-color: rgb(165, 186, 186);
     height: 95%;
     width: 100%;
-    padding: 5px;
+    padding: 5%;
 }
 
 .fild{
     background-color: rgba(7, 202, 183, 0.574);
     border: solid 1px #000000;
-    margin: 20px;
+    margin: 5%;
 }
 
 #back{

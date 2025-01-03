@@ -116,6 +116,7 @@ textarea {
     width: 1205px;
     margin-left: 20px;
     border: solid 1px #9e9c9c; 
+    overflow-y: scroll !important; /* 縦スクロールバーを常に表示 */
 }
 
 .sub_field {
@@ -138,17 +139,14 @@ textarea {
     word-wrap: break-word;  /* 長い単語を改行 */
 }
 
-#codeOutput {
+#codeOutput, #exampleOutput{
     height: 500px;
     width: 550px;
     border-color: black;
 }
 
 #exampleOutput {
-    height: 500px;
-    width: 600px;
-    font-weight: 250;
-    border-color: black;
+    font-size: 35px;
 }
 
 textarea:disabled {
@@ -196,6 +194,8 @@ textarea:disabled {
 
 .mode{
     display: none;
+    height: 50%;
+    margin-bottom: 10px;
 }
 .mode.active {
     display: block;
@@ -232,13 +232,13 @@ textarea:disabled {
 
     #exampleOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 50%; /* 高さを600pxに変更 */
+        height: 100%; /* 高さを600pxに変更 */
         font-size: 10px;
     }
 
     #codeOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 50%; /* 高さを600pxに変更 */
+        height: 100%; /* 高さを600pxに変更 */
     }
 
 
@@ -249,7 +249,7 @@ textarea:disabled {
 
     .button_area button {
         font-size: 10px; /* ボタンの文字サイズ */
-        width: 100px;
+        width: 75px;
       }
 
     .selectdiv {
@@ -261,5 +261,8 @@ textarea:disabled {
         margin: 0px;
     }
 
-    
+    .mode{
+        display: none;
+        height: 45%;
+    }
 }
