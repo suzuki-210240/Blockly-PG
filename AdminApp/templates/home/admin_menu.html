@@ -21,20 +21,15 @@
     </header>
 
     <main class="Box">
-      <h1>Admin Menu</h1>
-      <p>管理者用アクション一覧</p>
-      <!-- メニューバー -->
+      <h1>管理者 メニュー</h1>
+      <p>Action List</p>
       <div class="container">
-        <!-- 教材管理ボタン -->
         <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
-        <!-- 課題管理ボタン -->
         <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
-        <!-- アカウント管理ボタン -->
         <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント管理</a>
-        <!-- ログアウトボタン -->
         <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
-          <button type="submit" class="button4">ログアウト</button>
+          <button type="submit" class="button6">ログアウト</button>
         </form>
       </div>
     </main>

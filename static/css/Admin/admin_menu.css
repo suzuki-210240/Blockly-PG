@@ -1,11 +1,12 @@
 @charset "utf-8";
-/* 管理者用メニュー画面のデザイン */
 
-
+/* 共通のベーススタイル */
 body {
   min-width: 880px;
+  background: #ffffff;
 }
 
+/* ヘッダー */
 header {
   display: flex;
   justify-content: space-between;
@@ -37,10 +38,7 @@ header {
   z-index: 1000;
 }
 
-body {
-  background: #ffffff;
-}
-
+/* コンテンツ全体を中央に配置 */
 .Box {
   display: flex;
   flex-direction: column;
@@ -69,15 +67,16 @@ body {
   margin-bottom: 30px;
 }
 
-/* メニューバー */
+/* メニューボタン配置 */
 .container {
+  margin-top: 10px;
   display: flex;
-  flex-direction: column;
-  /* 縦並びに変更 */
+  flex-direction: column; /* 縦並び */
   align-items: center;
-  justify-content: flex-start;
-  gap: 20px;
-  padding-top: 40px;
+  justify-content: center;
+  width: 80%;
+  max-width: 600px;
+  gap: 15px;
 }
 
 /* ボタンスタイル */
@@ -90,10 +89,10 @@ body {
   text-decoration: none;
   font-size: 20px;
   box-shadow: 0 5px 0 #191970;
-  width: 200px;
+  width: 100%;
+  margin: 10px 0;
   text-align: center;
   transition: .3s;
-  background-color: #4fb0f1;
 }
 
 .button1 {
@@ -105,42 +104,27 @@ body {
 }
 
 .button3 {
-  background-color: #bbf8f8;
+  background-color: rgb(148, 249, 249);
 }
 
-.button4 {
-  background-color: #6190d8;
+.button6 {
+  background-color: #f3f7f7;
 }
 
 .container a:hover,
 .container form button:hover {
   color: #ffffff;
-  transform: translateY(5px);
+  transform: translate(5px);
   box-shadow: 0 0 0 #ffffff;
 }
 
-/* メインコンテンツ */
-
-main h1 {
-  font: 45px monospace;
-  color: #333;
-  margin: 15px;
-  padding: 10px;
-  line-height: 1.5;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    gap: 15px;
-    padding: 10px;
-  }
-
-  .container a,
-  .container form button {
-    width: 100%;
-    /* ボタンを横幅いっぱいに */
-    font-size: 18px;
-  }
+main {
+  align-items: center;
+  justify-content: center;
+  background-color: #c8e1e2;
+  border: solid 2px #1d78b1;
+  border-radius: 30px;
+  margin: 0 ;
+  width: auto;
+  height: auto;
 }

@@ -96,13 +96,13 @@ button {
     text-decoration: none;
     font-size: 20px;
     box-shadow: 0 5px 0 #191970;
-    width: 100%;
     /* ボタンの幅を100%に設定し、親要素の幅に合わせる */
     margin: 10px 0;
     /* 上下の余白 */
     text-align: center;
     transition: .3s;
     background-color: #4fb0f1;
+    width: 100%;
 }
 
 button:hover {
@@ -127,6 +127,16 @@ button:hover {
     background-color: #42d8f9;
 }
 
+.button5 {
+    background-color: #bfddff;
+}
+
+.button6 {
+    background-color: #f3f7f7;
+    width: 30%;
+    margin-left: 200px;
+  }
+
 /* メインコンテンツ */
 main {
     align-items: center;
@@ -136,22 +146,4 @@ main {
     border-radius: 30px;
     margin: 0 ;
     width: 100%;
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-
-    /* ボタンを縦並びにする */
-    .container {
-        width: 100%;
-        gap: 15px;
-        padding: 10px;
-    }
-
-    /* ボタンのサイズと配置を調整 */
-    button {
-        width: 100%;
-        /* スマホではボタンを横幅いっぱいに */
-        font-size: 18px;
-    }
 }
