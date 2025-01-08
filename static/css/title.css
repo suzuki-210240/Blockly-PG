@@ -2,7 +2,7 @@
 /* static/css/title.css */
 
 /*全体のレイアウト*/
-body{
+body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f7fc;
     color: #333;
@@ -11,13 +11,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /*縦並び*/
+    flex-direction: column;
     height: 100vh;
     text-align: center;
+    min-width: 880px;
 }
 
 /*タイトルのスタイル*/
-h1{
+h1 {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -31,14 +32,14 @@ h1{
 }
 
 /*サブタイトルのスタイル*/
-h2{
+h2 {
     font-size: 1.5rem;
     color: #34495e;
     margin-bottom: 30px;
 }
 
 /*コンテンツを囲むボックスのスタイル*/
-div{
+div {
     background-color: white;
     padding: 30px 40px;
     border-radius: 15px;
@@ -47,7 +48,7 @@ div{
 }
 
 /*ボタンのスタイル*/
-button{
+button {
     background-color: #3498db;
     color: white;
     border: none;
@@ -65,22 +66,22 @@ button{
 }
 
 /*ボタンをホバーしたときのスタイル*/
-button:hover{
+button:hover {
     background-color: #2980b9;
     transform: scale(1.05);
 }
 
 /*新規登録のリンクのスタイル*/
-p{
+p {
     font-size: 1rem;
     margin-top: 20px;
 }
 
-a{
+a {
     color: #3498db;
     text-decoration: none;
 }
 
-a:hover{
+a:hover {
     text-decoration: underline;
 }

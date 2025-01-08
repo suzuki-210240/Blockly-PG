@@ -4,18 +4,18 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/kadai.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Kadai/kadai.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
         <title>課題一覧[BlocklyCodeAcademy]</title>
     </head>
     <body>
         <header>
-            <p class="logo">BlocklyCodeAcademy</p>
+            <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
             <!-- ユーザー名 -->
             <div class="selectdiv">
               <label>
                 <select id="userMenu">
-                  <option value="username" selected> ユーザー名 </option>
+                  <option value="username" selected> ユーザー名&emsp;&emsp;<span class="kigou">∨</span> </option>
                   <option value="settings">設定</option>
                   <option value="account">アカウント管理</option>
                   <option value="logout">ログアウト</option>
@@ -24,13 +24,14 @@
             </div>
             <!-- ユーザー名 -->
         </header>
+        <main>
           <div class="Box">
             <!-- メニューバー -->
             <div class="container">
               <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
               <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
               <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
-              <a href="{% url 'UserApp:progress' %}" class="button3">課題の進捗<br>確認</a>
+              <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗<br>確認</a>
             </div>
             <div class="main">
                 <h1>課題一覧</h1>
@@ -79,6 +80,7 @@
                     {% endfor %}
                 </div> 
             </div>
-        <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
+        </main>
     </body>
 </html>

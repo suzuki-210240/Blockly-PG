@@ -6,6 +6,7 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}"/>
   <script src="{% static 'js/preview.js' %}?v=1.0"></script>
   <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材削除[BlocklyCodeAcademy]</title>
@@ -18,7 +19,7 @@
     <div class="selectdiv">
       <label>
         <select id="userMenu">
-          <option selected>ユーザー名</option>
+          <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
           <option>設定</option>
           <option>アカウント管理</option>
           <option>ログアウト</option>
@@ -59,10 +60,10 @@
       </form>
       <!-- フォーム終了 -->
       <!-- プレビューボックス -->
-      <div class="preview-box">
-        <label id="sub-title" for="file">プレビュー</label>
+      <div class="view-box">
+        <label id="sub-title" for="file">プレビュー(一部表示)</label>
         <div class="show-html">
-          <iframe src="{%url 'AdminApp:load_file' file_name=filename%}"></iframe>
+          <iframe contentFrame src="{%url 'AdminApp:load_file' file_name=filename%}" style="pointer-events: none; overflow: hidden; scrollbar-width: none;"></iframe>
         </div>
       </div>
     </div>

@@ -1,4 +1,9 @@
 @charset "utf-8";
+
+body {
+  min-width: 880px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -23,20 +28,8 @@ header {
   margin-right: 20px;
 }
 
-.selectdiv:after {
-  content: '<>';
-  font: 17px "Consolas", monospace;
-  color: #333;
-  transform: rotate(90deg);
-  /* 矢印を90度回転 */
-  right: 25px;
-  /* 矢印の位置調整 */
-  top: 30px;
-  padding: 3px 4px 1px;
-  border-bottom: 1px solid #999;
-  /* 矢印下の線 */
-  position: absolute;
-  pointer-events: none;
+.kigou {
+  font-size: 16px;
 }
 
 .selectdiv select {
@@ -57,10 +50,6 @@ header {
   -ms-word-break: normal;
   word-break: normal;
 }
-
-/* body {
-  background: #ffffff;
-} */
 
 .Box {
   display: flex;
@@ -106,7 +95,7 @@ header {
 }
 
 .button4 {
-  background-color: #6190d8;
+  background-color: #bfddff;
 }
 
 .button1:hover,
@@ -125,7 +114,19 @@ header {
   border: solid 2px #1d78b1;
   /*角丸*/
   border-radius: 30px;
-  margin: 0 15px;
+  margin: 0 15px 15px 15px;
+  width: 1500px;
+  height: auto;
+}
+
+main {
+  align-items: center;
+  justify-content: center;
+  background-color: #c8e1e2;
+  border: solid 2px #1d78b1;
+  /*角丸*/
+  border-radius: 30px;
+  margin: 0 15px 15px 15px;
   width: 1500px;
   height: auto;
 }
@@ -133,7 +134,7 @@ header {
 .main h1 {
   font: 45px monospace;
   color: #333;
-  margin: 15px;
+  margin: 10px;
   padding: 10px;
   line-height: 1.5;
 }
@@ -142,5 +143,10 @@ header {
   .button-container {
     justify-content: space-evenly;
     /* ボタンを均等に配置 */
+  }
+
+  .main {
+    width: 90%;
+    /* 横幅を調整 */
   }
 }

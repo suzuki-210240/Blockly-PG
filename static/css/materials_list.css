@@ -1,182 +1,142 @@
-ul {
-    list-style-type: none;
-    padding: 0;
+body {
+  background-color: #ffffffd1;
+  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+  background-size: 16px 16px;
+  background-repeat: repeat;
+  width: 100%;
+  height: 10vw;
+  display: flex;
+  flex-direction: column;
 }
 
-.url {
-    display: none;
+header {
+  margin-top: 22px;
+  margin-bottom: 34px;
+  margin-left: 10px;
 }
 
-a {
-    text-decoration: none;
+.add-container {
+  display: flex;
+  justify-content: center;
+  /* 横方向に中央揃え */
+  margin: 5px 0;
+  /* 上下に余白を追加 */
+  text-align: center;
 }
 
-.main {
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+.add-button {
+  text-decoration: none;
+  /* リンクの下線を削除 */
+  background-color: #007BFF;
+  /* 背景色を設定（好みに応じて変更） */
+  color: white;
+  /* テキスト色を白に設定 */
+  padding: 13px 26px;
+  /* ボタンの内側余白 */
+  border-radius: 8px;
+  /* 角丸を設定 */
+  font-size: 16px;
+  /* テキストサイズ */
+  font-weight: bold;
+  /* 太字 */
+  transition: background-color 0.3s ease;
+  /* ホバー時のアニメーション */
 }
 
-.material-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    table-layout: fixed;
-}
-
-.material-table th,
-.material-table td {
-    border: 1px solid #71a0a6;
-    text-align: center;
-    padding: 8px;
-}
-
-.material-table th {
-    background-color: #e5f2f0ac;
-    font-weight: bold;
-}
-
-.material-table td {
-    background-color: #9fc5e6;
-    font-weight: bold;
-}
-
-
-/* 列ごとの幅を設定 */
-.material-table th:nth-child(1),
-.material-table td:nth-child(1) {
-    text-align: left;
-    width: 90%; /* 教材名 */
-}
-
-.material-table th:nth-child(2),
-.material-table td:nth-child(2) {
-    text-align: center;
-    width: 10%; /* 課題タイトル */
+.add-button:hover {
+  background-color: #0056b3;
+  /* ホバー時の背景色変更 */
 }
 
 .table-container {
-    width: 100%;
-    background-color: #c8e1e2;
-    border: solid 2px #1d78b1;
-    border-radius: 30px;
-    margin: 0 15px;
-  }
-  
-  .main h1 {
-    font: 45px monospace;
-    color: #333;
-    margin: 15px;
-    padding: 10px;
-    line-height: 1.5;
-  }
-  
-  .table-container {
-    width: 85%;
-    margin: 30px auto;
-    background-color: #d9d9d9;
-    padding: 50px 30px 120px 30px;
-    border-radius: 15px;
-  }
-  
-  .table-header {
-    display: flex;
-    font-size: 28px;
-    justify-content: space-between;
-    padding: 30px 5px;
-    font-weight: bold;
-    border-bottom: 3px solid #858585;
-    color: #000000;
-  }
-  
-  .material {
-    margin-right: 170px;
-  }
-  
-  .table-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-bottom: 3px solid #b4b4b4;
-  }
-  
-  .row-title, .row-material {
-    flex: 2;
-    padding: 10px;
-    font-size: 20px;
-  }
-  
-  .row-material {
-    flex: 1;
-    margin-left: 160px;
-    font-size: 20px;
-  }
-  
-  .status-button {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    padding: 5px 10px;
-    margin-right: 5px;
-    font-size: 17px;
-    cursor: pointer;
-  }
-  
-  .status-button2 {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    padding: 5px 18px;
-    margin-right: 5px;
-    font-size: 17px;
-    cursor: pointer;
-  }
-  
-  .action-button {
-    background-color: #ffffff;
-    color: #000000;
-    border: none;
-    border-radius: 15px;
-    padding: 5px 18px;
-    font-size: 17px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-  
-  .status-button:hover, .status-button2:hover, .action-button:hover {
-    background-color: #cceaff;
-  }
-  
-  .header-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1px;
-    justify-content: flex-start;
-  }
-  
-  .header-container h1 {
-    margin: 0;
-  }
-  
-  .header-container .button5 {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .header-container .button5:hover {
-    background-color: #45a049;
-  }
-  
-  .button-container {
-    margin-right: 20px;
-  }
+  width: 85%;
+  margin: 30px auto;
+  background-color: #e6e5e5;
+  padding: 50px 30px 120px 30px;
+  border-radius: 15px;
+}
+
+.table-header {
+  display: flex;
+  font-size: 24px;
+  justify-content: space-between;
+  padding: 20px 5px 15px 5px;
+  font-weight: bold;
+  border-bottom: 3px solid #5b5b5b;
+  color: #000000;
+}
+
+.table-title {
+  margin-left: 55px;
+}
+
+.action-title {
+  margin-right: 96px;
+}
+
+#action-title {
+  margin-right: 48px;
+}
+
+.table-item {
+  display: flex;
+  justify-content: space-between;
+  /* 左と右で要素を分ける */
+  align-items: center;
+  /* 縦方向を揃える */
+  width: 100%;
+  /* 親要素の幅を維持 */
+}
+
+.row-title {
+  font-size: 15px;
+  display: inline-block;
+  /* インラインで横並びを維持 */
+  white-space: nowrap;
+  /* 改行を防ぐ */
+  overflow: hidden;
+  /* はみ出した部分を非表示 */
+  text-overflow: ellipsis;
+  /* はみ出しを・・・記号に変更 */
+  width: auto;
+  /* 必要に応じて幅を自動調整 */
+  max-width: 100%;
+  /* 親要素に合わせる場合 */
+  height: auto;
+  /* 高さを固定せず、テキストの高さに合わせる */
+  line-height: normal;
+  /* 必要なら行の高さを調整 */
+  margin-left: 15px;
+}
+
+.number {
+  font-size: 17px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  /* ボタンを右寄せ */
+  gap: 10px;
+  /* ボタン間の間隔を設定 */
+  width: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-right: 40px;
+}
+
+
+.action-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 18px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.action-button:hover {
+  background-color: #cceaff;
+}

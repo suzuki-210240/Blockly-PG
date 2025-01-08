@@ -1,0 +1,52 @@
+@charset "utf-8";
+/*課題追加・編集画面CSS*/
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #586263cb;
+    min-width: 880px;
+}
+
+header {
+    width: 100%;
+    height: 5%;
+    padding-top: 5px;
+    margin: 0px;
+    background-color: aliceblue;
+}
+
+header p{
+    margin: 0px;
+    margin-left: 10px;
+}
+
+main{
+    background-color: rgb(165, 186, 186);
+    height: 95%;
+    width: 100%;
+    padding: 5px;
+}
+
+.fild{
+    background-color: rgba(7, 202, 183, 0.574);
+    border: solid 1px #000000;
+    margin: 20px;
+}
+
+#back{
+    display: inline-block;
+    padding: 5px;
+    font-size: 15px;
+    color: #ff2121;
+    background-color: #929497;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}

@@ -1,0 +1,18 @@
+@charset "utf-8";
+iframe {
+    margin: 25px;
+    width: 95%;
+    min-height: 300px;
+    max-height: 90vh;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}
+
+iframe::-webkit-scrollbar {
+    display: none; /* Webkit系ブラウザ (Chrome, Edge, Safari) 用 */
+}
+
+.view-box {
+    width: auto;
+    height: auto;
+}

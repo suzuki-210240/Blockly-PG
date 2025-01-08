@@ -1,7 +1,11 @@
 @charset "utf-8";
 
+body {
+    min-width: 880px;
+}
+
 /* .user-infoを右上に固定配置 */
-.user-info{
+.user-info {
     position: fixed;
     top: 10px;
     right: 10px;
@@ -13,7 +17,7 @@
 }
 
 /* ヘッダー */
-header{
+header {
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -22,7 +26,7 @@ header{
     padding: 0 20px;
 }
 
-.logo{
+.logo {
     font-size: 30px;
     font-weight: bold;
     background: linear-gradient(135deg, #f88400 50%, #4d9bc1 50%);
@@ -33,18 +37,18 @@ header{
     transform: skewX(-30deg);
 }
 
-body{
+body {
     background: #ffffff;
 }
 
-.Box{
+.Box {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 /* タイトル（User Menu） */
-.Box h1{
+.Box h1 {
     font-size: 36px;
     font-weight: bold;
     color: #333;
@@ -59,7 +63,7 @@ body{
     max-width: 1200px;
 }
 
-.Box p{
+.Box p {
     font-size: 20px;
     color: #666;
     text-align: center;
@@ -67,15 +71,20 @@ body{
 }
 
 /* メニューボタン配置 */
-.containers{
+.containers {
     margin-top: 10px;
     display: flex;
-    flex-direction: column; /* 縦並びに変更 */
-    align-items: center; /* 中央揃え */
+    flex-direction: column;
+    /* 縦並びに変更 */
+    align-items: center;
+    /* 中央揃え */
     justify-content: center;
-    width: 80%; /* 幅を画面の80%に設定 */
-    max-width: 600px; /* 最大幅を600pxに設定 */
-    gap: 15px; /* ボタン間のスペース */
+    width: 80%;
+    /* 幅を画面の80%に設定 */
+    max-width: 600px;
+    /* 最大幅を600pxに設定 */
+    gap: 15px;
+    /* ボタン間のスペース */
 }
 
 /* ボタンスタイル */
@@ -87,37 +96,39 @@ button {
     text-decoration: none;
     font-size: 20px;
     box-shadow: 0 5px 0 #191970;
-    width: 100%; /* ボタンの幅を100%に設定し、親要素の幅に合わせる */
-    margin: 10px 0; /* 上下の余白 */
+    width: 100%;
+    /* ボタンの幅を100%に設定し、親要素の幅に合わせる */
+    margin: 10px 0;
+    /* 上下の余白 */
     text-align: center;
     transition: .3s;
     background-color: #4fb0f1;
 }
 
-button:hover{
+button:hover {
     color: #ffffff;
     transform: translate(5px);
     box-shadow: 0 0 0 #ffffff;
 }
 
-.button1{
+.button1 {
     background-color: #4fb0f1;
 }
 
-.button2{
+.button2 {
     background-color: #9ed9fc;
 }
 
-.button3{
+.button3 {
     background-color: #bbf8f8;
 }
 
-.button4{
+.button4 {
     background-color: #6190d8;
 }
 
 /* メインコンテンツ */
-.main{
+.main {
     align-items: center;
     justify-content: center;
     background-color: #c8e1e2;
@@ -129,6 +140,7 @@ button:hover{
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
+
     /* ボタンを縦並びにする */
     .container {
         width: 100%;
@@ -138,7 +150,8 @@ button:hover{
 
     /* ボタンのサイズと配置を調整 */
     button {
-        width: 100%;  /* スマホではボタンを横幅いっぱいに */
+        width: 100%;
+        /* スマホではボタンを横幅いっぱいに */
         font-size: 18px;
     }
 }

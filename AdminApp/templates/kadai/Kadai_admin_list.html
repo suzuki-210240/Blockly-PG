@@ -1,11 +1,10 @@
-<!-- kadai_list.html -->
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="ja">
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/kadai.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/Kadai/kadai.css' %}">
         <title>課題管理[BlocklyCodeAcademy]</title>
     </head>
     <body>
@@ -15,7 +14,7 @@
             <div class="selectdiv">
               <label>
                 <select>
-                  <option selected>ユーザー名</option>
+                  <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
                   <option>設定</option>
                   <option>アカウント管理</option>
                   <option>ログアウト</option>
@@ -31,51 +30,55 @@
               <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
               <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
         </div>
-        <div class="main">
-            <h2>問題一覧</h2>
-            <div class="list">
-            {% for category, kadais in categories.items %}
-                <div id="categ">
-                    <h3>----{{ category }}----</h3>
-                    <!-- カテゴリごとにテーブルを表示 -->
-                    <table class="kadai-table">
-                        <thead>
-                            <tr>
-                                <th>課題番号</th>
-                                <th>課題タイトル</th>
-                                <th>編集</th>
-                                <th>削除</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for kadai in kadais %}
-                                <tr>
-                                    <td>{{ kadai.number }}</td>
-                                    <td>{{ kadai.name }}</td>
-                                    <td>
-                                        <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}" class="btn">編集</a>
-                                    </td>
-                                    <td>
-                                        <!-- 管理者のみ削除ボタンを表示 -->
-                                        <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn" onclick="return confirm('本当に削除しますか？')">削除</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            {% empty %}
-                                <tr>
-                                    <td colspan="4">問題がありません。</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+        <main>
+            <div class="main">
+                <h2>問題一覧</h2>
+                <div class="add-container">
+                    <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
                 </div>
-                <hr>
-            {% endfor %}
+                <div class="list">
+                {% for category, kadais in categories.items %}
+                    <div id="categ">
+                        <h3 id="c_name">----{{ category }}----</h3>
+                        <!-- カテゴリごとにテーブルを表示 -->
+                        <table class="kadai-table">
+                            <thead>
+                                <tr>
+                                    <th>課題番号</th>
+                                    <th>課題タイトル</th>
+                                    <th>編集</th>
+                                    <th>削除</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for kadai in kadais %}
+                                    <tr>
+                                        <td>{{ kadai.number }}</td>
+                                        <td>{{ kadai.name }}</td>
+                                        <td>
+                                            <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}" class="btn">編集</a>
+                                        </td>
+                                        <td>
+                                            <!-- 管理者のみ削除ボタンを表示 -->
+                                            <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn" onclick="return confirm('本当に削除しますか？')">削除</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="4">問題がありません。</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr>
+                {% endfor %}
+                </div>
             </div>
-            <a href="{% url 'AdminApp:add_kadai' %}">新規作成</a>
-        </div>
+        </main>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
     </body>
 </html>

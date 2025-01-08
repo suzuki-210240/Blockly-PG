@@ -13,12 +13,12 @@
     <script>
         const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
     </script>
-    <link rel="stylesheet" type="text/css" href="{%static 'css/Block_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
 
 </head>
 <body>
     <header>
-        <p class="logo" href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</p>
+        <p class="logo"><a  href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</a></p>
         <div class="file">
             <!-- 保存ボタン -->
             <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>
@@ -27,9 +27,9 @@
             <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
         </div>
     </header>
-    <div class="main">
+    <main>
         <div class="field">
-            <div>
+            <div class="main_filed">
                 <h4>フリーモード</h4>
                 <div id="blocklyDiv"></div>
             </div>
@@ -47,14 +47,14 @@
 
                     <!--組んだブロックのコード変換と送信-->
                     <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                    <button onclick="clearConsole()">コンソールをクリア</button>
+                    <button onclick="clearConsole()">クリア</button>
                 </div>
                 <h4>コンソール</h4>
                 {% comment %} <textarea id="output" rows="10" cols="50" disabled></textarea> {% endcomment %}
                 <div id="output">--------ここに結果出力されます--------</div>
             </div>
         </div>  
-    </div>
+    </main>
     <footer>
         <p>このアプリケーションはGoogleのBlocklyを使用しています。BlocklyはApache License 2.0の下で提供されています。</p>
     </footer>

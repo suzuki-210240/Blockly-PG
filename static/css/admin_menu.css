@@ -1,6 +1,10 @@
 /* 管理者用メニュー画面のデザイン */
 @charset "utf-8";
 
+body {
+  min-width: 880px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -67,7 +71,8 @@ body {
 /* メニューバー */
 .container {
   display: flex;
-  flex-direction: column;  /* 縦並びに変更 */
+  flex-direction: column;
+  /* 縦並びに変更 */
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
@@ -142,7 +147,8 @@ body {
 
   .container a,
   .container form button {
-    width: 100%; /* ボタンを横幅いっぱいに */
+    width: 100%;
+    /* ボタンを横幅いっぱいに */
     font-size: 18px;
   }
 }
