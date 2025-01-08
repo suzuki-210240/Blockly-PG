@@ -25,34 +25,9 @@ h1 {
   padding: 15px 20px;
   font-size: 18px;
   /*フォントサイズ*/
-  color: #fafafa;
-  /*フォントカラー*/
-  background: #5264dc;
-  /*背景色*/
-  margin: 15px 0px 0px 40px;
-  /*真ん中に配置したい・もう少し小さくしたい*/
-}
-
-.page-title:before {
-  position: absolute;
-  content: '';
-  top: 100%;
-  left: 0;
-  border: none;
-  border-bottom: solid 15px transparent;
-  border-right: solid 20px rgb(149, 158, 155);
-  /*折り返し部分*/
-}
-
-.page-title:after {
-  position: absolute;
-  content: '';
-  top: 100%;
-  right: 0;
-  border: none;
-  border-bottom: solid 15px transparent;
-  border-left: solid 20px rgb(149, 158, 155);
-  /*折り返し部分*/
+  color: #000;
+  /*color: #fafafa;
+  フォントカラー*/
 }
 
 .add-container {
