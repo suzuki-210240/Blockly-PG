@@ -32,10 +32,10 @@
         </div>
         <main>
             <h1 id="c_title">問題一覧</h1>
-            <div class="add-container">
-                <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
-            </div>
             <div class="list">
+                <div class="add-container">
+                    <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
+                </div>
             {% for category, kadais in categories.items %}
                 <div id="categ">
                     <h3 id="c_name">----{{ category }}----</h3>
