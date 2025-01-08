@@ -6,7 +6,6 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WelCome,Blockly!</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/user_menu.css' %}">
     </head>
     <body>
@@ -22,7 +21,7 @@
         </header>
 
 
-        <div class="Box">
+        <main class="Box">
             <h1>User Menu</h1>
             <p>Action List</p>
             <!--メニューバー-->
@@ -62,8 +61,7 @@
                     {% csrf_token %}
                     <button type="submit" class="button4">ログアウト</button>
                 </form>
-
             </div>
-        </div>
+        </main>
     </body>
 </html>

@@ -140,13 +140,26 @@ textarea {
 }
 
 #codeOutput, #exampleOutput{
+    height: 100%;
+    width: 550px;
+    border-color: black;
+}
+
+#codeOutput2 {
     height: 500px;
     width: 550px;
     border-color: black;
 }
 
+#codeOutput,#codeOutput2 {
+    background-color: #1c1c1c;
+    color :rgb(124, 255, 30);
+}
+
+
+
 #exampleOutput {
-    font-size: 35px;
+    font-size: 20px;
 }
 
 textarea:disabled {
@@ -239,6 +252,11 @@ textarea:disabled {
     #codeOutput {
         width: 90%; /* 横幅を90%に変更 */
         height: 100%; /* 高さを600pxに変更 */
+    }
+
+    #codeOutput2 {
+        width: 90%; /* 横幅を90%に変更 */
+        height: 50%; /* 高さを600pxに変更 */
     }
 
 
