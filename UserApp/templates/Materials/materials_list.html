@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/materials_list.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/materials_list.css' %}" />
   <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
@@ -35,8 +35,10 @@
     </div>
 
     <!-- メイン -->
-    <div class="main">
-      <h1>教材一覧</h1>
+    <main>
+      <div class="page-title">
+        <h1>教材一覧</h1>
+      </div>
       <p>・閲覧したい教材を選択してください</p>
       <div class="table-container">
         <div class="table-header">
@@ -68,7 +70,7 @@
           {% endif %}
         </table>
       </div>
-    </div>
+    </main>
   </div>
 </body>
 

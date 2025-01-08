@@ -46,27 +46,38 @@
                         <div id="blocklyDiv"></div>
                     </div>
 
-                    <!--コードを表示するエリア-->
+                    
                     <div class = "sub_field">
-                        <h4>問題文</h4>
-                        <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>
+                        <div class = "tab">
+                            <h4><a onclick="change('mode1')">問題文</a></h4>
+                            <h4><a onclick="change('mode2')">コード</a></h4>
+                        </div>
+                        <div id="mode1" class="mode">
+                            <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>
+                        </div>
+                        <div id="mode2" class="mode">
+                            <textarea id="codeOutput" rows="10" cols="50" disabled></textarea>
+                        </div>
                     
-                        <!--出力結果を表示するエリア-->
-                    
-                        
-                        
                         <div class="button_area">
                             <!-- 実行ボタン -->
                             <button onclick="runCode()">実行</button>
 
+                            <!--正誤判定-->
+                            <button id="checkCodeButton" onclick="checkCode()">解答を送信</button>
                             <!--組んだブロックのコード変換と送信-->
-                            <button id="generateCodeButton" onclick="generateCode()">解答を送信</button>
+                            <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
                             <button onclick="clearConsole()">クリア</button>
                         </div>
+
+                        <!--出力結果を表示するエリア-->
                         <h4>出力結果</h4>
                         <div id="output">--------ここに結果出力されます--------</div>
                     </div>
                 </div>
+
+               
+            </div>
         </main>
         <footer>
             <p>このアプリケーションはGoogleのBlocklyを使用しています。BlocklyはApache License 2.0の下で提供されています。</p>

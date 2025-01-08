@@ -6,14 +6,14 @@
     <title>{{title}}[BlocklyCodeAcademy]</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/material_display.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/material_display.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   </head>
   <body>
     <header>
       <div class="header-content">
-        <p class="logo">BlocklyCodeAcademy</p>
+        <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
         <div class="header-right">
           <div id="sa">
              <!-- ボタンはリンクの代わりにも、戻る機能にも使える -->
@@ -40,9 +40,6 @@
           <!-- ユーザー名 -->
         </div>
         <!-- ユーザー名 -->
-      </div>
-      <div class="navigation">
-        <p class="logo"><a  href="{% url 'UserApp:index' %}">BlocklyCodeAcademy</a></p>
       </div>
     </header>
       <!--教材表示-->

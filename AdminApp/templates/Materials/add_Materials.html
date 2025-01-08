@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/addMaterials.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/iframe_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/addMaterials.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
     <script src="{% static 'js/preview.js' %}?v=1.0"></script>
     <title>教材新規追加[BlocklyCodeAcademy]</title>
@@ -36,7 +36,7 @@
         <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
       </div>
       <!-- メイン -->
-      <div class="main">
+      <main>
         <h1>教材新規追加</h1>
         <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:add_file' %}>
           {% csrf_token %}
@@ -69,7 +69,7 @@
             </iframe>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   </body>
 </html>

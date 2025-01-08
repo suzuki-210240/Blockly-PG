@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <p class="logo">BlocklyCodeAcademy</p>
+            <p class="logo"><a href="{% url 'AdminApp:index' %}">BlocklyCodeAcademy</a></p>
             <!-- ユーザー名 -->
             <div class="selectdiv">
               <label>
@@ -31,52 +31,50 @@
               <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
         </div>
         <main>
-            <div class="main">
-                <h2>問題一覧</h2>
-                <div class="add-container">
-                    <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
-                </div>
-                <div class="list">
-                {% for category, kadais in categories.items %}
-                    <div id="categ">
-                        <h3 id="c_name">----{{ category }}----</h3>
-                        <!-- カテゴリごとにテーブルを表示 -->
-                        <table class="kadai-table">
-                            <thead>
+            <h1 id="c_title">問題一覧</h1>
+            <div class="add-container">
+                <a href="{% url 'AdminApp:add_kadai' %}" class="add-button">課題新規登録</a>
+            </div>
+            <div class="list">
+            {% for category, kadais in categories.items %}
+                <div id="categ">
+                    <h3 id="c_name">----{{ category }}----</h3>
+                    <!-- カテゴリごとにテーブルを表示 -->
+                    <table class="kadai-table">
+                        <thead>
+                            <tr>
+                                <th>課題番号</th>
+                                <th>課題タイトル</th>
+                                <th>編集</th>
+                                <th>削除</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for kadai in kadais %}
                                 <tr>
-                                    <th>課題番号</th>
-                                    <th>課題タイトル</th>
-                                    <th>編集</th>
-                                    <th>削除</th>
+                                    <td>{{ kadai.number }}</td>
+                                    <td>{{ kadai.name }}</td>
+                                    <td>
+                                        <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}" class="btn">編集</a>
+                                    </td>
+                                    <td>
+                                        <!-- 管理者のみ削除ボタンを表示 -->
+                                        <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn" onclick="return confirm('本当に削除しますか？')">削除</button>
+                                        </form>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {% for kadai in kadais %}
-                                    <tr>
-                                        <td>{{ kadai.number }}</td>
-                                        <td>{{ kadai.name }}</td>
-                                        <td>
-                                            <a href="{% url 'AdminApp:edit_kadai' kadai_id=kadai.number %}" class="btn">編集</a>
-                                        </td>
-                                        <td>
-                                            <!-- 管理者のみ削除ボタンを表示 -->
-                                            <form action="{% url 'AdminApp:delete_kadai' kadai_id=kadai.number %}" method="POST" style="display:inline;">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn" onclick="return confirm('本当に削除しますか？')">削除</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                {% empty %}
-                                    <tr>
-                                        <td colspan="4">問題がありません。</td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr>
-                {% endfor %}
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4">問題がありません。</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
+                <hr>
+            {% endfor %}
             </div>
         </main>
         <script type="text/javascript" src="{% static 'js/menu.js' %}"></script>
