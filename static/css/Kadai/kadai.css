@@ -17,16 +17,20 @@ body {
     border-radius: 15px;
 }
 
-h2 {
-    background-color: #ffffff7f;
+h1 {
     font-weight: bold;
-    font-size: 150%;
     display: inline-block;
     padding-left: 10px;
     padding-right: 10px;
     margin: 5px;
     vertical-align: middle;
     border-radius: 30px;
+}
+
+#c_title {
+    width: 250px;
+    background-color: #ffffffcd;
+    text-align: center;
 }
 
 #c_name {
@@ -153,3 +157,5 @@ h2 {
     background-color: #0056b3;
     /* ホバー時の背景色変更 */
   }
+
+
