@@ -80,9 +80,15 @@ var workspace = Blockly.inject('blocklyDiv', {
       length: 3,
       colour: "#888",
       snap: true,
-    }
+    },
+    scrollbars: true,
+    horizontalLayout: false,
 
 });
+
+
+
+
 
 //---lists_insertのカスタム設定定義---
 Blockly.defineBlocksWithJsonArray([{

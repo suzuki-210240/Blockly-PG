@@ -12,10 +12,11 @@ body {
     min-width: 880px;
 }
 
+
 header {
     width: 100%;
     height: 5%;
-    padding-top: 5px;
+    padding-top: 1%;
     margin: 0px;
     background-color: aliceblue;
 }
@@ -26,16 +27,18 @@ header p{
 }
 
 main{
-    background-color: rgb(165, 186, 186);
+    background-color: rgba(208, 243, 243, 0.937);
     height: 95%;
     width: 100%;
-    padding: 5px;
+    padding: 1px;
 }
 
 .fild{
-    background-color: rgba(7, 202, 183, 0.574);
-    border: solid 1px #000000;
-    margin: 20px;
+    background-color: rgba(7, 202, 182, 0.124);
+    border: solid 1px #9f9f9f;
+    width: 80%;
+    margin: 1%;
+    padding: 5px;
 }
 
 #back{
@@ -49,4 +52,9 @@ main{
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+form p{
+    color: #ff5050;
+    font-weight: bold;
 }

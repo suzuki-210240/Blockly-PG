@@ -1,5 +1,6 @@
-/* 管理者用メニュー画面のデザイン */
 @charset "utf-8";
+/* 管理者用メニュー画面のデザイン */
+
 
 body {
   min-width: 880px;
@@ -119,17 +120,8 @@ body {
 }
 
 /* メインコンテンツ */
-.main {
-  align-items: center;
-  justify-content: center;
-  background-color: #c8e1e2;
-  border: solid 2px #1d78b1;
-  border-radius: 30px;
-  margin: 0 15px;
-  width: 1500px;
-}
 
-.main h1 {
+main h1 {
   font: 45px monospace;
   color: #333;
   margin: 15px;

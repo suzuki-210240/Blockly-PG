@@ -12,6 +12,7 @@ urlpatterns = [
     path('user_list_files/', views.user_list_files, name='user_list_files'), #一般ユーザー用教材一覧関数呼び出し
     path('send_material/', views.send_material, name='send_material') ,#教材表示関数呼び出し
     path("free/", views.FreeMode,name="freemode"),#自由制作モード
+    path("public_free/", views.Public_FreeMode,name="p_freemode"),#自由制作モード
     path('check-code/', views.check_code, name='check_code'),#正誤判定
     path('progress/', views.user_progress, name='progress'), #課題進捗画面
     path('load/<str:file_name>/', views.load_file, name='load_file'),#埋込むの教材読み込み

@@ -121,9 +121,41 @@ if (typeof workspace !== 'undefined' && workspace !== null) {
     // BlocklyのワークスペースからPythonコードを生成
     var code = python.pythonGenerator.workspaceToCode(workspace);
     // 生成されたコードを表示する
-    document.getElementById('codeOutput').value = code;
+    document.getElementById('codeOutput2').value = code;
 } else {
     console.error('workspaceが未定義です。');
     alert('Blocklyワークスペースが正しく初期化されていません。');
 }
+}
+
+function comment(event) {
+    // コメントを追加する
+    const tutorialSteps = [
+        { text: "これが最初のステップです。", x: 50, y: 100 },
+        { text: "次はここを確認してください。", x: 200, y: 150 },
+        { text: "最後にこの部分をチェックします。", x: 350, y: 250 },
+      ];
+  
+      let currentStep = 0;
+  
+      // チュートリアルボタンがクリックされたときの動作
+      document.getElementById("tutorialButton").addEventListener("click", () => {
+        const tutorialComment = document.getElementById("tutorialComment");
+  
+        if (currentStep < tutorialSteps.length) {
+          const step = tutorialSteps[currentStep];
+  
+          // コメントの位置と内容を設定
+          tutorialComment.style.left = step.x + "px";
+          tutorialComment.style.top = step.y + "px";
+          tutorialComment.innerHTML = step.text;
+          tutorialComment.style.display = "block"; // 表示する
+  
+          currentStep++;
+        } else {
+          // チュートリアルが終了したら非表示に戻す
+          tutorialComment.style.display = "none";
+          currentStep = 0; // リセットする
+        }
+      });
 }

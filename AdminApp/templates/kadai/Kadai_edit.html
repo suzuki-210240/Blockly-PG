@@ -8,11 +8,10 @@
   </head>
   <body>
     <header>
-      
+      <a href="{% url 'AdminApp:admin_kadai_list' %}" id="back">戻る</a>
     </header>
     
     <main>
-      <a href="{% url 'AdminApp:admin_kadai_list' %}" id="back">戻る</a>
       <div class="fild">
         <form method="POST">
           {% csrf_token %}
