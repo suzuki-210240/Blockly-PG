@@ -3,8 +3,10 @@
 /* 共通のベーススタイル */
 body {
   min-width: 880px;
-  background: #ffffff;
+  background-color: rgb(202, 240, 255);
 }
+
+
 
 /* ヘッダー */
 header {
@@ -38,7 +40,10 @@ header {
   z-index: 1000;
 }
 
-/* コンテンツ全体を中央に配置 */
+body {
+  background: #ffffff;
+}
+
 .Box {
   display: flex;
   flex-direction: column;

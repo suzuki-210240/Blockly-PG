@@ -2,6 +2,7 @@
 
 body {
     min-width: 880px;
+    background-color: rgb(202, 240, 255);
 }
 
 /* .user-infoを右上に固定配置 */
@@ -37,9 +38,6 @@ header {
     transform: skewX(-30deg);
 }
 
-body {
-    background: #ffffff;
-}
 
 .Box {
     display: flex;
