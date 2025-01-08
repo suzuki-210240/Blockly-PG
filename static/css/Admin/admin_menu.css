@@ -1,12 +1,12 @@
 @charset "utf-8";
 
-/* 共通のベーススタイル */
 body {
   min-width: 880px;
-  background-color: rgb(202, 240, 255);
+  background-color: #ffffffd1;
+  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+  background-size: 16px 16px;
+  background-repeat: repeat;
 }
-
-
 
 /* ヘッダー */
 header {
@@ -38,10 +38,6 @@ header {
   border-radius: 5px;
   font-size: 14px;
   z-index: 1000;
-}
-
-body {
-  background: #ffffff;
 }
 
 .Box {
