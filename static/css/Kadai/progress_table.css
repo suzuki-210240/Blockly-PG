@@ -4,48 +4,47 @@ body {
   min-width: 880px;
 }
 
-.main2 {
-  align-items: center;
-  justify-content: center;
-  background-color: #c8e1e2;
-  border: solid 2px #1d78b1;
-  margin: 0 15px;
-  width: 1500px;
-  height: 100%;
+.table-container {
+  width: 85%;
+  margin: 30px auto;
+  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  /* 白をベースにした淡い水色のグラデーション */
+  padding: 50px 30px 120px 30px;
+  border-radius: 15px;
+  /* 角を丸くする */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 控えめなシャドウ */
+  border: 2px solid rgba(220, 230, 240, 0.8);
+  /* 白寄りの薄い境界線 */
 }
 
-.main2 h1 {
-  font: 45px monospace;
+.table-header {
+  display: flex;
+  font-size: 24px;
+  justify-content: space-between;
+  padding: 20px 5px 15px 5px;
+  font-weight: bold;
+  border-bottom: 3px solid #5b5b5b;
+  color: #000000;
+}
+
+.table-item {
+  display: flex;
+  justify-content: space-between;
+  /* 左と右で要素を分ける */
+  align-items: center;
+  /* 縦方向を揃える */
+  width: 100%;
+  /* 親要素の幅を維持 */
+}
+
+h1 {
   color: #333;
   margin: 15px;
   padding: 10px;
   line-height: 1.5;
 }
 
-.main2 table {
-  border-collapse: collapse;
-  border: 1px solid #73c2fabd;
-  margin: 20px;
-  width: 100%;
-  height: auto;
-}
-
-th,
-td {
-  border: 1px solid #000;
-  /* 枠線 */
-  width: 150px;
-  /* 幅を固定 */
-  height: 100px;
-  /* 高さを固定 */
-  text-align: center;
-  /* 中央揃え */
-  vertical-align: middle;
-  /* 垂直方向の中央揃え */
-  overflow: hidden;
-  /* コンテンツのオーバーフローを非表示 */
-  white-space: nowrap;
-  /* テキストを折り返さない */
-  box-sizing: border-box;
-  /* パディングやボーダーを含めたサイズ設定 */
+.kadai-number {
+  margin-left: 10px;
 }
