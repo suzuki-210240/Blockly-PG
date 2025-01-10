@@ -18,7 +18,7 @@
 </head>
 <body>
     <header>
-        <p class="logo"><a  href="{% url 'UserApp:kadai_list' %}">BlocklyCodeAcademy</a></p>
+        <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
         <div class="file">
             <!-- 保存ボタン -->
             <button onclick="saveWorkspaceAsXML()">ワークスペースを保存</button>

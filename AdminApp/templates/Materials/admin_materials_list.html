@@ -13,10 +13,9 @@
 
 <body>
   <header>
-    <p class="logo">BlocklyCodeAcademy</p>
+    <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
     <!-- ユーザー名 -->
     <div class="selectdiv">
-      <img src="{% static 'images/paw-light-blue.png' %}" alt="ユーザー画像">
       <label>
         <select id="userMenu">
           <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>

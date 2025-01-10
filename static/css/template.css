@@ -18,14 +18,7 @@ header {
 }
 
 .logo {
-  font-size: 30px;
-  font-weight: bold;
-  background: linear-gradient(135deg, #f88400 50%, #4d9bc1 50%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0;
   padding-left: 10px;
-  transform: skewX(-30deg);
 }
 
 .selectdiv {
@@ -125,7 +118,7 @@ main {
   border-radius: 30px;
   margin: 0 15px 15px 15px;
   /*width: 1500px;*/
-  height: 100vh;
+  height: 100hv;
 }
 
 .main h1 {
