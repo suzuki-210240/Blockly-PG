@@ -9,6 +9,10 @@ body {
   flex-direction: column;
 }
 
+main {
+  width: 1500px;
+}
+
 a {
   text-decoration: none;
 }
