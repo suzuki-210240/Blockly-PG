@@ -63,6 +63,14 @@ function clearConsole() {
 
 // ワークスペースを XML として保存する関数
 function saveWorkspaceAsXML() {
+    // ユーザーにファイル名を入力させるダイアログを表示
+    var fileName = prompt("保存するファイル名を入力してください:", "workspace");
+
+    // ユーザーが入力しなかった場合はデフォルト名を使用
+    if (!fileName) {
+        fileName = "workspace";
+    }
+
     // Blockly ワークスペースの内容を XML としてエクスポート
     var xml = Blockly.Xml.workspaceToDom(workspace);
     var xmlText = Blockly.Xml.domToText(xml);
@@ -73,9 +81,10 @@ function saveWorkspaceAsXML() {
     // ダウンロードリンクを作成してクリック
     var link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'workspace.xml';  // ダウンロードするファイル名
+    link.download = fileName + ".xml";  // ユーザーが指定したファイル名
     link.click();
 }
+
 
 
 // XML ファイルを読み込んでワークスペースに展開する関数
