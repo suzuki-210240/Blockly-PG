@@ -1,12 +1,11 @@
 body {
-  background-color: #ffffffd1;
-  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-  background-size: 16px 16px;
-  background-repeat: repeat;
-  width: 100%;
-  height: 10vw;
   display: flex;
   flex-direction: column;
+}
+
+main {
+  width: 1500px;
+  height: 100vh;
 }
 
 a {
@@ -94,8 +93,8 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 150%;
-  height: 500%;
+  width: 120%;
+  height: 400%;
   content: "";
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
@@ -110,6 +109,6 @@ header {
 }
 
 #sa {
-  width: 350px;
+  width: 270px;
 }
 

@@ -2,7 +2,7 @@
 
 body {
   min-width: 880px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
   background-color: #ffffffd1;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
@@ -118,14 +118,14 @@ main {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  align-items: center;
+  /*align-items: center;*/
   /* justify-content: center; */
   background-color: #c8e2da;
   border: solid 2px #1d78b1;
   border-radius: 30px;
   margin: 0 15px 15px 15px;
   /*width: 1500px;*/
-  height: auto;
+  height: 100vh;
 }
 
 .main h1 {
@@ -144,6 +144,5 @@ main {
 
   .main {
     width: 90%;
-    /* 横幅を調整 */
   }
 }

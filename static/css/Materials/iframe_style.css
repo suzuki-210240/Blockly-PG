@@ -1,9 +1,8 @@
 @charset "utf-8";
 iframe {
-    margin: 25px;
+    margin: 25px 25px 25px 35px;
     width: 95%;
-    min-height: 300px;
-    max-height: 90vh;
+    min-height: 90vh;
     background-color: antiquewhite;
     border-radius: 10px;
 }
@@ -13,6 +12,6 @@ iframe::-webkit-scrollbar {
 }
 
 .view-box {
-    width: auto;
+    width: 95%;
     height: auto;
 }
