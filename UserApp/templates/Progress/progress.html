@@ -33,34 +33,36 @@
     <main>
       <h1>あなたの課題進捗状況</h1>
       <div class="table-container">
-        <div class="table-header">
-          <span class="table-number">課題番号</span>
-          <span class="table-title">課題名</span>
-          <span id="action-title">進捗状況</span>
-        </div>
+  <table>
+    <!-- テーブルヘッダー -->
+    <thead>
+      <tr class="table-header">
+        <th class="table-number">課題番号</th>
+        <th class="table-title">課題名</th>
+        <th id="action-title">進捗状況</th>
+      </tr>
+    </thead>
 
-        <!-- 進捗状況一覧 -->
-        <table class="table-row">
-          {% for progress in progress_data %}
-          <form method="POST" action="{% url 'UserApp:send_material' %}">
-            <div class="table-item">
-              <p class="kadai-number">{{ progress.kadai.number }}</p>
-              <p class="kadai-title">{{ progress.kadai.name }}</p>
-              <p class="action">
-                {% if progress.progress == '未着手' %}
-                  <font color="red" id="not">未着手</font>
-                {% elif progress.progress == '実行中' %}
-                  <font color="green" id="running">実行中</font>
-                {% elif progress.progress == '完了' %}
-                  <font color="orange" id="success">完了！</font>
-                {% endif %}
-              </p>
-            </div>
-          </form>
-          <hr>
-          {% endfor %}
-        </table>
-      </div>
+    <!-- テーブルボディ -->
+    <tbody>
+      {% for progress in progress_data %}
+      <tr class="table-item">
+        <td class="kadai-number">{{ progress.kadai.number }}</td>
+        <td class="kadai-title">{{ progress.kadai.name }}</td>
+        <td class="action">
+          {% if progress.progress == '未着手' %}
+            <font color="red" id="not">未着手</font>
+          {% elif progress.progress == '実行中' %}
+            <font id="running">実行中</font>
+          {% elif progress.progress == '完了' %}
+            <font id="success">完了！</font>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
     </main>
   </div>
 </body>
