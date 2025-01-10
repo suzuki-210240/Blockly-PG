@@ -56,11 +56,11 @@
                                                 <td>
                                                 <!-- 課題の進捗状況を表示 -->
                                                     {% if kadai.progress == '未着手' %}
-                                                        <font color="green" id="not">未着手</font>
+                                                        <font color="red" id="not">未着手</font>
                                                     {% elif kadai.progress == '実行中' %}
                                                         <font color="orange" id="running">実行中</font>
                                                     {% elif kadai.progress == '完了' %}
-                                                        <font color="red" id="success">完了！</font>
+                                                        <font color="green" id="success">完了！</font>
                                                     {% endif %}
                                                 </td>
                                             <td>

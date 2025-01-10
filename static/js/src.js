@@ -57,6 +57,7 @@ window.onload = function() {
 
 function clearConsole() {
     document.getElementById('output').innerHTML = '--------ここに結果出力されます-------- '; // 出力エリアを空にする
+    flg = 0;
 }
 
 

@@ -34,7 +34,7 @@ main{
 }
 
 .fild{
-    background-color: rgba(7, 202, 182, 0.124);
+    background: linear-gradient(135deg, #f9fcff, #dff3fa);
     border: solid 1px #9f9f9f;
     width: 80%;
     margin: 1%;
@@ -45,8 +45,9 @@ main{
     display: inline-block;
     padding: 5px;
     font-size: 15px;
-    color: #ff2121;
-    background-color: #929497;
+    font-weight: bold;
+    color: #f3bbbb;
+    background-color: #277dff;
     text-decoration: none;
     border-radius: 5px;
     border: none;
@@ -55,6 +56,6 @@ main{
 }
 
 form p{
-    color: #ff5050;
+    color: #a1a1a1;
     font-weight: bold;
 }

@@ -128,7 +128,7 @@ textarea {
 
 #output {
     background-color: black;
-    color: white;
+    color :rgb(124, 255, 30);
     font-family: Consolas, "Courier New", monospace;
     padding: 10px;
     border-radius: 5px;
