@@ -2,6 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User, Group
+from django.forms import modelformset_factory
 from .models import Kadai, Answer,KadaiProgress,Material
 
 # class TaskForm(forms.ModelForm):
@@ -96,6 +97,14 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['a_text']
+
+AnswerFormSet = modelformset_factory(
+    Answer,
+    form=AnswerForm,
+    fields=['a_text'],
+    extra=1,  # 新規解答用の空フォームを1つ追加
+    can_delete=True  # 解答の削除を可能にする
+)
 
 class KadaiProgressForm(forms.ModelForm):
     class Meta:
