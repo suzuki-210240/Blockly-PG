@@ -3,6 +3,10 @@
 body {
   min-width: 880px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffffd1;
+  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+  background-size: 16px 16px;
+  background-repeat: repeat;
 }
 
 header {
@@ -32,6 +36,8 @@ header {
 .kigou {
   font-size: 16px;
 }
+
+img {}
 
 .selectdiv select {
   -webkit-appearance: none;
