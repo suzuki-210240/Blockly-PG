@@ -121,7 +121,7 @@ h1 {
 }
 
 .btn:hover {
-    background-color: #14b9d69e;
+    background-color: #14cfd6ce;
 }
 
 #border {
@@ -162,4 +162,11 @@ h1 {
     /* ホバー時の背景色変更 */
   }
 
+#running {
+  color: rgb(15, 0, 230);
+  
+}
 
+#success {
+  color: rgb(0, 180, 39);
+}
