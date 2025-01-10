@@ -16,9 +16,8 @@ header {
     margin-left: 10px;
 }
 
-.main {
-    align-items: center;
-    justify-content: center;
+main {
+    width: 700px;
 }
 
 h1 {
@@ -120,10 +119,6 @@ button:hover {
 
 .new-title-box {
     margin-top: 20px;
-}
-
-.view-box {
-    margin-left: 80px;
 }
 
 .radio-button {
