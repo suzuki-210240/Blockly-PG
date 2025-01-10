@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Material, Kadai, Answer
-from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm
+from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
@@ -357,7 +357,7 @@ def delete_item(request):
 #--------------------------------問題・解答設定----------------------------------------
 
 
-#プレフィックスの追加（基本問題はb、追加問題はa）
+#プレフィックスの追加（チュートリアル：t、基本問題：b、応用問題：a）
 def create_number(kadai):
     if kadai.number:  # numberが空でないとき
         if kadai.category:
@@ -406,49 +406,39 @@ def add_kadai_and_answer(request, kadai_id=None):
         'answers': answers,
     })
 
-def edit_kadai_and_answer(request, kadai_id):
-    # 問題データを取得
+def edit_kadai_and_answers(request, kadai_id):
     kadai = get_object_or_404(Kadai, number=kadai_id)
     answers = Answer.objects.filter(kadai=kadai)
 
-    # 問題と解答のフォームを編集
     if request.method == "POST":
-        # 問題フォームの処理
         kadai_form = KadaiForm(request.POST, instance=kadai)
+        answer_formset = AnswerFormSet(request.POST, queryset=answers)
 
-        # 解答フォームの処理（解答が無い場合でも空フォームを表示）
-        answer_forms = [
-            AnswerForm(request.POST, prefix=f"answer_{i}", instance=answer)
-            for i, answer in enumerate(answers)
-        ]
-
-        if kadai_form.is_valid():
+        if kadai_form.is_valid() and answer_formset.is_valid():
             kadai_instance = kadai_form.save(commit=False)
-            kadai_instance.save()  # 問題データを保存
+            create_number(kadai_instance)  # プレフィックス再設定
+            kadai_instance.save()
 
-            # 解答フォームの保存
-            for answer_form in answer_forms:
-                if answer_form.is_valid():
-                    answer_instance = answer_form.save(commit=False)
-                    answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
-                    answer_instance.save()
+            # 解答フォームセットの保存
+            instances = answer_formset.save(commit=False)
+            for instance in instances:
+                instance.kadai = kadai_instance
+                instance.save()
 
-            return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+            # 削除された解答を削除
+            for deleted_instance in answer_formset.deleted_objects:
+                deleted_instance.delete()
+
+            return redirect('AdminApp:admin_kadai_list')
 
     else:
         kadai_form = KadaiForm(instance=kadai)
-        # 解答フォームの初期化
-        answer_forms = [
-            AnswerForm(prefix=f"answer_{i}", instance=answer)
-            for i, answer in enumerate(answers)
-        ]
-
+        answer_formset = AnswerFormSet(queryset=answers)
 
     return render(request, 'kadai/Kadai_edit.html', {
         'kadai_form': kadai_form,
-        'answer_forms': answer_forms,
+        'answer_formset': answer_formset,
         'kadai': kadai,
-        'answers': answers,
     })
 
 
