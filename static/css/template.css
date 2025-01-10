@@ -124,7 +124,7 @@ main {
   border: solid 2px #1d78b1;
   border-radius: 30px;
   margin: 0 15px 15px 15px;
-  width: 1500px;
+  /*width: 1500px;*/
   height: auto;
 }
 

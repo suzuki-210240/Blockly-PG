@@ -101,7 +101,7 @@ h1 {
 }
 
 .action-title {
-  margin-right: 96px;
+  margin-right: 101px;
 }
 
 #action-title {
@@ -121,7 +121,6 @@ h1 {
 .row-title {
   font-size: 15px;
   display: inline-block;
-  /* インラインで横並びを維持 */
   white-space: nowrap;
   /* 改行を防ぐ */
   overflow: hidden;
@@ -129,14 +128,10 @@ h1 {
   text-overflow: ellipsis;
   /* はみ出しを・・・記号に変更 */
   width: auto;
-  /* 必要に応じて幅を自動調整 */
   max-width: 100%;
-  /* 親要素に合わせる場合 */
   height: auto;
-  /* 高さを固定せず、テキストの高さに合わせる */
   line-height: normal;
-  /* 必要なら行の高さを調整 */
-  margin-left: 15px;
+  margin-left: 30px;
 }
 
 .number {
@@ -152,7 +147,7 @@ h1 {
   width: auto;
   margin-top: 10px;
   margin-bottom: 5px;
-  padding-right: 40px;
+  padding-right: 50px;
 }
 
 
@@ -169,4 +164,8 @@ h1 {
 
 .action-button:hover {
   background-color: #cceaff;
+}
+
+main {
+  width: 1500px;
 }
