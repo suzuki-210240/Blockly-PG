@@ -1,6 +1,6 @@
 @charset "utf-8";
 iframe {
-    margin: 25px 25px 25px 35px;
+    margin: 0px 25px 25px 35px;
     width: 95%;
     min-height: 90vh;
     background-color: antiquewhite;

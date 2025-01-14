@@ -29,6 +29,12 @@ header {
   display: flex;
 }
 
+.button-container {
+  position: relative;
+  width: 100%;          /* 親要素が全幅を持つように */
+  text-align: left;     /* 子要素を左寄せ */
+}
+
 /* 戻るのボタンスタイル */
 .back-button {
   position: absolute;
@@ -56,17 +62,12 @@ header {
   border: 2px solid #000; /* ボーダーを追加 */
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-
-}.button-container {
-  position: relative;
-  width: 100%;          /* 親要素が全幅を持つように */
-  text-align: left;     /* 子要素を左寄せ */
+  white-space: nowrap;
 }
 
 .back-button-flat {
   background: #000; /* 背景色 */
   color: #fff; /* 文字色 */
-  padding: 0.5rem 3rem; /* パディング */
   border-radius: 0; /* ボーダーをなくす */
   overflow: hidden; /* 余白を隠す */
   border-radius: 35px;
@@ -108,7 +109,8 @@ header {
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
+
 #sa {
-  width: 270px;
+  margin-right: 230px;
 }
 

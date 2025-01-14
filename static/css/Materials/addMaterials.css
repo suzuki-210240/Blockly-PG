@@ -17,7 +17,7 @@ header {
 }
 
 main {
-    width: 700px;
+    width: 850px;
 }
 
 h1 {
@@ -44,6 +44,10 @@ input {
 #sub-title {
     border-bottom: solid 2px #191970;
     margin-left: 15px;
+}
+
+.show-html {
+    margin-top: 15px;
 }
 
 .rule {
