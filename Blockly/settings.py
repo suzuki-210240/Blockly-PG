@@ -101,8 +101,15 @@ DATABASES = {
         'NAME': 'blockly_pg', # データベース名
         'USER': 'user',  # または 'ユーザー名'
         'PASSWORD': 'pass',  # パスワード
-        'HOST': 'localhost', #切り替える
-        #'HOST': 'blockly-pg-rds.cmadu8gaa330.ap-northeast-1.rds.amazonaws.com',
+        'HOST': 'localhost', 
+        'PORT': '3306',
+    },
+    'rds': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blockly_pg', # データベース名
+        'USER': 'user',  # または 'ユーザー名'
+        'PASSWORD': 'pass',  # パスワード
+        'HOST': 'blockly-pg-rds.cmadu8gaa330.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }

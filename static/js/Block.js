@@ -14,9 +14,30 @@ Blockly.setLocale(Blockly.Msg);
 var workspace = Blockly.inject('blocklyDiv', {
     toolbox: `
     <xml xmlns="https://developers.google.com/blockly/xml">
+        <!-- 計算 カテゴリ -->
+        <category name="計算" colour="230">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="math_arithmetic">
+                    <field name="OP">ADD</field>
+                    <value name="A">
+                        <block type="math_number">
+                            <field name="NUM">5</field>
+                        </block>
+                    </value>
+                    <value name="B">
+                        <block type="math_number">
+                            <field name="NUM">10</field>
+                        </block>
+                    </value>
+                </block>
+            <block type="math_round"></block>
+            <block type="math_modulo"></block>
+        </category>
         <!-- コントローラ カテゴリ -->
         <category name="コントローラ" colour="210">
             <block type="controls_if"></block>
+            <block type="controls_ifelse"></block>
         </category>
         <!-- ループ カテゴリ -->
         <category name="ループ" colour="120">
@@ -38,19 +59,11 @@ var workspace = Blockly.inject('blocklyDiv', {
             <block type="text_print"></block>
         </category>
 
-        <!-- 計算 カテゴリ -->
-        <category name="計算" colour="230">
-            <block type="math_number"></block>
-            <block type="math_arithmetic"></block>
-            <block type="math_round"></block>
-            <block type="math_modulo"></block>
-        </category>
+
 
         <!-- 変数 カテゴリ -->
         <category name="変数" colour="330" custom="VARIABLE"></category>
 
-        <!-- 型を指定できる変数 カテゴリ -->
-        <category name="変数（型指定）" colour="265" custom="VARIABLE_DYNAMIC"></category>
 
         <!-- リスト操作 カテゴリ -->
         <category name="リスト操作" colour="260">
