@@ -98,7 +98,7 @@ def edit_materials(request):
         print(old_title, old_url)
         old_url = os.path.join(settings.MEDIA_URL, old_url.replace("\\", "/"))
         print(old_url)
-    return render(request, 'Materials/edit_materials.html', {'old_title': old_title, 'old_url': old_url})
+    return render(request, 'Materials/edit_Materials.html', {'old_title': old_title, 'old_url': old_url})
 
 def delete_materials(request):
     # 教材一覧で選択した教材情報を取得
@@ -287,7 +287,7 @@ def edit_item(request):
             # 両方を選択しない場合
             print('title-choice == no and file-choice == no')
 
-            return render(request, 'Materials/edit_materials.html', {'choice_error_message': 'タイトルまたはファイルを登録してください。'})
+            return render(request, 'Materials/edit_Materials.html', {'choice_error_message': 'タイトルまたはファイルを登録してください。'})
         else:
             # タイトル変更(DB)
             if title_choice == "yes":

@@ -38,7 +38,7 @@
       <!-- メイン -->
       <main>
         <h1>教材編集</h1>
-        <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:edit_item' %}>
+        <form method="POST" enctype="multipart/form-data" action= "{% url 'AdminApp:edit_item' %}">
           {% csrf_token %}
           {% if choice_error_message %}
             <p class="error-message">{{ choice_error_message }}</p>
