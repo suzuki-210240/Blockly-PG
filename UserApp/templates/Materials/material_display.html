@@ -44,8 +44,10 @@
       </div>
       <main>
         <h2 id="materialTitle">{{ title }}</h2>
-        <iframe class="view-box" src="{%url 'UserApp:load_file'  file_name=filename%}" frameborder="0"></iframe>
-      </main>
+        <div class="view-container">
+          <iframe class="view-box" src="{%url 'UserApp:load_file'  file_name=filename%}" frameborder="0"></iframe>
+        </div>
+        </main>
     </div>
     <!--教材表示-->
   </body>

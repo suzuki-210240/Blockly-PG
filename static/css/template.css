@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body {
-  min-width: 880px;
+  min-width: 1250px;
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
   background-color: #ffffffd1;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
