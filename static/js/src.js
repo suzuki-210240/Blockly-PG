@@ -135,9 +135,9 @@ function checkCode(event){
         .then(response => response.json())
         .then(data => {
             if (data.isCorrect) {
-                alert("正解です！");
+                displayCorrectOverlay(); // 正解時の処理
             } else {
-                alert("不正解です。");
+                displayIncorrectOverlay(); // 不正解時の処理
             }
         })
         .catch(error => {
@@ -149,15 +149,61 @@ function checkCode(event){
     }
 }
 
-function generateCode(event){
-    // workspaceが未定義でないことを確認
-    if (typeof workspace !== 'undefined' && workspace !== null) {
-        // BlocklyのワークスペースからPythonコードを生成
-        var code = python.pythonGenerator.workspaceToCode(workspace);
-        // 生成されたコードを表示する
-        document.getElementById('codeOutput').value = code;
-    } else {
-        console.error('workspaceが未定義です。');
-        alert('Blocklyワークスペースが正しく初期化されていません。');
-    }
+
+// 正解時のオーバーレイ表示
+function displayCorrectOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+    overlay.innerHTML = `
+        <h1 style="color: red; font-size: 48px;">正解！</h1>
+        <a href="{% url 'UserApp:index' %}" style="display: inline-block; margin-top: 20px; font-size: 20px; color: white; background: red; padding: 10px; text-decoration: none; border-radius: 5px;">戻る</a>
+    `;
+    startConfetti(); // 花吹雪を開始
+}
+
+// 不正解時のオーバーレイ表示
+function displayIncorrectOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "block";
+    overlay.innerHTML = `<h1 style="color: blue;">不正解</h1>`;
+    setTimeout(() => {
+        overlay.style.display = "none"; // 1秒後にオーバーレイを非表示
+    }, 1000);
+
+    // クリックで非表示
+    overlay.onclick = () => {
+        overlay.style.display = "none";
+    };
+}
+
+// 花吹雪の処理（変わらず）
+function startConfetti() {
+    const confettiContainer = document.getElementById("confetti-container");
+
+    let confettiInterval = setInterval(() => {
+        const confetti = document.createElement("div");
+        confetti.style.position = "absolute";
+        confetti.style.width = "10px";
+        confetti.style.height = "10px";
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.bottom = "0";
+        confetti.style.animation = "fall 3s linear";
+
+        confettiContainer.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 3000);
+    }, 50);
+
+    setTimeout(() => {
+        clearInterval(confettiInterval);
+    }, 5000);
+}
+
+// ランダムな色を生成
+function getRandomColor() {
+    const colors = ["#FF5733", "#33FF57", "#5733FF", "#FFFF33", "#33FFFF", "#FF33FF"];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
