@@ -1,11 +1,6 @@
-/*タイトルページ用のCSSファイル*/
-/* static/css/title.css */
-
-/*全体のレイアウト*/
+/* 全体のレイアウト */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    color: #333;
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,6 +10,27 @@ body {
     height: 100vh;
     text-align: center;
     min-width: 880px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 背景画像のぼかし用 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    width: auto; 
+    height: auto; 
+    min-width: 100%; 
+    min-height: 100%; 
+    transform: translate(-50%, -50%); 
+    background-image: url('../images/title.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    filter: blur(6px);
+    z-index: -1;
 }
 
 /*タイトルのスタイル*/
@@ -45,6 +61,7 @@ div {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
+    z-index: 1; /* 背景の上に表示 */
 }
 
 /*ボタンのスタイル*/
@@ -75,6 +92,7 @@ button:hover {
 p {
     font-size: 1rem;
     margin-top: 20px;
+    z-index: 1;
 }
 
 a {
