@@ -214,6 +214,9 @@ def add_file(request):
             # アップロードされたファイル名の取得（元のファイル名）
             original_file_name = uploaded_file.name
 
+            # アップロードされた画像ファイルの取得(複数)
+            image_file = request.FILES.getlist('img_file')
+
             # トランザクションを開始
             try:
                 with transaction.atomic():
@@ -242,8 +245,15 @@ def add_file(request):
                         for chunk in uploaded_file.chunks():
                             destination.write(chunk)
 
-                    # 正常終了時
-                    return render(request, 'Materials/wait_page.html')
+                    # 画像ファイルを保存(複数)
+                    for image in image_file:
+                        # 任意の保存先に保存する場合
+                        with open(f'static/images/{image.name}', 'wb+') as destination:
+                            for chunk in image.chunks():
+                                destination.write(chunk)
+
+                                # 正常終了時
+                                return render(request, 'Materials/wait_page.html')
 
             except IntegrityError:
                 # 一意制約違反などのデータベースエラー処理
