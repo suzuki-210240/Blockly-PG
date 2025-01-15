@@ -18,7 +18,7 @@
         <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
 
     </head>
-    <body>
+    <body  data-return-url="{% url 'UserApp:index' %}">
         <header>
             <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
             <div class="file">

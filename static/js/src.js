@@ -156,7 +156,7 @@ function displayCorrectOverlay() {
     overlay.style.display = "block";
     overlay.innerHTML = `
         <h1 style="color: red; font-size: 48px;">正解！</h1>
-        <a href="{% url 'UserApp:index' %}" style="display: inline-block; margin-top: 20px; font-size: 20px; color: white; background: red; padding: 10px; text-decoration: none; border-radius: 5px;">戻る</a>
+        <a href="${returnUrl}" style="display: inline-block; margin-top: 20px; font-size: 20px; color: white; background: red; padding: 10px; text-decoration: none; border-radius: 5px;">戻る</a>
     `;
     startConfetti(); // 花吹雪を開始
 }
@@ -176,7 +176,7 @@ function displayIncorrectOverlay() {
     };
 }
 
-// 花吹雪の処理（変わらず）
+// 花吹雪の処理
 function startConfetti() {
     const confettiContainer = document.getElementById("confetti-container");
 
