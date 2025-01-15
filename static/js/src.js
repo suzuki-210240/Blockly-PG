@@ -66,7 +66,7 @@ if (typeof workspace !== 'undefined' && workspace !== null) {
     // BlocklyのワークスペースからPythonコードを生成
     var code = python.pythonGenerator.workspaceToCode(workspace);
     // 生成されたコードを表示する
-    document.getElementById('codeOutput2').value = code;
+    document.getElementById('codeOutput').value = code;
 } else {
     console.error('workspaceが未定義です。');
     alert('Blocklyワークスペースが正しく初期化されていません。');
@@ -167,6 +167,7 @@ function checkCode(event){
 // 正解時のオーバーレイ表示
 function displayCorrectOverlay() {
     const overlay = document.getElementById("overlay");
+    const returnUrl = document.body.getAttribute("data-return-url");
     overlay.style.display = "block";
     overlay.innerHTML = `
         <h1 style="color: red; font-size: 48px;">正解！</h1>
