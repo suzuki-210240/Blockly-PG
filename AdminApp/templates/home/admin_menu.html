@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <img class="logo" src="{% static 'images/logo-preview.png' %}">
+      <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
       <div class="user-info">
         {% if user_info %}
           {{ user_info.group }} : {{ user_info.username }}
@@ -23,14 +23,43 @@
     <main class="Box">
       <h1>管理者 メニュー</h1>
       <p>Action List</p>
-      <div class="container">
-        <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
-        <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
-        <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント管理</a>
-        <form action="{% url 'logout' %}" method="post">
-          {% csrf_token %}
-          <button type="submit" class="button6">ログアウト</button>
-        </form>
+
+      <div class="containers">
+        <div class="container1">
+          <!-- 教材管理ボタン -->
+          <form method="post" action="{% url 'AdminApp:admin_list_files' %}">
+            {% csrf_token %}
+            <button type="submit" class="button1">
+              <img src="{% static 'images/material.png' %}" alt="教材一覧">
+              教材管理
+            </button>
+          </form>
+
+          <!-- 課題管理ボタン -->
+          <form method="post" action="{% url 'AdminApp:admin_kadai_list' %}">
+            {% csrf_token %}
+            <button type="submit" class="button2">
+              <img src="{% static 'images/kadai.png' %}" alt="課題一覧">
+              課題管理
+            </button>
+          </form>
+
+          <!-- アカウント管理ボタン -->
+          <form method="post" action="{% url 'AdminApp:account_management' %}">
+            {% csrf_token %}
+            <button type="submit" class="button3">
+              <img src="{% static 'images/acount.png' %}" alt="アカウント管理">
+              アカウント管理
+            </button>
+          </form>
+        </div>
+
+        <div class="container3">
+          <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="button6">ログアウト</button>
+          </form>
+        </div>
       </div>
     </main>
   </body>

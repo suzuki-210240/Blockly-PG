@@ -2,7 +2,7 @@
 
 body {
   min-width: 880px;
-  background-color: rgb(220, 245, 255);
+  background-color: rgb(255, 255, 255);
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
   background-repeat: repeat;
@@ -34,6 +34,17 @@ header {
     padding-left: 10px;
 }
 
+/* メインコンテンツ */
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #c4e9f2;
+    border: solid 2px #1d78b1;
+    border-radius: 30px;
+    margin: 30px auto auto 50px;
+    width: 900px;
+}
 
 .Box {
     display: flex;
@@ -67,77 +78,87 @@ header {
 /* メニューボタン配置 */
 .containers {
     margin-top: 10px;
-    /* display: flex;
-    flex-direction: column; */
-    /* 縦並びに変更 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
-    /* 中央揃え */
     justify-content: center;
     width: 80%;
-    /* 幅を画面の80%に設定 */
     max-width: 600px;
-    /* 最大幅を600pxに設定 */
-    gap: 15px;
-    /* ボタン間のスペース */
+    margin: auto;
+}
+
+.container1, .container2 {
+    display: flex;
+    gap: 20px; /* ボタン間の間隔 */
 }
 
 /* ボタンスタイル */
-button {
+.button1, .button2, .button3, .button4 ,.button5 {
     border: solid 2px #191970;
     color: #000000;
     border-radius: 20px;
-    padding: 10px 30px;
+    display: flex;
+    flex-direction: column; /* アイコン（img）と文字を縦並びに */
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* 内側の余白をなくして正方形に */
     text-decoration: none;
     font-size: 20px;
     box-shadow: 0 5px 0 #191970;
-    /* ボタンの幅を100%に設定し、親要素の幅に合わせる */
-    margin: 10px 0;
-    /* 上下の余白 */
     text-align: center;
     transition: .3s;
-    background-color: #4fb0f1;
-    width: 100%;
+    background-color: #fff;
+    width: 170px; /* 正方形にするため幅を指定 */
+    height: 170px; /* 高さも同じ */
+    margin: 0;
 }
 
+/* ログアウトボタン */
+.button6 {
+    border: solid 2px #191970;
+      color: #000000;
+      border-radius: 20px;
+      padding: 10px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      box-shadow: 0 5px 0 #191970;
+      width: 100%;
+      margin: 10px 0;
+      text-align: center;
+      transition: .3s;
+}    
+
+button img {
+    width: 65px; /* アイコンのサイズを調整 */
+    height: 65px; /* アイコンのサイズを調整 */
+    margin-bottom: 10px; /* アイコンと文字の間に隙間を開ける */
+}
+
+
 button:hover {
-    color: #ffffff;
     transform: translate(5px);
     box-shadow: 0 0 0 #ffffff;
 }
 
+/*
 .button1 {
-    background-color: #4fb0f1;
+    background-color: #C4E9F2;
 }
 
 .button2 {
-    background-color: #9ed9fc;
+    background-color: #7FBBDD;
 }
 
 .button3 {
-    background-color: rgb(148, 249, 249);
+    background-color: #F58B05;
 }
 
 .button4 {
-    background-color: #42d8f9;
+    background-color: #FFC22F;
 }
 
 .button5 {
-    background-color: #bfddff;
-}
+    background-color: #FFFF66;
+}*/
 
-.button6 {
-    background-color: #f3f7f7;
-    width: 30%;
-    margin-left: 200px;
-  }
-
-/* メインコンテンツ */
-main {
-    align-items: center;
-    justify-content: center;
-    background-color: #c4e9f2;
-    border: solid 2px #1d78b1;
-    border-radius: 30px;
-    margin: 0 ;
-    width: 100%;
-}

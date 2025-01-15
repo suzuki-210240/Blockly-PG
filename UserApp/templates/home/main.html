@@ -26,40 +26,59 @@
             <p>Action List</p>
             <!--メニューバー-->
             <div class="containers">
-                <!--教材一覧ボタン-->
-                <form method="post" action="{% url 'UserApp:user_list_files' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="button1">教材一覧</button>
-                </form>
+                <div class="container1">
+                    <!-- 教材一覧ボタン -->
+                    <form method="post" action="{% url 'UserApp:user_list_files' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button1">
+                            <img src="{% static 'images/material.png' %}" alt="教材一覧">
+                            教材一覧
+                        </button>
+                    </form>
 
-                <!--課題一覧ボタン-->
-                <form method="post" action="{% url 'UserApp:kadai_list' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="button2">課題一覧</button>
-                </form>
+                    <!-- 課題一覧ボタン -->
+                    <form method="post" action="{% url 'UserApp:kadai_list' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button2">
+                            <img src="{% static 'images/material.png' %}" alt="教材一覧">
+                            課題一覧
+                        </button>
+                    </form>
 
-                <form action="{% url 'UserApp:progress' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="button5">進捗状況の確認</button>
-                </form>
+                    <!-- 進捗状況の確認ボタン -->
+                    <form action="{% url 'UserApp:progress' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="button5">
+                            <img src="{% static 'images/list.png' %}" alt="進捗状況の確認">
+                            進捗状況の確認
+                        </button>
+                    </form>
+                </div>
+                <div class="container2">
+                    <!-- フリーモードボタン -->
+                    <form method="post" action="{% url 'UserApp:freemode' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button3">
+                            <img src="{% static 'images/code.png' %}" alt="フリーモード">
+                            フリーモード
+                        </button>
+                    </form>
 
-                <!--フリーモードボタン-->
-                <form method="post" action="{% url 'UserApp:freemode' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="button3">フリーモード</button>
-                </form>
-
-                <!--ユーザー編集ボタン-->
-                <form method="post" action="{% url 'UserApp:user_info' %}">
-                    {% csrf_token %}
-                    <button type="submit" class="button4">アカウント管理</button>
-                </form>
-
-                <!--ログアウトボタン-->
-                <form action="{% url 'logout' %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="button6">ログアウト</button>
-                </form>
+                    <!-- アカウント管理ボタン -->
+                    <form method="post" action="{% url 'UserApp:user_info' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button4">
+                            <img src="{% static 'images/material.png' %}" alt="教材一覧">
+                            アカウント管理
+                        </button>
+                    </form>
+                </div>
+                <div class="container3">
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="button6">ログアウト</button>
+                    </form> 
+                </div>         
             </div>
         </main>
     </body>
