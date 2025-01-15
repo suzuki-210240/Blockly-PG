@@ -131,6 +131,26 @@ img {
     transition: .3s;
 }    
 
+.button1:hover {
+  background-color: #c4f2cc;
+}
+
+.button2:hover {
+  background-color: #FFFF66;
+}
+
+.button3:hover {
+  background-color: #7FBBDD;
+}
+
+.button4:hover {
+  background-color: #FFC22F;
+}
+
+.button5:hover {
+  background-color: #F58B05;
+}
+
 button:hover {
   transform: translate(5px);
   box-shadow: 0 0 0 #ffffff;

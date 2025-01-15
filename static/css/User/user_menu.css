@@ -41,7 +41,7 @@ main {
     justify-content: center;
     background-color: #c4e9f2;
     border: solid 2px #1d78b1;
-    border-radius: 30px;
+    border-radius: 20px;
     margin: 30px auto auto 50px;
     width: 900px;
 }
@@ -141,24 +141,24 @@ button:hover {
     box-shadow: 0 0 0 #ffffff;
 }
 
-/*
-.button1 {
-    background-color: #C4E9F2;
+
+.button1:hover {
+    background-color: #c4f2cc;
 }
 
-.button2 {
+.button2:hover {
+    background-color: #FFFF66;
+}
+
+.button3:hover {
     background-color: #7FBBDD;
 }
 
-.button3 {
-    background-color: #F58B05;
-}
-
-.button4 {
+.button4:hover {
     background-color: #FFC22F;
 }
 
-.button5 {
-    background-color: #FFFF66;
-}*/
+.button5:hover {
+    background-color: #F58B05;
+}
 

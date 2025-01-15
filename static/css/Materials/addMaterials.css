@@ -17,7 +17,7 @@ header {
 }
 
 main {
-    width: 850px;
+    width: 880px;
 }
 
 h1 {
@@ -73,8 +73,8 @@ input {
     margin-top: 20px;
 }
 
-button {
-    background-color: whitesmoke;
+.buack-button ,.submit-button {
+    background-color: #fff;
     border: solid 2px #191970;
     color: #000;
     border-radius: 50px;
@@ -97,7 +97,7 @@ button {
 }
 
 /* ホバー時の背景色変更とアニメーション */
-button:hover {
+.submit-button:hover {
     background-color: #ecfa24;
     /* ホバー時の背景色 */
     transform: scale(1.05);
@@ -106,7 +106,7 @@ button:hover {
 
 /* 戻るボタン */
 .back-button {
-    background-color: #f0f0f0;
+    background-color: #fff;
     border: solid 2px #333;
     color: #333;
     border-radius: 50px;
@@ -134,3 +134,41 @@ button:hover {
 input[type="file"] {
     display: inline-block;
 }
+
+iframe {
+    margin-left: 20px;
+}
+
+#add-img {
+    margin-left: 24px;
+    background-color: #fff;
+    border: solid 0.5px #333;
+    color: #333;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 1px 16px;
+    cursor: pointer;
+}
+
+#add-img:hover {
+    background-color: #ecfa24;
+}
+
+.delete-img {
+    margin-left: 20px;
+    background-color: #fff;
+    border: solid 0.5px #333;
+    color: #333;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 2px 16px;
+}
+
+.delete-img:hover {
+    background-color: #ccc;
+}
+
+.img-box {
+    margin-top: 20px;
+}
+

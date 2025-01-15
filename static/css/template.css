@@ -3,7 +3,7 @@
 body {
   min-width: 1250px;
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-  background-color: #ffffffd1;
+  background-color: #dadada81;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
   background-repeat: repeat;
@@ -11,6 +11,7 @@ body {
 
 header {
   display: flex;
+  /*background-color: #4be9e1;*/
   justify-content: space-between;
   width: auto;
   height: 80px;
@@ -62,14 +63,15 @@ header {
   height: 100vh;
   padding-top: 40px;
   padding-left: 10px;
+  padding-right: 13px;
   gap: 40px;
   /*flexのmargin*/
-
 }
 
 .container a {
   border: solid 2px #191970;
   color: #000000;
+  background-color: #fff;
   border-radius: 20px;
   padding: 10px 30px;
   text-decoration: none;
@@ -80,26 +82,27 @@ header {
   transition: .3s;
 }
 
-.button1 {
-  background-color: #4fb0f1;
+.button1:hover {
+  background-color: #c4f2cc;
 }
 
-.button2 {
-  background-color: #9ed9fc;
+.button2:hover {
+  background-color: #FFFF66;
 }
 
-.button3 {
-  background-color: #bbf8f8;
+.button3:hover {
+  background-color: #7FBBDD;
 }
 
-.button4 {
-  background-color: #bfddff;
-}
-
-.button1:hover,
-.button2:hover,
-.button3:hover,
 .button4:hover {
+  background-color: #FFC22F;
+}
+
+.button5:hover {
+  background-color: #F58B05;
+}
+
+.container button:hover {
   color: #ffffff;
   transform: translateY(5px);
   box-shadow: 0 0 0 #ffffff;
@@ -110,11 +113,11 @@ main {
   gap: 10px;
   flex-direction: column;
   /*align-items: center;*/
-  /* justify-content: center; */
-  background-color: #c4e9f2;
+  /* justify-content: center; */ 
+  background-color: #fff;/*#b8e5f0*/
   border: solid 2px #1d78b1;
   border-radius: 30px;
-  margin: 0 15px 15px 15px;
+  margin: 0 15px 15px 0px;
   /*width: 1500px;*/
   height: 100hv;
 }
