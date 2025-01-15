@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
     <script src="{% static 'js/preview.js' %}?v=1.0"></script>
+    <script src="{% static 'js/add_img.js' %}?v=1.0"></script>
     <title>教材新規追加[BlocklyCodeAcademy]</title>
   </head>
 
@@ -58,8 +59,18 @@
               <p class="error-message">{{ form.file.errors }}</p>
             {% endif %}
           </div>
+          <div class="img-box">
+            <label id="sub-title" for="file">画像ファイル</label>
+            <button type="button" id="add-img">追加</button>
+            <div id="img-box">
+              <!-- ここに追加される画像ファイルの入力フィールド -->
+            </div>
+            {% if form.file.errors %}
+              <p class="error-message">{{ form.file.errors }}</p>
+            {% endif %}
+          </div>
           <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >戻る</a>
-          <button type="submit">登録</button>
+          <button class="submit-button" type="submit">登録</button>
         </form>
         <div class="view-box">
           <label id="sub-title" for="file">プレビュー(一部表示)</label>
