@@ -60,6 +60,20 @@ function clearConsole() {
     flg = 0;
 }
 
+function generateCode(event){
+    // workspaceが未定義でないことを確認
+if (typeof workspace !== 'undefined' && workspace !== null) {
+    // BlocklyのワークスペースからPythonコードを生成
+    var code = python.pythonGenerator.workspaceToCode(workspace);
+    // 生成されたコードを表示する
+    document.getElementById('codeOutput2').value = code;
+} else {
+    console.error('workspaceが未定義です。');
+    alert('Blocklyワークスペースが正しく初期化されていません。');
+}
+}
+
+
 
 // ワークスペースを XML として保存する関数
 function saveWorkspaceAsXML() {
