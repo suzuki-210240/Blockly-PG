@@ -10,6 +10,10 @@
   <script src="{% static 'js/preview.js' %}?v=1.0"></script>
   <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材削除[BlocklyCodeAcademy]</title>
+  <script>
+    const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
+  </script>
+
 </head>
 
 <body>
@@ -52,6 +56,7 @@
               <input type="text" id="title" name="title" style="background-color: #a9a9a9" value="{{ title }}" readonly />
               <input type="hidden" name="url" value="{{ url }}">
           </div>
+          <p>デバッグ用: {{ url }}</p>
           </div>
           <!-- 戻るボタン -->
           <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button">戻る</a>

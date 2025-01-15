@@ -11,14 +11,17 @@
             <script src="{% static 'js/blockly/python_compressed.js' %}"></script>
             <script src="{% static 'js/blockly/ja.js' %}">
             <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
             <script>
                 const kadaiId = "{{ kadai_number }}";
                 const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
             </script>
+
         <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
 
     </head>
-    <body>
+    <body  data-return-url="{% url 'UserApp:index' %}">
         <header>
             <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
             <div class="file">
@@ -40,43 +43,42 @@
             </div>
         </header>
         <main>
-                <div class="field">
-                    <div class="main_filed">
-                        <h3 id="name">・問題 : {{ kadai_name }}</h3>
-                        <div id="blocklyDiv"></div>
-                    </div>
+            <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;  z-index: 999; text-align: center; color: white; padding-top: 20%; font-size: 32px;"></div>
+            <div id="confetti-container" style="position: fixed; bottom: 0; width: 100%; height: 0;"></div>
 
-                    
-                    <div class = "sub_field">
-                        <div class = "tab">
-                            <h4><a onclick="change('mode1')">問題文</a></h4>
-                            <h4><a onclick="change('mode2')">コード</a></h4>
-                        </div>
-                        <div id="mode1" class="mode">
-                            <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>
-                        </div>
-                        <div id="mode2" class="mode">
-                            <textarea id="codeOutput" rows="10" cols="50" disabled></textarea>
-                        </div>
-                    
-                        <div class="button_area">
-                            <!-- 実行ボタン -->
-                            <button onclick="runCode()">実行</button>
-
-                            <!--正誤判定-->
-                            <button id="checkCodeButton" onclick="checkCode()">解答を送信</button>
-                            <!--組んだブロックのコード変換と送信-->
-                            <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                            <button onclick="clearConsole()">クリア</button>
-                        </div>
-
-                        <!--出力結果を表示するエリア-->
-                        <h4>出力結果</h4>
-                        <div id="output">--------ここに結果出力されます--------</div>
-                    </div>
+            <div class="field">
+                <div class="main_filed">
+                    <h3 id="name">・問題 : {{ kadai_name }}</h3>
+                    <div id="blocklyDiv"></div>
                 </div>
 
-               
+                    
+                <div class = "sub_field">
+                    <div class = "tab">
+                        <h4><a onclick="change('mode1')">問題文</a></h4>
+                        <h4><a onclick="change('mode2')">コード</a></h4>
+                    </div>
+                    <div id="mode1" class="mode">
+                        <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>
+                    </div>
+                    <div id="mode2" class="mode">
+                        <textarea id="codeOutput" rows="10" cols="50" disabled>ここにコードが生成されます</textarea>
+                    </div>
+                    
+                    <div class="button_area">
+                        <!-- 実行ボタン -->
+                        <button onclick="runCode()">実行</button>
+
+                        <!--正誤判定-->
+                        <button id="checkCodeButton" onclick="checkCode()">解答を送信</button>
+                        <!--組んだブロックのコード変換と送信-->
+                        <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
+                        <button onclick="clearConsole()">クリア</button>
+                    </div>
+
+                    <!--出力結果を表示するエリア-->
+                    <div id="output">--------------ここに結果が出力されます---------------</div>
+                </div>
             </div>
         </main>
         <footer>

@@ -1,6 +1,7 @@
 import re
 import os,requests,urllib.parse
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
@@ -100,9 +101,11 @@ def edit_materials(request):
         print(old_url)
     return render(request, 'Materials/edit_Materials.html', {'old_title': old_title, 'old_url': old_url})
 
+
 def delete_materials(request):
     # 教材一覧で選択した教材情報を取得
     if(request.method == 'POST'):
+        print("start")
         material_title = request.POST.get('title')
         material_url = request.POST.get('url') #medhia/uploads\ファイル名
         print(material_title, material_url)
@@ -117,7 +120,7 @@ def delete_materials(request):
             #例外処理
             print(f"Error fetching HTML file: {e}") #例外処理(エラーメッセージ出力)e)
 
-        return render(request, 'Materials/delete_materials.html', {'title': material_title, 'filename': filename})
+        return render(request, 'Materials/delete_materials.html', {'title': material_title, 'filename': filename, 'url': material_url})
 
     return HttpResponse('Invalid request', status=400)
 
@@ -319,13 +322,14 @@ def edit_item(request):
 
 #削除
 def delete_item(request):
+    
     if request.method == 'POST':
-
         # uploadsディレクトリのパス
         folder_path = os.path.join(settings.MEDIA_ROOT, 'uploads')
         print('folder_path:', folder_path)
         # ファイルパスの取得
         file_path = request.POST.get("url")
+        print("Received file_path:", file_path)  # 追加
 
         # ファイルパスがNone または`/media/uploads/`で始まらない場合
         if not file_path or not file_path.startswith("/media/uploads/"):
