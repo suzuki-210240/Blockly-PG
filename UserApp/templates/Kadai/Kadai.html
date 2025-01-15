@@ -55,8 +55,8 @@
                     
                 <div class = "sub_field">
                     <div class = "tab">
-                        <h4><a onclick="change('mode1')">問題文</a></h4>
-                        <h4><a onclick="change('mode2')">コード</a></h4>
+                        <h4><a id="tab-mode1" onclick="change('mode1','tab-mode1')">問題文</a></h4>
+                        <h4><a id="tab-mode2" onclick="change('mode2','tab-mode2')">コード</a></h4>
                     </div>
                     <div id="mode1" class="mode">
                         <textarea id="exampleOutput" rows="10" cols="50" disabled>{{ message }}</textarea>

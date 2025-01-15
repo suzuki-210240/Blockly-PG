@@ -41,17 +41,23 @@ function runCode() {
 }
 
 
-function change(mode_id){
+function change(mode_id,tab_id){
     const modes = document.querySelectorAll('.mode');
     modes.forEach(mode => mode.classList.remove('active'));
     const show = document.getElementById(mode_id);
     if (show){
         show.classList.add('active');
     }
+    const tabs = document.querySelectorAll('.tab h4 a');
+    tabs.forEach(tab => tab.classList.remove('active-tab'));
+    const activeTab = document.getElementById(tab_id);
+    if (activeTab) {
+        activeTab.classList.add('active-tab');
+    }
 }
 
 window.onload = function() {
-    change('mode1');
+    change('mode1','tab-mode1');
 }
 
 

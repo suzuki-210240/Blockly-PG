@@ -76,10 +76,18 @@ h3,h4 {
     margin: 1px;
 }
 
-.tab h4 {
-    background-color: #a1a0a0;
-    border: #fdfdfd solid 1px;
+.tab h4 a {
+    background-color: #ffbf77;
+    color: black;
+    text-decoration: none;
 }
+
+.tab h4 a.active-tab {
+    border: #ffa826 2px solid;
+    color: rgb(255, 104, 104);
+    font-weight: bold;
+}
+
 
 .mode{
     display: none;
@@ -97,12 +105,12 @@ textarea {
 #blocklyDiv {
     height: 95.5%;
     width: 99%;
-    margin-left: 15px;
+    margin-left: 10px;
     border: solid 1px #9e9c9c; 
     overflow-y: scroll !important; /* 縦スクロールバーを常に表示 */
 }
 
-.main_filed{
+.main_filed,.main_filed-f{
     padding-right: 0.5%;
     width: 68%;
 }
