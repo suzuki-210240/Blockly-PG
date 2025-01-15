@@ -11,10 +11,13 @@
             <script src="{% static 'js/blockly/python_compressed.js' %}"></script>
             <script src="{% static 'js/blockly/ja.js' %}">
             <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
             <script>
                 const kadaiId = "{{ kadai_number }}";
                 const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
             </script>
+
         <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
 
     </head>

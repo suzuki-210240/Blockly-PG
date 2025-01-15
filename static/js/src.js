@@ -191,34 +191,27 @@ function displayIncorrectOverlay() {
     };
 }
 
-// 花吹雪の処理
 function startConfetti() {
-    const confettiContainer = document.getElementById("confetti-container");
+    const duration = 5 * 1000; // 紙吹雪を表示する時間（5秒）
+    const end = Date.now() + duration;
 
-    let confettiInterval = setInterval(() => {
-        const confetti = document.createElement("div");
-        confetti.style.position = "absolute";
-        confetti.style.width = "10px";
-        confetti.style.height = "10px";
-        confetti.style.backgroundColor = getRandomColor();
-        confetti.style.left = Math.random() * window.innerWidth + "px";
-        confetti.style.bottom = "0";
-        confetti.style.animation = "fall 3s linear";
+    // 紙吹雪のループを作成
+    (function frame() {
+        confetti({
+            particleCount: 3,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }, // 左から紙吹雪を発生
+        });
+        confetti({
+            particleCount: 3,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }, // 右から紙吹雪を発生
+        });
 
-        confettiContainer.appendChild(confetti);
-
-        setTimeout(() => {
-            confetti.remove();
-        }, 3000);
-    }, 50);
-
-    setTimeout(() => {
-        clearInterval(confettiInterval);
-    }, 5000);
-}
-
-// ランダムな色を生成
-function getRandomColor() {
-    const colors = ["#FF5733", "#33FF57", "#5733FF", "#FFFF33", "#33FFFF", "#FF33FF"];
-    return colors[Math.floor(Math.random() * colors.length)];
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+    })();
 }
