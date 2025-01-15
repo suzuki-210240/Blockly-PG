@@ -166,14 +166,17 @@ function checkCode(event){
 
 // 正解時のオーバーレイ表示
 function displayCorrectOverlay() {
-    const overlay = document.getElementById("overlay");
-    const returnUrl = document.body.getAttribute("data-return-url");
-    overlay.style.display = "block";
-    overlay.innerHTML = `
+    startConfetti(); // 花吹雪を開始
+
+    setTimeout(() => {
+        const overlay = document.getElementById("overlay");
+        const returnUrl = document.body.getAttribute("data-return-url");
+        overlay.style.display = "block";
+        overlay.innerHTML = `
         <h1 style="color: red; font-size: 48px;">正解！</h1>
         <a href="${returnUrl}" style="display: inline-block; margin-top: 20px; font-size: 20px; color: white; background: red; padding: 10px; text-decoration: none; border-radius: 5px;">戻る</a>
     `;
-    startConfetti(); // 花吹雪を開始
+    },500);
 }
 
 // 不正解時のオーバーレイ表示
@@ -192,7 +195,7 @@ function displayIncorrectOverlay() {
 }
 
 function startConfetti() {
-    const duration = 5 * 1000; // 紙吹雪を表示する時間（5秒）
+    const duration = 2.5 * 1000; // 紙吹雪を表示する時間（5秒）
     const end = Date.now() + duration;
 
     // 紙吹雪のループを作成
