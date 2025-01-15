@@ -9,12 +9,13 @@
     </head>
     <body>
         <h1>BlocklyCodeAcademy</h1>
-        <div>
+        <div class="home">
             <h2>ログイン</h2>
             <button onclick="window.location.href='/user/public_free'">フリーモードで始める</button>
             <button onclick="window.location.href='/login'">受講者ログイン</button>
             <button onclick="window.location.href='/login'">管理者ログイン</button>
+            <p>まだアカウントをお持ちでないですか？<a href="{% url 'register' %}">新規登録</a></p>
         </div>
-        <p>まだアカウントをお持ちでないですか？<a href="{% url 'register' %}">新規登録</a></p>
+        
     </body>
 </html>

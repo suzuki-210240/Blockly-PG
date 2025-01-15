@@ -14,6 +14,7 @@ urlpatterns = [
     path('edit_materials/', views.edit_materials, name='edit_materials'),  # 教材編集ページ
     path('delete_materials/', views.delete_materials, name='delete_materials'), # 教材削除ページ
     path('admin_list_files/', views.admin_list_files, name='admin_list_files'), # 管理者用教材一覧関数呼び出し
+    path('wait/', views.wait_page, name='wait_page'), # リダイレクトページ呼び出し
     path('edit_item/', views.edit_item, name='edit_item'), # 教材編集関数呼び出し
     path('delete_item/', views.delete_item, name='delete_item'), # 教材削除関数呼び出し
     path('load/<str:file_name>/', views.load_file, name='load_file'),#埋込むの教材読み込み
@@ -22,7 +23,6 @@ urlpatterns = [
     path('add_kadai/',views.add_kadai_and_answer,name='add_kadai'),#課題追加関数呼び出し
     path('edit_kadai/<str:kadai_id>',views.edit_kadai_and_answers,name='edit_kadai'),#課題編集関数呼び出し
     path('delete_kadai/<str:kadai_id>',views.delete_kadai,name='delete_kadai'),#課題削除関数呼び出し
-
 ]
 
 if settings.DEBUG:

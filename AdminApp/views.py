@@ -11,6 +11,7 @@ from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
 from django.http import HttpResponse,Http404, JsonResponse
 from django.db import transaction, IntegrityError
+from django.shortcuts import render
 
 
 #管理者のみがアクセスできるビューのデコレーター
@@ -83,8 +84,11 @@ def admin_materials_list(request):
 def add_materials(request):
     return render(request, 'Materials/add_Materials.html')
 
-def index(request):
-    return render(request, 'Materials/index.html')
+def wait_page(request):
+    return render(request, 'Materials/wait_page.html')
+
+def next_page(request):
+    return render(request, 'AdminApp:admin_kadai_list')
 
 def edit_materials(request):
      # 教材一覧で選択した教材情報を取得
@@ -236,7 +240,7 @@ def add_file(request):
                             destination.write(chunk)
 
                     # 正常終了時
-                    return render(request, 'Materials/index.html')
+                    return render(request, 'Materials/wait_page.html')
 
             except IntegrityError:
                 # 一意制約違反などのデータベースエラー処理
@@ -308,7 +312,7 @@ def edit_item(request):
                 material.html_file_name = original_file_name
                 material.save()
         
-        return render(request, 'Materials/index.html')
+        return render(request, 'Materials/wait_page.html')
 
     return HttpResponse("Method not allowed", status=405)
 
@@ -343,7 +347,7 @@ def delete_item(request):
                 material = get_object_or_404(Material, material_id=file_id)
                 material.delete()  # レコードを削除
 
-                return render(request, 'Materials/index.html')
+                return render(request, 'Materials/wait_page.html')
             else:
                 return JsonResponse({'status': 'error', 'message': 'not material'})
         except Exception as e:

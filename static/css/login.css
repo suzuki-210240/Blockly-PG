@@ -1,20 +1,52 @@
-@charset "UTF-8";
-/*ログインページ用のCSSファイル*/
-/* static/css/login.css */
-
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
     color: #333;
     min-width: 880px;
+    margin: 0;
+    height: 100vh;
+    display: flex; /* Flexboxを有効にする */
+    justify-content: center; /* 横方向の中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    width: auto; 
+    height: 683px; 
+    min-width: 100%; 
+    min-height: 100%; 
+    transform: translate(-50%, -50%); 
+    background-image: url('../images/login.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    z-index: -1;
 }
 
 .login-container {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 380px;
+    padding: 30px 40px;
     background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1; /* 背景の上に配置 */
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #e74c3c;
+    background: linear-gradient(45deg, #e74c3c, #8e44ad, #3498db);
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: 2px;
 }
 
 h1 {
@@ -33,6 +65,7 @@ button {
     color: white;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
