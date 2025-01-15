@@ -33,17 +33,26 @@ var workspace = Blockly.inject('blocklyDiv', {
                 </block>
             <block type="math_round"></block>
             <block type="math_modulo"></block>
+            <block type="math_random_int"></block>
+            <block type="math_single"></block>
+            <block type="math_trig"></block>
+
         </category>
+
         <!-- コントローラ カテゴリ -->
         <category name="コントローラ" colour="210">
             <block type="controls_if"></block>
             <block type="controls_ifelse"></block>
         </category>
+
         <!-- ループ カテゴリ -->
         <category name="ループ" colour="120">
             <block type="controls_repeat_ext"></block>
+            <block type="controls_repeat"></block> <!-- 回数指定ループ -->
             <block type="controls_whileUntil"></block>
             <block type="controls_for"></block>
+            <block type="controls_forEach"></block>
+            <block type="controls_flow_statements"></block>
         </category>
 
         <!-- ロジック カテゴリ -->
@@ -51,20 +60,28 @@ var workspace = Blockly.inject('blocklyDiv', {
             <block type="logic_compare"></block>
             <block type="logic_operation"></block>
             <block type="logic_boolean"></block>
+            <block type="logic_null"></block>
+            <block type="logic_negate"></block>
         </category>
 
         <!-- テキスト カテゴリ -->
         <category name="テキスト" colour="220">
             <block type="text"></block>
+            <block type="text_join"></block>
+            <block type="text_length"></block>
             <block type="text_print"></block>
+            <block type="text_print">
+                <value name="TEXT">
+                  <block type="text">
+                    <field name="TEXT">hello</field>
+                  </block>
+                </value>
+            </block>
         </category>
-
-
 
         <!-- 変数 カテゴリ -->
         <category name="変数" colour="330" custom="VARIABLE"></category>
-
-
+        
         <!-- リスト操作 カテゴリ -->
         <category name="リスト操作" colour="260">
             <block type="lists_create_with"></block>
@@ -72,6 +89,8 @@ var workspace = Blockly.inject('blocklyDiv', {
             <block type="lists_getIndex"></block>
             <block type="lists_setIndex"></block>
             <block type="lists_insert"></block>
+            <block type="lists_repeat"></block>
+            <block type="lists_reverse"></block>
         </category>
 
         <!-- 関数 カテゴリ -->

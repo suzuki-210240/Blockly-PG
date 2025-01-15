@@ -227,14 +227,17 @@ def check_code(request):
             #print(f'取得した問題: {kadai.name} - {kadai.q_text}')
             
             # 解答の取得
-            correct_answer = Answer.objects.get(kadai=kadai)
-
-            print(f'解答: {submitted_code.strip()}')
-            print(f'正解: {correct_answer.a_text.strip()}')
-
+            correct_answer = Answer.objects.filter(kadai=kadai)
+            
+            if not correct_answer.exists():
+                print('end - 該当する解答が見つかりません')
+                return JsonResponse({"error": "該当する解答が見つかりません"}, status=404)
+            is_correct = any(
+                submitted_code.splitlines() == answer.a_text.splitlines() for answer in correct_answer
+            )
             
             # 提出されたコードと正解コードの比較
-            if submitted_code.splitlines() == correct_answer.a_text.splitlines():
+            if is_correct:
                 print('end3 - 正解')
                 try:
                     user = request.user

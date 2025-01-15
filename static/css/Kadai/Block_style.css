@@ -1,29 +1,37 @@
 @charset "utf-8";
 /* 課題・自由制作のblocklyのスタイル*/
 
+html,body,main,header,footer{
+    font-family: "Shippori Antique", sans-serif;
+}
+
+
+
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: #586263cb;
     min-width: 880px;
+    background-color: rgb(166, 240, 240);
 }
 
 main{
-    background-color: rgb(155, 206, 206);
+    background-color: rgb(166, 240, 240);
     height: 89%;
     width: 100%;
 }
 
+header, footer {
+    background-color: #ffffff8c;
+}
 
 header {
     display: flex;
     justify-content: space-between;
     width: auto;
     height: 5%;
-    background-color: #8cebc69a;
     padding: 5px;
 }
 
@@ -32,7 +40,6 @@ footer {
     height: 5%;
     width: 100%;
     font-size: 10px;
-    background-color: #8cebc69a;
     display: flex;
     justify-content: center;
     align-items: right;
@@ -41,49 +48,16 @@ footer {
     padding-left: 10px;
 }
 
-.selectdiv {
-    min-width: 110px;
-    margin-right: 20px;
-}
 
-/* .selectdiv:after {
-    content: '<>';
-    font: 17px "Consolas", monospace;
-    color: #333;
-    transform: rotate(90deg);
-    /* 矢印を90度回転 */
-/* right: 25px;
-    /* 矢印の位置調整 */
-/* top: 30px;
-    border-bottom: 1px solid #999; */
-/* 矢印下の線 */
-/* position: absolute;
-    pointer-events: none; */
-/* } */
-
-.selectdiv select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: block;
-    max-width: 300px;
-    height: 33px;
-    margin: 5px 0px;
-    padding: 0px 24px;
-    font-size: 16px;
-    line-height: 1.75;
-    color: #333;
-    background-color: #fdfdfd;
-    border: 2px solid #a1a0a0;
-    border-radius: 10px;
-    -ms-word-break: normal;
-    word-break: normal;
-}
 
 
 h3,h4 {
-    color: #1c1c1c;
+    color: #f5f5f5;
     margin: 1px;
+}
+
+.main_filed-f{
+    padding: 1%;
 }
 
 #sub_file h4 {
@@ -95,7 +69,6 @@ h3,h4 {
     height: 100%;
     display: flex;
     padding-bottom: 5px;
-    gap: 20px;
 }
 
 
@@ -116,7 +89,7 @@ textarea {
     width: 100%;
     height: 100%;
     padding-left: 15px;
-    background-color: #fffdfd63;
+    background-color: #7fbbdd;
 }
 
 #output {
@@ -165,7 +138,7 @@ textarea:disabled {
     border: none; /* ボーダーを削除 */
     width: 150px;
     border-radius: 5px; /* 角を丸める */
-    background-color: #4CAF50; /* 背景色 */
+    background-color: #ffc22f;  /* 背景色 */
     color: white; /* 文字色 */
     cursor: pointer; /* カーソルをポインタに変更 */
     transition: background-color 0.3s; /* ホバー時の背景色変更をスムーズに */
@@ -173,12 +146,13 @@ textarea:disabled {
 
   /* ホバー時のスタイル */
   .button_area button:hover {
-    background-color: #45a049; /* ホバー時の背景色 */
+    color: #000000;
+    background-color: #fddb7d; /* ホバー時の背景色 */
   }
 
   /* クリック時のスタイル */
   .button_area button:active {
-    background-color: #397d3c; /* クリック時の背景色 */
+    background-color: #f0c960; /* クリック時の背景色 */
   }
 
   /* 特定のボタンに別の色を適用したい場合 */
@@ -223,11 +197,17 @@ textarea:disabled {
         gap: 20px;
     }
 
+    .main_filed-f{ 
+        width: 70%;
+        height: 100%;
+        padding: 1%;
+        gap: 20px;
+    }
+
     .sub_field {
         width: 30%;
         height: 100%;
         padding-left: 15px;
-        background-color: #fffdfd63;
     }
 
     #blocklyDiv {
