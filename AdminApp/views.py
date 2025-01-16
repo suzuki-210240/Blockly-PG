@@ -13,6 +13,7 @@ from .forms import UserGroupForm
 from django.http import HttpResponse,Http404, JsonResponse
 from django.db import transaction, IntegrityError
 from django.shortcuts import render
+from urllib.parse import quote
 
 
 #管理者のみがアクセスできるビューのデコレーター
@@ -192,6 +193,52 @@ def admin_list_files(request):
 
     # フォルダ内のファイルがある場合に表示
     return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
+
+def next_img_list(request):
+    try:
+        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+        files_and_dirs = os.listdir(image_dir)
+
+        files_with_urls = [
+            {
+                'name': file_name,
+                'url': quote(f'/static/images/{file_name}')
+            }
+            for file_name in files_and_dirs
+            if os.path.isfile(os.path.join(image_dir, file_name))
+        ]
+
+    except FileNotFoundError:
+        error_message = "指定されたフォルダが見つかりませんでした。"
+        return render(request, 'Materials/img-list.html', {'error_message': error_message})
+    except Exception as e:
+        error_message = f"エラーが発生しました: {str(e)}"
+        return render(request, 'Materials/img-list.html', {'error_message': error_message})
+    
+    return render(request, 'Materials/img-list.html', {'files_with_urls': files_with_urls})
+
+
+from urllib.parse import unquote
+
+def delete_img(request, img_id):
+    print('delete_img')
+    if request.method == "POST":
+        img_id = unquote(img_id)
+        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', img_id)
+        print('image_path', image_path)
+        try:
+            # ファイルの削除処理
+            if os.path.exists(image_path):
+                os.remove(image_path)
+                print('画像を削除しました')
+                return redirect('AdminApp:next_img_list')  # リダイレクト先を正しく設定
+            else:
+                raise Http404("指定された画像が存在しません")
+        except Exception as e:
+            error_message = f"画像の削除中にエラーが発生しました: {str(e)}"
+            return render(request, 'Materials/img-list.html', {'error_message': error_message})
+    else:
+        raise Http404("無効なリクエストです")
 
 #----------------------------教材一覧リスト-----------------------------------
 

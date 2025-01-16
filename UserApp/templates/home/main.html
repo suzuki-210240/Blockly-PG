@@ -10,7 +10,7 @@
     </head>
     <body>
         <header>
-            <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
+            <a href="{% url 'UserApp:index' %}"><img class="logo" src="{% static 'menu_img/logo-preview.png' %}"></a>
             <div class="user-info">
                 {% if user_info %}
                     {{ user_info.group }} : {{ user_info.username }}
@@ -31,7 +31,7 @@
                     <form method="post" action="{% url 'UserApp:user_list_files' %}">
                         {% csrf_token %}
                         <button type="submit" class="button1">
-                            <img src="{% static 'images/material.png' %}" alt="教材一覧">
+                            <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
                             教材一覧
                         </button>
                     </form>
@@ -40,7 +40,7 @@
                     <form method="post" action="{% url 'UserApp:kadai_list' %}">
                         {% csrf_token %}
                         <button type="submit" class="button2">
-                            <img src="{% static 'images/kadai.png' %}" alt="教材一覧">
+                            <img src="{% static 'menu_img/kadai.png' %}" alt="教材一覧">
                             課題一覧
                         </button>
                     </form>
@@ -49,7 +49,7 @@
                     <form action="{% url 'UserApp:progress' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="button5">
-                            <img src="{% static 'images/list.png' %}" alt="進捗状況の確認">
+                            <img src="{% static 'menu_img/list.png' %}" alt="進捗状況の確認">
                             進捗状況の確認
                         </button>
                     </form>
@@ -59,7 +59,7 @@
                     <form method="post" action="{% url 'UserApp:freemode' %}">
                         {% csrf_token %}
                         <button type="submit" class="button3">
-                            <img src="{% static 'images/code.png' %}" alt="フリーモード">
+                            <img src="{% static 'menu_img/code.png' %}" alt="フリーモード">
                             フリーモード
                         </button>
                     </form>
@@ -68,7 +68,7 @@
                     <form method="post" action="{% url 'UserApp:user_info' %}">
                         {% csrf_token %}
                         <button type="submit" class="button4">
-                            <img src="{% static 'images/material.png' %}" alt="教材一覧">
+                            <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
                             アカウント管理
                         </button>
                     </form>

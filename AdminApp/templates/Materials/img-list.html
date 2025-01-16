@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/materials_list.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/img_list.css' %}" />
   <script src="{% static 'js/menu.js' %}?v=1.0"></script>
   <title>教材一覧[BlocklyCodeAcademy]</title>
 </head>
@@ -39,12 +39,11 @@
     <!-- メイン -->
     <main>
       <div class="page-title">
-        <h1>教材一覧</h1>
+        <h1>画像リスト</h1>
       </div>
       <div class="table-container">
         <div class="add-container">
-          <a href="{% url 'AdminApp:add_materials' %}" class="add-button">教材新規追加</a>
-          <a href="{% url 'AdminApp:next_img_list' %}" class="add-button">画像リスト</a>
+            <a href="{% url 'AdminApp:add_materials' %}" class="add-button">画像新規追加</a>
         </div>
         <div class="table-header">
           <span class="table-title">タイトル</span>
@@ -55,25 +54,21 @@
           {% if error_message %}
             <p style="color: red;">{{ error_message }}</p>
           {% else %}
-            {% for title, url in files_with_urls %}
-              <form method="POST" action="?">
-                {% csrf_token %}
-                <div class="table-item">
-                  <span class="row-title"><span class="number">{{ forloop.counter }}.&emsp;</span>{{ title }}</span>
-                  <input type="hidden" name="title" value="{{ title }}">
-                  <input type="hidden" name="url" value="{{ url }}">
-                  <div class="button-container">
-                    <!-- 編集ボタン -->
-                    <button class="action-button" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
-                    <!-- 削除ボタン -->
-                    <button class="action-button" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
-                  </div>
+            {% for file in files_with_urls %}
+              <div class="table-item">
+                <span class="row-title"><span class="number">{{ forloop.counter }}.&emsp;</span>{{ file.name }}</span>
+                <div class="button-container">
+                  <!-- 削除ボタン -->
+                  <form action="{% url 'AdminApp:delete_img' img_id=file.name %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="action-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+                  </form>
                 </div>
-              </form>
+              </div>
               <hr>
             {% endfor %}
           {% endif %}
-        </div>
+        </div>        
       </div>
     </main>
   </div>
