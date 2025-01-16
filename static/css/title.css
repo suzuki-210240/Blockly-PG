@@ -18,14 +18,14 @@ body {
 body::before {
     content: "";
     position: absolute;
-    top: 50%; 
-    left: 50%; 
-    width: auto; 
-    height: auto; 
-    min-width: 100%; 
-    min-height: 100%; 
-    transform: translate(-50%, -50%); 
-    background-image: url('../images/title.png');
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    background-image: url('../menu_img/title.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
@@ -61,7 +61,8 @@ div {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: inline-block;
-    z-index: 1; /* 背景の上に表示 */
+    z-index: 1;
+    /* 背景の上に表示 */
 }
 
 /*ボタンのスタイル*/

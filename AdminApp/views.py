@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Material, Kadai, Answer
-from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
+from .forms import  ImageUploadForm, KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
@@ -93,7 +93,7 @@ def next_page(request):
     return render(request, 'AdminApp:admin_kadai_list')
 
 def edit_materials(request):
-     # 教材一覧で選択した教材情報を取得
+    # 教材一覧で選択した教材情報を取得
     if(request.method == 'POST'):
         old_title = request.POST.get('title')
         old_url = request.POST.get('url') #medhia/uploads\ファイル名
@@ -194,51 +194,6 @@ def admin_list_files(request):
     # フォルダ内のファイルがある場合に表示
     return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
 
-def next_img_list(request):
-    try:
-        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-        files_and_dirs = os.listdir(image_dir)
-
-        files_with_urls = [
-            {
-                'name': file_name,
-                'url': quote(f'/static/images/{file_name}')
-            }
-            for file_name in files_and_dirs
-            if os.path.isfile(os.path.join(image_dir, file_name))
-        ]
-
-    except FileNotFoundError:
-        error_message = "指定されたフォルダが見つかりませんでした。"
-        return render(request, 'Materials/img-list.html', {'error_message': error_message})
-    except Exception as e:
-        error_message = f"エラーが発生しました: {str(e)}"
-        return render(request, 'Materials/img-list.html', {'error_message': error_message})
-    
-    return render(request, 'Materials/img-list.html', {'files_with_urls': files_with_urls})
-
-
-from urllib.parse import unquote
-
-def delete_img(request, img_id):
-    print('delete_img')
-    if request.method == "POST":
-        img_id = unquote(img_id)
-        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', img_id)
-        print('image_path', image_path)
-        try:
-            # ファイルの削除処理
-            if os.path.exists(image_path):
-                os.remove(image_path)
-                print('画像を削除しました')
-                return redirect('AdminApp:next_img_list')  # リダイレクト先を正しく設定
-            else:
-                raise Http404("指定された画像が存在しません")
-        except Exception as e:
-            error_message = f"画像の削除中にエラーが発生しました: {str(e)}"
-            return render(request, 'Materials/img-list.html', {'error_message': error_message})
-    else:
-        raise Http404("無効なリクエストです")
 
 #----------------------------教材一覧リスト-----------------------------------
 
@@ -262,7 +217,7 @@ def add_file(request):
             original_file_name = uploaded_file.name
 
             # アップロードされた画像ファイルの取得(複数)
-            image_file = request.FILES.getlist('img_file')
+            image_file = request.FILES.getlist(quote('img_file'))
 
             # トランザクションを開始
             try:
@@ -294,7 +249,6 @@ def add_file(request):
 
                     # 画像ファイルを保存(複数)
                     for image in image_file:
-                        # 任意の保存先に保存する場合
                         with open(f'static/images/{image.name}', 'wb+') as destination:
                             for chunk in image.chunks():
                                 destination.write(chunk)
@@ -321,7 +275,7 @@ def add_file(request):
     return render(request, 'Materials/add_materials.html', {'form': form})
 
 #--------------------------教材ファイル新規追加--------------------------------
- 
+
 #--------------------------教材ファイル編集・削除--------------------------------
 
 #編集
@@ -417,6 +371,141 @@ def delete_item(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request'}, status=400)
 
 #--------------------------教材ファイル編集・削除--------------------------------
+
+#----------------------------画像リスト表示------------------------------------
+
+def next_img_list(request):
+    try:
+        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+        files_and_dirs = os.listdir(image_dir)
+
+        files_with_urls = [
+            {
+                'name': file_name,
+                'url': quote(f'/static/images/{file_name}')
+            }
+            for file_name in files_and_dirs
+            if os.path.isfile(os.path.join(image_dir, file_name))
+        ]
+
+    except FileNotFoundError:
+        error_message = "指定されたフォルダが見つかりませんでした。"
+        return render(request, 'Materials/img_list.html', {'error_message': error_message})
+    except Exception as e:
+        error_message = f"エラーが発生しました: {str(e)}"
+        return render(request, 'Materials/img_list.html', {'error_message': error_message})
+    
+    return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls})
+
+# ----------------------------画像リスト表示------------------------------------
+
+#--------------------------画像追加・削除---------------------------------------
+
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+import os
+
+def add_img(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        
+        if form.is_valid():  # 複数ファイルを取得
+            image_files = request.FILES.getlist('image_files')
+            # 保存先のディレクトリを指定
+            image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+            
+            # すでに存在するファイル名を確認
+            existing_files = os.listdir(image_dir)
+            conflicts = []
+
+            # 画像ファイルの重複チェック
+            for image_file in image_files:
+                if image_file.name in existing_files:
+                    conflicts.append(image_file.name)
+
+            # 重複ファイルがあれば、上書きか番号を付けて保存するかを選択
+            if conflicts:
+                return render(request, 'Materials/confirm_overwrite.html', {
+                    'conflicts': conflicts,
+                    'image_files': image_files
+                })
+
+            # 重複がなければ、すべての画像を保存
+            for image_file in image_files:
+                file_path = os.path.join(image_dir, image_file.name)
+                with open(file_path, 'wb+') as destination:
+                    for chunk in image_file.chunks():
+                        destination.write(chunk)
+
+            return redirect('AdminApp:next_img_list')  # 画像一覧ページにリダイレクト
+
+        else:
+            return render(request, 'Materials/add_img_form.html', {'form': form})
+
+    else:
+        # GETリクエストの場合は、空のフォームを表示
+        form = ImageUploadForm()
+        return render(request, 'Materials/img_list.html', {'form': form})
+
+
+
+
+# 上書き処理または番号付け処理をするビュー
+def confirm_overwrite(request):
+    if request.method == 'POST':
+        overwrite = request.POST.get('overwrite')  # 上書き選択か確認
+        image_files = request.POST.getlist('image_files')  # 選ばれたファイル
+        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+        
+        for image_file_name in image_files:
+            image_file = request.FILES.get(image_file_name)  # 選ばれたファイル
+            file_path = os.path.join(image_dir, image_file_name)
+            
+            if overwrite == 'yes':
+                # 上書き保存
+                with open(file_path, 'wb+') as destination:
+                    for chunk in image_file.chunks():
+                        destination.write(chunk)
+            else:
+                # 番号を付けて保存
+                base_name, extension = os.path.splitext(image_file_name)
+                counter = 1
+                new_file_path = file_path
+                while os.path.exists(new_file_path):
+                    new_file_name = f"{base_name}_{counter}{extension}"
+                    new_file_path = os.path.join(image_dir, new_file_name)
+                    counter += 1
+
+                with open(new_file_path, 'wb+') as destination:
+                    for chunk in image_file.chunks():
+                        destination.write(chunk)
+
+        return redirect('AdminApp:next_img_list')  # リダイレクト先を設定
+    return HttpResponse("無効なリクエストです。", status=400)  # エラーハンドリング
+
+
+from urllib.parse import unquote
+def delete_img(request, img_id):
+    print('delete_img')
+    if request.method == "POST":
+        img_id = unquote(img_id)
+        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', img_id)
+        print('image_path', image_path)
+        try:
+            # ファイルの削除処理
+            if os.path.exists(image_path):
+                os.remove(image_path)
+                print('画像を削除しました')
+                return redirect('AdminApp:next_img_list')  # リダイレクト先を正しく設定
+            else:
+                raise Http404("指定された画像が存在しません")
+        except Exception as e:
+            error_message = f"画像の削除中にエラーが発生しました: {str(e)}"
+            return render(request, 'Materials/img_list.html', {'error_message': error_message})
+    else:
+        raise Http404("無効なリクエストです")
+
+#--------------------------------画像追加・削除--------------------------------
 
 
 #--------------------------------問題・解答設定----------------------------------------

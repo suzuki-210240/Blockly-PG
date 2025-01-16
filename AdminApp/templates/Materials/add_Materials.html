@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/addMaterials.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/addMaterials.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}" />
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
     <script src="{% static 'js/preview.js' %}?v=1.0"></script>
     <script src="{% static 'js/add_img.js' %}?v=1.0"></script>
@@ -14,8 +14,9 @@
 
   <body>
     <header>
-      <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
-      <!-- ユーザー名 -->
+      <a href="{% url 'AdminApp:index' %}">
+        <img class="logo" src="{% static 'images/logo-preview.png' %}">
+      </a>
       <div class="selectdiv">
         <label>
           <select>
@@ -26,20 +27,17 @@
           </select>
         </label>
       </div>
-      <!-- ユーザー名 -->
-  </header>
+    </header>
     
     <div class="Box">
-      <!-- メニューバー -->
       <div class="container">
         <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
         <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
         <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
       </div>
-      <!-- メイン -->
       <main>
         <h1>教材新規追加</h1>
-        <form method="POST" enctype="multipart/form-data" action= {% url 'AdminApp:add_file' %}>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'AdminApp:add_file' %}">
           {% csrf_token %}
           <div class="sub-title-box">
             <label id="sub-title" for="title">教材タイトル</label>
@@ -47,35 +45,35 @@
             {% if error_message %}
               <p class="error-message">{{ error_message }}</p>
             {% endif %}
-            <input type="text" id="title" name="title" value="{{ form.title.value }}" required maxlength="40" size="40"/>
+            <input type="text" id="title" name="title" value="{{ form.title.value }}" required maxlength="40" size="40" />
             {% if form.title.errors %}
               <p class="error-message">{{ form.title.errors }}</p>
             {% endif %}
           </div>
           <div class="file-box">
             <label id="sub-title" for="file">教材ファイル</label>
-            <input type="file" id="file" name="html_file" required accept=".html"/>
-            {% if form.file.errors %}
-              <p class="error-message">{{ form.file.errors }}</p>
+            <input type="file" id="file" name="html_file" required accept=".html" />
+            {% if form.html_file.errors %}
+              <p class="error-message">{{ form.html_file.errors }}</p>
             {% endif %}
           </div>
           <div class="img-box">
             <label id="sub-title" for="file">画像ファイル</label>
-            <button type="button" id="add-img">追加</button>
+            <button type="button" id="add-img">フォーム追加＋</button>
             <div id="img-box">
-              <!-- ここに追加される画像ファイルの入力フィールド -->
-            </div>
-            {% if form.file.errors %}
-              <p class="error-message">{{ form.file.errors }}</p>
+              <input type="file" id="file" name="img_file" accept=".jpg, .png, .jpeg, .gif, .svg, .ico"/>
+            </div>            
+            {% if form.img_file.errors %}
+              <p class="error-message">{{ form.img_file.errors }}</p>
             {% endif %}
           </div>
-          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >戻る</a>
+          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button">戻る</a>
           <button class="submit-button" type="submit">登録</button>
         </form>
         <div class="view-box">
           <label id="sub-title" for="file">プレビュー(一部表示)</label>
           <div class="show-html">
-            <iframe id="contentFrame" title="ファイルプレビュー" style="pointer-events: none; overflow: hidden; scrollbar-width: none;">
+            <iframe id="contentFrame" title="ファイルプレビュー" src="{% static 'path/to/preview/file.html' %}" style="pointer-events: none; overflow: hidden; scrollbar-width: none;">
               <strong>ここにプレビューが表示されます</strong>
             </iframe>
           </div>
