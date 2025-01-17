@@ -22,17 +22,11 @@
           {% for form in answer_formset %}
               <div>
                   {{ form.as_p }}
-                  {% if form.instance.pk %}
-                      <label for="{{ form.prefix }}-DELETE">削除</label>
-                      {{ form.DELETE }}
-                  {% endif %}
               </div>
           {% endfor %}
       
           <button type="submit">保存</button>
-      </form>
-      
-        
+        </form>
         {% if kadai %}
           <h3>現在の解答</h3>
           <ul>

@@ -8,72 +8,78 @@
         <link rel="stylesheet" href="{% static 'css/User/user_info.css' %}">
     </head>
     <body>
-        <div class="container">
+        <header>
+            <a href="{% url 'UserApp:index' %}">
+                <button id="back">＜戻る</button>
+            </a>
             <h2>ユーザー情報の管理</h2>
-            <p>ここで、ユーザー名やパスワードを変更できます。</p>
+        </header>
+        <main>
+            <div class="container">
+                <p>ここで、ユーザー名やパスワードを変更できます。</p>
 
-            <!--ユーザー名変更フォーム-->
-            <h3>ユーザー名の変更</h3>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="id_username">ユーザー名</label>
-                    {{ user_form.username }}    <!--ユーザー名フィールド-->
-                    {% if user_form.username.errors %}
-                        <div class="error-messages">
-                            {% for error in user_form.username.errors %}
-                                <p class="error">{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                <button type="submit" class="submit-btn" name="update_user">ユーザー名を更新</button>
-            </form>
+                <!--ユーザー名変更フォーム-->
+                <h3>ユーザー名の変更</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_username">ユーザー名</label>
+                        {{ user_form.username }}    <!--ユーザー名フィールド-->
+                        {% if user_form.username.errors %}
+                            <div class="error-messages">
+                                {% for error in user_form.username.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="submit-btn" name="update_user">ユーザー名を更新</button>
+                </form>
 
-            <!--パスワード変更フォーム-->
-            <h3>パスワードの変更</h3>
-            <form method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="id_old_password">現在のパスワード</label>
-                    {{ password_form.old_password }}
-                </div>
-                <div class="form-group">
-                    <label for="id_new_password1">新しいパスワード</label>
-                    {{ password_form.new_password1 }}
-                    {% if password_form.new_password1.errors %}
-                        <div class="error-messages">
-                            {% for error in password_form.new_password1.errors %}
-                                <p class="error">{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    <label for="id_new_password2">新しいパスワードの確認</label>
-                    {{ password_form.new_password2 }}
-                    {% if password_form.new_password2.errors %}
-                        <div class="error-messages">
-                            {% for error in password_form.new_password2.errors %}
-                                <p class="error">{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                <button type="submit" class="submit-btn" name="update_password">パスワードを更新</button>
-            </form>
+                <!--パスワード変更フォーム-->
+                <h3>パスワードの変更</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_old_password">現在のパスワード</label>
+                        {{ password_form.old_password }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_new_password1">新しいパスワード</label>
+                        {{ password_form.new_password1 }}
+                        {% if password_form.new_password1.errors %}
+                            <div class="error-messages">
+                                {% for error in password_form.new_password1.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_new_password2">新しいパスワードの確認</label>
+                        {{ password_form.new_password2 }}
+                        {% if password_form.new_password2.errors %}
+                            <div class="error-messages">
+                                {% for error in password_form.new_password2.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <button type="submit" class="submit-btn" name="update_password">パスワードを更新</button>
+                </form>
 
-            <!--メッセージ表示-->
-            {% if messages %}
-                <div class="messages">
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-        </div>
-        
+                <!--メッセージ表示-->
+                {% if messages %}
+                    <div class="messages">
+                        <ul>
+                            {% for message in messages %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+    </main>
     </body>
 </html>
