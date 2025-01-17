@@ -58,23 +58,26 @@
             {% endif %}
             <p class="attention">※HTMLファイル内に画像コード(画像リスト参照)を埋め込んでください</p>
           </div>
-          <div class="img-box">
-            <label id="sub-title" for="file">画像ファイル</label>
-            <button type="button" id="add-img">フォーム追加＋</button>
-            <div id="img-box">
-              <input type="file" id="file" name="img_file" accept=".jpg, .png, .jpeg, .gif, .svg, .ico"/>
-            </div>            
-            {% if form.img_file.errors %}
-              <p class="error-message">{{ form.img_file.errors }}</p>
-            {% endif %}
+        </form>
+        <form class="img-box" action= "{% url 'AdminApp:add_img' %}" >
+          <h3>画像追加フォーム</h3>
+          <label id="sub-title" for="file">画像ファイル</label>
+          <button type="button" name="add-img" id="add-img">フォーム追加＋</button>
+          <div id="img-box">
+            <input type="file" id="file" name="img_file" accept="..jpg, .png, .jpeg, .gif, .svg, .ico"/>
+            <!-- ここに追加される画像ファイルの入力フィールド -->
           </div>
-          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button">戻る</a>
+          {% if form.file.errors %}
+            <p class="error-message">{{ form.img.errors }}</p>
+          {% endif %}
+          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >やめる</a>
           <button class="submit-button" type="submit">登録</button>
         </form>
+        
         <div class="view-box">
           <label id="sub-title" for="file">プレビュー(一部表示)</label>
           <div class="show-html">
-            <iframe id="contentFrame" title="ファイルプレビュー" src="{% static 'path/to/preview/file.html' %}" style="pointer-events: none; overflow: hidden; scrollbar-width: none;">
+            <iframe id="contentFrame" title="ファイルプレビュー" style="pointer-events: none; overflow: hidden; scrollbar-width: none;">
               <strong>ここにプレビューが表示されます</strong>
             </iframe>
           </div>
