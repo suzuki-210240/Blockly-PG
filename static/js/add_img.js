@@ -8,15 +8,17 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('add-imgボタンが見つかりません');
   } else {
     console.log('add-imgボタンが見つかりました');
+    
 
-    addButton.addEventListener('click', function () {
-      let imgBoxForm = document.querySelector('.img-box');
+    if(addButton){
+      addButton.addEventListener('click', function () {
+        let imgBoxForm = document.querySelector('.img-box');
 
-      // img-boxフォームを表示
-      imgBoxForm.style.display = 'block';
-      this.style.display = 'none'; // 追加ボタンを非表示
-    });
-
+        // img-boxフォームを表示
+        imgBoxForm.style.display = 'block';
+        this.style.display = 'none'; // 追加ボタンを非表示
+      });
+    }
     // 「画像新規追加」ボタンをクリックしたときの処理
     addImgButton.addEventListener('click', function () {
       let fileInputs = imgBox.querySelectorAll('input[type="file"]');
