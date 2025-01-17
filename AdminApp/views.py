@@ -375,17 +375,28 @@ def delete_item(request):
 def next_img_list(request):
     try:
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-        base64_images = request.GET.getlist('base64_images')  # クエリパラメータでbase64_imagesを取得
+        base64_images = request.GET.getlist('base64_images')  # base64_imagesを取得
         files_and_dirs = os.listdir(image_dir)
 
-        files_with_urls = [
-            {
-                'name': file_name,
-                'url': quote(f'/static/images/{file_name}')
-            }
-            for file_name in files_and_dirs
-            if os.path.isfile(os.path.join(image_dir, file_name))
-        ]
+        files_with_urls = []
+        
+        # ディレクトリ内のファイルをリスト化
+        for file_name in files_and_dirs:
+            if os.path.isfile(os.path.join(image_dir, file_name)):
+                # DBからファイル名に対応するbase64コードを取得
+                try:
+                    image = Image.objects.get(img_name=file_name)
+                    base64_image = image.base64_image
+                except Image.DoesNotExist:
+                    base64_image = None  # DBに存在しない場合はNoneを設定
+
+                # URLとbase64コードを一緒に保存
+                files_with_urls.append({
+                    'name': file_name,
+                    'url': quote(f'/static/images/{file_name}'),
+                    'base64_image': base64_image
+                })
+
         print('files_with_urls', files_with_urls)
     except FileNotFoundError:
         error_message = "指定されたフォルダが見つかりませんでした。"
@@ -395,7 +406,6 @@ def next_img_list(request):
         return render(request, 'Materials/img_list.html', {'error_message': error_message})
     
     return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls, 'base64_images': base64_images})
-
 # ----------------------------画像リスト表示------------------------------------
 
 #--------------------------画像追加・削除---------------------------------------
@@ -437,7 +447,12 @@ def add_img(request):
             base64_image = image_to_base64(image_path)
             base64_images.append(base64_image)  # エンコードされた画像をリストに追加
 
-        return redirect('AdminApp:next_img_list', base64_images=base64_images)
+            # DBに画像データを保存
+            Image.objects.create(img_name=image.name, base64_image=base64_image)
+        
+        # 保存が完了したら、次のページへリダイレクト（ファイルのURLなどを渡す）
+        return redirect('AdminApp:next_img_list')
+    
 
 from urllib.parse import unquote
 def delete_img(request):
