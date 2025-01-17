@@ -71,18 +71,20 @@
           {% if error_message %}
             <p style="color: red;">{{ error_message }}</p>
           {% else %}
-            {% for file,  in files_with_urls %}
+            {% for file in files_with_urls %}
               <div class="table-item">
                 <span class="row-title">
                   <span class="number">{{ forloop.counter }}.&emsp;</span>{{ file.name }}
                 </span>
-                <pre>{{ file. }}</pre>
+                <!-- base64の画像データを表示する場合 -->
+                <pre>{{ file.base64 }}</pre>
                 <div class="button-container">
                   <!-- 削除ボタン -->
                   <form action="{% url 'AdminApp:delete_img' %}" method="POST" style="display:inline;">
                     {% csrf_token %}
+                    <!-- ファイル名とbase64をhiddenとして送信 -->
                     <input type="hidden" name="file_name" value="{{ file.name }}">
-                    <input type="hidden" name="base64_image" value="{{ file.base64 }}">
+                    <input type="hidden" name="file_url" value="{{ file.url }}">
                     <button type="submit" class="action-button" onclick="return confirm('{{ file.name }} を削除しますか？')">削除</button>
                   </form>                  
                 </div>
