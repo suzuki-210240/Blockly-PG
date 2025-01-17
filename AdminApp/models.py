@@ -161,3 +161,21 @@ def create_proguress_for_new_kadai(sender, instance, created, **kwargs):
 #     class Meta:
 #         db_table = 'kadai_achieve_table'
 #--------------------------課題実績テーブル--------------------------------
+
+#--------------------------画像テーブル--------------------------------
+class Image(models.Model):
+    img_name = models.CharField(max_length=40, primary_key=True)
+    base64_image = models.CharField(max_length=1000)
+    material = models.ForeignKey(
+        Material,
+        on_delete=models.CASCADE,
+        db_column='material_id',
+        related_name='images'
+    )
+
+    class Meta:
+        db_table = 'images_table'
+
+    def __str__(self):
+        return self.img_name
+#--------------------------画像テーブル--------------------------------
