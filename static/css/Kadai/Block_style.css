@@ -52,18 +52,30 @@ footer {
 
 
 h3,h4 {
-    color: #ffa826;
-    background-color: #f5f5f5;
-    border: solid 1px #9e9c9c;
+    color: #ffffff;
     margin: 1px;
 }
+
+
 
 .main_filed-f{
     padding: 1%;
 }
 
-#sub_file h4 {
+.main_filed h3{
+    background-color: #c4c4c4;
+    margin-top: 5px;
+    margin-left: 10px;
+    display: inline-block; /* 幅を内容に合わせる */
+    width: max-content;    /* コンテンツの幅に合わせる（推奨） */
+    white-space: nowrap;   /* 改行を防ぐ */
+}
+
+.sub_file h4 {
     background-color: #a1a0a0;
+    display: inline-block; /* 幅を内容に合わせる */
+    width: max-content;    /* コンテンツの幅に合わせる（推奨） */
+    white-space: nowrap;   /* 改行を防*/
 }
 
 .field {
@@ -75,7 +87,7 @@ h3,h4 {
 
 .tab {
     display: flex;
-    margin: 1px;
+    margin-top: 5px;
 }
 
 .tab h4 a {
@@ -136,7 +148,7 @@ textarea {
     margin-top: 1%;
     border-radius: 5px;
     width: 95%;
-    height: 10%;  /* 高さを固定 */
+    height: 15%;  /* 高さを固定 */
     overflow-y: auto;  /* コンテンツが多くなるとスクロールバーを表示 */
     white-space: pre-wrap; /* 改行を保持 */
     word-wrap: break-word;  /* 長い単語を改行 */
