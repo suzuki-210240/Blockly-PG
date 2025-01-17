@@ -55,7 +55,7 @@ input {
     font-size: 14px;
 }
 
-.error-message {
+.error-message, .attention {
     color: red;
     font-size: 14px;
     font-weight: bold;

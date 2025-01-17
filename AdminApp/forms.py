@@ -113,13 +113,6 @@ class KadaiProgressForm(forms.ModelForm):
 
 #------------------------------課題関係----------------------------------------
 
-#画像アップロード用
-class ImageUploadForm(forms.Form):
-    img_file = forms.ImageField(required=True)
-
-
-
-
 #アカウント情報管理用
 class UserGroupForm(forms.Form):
     #ユーザーを選択するフィールド（スーパーユーザーを除外）

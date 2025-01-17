@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Material, Kadai, Answer
-from .forms import  ImageUploadForm, KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
+from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
@@ -407,45 +407,37 @@ import os
 
 def add_img(request):
     if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
         
-        if form.is_valid():  # 複数ファイルを取得
-            image_files = request.FILES.getlist('image_files')
-            # 保存先のディレクトリを指定
-            image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-            
-            # すでに存在するファイル名を確認
-            existing_files = os.listdir(image_dir)
-            conflicts = []
+        # 複数ファイルを取得
+        image_files = request.FILES.getlist('image_files')
+        # 保存先のディレクトリを指定
+        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+        
+        # すでに存在するファイル名を確認
+        existing_files = os.listdir(image_dir)
+        conflicts = []
 
-            # 画像ファイルの重複チェック
-            for image_file in image_files:
-                if image_file.name in existing_files:
-                    conflicts.append(image_file.name)
+        # 画像ファイルの重複チェック
+        for image_file in image_files:
+            if image_file.name in existing_files:
+                conflicts.append(image_file.name)
 
-            # 重複ファイルがあれば、上書きか番号を付けて保存するかを選択
-            if conflicts:
-                return render(request, 'Materials/confirm_overwrite.html', {
-                    'conflicts': conflicts,
-                    'image_files': image_files
-                })
+        # 重複ファイルがあれば、上書きか番号を付けて保存するかを選択
+        if conflicts:
+            return render(request, 'Materials/confirm_overwrite.html', {
+                'conflicts': conflicts,
+                'image_files': image_files
+            })
 
-            # 重複がなければ、すべての画像を保存
-            for image_file in image_files:
-                file_path = os.path.join(image_dir, image_file.name)
-                with open(file_path, 'wb+') as destination:
-                    for chunk in image_file.chunks():
-                        destination.write(chunk)
+        # 重複がなければ、すべての画像を保存
+        for image_file in image_files:
+            file_path = os.path.join(image_dir, image_file.name)
+            with open(file_path, 'wb+') as destination:
+                for chunk in image_file.chunks():
+                    destination.write(chunk)
 
-            return redirect('AdminApp:next_img_list')  # 画像一覧ページにリダイレクト
+        return redirect('AdminApp:next_img_list')  # 画像一覧ページにリダイレクト
 
-        else:
-            return render(request, 'Materials/add_img_form.html', {'form': form})
-
-    else:
-        # GETリクエストの場合は、空のフォームを表示
-        form = ImageUploadForm()
-        return render(request, 'Materials/img_list.html', {'form': form})
 
 
 
