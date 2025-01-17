@@ -51,12 +51,13 @@
 
           <!-- 教材タイトル -->
           <div class="sub-title-box">
-          <div class="title-box">
-              <label id="sub-title" for="title">教材タイトル</label>
-              <input type="text" id="title" name="title" style="background-color: #a9a9a9" value="{{ title }}" readonly />
-              <input type="hidden" name="url" value="{{ url }}">
-          </div>
-          <p>デバッグ用: {{ url }}</p>
+            <div class="title-box">
+                <label id="sub-title" for="title">教材タイトル</label>
+                <input type="text" id="title" name="title" style="background-color: #a9a9a9" value="{{ title }}" readonly />
+                <input type="hidden" name="url" value="{{ url }}">
+            </div>
+            <p>デバッグ用: {{ url }}</p>
+            <p>※画像の削除は行われません。<br>&emsp;画像リストページから削除してください。</p>
           </div>
           <!-- 戻るボタン -->
           <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button">戻る</a>

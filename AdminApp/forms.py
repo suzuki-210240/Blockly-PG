@@ -28,7 +28,7 @@ from .models import Kadai, Answer,KadaiProgress,Material
 #         return file
     
 #--------------------------教材ファイル新規追加--------------------------------
- 
+
 class ValidateMaterialForm(forms.Form):
     title = forms.CharField(
         label='教材タイトル',
@@ -113,7 +113,9 @@ class KadaiProgressForm(forms.ModelForm):
 
 #------------------------------課題関係----------------------------------------
 
-
+#画像アップロード用
+class ImageUploadForm(forms.Form):
+    img_file = forms.ImageField(required=True)
 
 
 

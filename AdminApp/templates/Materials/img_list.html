@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/img_list.css' %}" />
+  <script src="{% static 'js/menu.js' %}?v=1.0"></script>
+  <script src="{% static 'js/preview.js' %}?v=1.0"></script>
+  <script src="{% static 'js/add_img.js' %}?v=1.0"></script>
+  <title>画像リスト[BlocklyCodeAcademy]</title>
+</head>
+
+<body>
+  <header>
+    <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'images/logo-preview.png' %}"></a>
+    <!-- ユーザー名 -->
+    <div class="selectdiv">
+      <label>
+        <select id="userMenu">
+          <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
+          <option>設定</option>
+          <option>アカウント管理</option>
+          <option>ログアウト</option>
+        </select>
+      </label>
+    </div>
+    <!-- ユーザー名 -->
+  </header>
+
+  <div class="Box">
+    <!-- メニューバー -->
+    <div class="container">
+      <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
+      <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
+      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
+    </div>
+
+    <!-- メイン -->
+    <main>
+      <div class="page-title">
+        <h1>画像リスト</h1>
+      </div>
+      <div class="table-container">
+        <div class="add-container">
+          <a class="add-button">画像追加</a>
+        </div>
+        <form class="img-box" action= "{% url 'AdminApp:add_img' %}" style="display: none;">
+          <h3>画像追加フォーム</h3>
+          <label id="sub-title" for="file">画像ファイル</label>
+          <button type="button" name="add-img" id="add-img">フォーム追加＋</button>
+          <div id="img-box">
+            <input type="file" id="file" name="img_file" accept="..jpg, .png, .jpeg, .gif, .svg, .ico"/>
+            <!-- ここに追加される画像ファイルの入力フィールド -->
+          </div>
+          {% if form.file.errors %}
+            <p class="error-message">{{ form.img.errors }}</p>
+          {% endif %}
+          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >やめる</a>
+          <button class="submit-button" type="submit">登録</button>
+        </form>
+        <div class="table-header">
+          <span class="table-title">タイトル</span>
+          <span class="action-title">操作</span>
+        </div>
+
+        <div class="table-row">
+          {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+          {% else %}
+            {% for file in files_with_urls %}
+              <div class="table-item">
+                <span class="row-title"><span class="number">{{ forloop.counter }}.&emsp;</span>{{ file.name }}</span>
+                <div class="button-container">
+                  <!-- 削除ボタン -->
+                  <form action="{% url 'AdminApp:delete_img' img_id=file.name %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="action-button" onclick="return confirm('本当に削除しますか？')">削除</button>
+                  </form>
+                </div>
+              </div>
+              <hr>
+            {% endfor %}
+          {% endif %}
+        </div>        
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
