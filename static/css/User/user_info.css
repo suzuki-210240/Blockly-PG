@@ -5,6 +5,14 @@ body {
     min-width: 880px;
 }
 
+header{
+    background-color: #d4eced;
+}
+
+header a{
+    border: #007bff solid 2px;
+}
+
 /*全体のコンテナ*/
 .container {
     width: 80%;
