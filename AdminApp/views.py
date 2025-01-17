@@ -8,6 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import Material, Kadai, Answer
 from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User, Group
 from .forms import UserGroupForm
 from django.http import HttpResponse,Http404, JsonResponse
@@ -374,9 +375,10 @@ def delete_item(request):
 
 #--------------------------------問題・解答設定----------------------------------------
 
-
+prefix = ""
 #プレフィックスの追加（チュートリアル：t、基本問題：b、応用問題：a）
 def create_number(kadai):
+    global prefix
     if kadai.number:  # numberが空でないとき
         if kadai.category:
             # プレフィックスが既に含まれていない場合にのみプレフィックスを追加
@@ -384,34 +386,50 @@ def create_number(kadai):
                 # プレフィックス設定
                 category_prefix = 'b' if kadai.category == '基本区分'else ('t' if kadai.category == 'チュートリアル' else 'a')
                 # プレフィックスと番号を組み合わせて設定
+                prefix = f"{category_prefix}{kadai.number}"
                 kadai.number = f"{category_prefix}{kadai.number}"
 
 
 def add_kadai_and_answer(request, kadai_id=None):
+    print("start")
     if kadai_id:
         kadai = get_object_or_404(Kadai, id=kadai_id)
         answers = Answer.objects.filter(kadai=kadai)
     else:
         kadai = None
         answers = []
-
+        
+    print("next1")
     # 問題フォーム
     if request.method == "POST":
         kadai_form = KadaiForm(request.POST, instance=kadai)
         answer_form = AnswerForm(request.POST)  # 解答フォーム
-
+        
+        print("next2")
         if kadai_form.is_valid():
-            kadai_instance = kadai_form.save(commit=False)  # 問題データを保存
-            create_number(kadai_instance)  # プレフィックスを設定
-            kadai_instance.save()  # 問題データの保存
+            kadai_instance = kadai_form.save(commit=False)  # 問題データを保存前のインスタンス取得
+            print("next3")
+            create_number(kadai_instance)
+            global prefix
+            print(prefix)
 
-            # 解答フォームが有効な場合にのみ解答を保存
-            if answer_form.is_valid():
-                answer_instance = answer_form.save(commit=False)
-                answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
-                answer_instance.save()
+            # 新規作成時、重複チェックを実施
+            if not kadai and Kadai.objects.filter(number=prefix).exists():
+                kadai_form.add_error('number', 'この問題番号は既に存在します。')
+                
+                
+            print("next4")
+            if kadai_form.is_valid():  # 再度バリデーションチェック
+                create_number(kadai_instance)  # プレフィックスを生成する関数（詳細は気にしない）
+                kadai_instance.save()  # 問題データの保存
 
-            return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+                # 解答フォームが有効な場合にのみ解答を保存
+                if answer_form.is_valid():
+                    answer_instance = answer_form.save(commit=False)
+                    answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
+                    answer_instance.save()
+
+                return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
 
     else:
         kadai_form = KadaiForm(instance=kadai)
@@ -423,6 +441,7 @@ def add_kadai_and_answer(request, kadai_id=None):
         'kadai': kadai,
         'answers': answers,
     })
+
 
 def edit_kadai_and_answers(request, kadai_id):
     kadai = get_object_or_404(Kadai, number=kadai_id)
