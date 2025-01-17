@@ -1,12 +1,13 @@
 import base64
 import re
+from django import forms
 import os,requests,urllib.parse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Material, Kadai, Answer
+from .models import Material, Kadai, Answer, Image
 from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
 from django.core.exceptions import ValidationError
@@ -418,12 +419,16 @@ def image_to_base64(image_path):
     return encoded_string
 
 def add_img(request):
+    print('add_img')
     if request.method == 'POST':
         # 複数ファイルを取得
         image_files = request.FILES.getlist('image_files')
+        print('image_files:', image_files)
+
         # 保存先のディレクトリを指定
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-        
+        print('image_dir:', image_dir)
+
         base64_images = []
         for image in image_files:
             image_path = os.path.join(image_dir, image.name)
@@ -438,21 +443,34 @@ def add_img(request):
                     image_path = os.path.join(image_dir, new_name)
                     count += 1
 
-            # ファイル保存
-            with open(image_path, 'wb+') as destination:
-                for chunk in image.chunks():
-                    destination.write(chunk)
-            
-            # 画像をBase64にエンコード
-            base64_image = image_to_base64(image_path)
-            base64_images.append(base64_image)  # エンコードされた画像をリストに追加
+            try:
+                # ファイル保存
+                with open(image_path, 'wb+') as destination:
+                    for chunk in image.chunks():
+                        destination.write(chunk)
+                
+                # 画像をBase64にエンコード
+                base64_image = image_to_base64(image_path)
+                base64_images.append(base64_image)  # エンコード済み画像をリストに追加
+                print(base64_image)
 
-            # DBに画像データを保存
-            Image.objects.create(img_name=image.name, base64_image=base64_image)
+                # DBに画像データを保存
+                db_image = Image.objects.create(
+                        img_name=image.name, 
+                         base64_image=base64_image
+                    )
+                db_image.save()
+            
+            except Exception as e:
+                # 例外が発生した場合、エラーメッセージを表示
+                error_message = f"エラーが発生しました: {str(e)}"
+                return render(request, 'Materials/img_list.html', {'error_message': error_message})
         
-        # 保存が完了したら、次のページへリダイレクト（ファイルのURLなどを渡す）
+        # 保存が完了したら、次のページへリダイレクトページに飛ばす
         return redirect('AdminApp:next_img_list')
     
+    # GETリクエストの場合、フォームを表示
+    return render(request, 'Materials/img_list.html')
 
 from urllib.parse import unquote
 def delete_img(request):
@@ -466,10 +484,21 @@ def delete_img(request):
             if os.path.exists(image_path):
                 os.remove(image_path)
                 print('画像を削除しました')
+
+                # データベースから画像情報を削除
+                image = Image.objects.get(img_name=img_id)  # 画像の名前でデータを取得
+                image.delete()
+                print('データベースから画像を削除しました')
+
                 return redirect('AdminApp:next_img_list')  # リダイレクト先を正しく設定
             else:
                 raise Http404("指定された画像が存在しません")
+        except Image.DoesNotExist:
+            # 画像がデータベースに存在しない場合
+            error_message = f"指定された画像はデータベースに存在しません。"
+            return render(request, 'Materials/img_list.html', {'error_message': error_message})
         except Exception as e:
+            # 他のエラー処理
             error_message = f"画像の削除中にエラーが発生しました: {str(e)}"
             return render(request, 'Materials/img_list.html', {'error_message': error_message})
     else:
