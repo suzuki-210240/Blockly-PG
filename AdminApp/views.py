@@ -1,3 +1,4 @@
+import base64
 import re
 import os,requests,urllib.parse
 from django.conf import settings
@@ -155,11 +156,9 @@ def admin_list_files(request):
     try:
         # mediaフォルダ内のファイル取得(リスト)
         files_and_dirs = os.listdir(folder_path)
-        print('files_and_dirs', files_and_dirs)
 
         # DBから material_id と material_name を取得
         files_title_list = Material.objects.values('material_name', 'material_id')
-        print(f"files_title_list: {files_title_list}")
 
         # ファイル名とDBの情報を結合
         files_with_urls = []
@@ -173,7 +172,6 @@ def admin_list_files(request):
 
                 files_with_urls.append((material['material_name'], file_url.replace("\\", "/")))
 
-        print(f"files_with_urls: {files_with_urls}")
 
     except FileNotFoundError:
         # フォルダが存在しない場合のエラー
@@ -341,7 +339,6 @@ def delete_item(request):
         print('folder_path:', folder_path)
         # ファイルパスの取得
         file_path = request.POST.get("url")
-        print("Received file_path:", file_path)  # 追加
 
         # ファイルパスがNone または`/media/uploads/`で始まらない場合
         if not file_path or not file_path.startswith("/media/uploads/"):
@@ -378,6 +375,7 @@ def delete_item(request):
 def next_img_list(request):
     try:
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
+        base64_images = request.GET.getlist('base64_images')  # クエリパラメータでbase64_imagesを取得
         files_and_dirs = os.listdir(image_dir)
 
         files_with_urls = [
@@ -388,7 +386,7 @@ def next_img_list(request):
             for file_name in files_and_dirs
             if os.path.isfile(os.path.join(image_dir, file_name))
         ]
-
+        print('files_with_urls', files_with_urls)
     except FileNotFoundError:
         error_message = "指定されたフォルダが見つかりませんでした。"
         return render(request, 'Materials/img_list.html', {'error_message': error_message})
@@ -396,89 +394,53 @@ def next_img_list(request):
         error_message = f"エラーが発生しました: {str(e)}"
         return render(request, 'Materials/img_list.html', {'error_message': error_message})
     
-    return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls})
+    return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls, 'base64_images': base64_images})
 
 # ----------------------------画像リスト表示------------------------------------
 
 #--------------------------画像追加・削除---------------------------------------
 
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-import os
+def image_to_base64(image_path):
+    """画像をBase64にエンコードして返す"""
+    with open(image_path, 'rb') as image_file:
+        # 画像をBase64にエンコード
+        encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
+    return encoded_string
 
 def add_img(request):
     if request.method == 'POST':
-        
         # 複数ファイルを取得
         image_files = request.FILES.getlist('image_files')
         # 保存先のディレクトリを指定
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
         
-        # すでに存在するファイル名を確認
-        existing_files = os.listdir(image_dir)
-        conflicts = []
+        base64_images = []
+        for image in image_files:
+            image_path = os.path.join(image_dir, image.name)
 
-        # 画像ファイルの重複チェック
-        for image_file in image_files:
-            if image_file.name in existing_files:
-                conflicts.append(image_file.name)
+            # すでにファイルが存在するか確認
+            if os.path.exists(image_path):
+                # ファイル名に番号を追加する処理
+                base_name, ext = os.path.splitext(image.name)
+                count = 1
+                while os.path.exists(image_path):
+                    new_name = f"{base_name}({count}){ext}"
+                    image_path = os.path.join(image_dir, new_name)
+                    count += 1
 
-        # 重複ファイルがあれば、上書きか番号を付けて保存するかを選択
-        if conflicts:
-            return render(request, 'Materials/confirm_overwrite.html', {
-                'conflicts': conflicts,
-                'image_files': image_files
-            })
-
-        # 重複がなければ、すべての画像を保存
-        for image_file in image_files:
-            file_path = os.path.join(image_dir, image_file.name)
-            with open(file_path, 'wb+') as destination:
-                for chunk in image_file.chunks():
+            # ファイル保存
+            with open(image_path, 'wb+') as destination:
+                for chunk in image.chunks():
                     destination.write(chunk)
-
-        return redirect('AdminApp:next_img_list')  # 画像一覧ページにリダイレクト
-
-
-
-
-
-# 上書き処理または番号付け処理をするビュー
-def confirm_overwrite(request):
-    if request.method == 'POST':
-        overwrite = request.POST.get('overwrite')  # 上書き選択か確認
-        image_files = request.POST.getlist('image_files')  # 選ばれたファイル
-        image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-        
-        for image_file_name in image_files:
-            image_file = request.FILES.get(image_file_name)  # 選ばれたファイル
-            file_path = os.path.join(image_dir, image_file_name)
             
-            if overwrite == 'yes':
-                # 上書き保存
-                with open(file_path, 'wb+') as destination:
-                    for chunk in image_file.chunks():
-                        destination.write(chunk)
-            else:
-                # 番号を付けて保存
-                base_name, extension = os.path.splitext(image_file_name)
-                counter = 1
-                new_file_path = file_path
-                while os.path.exists(new_file_path):
-                    new_file_name = f"{base_name}_{counter}{extension}"
-                    new_file_path = os.path.join(image_dir, new_file_name)
-                    counter += 1
+            # 画像をBase64にエンコード
+            base64_image = image_to_base64(image_path)
+            base64_images.append(base64_image)  # エンコードされた画像をリストに追加
 
-                with open(new_file_path, 'wb+') as destination:
-                    for chunk in image_file.chunks():
-                        destination.write(chunk)
-
-        return redirect('AdminApp:next_img_list')  # リダイレクト先を設定
-    return HttpResponse("無効なリクエストです。", status=400)  # エラーハンドリング
-
+        return redirect('AdminApp:next_img_list', base64_images=base64_images)
 
 from urllib.parse import unquote
-def delete_img(request, img_id):
+def delete_img(request):
     print('delete_img')
     if request.method == "POST":
         img_id = unquote(img_id)
