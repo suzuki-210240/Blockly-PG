@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // ファイル入力フィールドを作成
         let input = document.createElement('input');
         input.type = 'file';
-        input.name = 'img_file';
+        input.name = 'image_file';
         input.required = true;
         input.accept = '.jpg, .png, .jpeg, .gif, .svg, .ico';
 

@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User, Group
 from django.forms import modelformset_factory
-from .models import Kadai, Answer,KadaiProgress,Material
+from .models import Kadai, Answer,KadaiProgress,Material,Image
 
 # class TaskForm(forms.ModelForm):
 #     file_upload = forms.FileField(
@@ -124,3 +124,20 @@ class UserGroupForm(forms.Form):
         ('admin', '管理者'),
     ]
     group = forms.ChoiceField(choices=group_choices, label="権限")
+
+
+
+#画像アップロード用
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['img_name', 'base64_image']
+
+    # 必要に応じてバリデーションやカスタム処理を追加できます
+    def clean_base64_image(self):
+        base64_image = self.cleaned_data.get('base64_image')
+        if not base64_image:
+            raise forms.ValidationError('画像データが必要です。')
+        # ここでbase64形式の画像データのチェックを行うことも可能です
+        return base64_image
+
