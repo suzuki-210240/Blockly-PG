@@ -12,3 +12,8 @@ settings.py
 **/migrations/*.py
 !**/migrations/__init__.py
 
+#env
+.env
+
+#settings.pyのバックアップ
+buckup.txt

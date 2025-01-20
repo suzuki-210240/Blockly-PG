@@ -12,17 +12,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
-from django.urls import reverse_lazy
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_s$%q9h-aibb4#%h9glf^bn=!srp2$oj3s8wqmo+qjo4%is=$o'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -103,10 +101,20 @@ DATABASES = {
         'USER': 'user',  # または 'ユーザー名'
         'PASSWORD': 'pass',  # パスワード
         'HOST': 'localhost', #切り替える
-        #'HOST': 'blockly-pg-rds.cmadu8gaa330.ap-northeast-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql'),
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST', default='localhost'),
+#         'PORT': config('DB_PORT', default='3306'),
+#     }
+# }
 
 
 # Password validation
