@@ -1,476 +1,65 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <!-- メタデータの設定 -->
-    <meta charset="UTF-8" />
-    <!-- 文字エンコーディングをUTF-8に設定 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- ビューポートの設定 -->
-    <title>配列について</title>
-    <!-- ページのタイトル -->
-
-    <!-- TailwindCSSのインポート -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <!-- TailwindCSSのスタイルシートをインポート -->
-
-    <!-- カスタムスタイルの設定 -->
-    <style>
-      body {
-        font-family: "Roboto", sans-serif; /* フォントファミリーをRobotoに設定 */
-      }
-      .samplecode {
-        background-color: #FFC; /* 背景色を設定 */
-        border: 1px solid #000; /* ボーダーを設定 */
-        margin-left: 0; /* 左寄せ */
-        padding: 20px; /* パディングを設定 */
-        white-space: pre; /* ホワイトスペースを保持 */
-        font-size: 14pt; /* 文字を大きく */
-        text-align: left; /* 左寄せ */
-      }
-      .max-w-4xl{
-        max-width: 100%;
-        margin-left: 1px;
-        margin-right: 1px;
-      }
-    </style>
-  </head>
-
-  <body class="min-h-screen bg-[#f5f7fa] p-6 font-roboto">
-    <!-- ページ全体のスタイルを設定 -->
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <!-- コンテンツのコンテナ -->
-
-      <!-- タイトルセクション -->
-      <h1 class="text-3xl md:text-4xl font-bold text-[#2c3e50] mb-6">
-        <!-- ページのメインタイトル -->
-        基本的なデータ構造について
-      </h1>
-
-      <!-- 概要セクション -->
-      <div class="mb-8">
-        <!-- マージンボトムを持つコンテナ -->
-        <p class="text-[#34495e] text-lg leading-relaxed mb-4">
-          <!-- 概要のテキスト -->
-          データ構造とは、データを効率的に管理、格納、整理するための方法や形式のことです。適切なデータ構造を選択することで、プログラムの性能と可読性を大幅に向上させることができます。
-          本節ではで、基本的なデータ構造(変数、配置,リスト、スタック、キュー、スタック)について学びます。
-        </p>
-      </div>
-
-      <!-- 変数の基本セクション -->
-      <div class="mb-12">
-        <!-- マージンボトムを持つコンテナ -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <!-- 背景色が白で、パディング、角が丸く、シャドウを持つコンテナ -->
-          <h2 class="text-2xl font-bold mb-4">１，変数とは？</h2>
-          <!-- セクションのタイトル -->
-          <p>
-            変数は、データを入れる箱のようなもので、変数名を付けて区別します。
-          </p>
-          <!-- セクションの説明 -->
-          <p>
-            変数はプログラムで使用するデータを一時的に格納するために用いられ、
-            データを使用する際には、変数名を指定して、処理をします。
-          </p>
-          <!-- セクションの説明 -->
-
-          <h2 class="text-2xl font-bold mt-6 mb-4">２，変数の代入について</h2>
-     
-          <!-- セクションのタイトル -->
-          <p>
-            変数にデータを格納することを
-            <span class="font-bold">「代入」</span><!--太文字-->
-            といい、
-            数値や文字、計算結果、他の変数の値を、代入することができます。
-            代入を示す書式は、
-            <code>変数名 = 値;</code>　または　<code>代入先変数名 = 式;</code>です。
-          </p>
-          <!-- セクションの説明 -->
-          <br><!--改行-->
-          <pre class="samplecode"> <!-- サンプルコードの表示 -->
-【例】
-x = 10; // xに10を代入  
-(変数名 = 値;)            
-y = x + 5; // xに5を加えた値をyに代入
-(代入先変数名 = 式;)
-z = y; // yの値をzに代入 
-(代入先変数名 = 代入元変数名;)        
-        </pre>
-     
-        <p class="text-red-500"><!--赤文字-->
-          代入先の変数に元々格納されていたデータは上書きされ、
-          新しいデータが格納されます。
-          また、変数どうしの代入の場合は、代入元の変数の値が
-          代入先の変数にコピーされます。（図１）※代入元の値は変化しません
-          ※値が変化しない数値や文字列を定数といいます。
-        </p>
-      
-         <!-- image.html のコンテンツ -->
-          <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図１：変数値の代入と更新</h2> <!-- セクションのタイトル -->
-          <img src="/static/app/images/変数の代入.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-           <!-- スクリーンショット画像 -->
-          
-        </div>
-      </div>
-     
-
-
-      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-         <!-- 最大幅を設定し、中央揃え、白背景、角を丸め、影を付け、パディングを設定したコンテナ -->
-      <!-- 配列の基本セクション -->
-      <div class="mb-12">
-        <!-- マージンボトムを持つコンテナ -->
-        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">
-          <!-- セクションのタイトル -->
-         3、 配列の基本
-        </h2>
-        <p class="text-[#34495e] text-lg leading-relaxed mb-4">
-            <!-- text-[#34495e]: テキストカラーを#34495eに設定します。
-                  text-lg: テキストサイズを大きく（lg）設定します。
-                  leading-relaxed: 行間をリラックス（広め）に設定します。
-                  mb-4: マージンボトムを4に設定します -->
-  
-          配列は、同じデータ型の複数の変数を連続して配置するデータ構造です。
-          変数というデータを入れる箱が連なったものだと考えるとわかりやすいでしょう。
-        各変数を要素を結び、要素が横方向に並ぶ配列を<span class="font-bold">「1次元配列」</span><!--太文字-->といいます。
-        また、縦と横に並ぶ配列を<span class="font-bold">「2次元配列」</span><!--太文字-->といいます。(図２)   
-        要素の指定は、配列につけた配列名と要素の位置を示す<span class="font-bold">添字（インデックス）</span><!--太文字-->を指定します。
-        添字が０からか、１から始まるかは問題によって異なるため注意しましょう。
-        </p>
-        <div class="flex flex-col md:flex-row gap-6">
-          <!-- フレックスボックスでレイアウト -->
-          <div class="flex-1 border-2 border-[#3498db] rounded-lg p-4">
-            <!-- 配列の宣言のコンテナ -->
-            <div class="text-center">
-              <!-- 中央揃えのテキスト -->
-              <i class="fas fa-code text-3xl text-[#3498db] mb-2"></i>
-              <!-- アイコン -->
-              <h3 class="font-bold mb-2">配列の宣言</h3>
-              <!-- サブセクションのタイトル -->
-              <p>
-                配列は、以下のように宣言します:
-                <code>let(int) arr = [1, 2, 3];</code>
-              </p>
-              <!-- 説明 -->
-            </div>
-          </div>
-          <div class="flex-1 border-2 border-[#e74c3c] rounded-lg p-4">
-            <!-- 配列のアクセスのコンテナ -->
-            <div class="text-center">
-              <!-- 中央揃えのテキスト -->
-              <i class="fas fa-search text-3xl text-[#e74c3c] mb-2"></i>
-              <!-- アイコン -->
-              <h3 class="font-bold mb-2">配列のアクセス</h3>
-              <!-- サブセクションのタイトル -->
-              <p>
-                配列の要素には、インデックスを使用してアクセスします:
-                <code>arr[0]</code>
-              </p>
-              <!-- 説明 -->
-            </div>
-          </div>
-          <div class="flex-1 border-2 border-[#2ecc71] rounded-lg p-4">
-            <!-- 配列の操作のコンテナ -->
-            <div class="text-center">
-              <!-- 中央揃えのテキスト -->
-              <i class="fas fa-edit text-3xl text-[#2ecc71] mb-2"></i>
-              <!-- アイコン -->
-              <h3 class="font-bold mb-2">配列の操作</h3>
-              <!-- サブセクションのタイトル -->
-              <p>
-                配列の要素を変更するには、以下のようにします:
-                <code>arr[0] = 10;</code>
-              </p>
-              <!-- 説明 -->
-            </div>
-          </div>
-          
-        </div>
-        <pre class="samplecode"> <!-- サンプルコードの表示 -->
-    【要素の指定の書式】
-    1次元配列の場合：配列名[インデックス]
-    2次元配列の場合：配列名[行のインデックス][列のインデックス]    
-    # Pythonでの配列（リスト）の例
-    fruits = ["リンゴ", "バナナ", "オレンジ"]
-    print(fruits[0])  # インデックスで要素にアクセス
-                  </pre>
-                     <!-- image.html のコンテンツ -->
-          <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図２：一次元配列と二次元配列</h2> <!-- セクションのタイトル -->
-          <img src="/static/app/images/1次元配列.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-          <br>
-          <img src="/static/app/images/2次元配列.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg"> 
-          <!-- スクリーンショット画像 -->
-      </div>
-
-              <!-- 配列メソッドセクション -->
-              <div class="mb-12">
-                <!-- マージンボトムを持つコンテナ -->
-                <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">
-                  <!-- セクションのタイトル -->
-                 （補足） 配列のメソッド
-                </h2>
-                <div class="overflow-x-auto">
-                  <!-- 横スクロール可能なコンテナ -->
-                  <table class="min-w-full bg-white border border-gray-200">
-                    <!-- テーブル -->
-                    <thead>
-                      <!-- テーブルのヘッダー -->
-                      <tr>
-                        <!-- テーブルの行 -->
-                        <th class="py-2 px-4 border-b">メソッド</th>
-                        <!-- 列のヘッダー -->
-                        <th class="py-2 px-4 border-b">説明</th>
-                        <!-- 列のヘッダー -->
-                        <th class="py-2 px-4 border-b">例</th>
-                        <!-- 列のヘッダー -->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- テーブルのボディ -->
-                      <tr>
-                        <!-- テーブルの行 -->
-                        <td class="py-2 px-4 border-b">push</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">配列の末尾に要素を追加します</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">arr.push(4)</td>
-                        <!-- データセル -->
-                      </tr>
-                      <tr>
-                        <!-- テーブルの行 -->
-                        <td class="py-2 px-4 border-b">pop</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">配列の末尾の要素を削除します</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">arr.pop()</td>
-                        <!-- データセル -->
-                      </tr>
-                      <tr>
-                        <!-- テーブルの行 -->
-                        <td class="py-2 px-4 border-b">shift</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">配列の先頭の要素を削除します</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">arr.shift()</td>
-                        <!-- データセル -->
-                      </tr>
-                      <tr>
-                        <!-- テーブルの行 -->
-                        <td class="py-2 px-4 border-b">unshift</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">配列の先頭に要素を追加します</td>
-                        <!-- データセル -->
-                        <td class="py-2 px-4 border-b">arr.unshift(0)</td>
-                        <!-- データセル -->
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-  
-              <br><br><!--改行-->
-    
-      <!-- リストのセクション -->
-      <div class="mb-12">
-        <!-- マージンボトムを持つコンテナ -->
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-          <!-- 背景色が白で、パディング、角が丸く、シャドウを持つコンテナ -->
-          <h1 class="text-2xl font-bold mb-4">４，リストについて</h1>
-          <!-- セクションのタイトル -->
-          <p>
-            リストは、データとポインタを１つの要素として持ち、ポインタで要素間をつなげたデータ構造で、
-            配列と同様に複数の要素を格納することができます。
-         
-          </p>
-          <!-- セクションの説明 -->
-          <p>
-            リストは、Pythonなどのプログラミング言語で使用されるデータ構造で、要素の追加や削除が容易です。
-          </p>
-          <!-- セクションの説明 -->
-
-          <h2 class="text-2xl font-bold mt-6 mb-4">５，リストの構造</h2>
-          <!-- セクションのタイトル -->
-          <p>
-            リストはデータを連結したデータ構造で、リストの最小単位となる要素は「データ部」と「ポインタ部」から構成されます。
-            <br>
-            データ部には、リストに格納するデータが格納され、ポインタ部には次の要素のアドレス(住所)が格納されます。
-            このポインタをたどることで、個々の要素にアクセスすることができます。
-            <br>
-            リストの種類には、ポインタの向きによって、
-            <span class="font-bold">「単方向リスト」</span>、
-            <span class="font-bold">「双方向リスト」</span>、
-            <span class="font-bold">「循環リスト」</span>などがあります。（図３）
-          </p>
-          <br><!--改行-->
- 
-       　<!-- 配列のメソッドセクション -->
-      <div class="mb-12">
-        <!-- マージンボトムを持つコンテナ -->
-        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">
-          <!-- セクションのタイトル -->
-          リストの種類
-        </h2>
-        <div class="overflow-x-auto">
-          <!-- 横スクロール可能なコンテナ -->
-          <table class="min-w-full bg-white border border-gray-200">
-            <!-- テーブル -->
-            <thead>
-              <!-- テーブルのヘッダー -->
-              <tr>
-                <!-- テーブルの行 -->
-                <th class="py-2 px-4 border-b">種類</th>
-                <!-- 列のヘッダー -->
-                <th class="py-2 px-4 border-b">内容</th>
-                <!-- 列のヘッダー -->
-            
-              </tr>
-            </thead>
-            <tbody>
-              <!-- テーブルのボディ -->
-              <tr>
-                <!-- テーブルの行 -->
-                <td class="py-2 px-4 border-b">単方向リスト</td>
-                <!-- データセル -->
-                <td class="py-2 px-4 border-b">次の要素を示すポインタのみを持つリスト。
-                  先頭から末尾の方向へデータをたどることができる</td>
-                <!-- データセル -->
-             
-              </tr>
-              <tr>
-                <!-- テーブルの行 -->
-                <td class="py-2 px-4 border-b">双方向リスト</td>
-                <!-- データセル -->
-                <td class="py-2 px-4 border-b">次の要素と前の要素を示す2つのポインタ持つリスト。
-                  先頭から末尾、末尾から先頭の方向へデータをたどることができる</td>
-                </td>
-                <!-- データセル -->
-              </tr>
-
-              <tr>
-                <!-- テーブルの行 -->
-                <td class="py-2 px-4 border-b">環状リスト</td>
-                <!-- データセル -->
-                <td class="py-2 px-4 border-b">末尾の要素のポインタが先頭の要素を示すリスト。
-                  要素が環状に連結される
-                </td>
-                <!-- データセル -->
-              </tr>
-            </tbody>
-          </table>
-     
-          <br><br><!--改行-->
-         <!-- image.html のコンテンツ -->
-          <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図３：リストの構造</h2> <!-- セクションのタイトル -->
-          <p class="text-red-500"><!--赤文字-->※薄い青はデータ部、濃い青はポインタを指します</p>
-          <img src="/static/app/images/リストの構造.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-           <!-- スクリーンショット画像 -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-      <!-- 背景色が白で、パディング、角が丸く、シャドウを持つコンテナ -->
-      <h1 class="text-2xl font-bold mb-4">５，リストの操作</h1>
-      </h1>
-      <!-- セクションのタイトル -->
-      <p>
-        リストで要素の追加や削除を行う場合は、配列と比べて簡単に操作を行うことができます。
-     配列では、要素の追加や削除を行う場合、要素の移動が発生するため、処理が複雑になり時間がかかりますが、
-     一方リストは、ポインタの参照先変更するだけで良いので、短時間での要素の追加や削除が可能です。
-     例として、図4に示す英単語をアルファベット順に格納した配列とリストに対して要素の追加と削除をします。
-      </p>
-      <br><br><!--改行-->
-      <!-- image.html のコンテンツ -->
-       <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図４：英単語をアルファベット順に格納した配列とリスト</h2> <!-- セクションのタイトル -->
-       <img src="/static/app/images/配列とリスト.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-       
-        <br><br><!--改行-->
-       <!-- image.html のコンテンツ -->
-       <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図５："bluebely"という要素を追加</h2> <!-- セクションのタイトル -->
-       <b>[配列の場合]</b>
-       <p>１，BananaからDateの要素を1つずつ後ろへずらす</p>
-       <p>２，空いた2つめの所に"bluebely"を追加する</p>
-       <br><!--改行-->
-       <b>[リストの場合]</b>
-       <p>１，"Apple"のポインタを"bluebelly"へ変更する</p>
-       <p>２，"bluebelly"のポインタを"Banana"に設定する</p>
-       <img src="/static/app/images/要素の追加.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-       <br><br><!--改行-->
-
-        <!-- image.html のコンテンツ -->
-        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図６："cherry"という要素を削除</h2> <!-- セクションのタイトル -->
-        <b>[配列の場合]</b>
-        <p>１，左から4つ目、"Cherry"を削除</p>
-        <p>２，左から5つ目、"Date"を前にずらす</p>
-        <br><!--改行-->
-        <b>[リストの場合]</b>
-        <p>１，"Banana"のポインタを"Date"に変更する</p>
-        <img src="/static/app/images/要素の削除.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-    </div>
-        
-    <br><br><br><!--改行-->
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-          <!-- 最大幅を設定し、中央揃え、白背景、角を丸め、影を付け、パディングを設定したコンテナ -->
-       <!--   キューとスタックセクション -->
-       <div class="mb-12">
-         <!-- マージンボトムを持つコンテナ -->
-         <h1 class="text-2xl font-bold text-[#2c3e50] mb-4">
-           <!-- セクションのタイトル -->
-          ６、 キューについて
-         </h1>
-         <p class="text-[#34495e] text-lg leading-relaxed mb-4">
-             <!-- text-[#34495e]: テキストカラーを#34495eに設定します。
-                   text-lg: テキストサイズを大きく（lg）設定します。
-                   leading-relaxed: 行間をリラックス（広め）に設定します。
-                   mb-4: マージンボトムを4に設定します -->
-            キューは、先に格納したデータから順に取り出す、先人先出
-            型（FIFO：First In First Out）のデータ構造です（図2.7）。
-            キューヘデータを格納することを  <span class="font-bold">enqueue（エンキュー）</span><!--太文字-->といい、
-            キューからデータを取り出すことを <span class="font-bold">dequeue（デキュー）</span><!--太文字-->と呼びます。
-         </p>
-             <!-- image.html のコンテンツ -->
-           <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図７：キュー</h2> <!-- セクションのタイトル -->
-           <img src="/static/app/images/キュー.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-           <!-- スクリーンショット画像 -->
-          </div>
-      
-          <br><br><!--改行-->
-
-          <!-- スタックセクション -->
-          <div class="mb-12">
-            <!-- マージンボトムを持つコンテナ -->
-            <h1 class="text-2xl font-bold text-[#2c3e50] mb-4">
-              <!-- セクションのタイトル -->
-             ７、 スタックについて
-            </h1>
-            <p class="text-[#34495e] text-lg leading-relaxed mb-4">
-                <!-- text-[#34495e]: テキストカラーを#34495eに設定します。
-                      text-lg: テキストサイズを大きく（lg）設定します。
-                      leading-relaxed: 行間をリラックス（広め）に設定します。
-                      mb-4: マージンボトムを4に設定します -->
-                      スタックはキューとは逆に、後に格納したデータから順に取り出す，
-                      後入先出型（LIFO：Last In First Out）のデータ構造です。
-                      スタックにデータを格納することを<span class="font-bold">push（ブッシュ）</span>。
-                      スタックからデータを取り出すことを<span class="font-bold">pop（ポップ）</span>と呼びます。
-                      スタックは、サブルーチンや再帰処理における、
-                      戻り先アドレスや呼出し時点のデータの一時的な格納に利用されます。
-            </p>
-                <!-- image.html のコンテンツ -->
-              <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図８：スタック</h2> <!-- セクションのタイトル -->
-              <img src="/static/app/images/スタック.png" alt="スクリーンショット" class="w-full rounded-lg shadow-lg">
-              <!-- スクリーンショット画像 -->
-             </div>
-
-
-
-
-      </div>
-
-        
-      </div><!--全体の最後-->
-  </body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>JavaScript</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p>サンプルです</p>
+        <p id="scrollTop"><a href="#">page top</a></p>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
 </html>
