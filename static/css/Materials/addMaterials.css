@@ -105,7 +105,7 @@ input {
 }
 
 /* 戻るボタン */
-.back-button {
+.yameru-button {
     background-color: #fff;
     border: solid 2px #333;
     color: #333;
@@ -117,7 +117,7 @@ input {
     cursor: pointer;
 }
 
-.back-button:hover {
+.yameru-button:hover {
     background-color: #ccc;
     transform: scale(1.05);
 }
