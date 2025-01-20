@@ -14,3 +14,6 @@ settings.py
 
 #env
 .env
+
+#settings.pyのバックアップ
+buckup.txt
