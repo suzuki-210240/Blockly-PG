@@ -53,10 +53,7 @@
           <div class="file-box">
             <label id="sub-title" for="file">教材ファイル</label>
             <input type="file" id="file" name="html_file" required accept=".html" />
-            {% if form.html_file.errors %}
-              <p class="error-message">{{ form.html_file.errors }}</p>
-            {% endif %}
-            <p class="attention">※HTMLファイル内に画像コード(画像リスト参照)を埋め込んでください</p>
+            <p class="attention">※HTMLファイル内の画像名と画像リスト内の画像名を一致させてください</p>
           </div>
         </form>
         <form class="img-box" action= "{% url 'AdminApp:add_img' %}" >
