@@ -65,7 +65,6 @@
 
         <div class="table-header">
           <span class="table-title">タイトル</span>
-          <span class="img-code">画像コード</span>
           <span class="action-title">操作</span>
         </div>
         <div class="table-row">
@@ -74,21 +73,18 @@
           {% else %}
             {% for file in files_with_urls %}
               <div class="table-item">
-                <span class="row-title">
-                  <span class="number">{{ forloop.counter }}.&emsp;</span>{{ file.name }}
-                </span>
-                <!-- base64の画像データを表示する場合 -->
-                <pre>{{ file.base64 }}</pre>
-                <div class="button-container">
-                  <!-- 削除ボタン -->
-                  <form action="{% url 'AdminApp:delete_img' %}" method="POST" style="display:inline;">
-                    {% csrf_token %}
-                    <!-- ファイル名とbase64をhiddenとして送信 -->
-                    <input type="hidden" name="file_name" value="{{ file.name }}">
-                    <input type="hidden" name="file_url" value="{{ file.url }}">
-                    <button type="submit" class="action-button" onclick="return confirm('{{ file.name }} を削除しますか？')">削除</button>
-                  </form>                  
-                </div>
+                  <span class="row-title">
+                      <span class="number">{{ forloop.counter }}.&emsp;</span>{{ file.name }}
+                  </span>
+                  <div class="button-container">
+                      <!-- 削除ボタン -->
+                      <form action="{% url 'AdminApp:delete_img' %}" method="POST" style="display:inline;">
+                          {% csrf_token %}
+                          <input type="hidden" name="img_name" value="{{ file.name }}">
+                          <input type="hidden" name="file_url" value="{{ file.url }}">
+                          <button type="submit" class="action-button" onclick="return confirm('{{ file.name }} を削除しますか？')">削除</button>
+                      </form>
+                  </div>
               </div>
               <hr>
             {% endfor %}

@@ -376,7 +376,6 @@ def delete_item(request):
 def next_img_list(request):
     try:
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
-        base64_images = request.GET.getlist('base64_images')  # base64_imagesを取得
         files_and_dirs = os.listdir(image_dir)
 
         files_with_urls = []
@@ -384,18 +383,9 @@ def next_img_list(request):
         # ディレクトリ内のファイルをリスト化
         for file_name in files_and_dirs:
             if os.path.isfile(os.path.join(image_dir, file_name)):
-                # DBからファイル名に対応するbase64コードを取得
-                try:
-                    image = Image.objects.get(img_name=file_name)
-                    base64_image = image.base64_image
-                except Image.DoesNotExist:
-                    base64_image = None  # DBに存在しない場合はNoneを設定
-
-                # URLとbase64コードを一緒に保存
                 files_with_urls.append({
                     'name': file_name,
-                    'url': quote(f'/static/images/{file_name}'),
-                    'base64_image': base64_image
+                    'url': quote(f'/static/images/{file_name}')
                 })
 
         print('files_with_urls', files_with_urls)
@@ -406,17 +396,11 @@ def next_img_list(request):
         error_message = f"エラーが発生しました: {str(e)}"
         return render(request, 'Materials/img_list.html', {'error_message': error_message})
     
-    return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls, 'base64_images': base64_images})
+    return render(request, 'Materials/img_list.html', {'files_with_urls': files_with_urls})
+
 # ----------------------------画像リスト表示------------------------------------
 
 #--------------------------画像追加・削除---------------------------------------
-
-def image_to_base64(image_path):
-    """画像をBase64にエンコードして返す"""
-    with open(image_path, 'rb') as image_file:
-        # 画像をBase64にエンコード
-        encoded_string = base64.b64encode(image_file.read()).decode('utf-8')
-    return encoded_string
 
 def add_img(request):
     print('add_img')
@@ -429,7 +413,6 @@ def add_img(request):
         image_dir = os.path.join(settings.BASE_DIR, 'static', 'images')
         print('image_dir:', image_dir)
 
-        base64_images = []
         for image in image_files:
             image_path = os.path.join(image_dir, image.name)
 
@@ -448,19 +431,7 @@ def add_img(request):
                 with open(image_path, 'wb+') as destination:
                     for chunk in image.chunks():
                         destination.write(chunk)
-                
-                # 画像をBase64にエンコード
-                base64_image = image_to_base64(image_path)
-                base64_images.append(base64_image)  # エンコード済み画像をリストに追加
-                print(base64_image)
-
-                # DBに画像データを保存
-                db_image = Image.objects.create(
-                        img_name=image.name, 
-                         base64_image=base64_image
-                    )
-                db_image.save()
-            
+                print(f"画像 {image.name} を保存しました。")
             except Exception as e:
                 # 例外が発生した場合、エラーメッセージを表示
                 error_message = f"エラーが発生しました: {str(e)}"
@@ -472,38 +443,39 @@ def add_img(request):
     # GETリクエストの場合、フォームを表示
     return render(request, 'Materials/img_list.html')
 
+
 from urllib.parse import unquote
 def delete_img(request):
-    print('delete_img')
-    if request.method == "POST":
-        img_id = unquote(img_id)
-        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', img_id)
-        print('image_path', image_path)
+    print('delete_img')  # デバッグ用ログ
+    if request.method == 'POST':
+        # POST データから `img_name` を取得
+        img_name = request.POST.get('img_name')
+        print('img_name:', img_name)  # デバッグ用ログ
+
+        # img_name が None または空の場合の処理
+        if not img_name:
+            return JsonResponse({'error': '画像名が提供されていません'}, status=400)
+
+        # ファイルパスの生成
+        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', img_name)
+        print('image_path:', image_path)  # デバッグ用ログ
+
         try:
-            # ファイルの削除処理
+            # ファイルの存在確認と削除
             if os.path.exists(image_path):
                 os.remove(image_path)
-                print('画像を削除しました')
+                print(f'{img_name} を削除しました')  # デバッグ用ログ
 
-                # データベースから画像情報を削除
-                image = Image.objects.get(img_name=img_id)  # 画像の名前でデータを取得
-                image.delete()
-                print('データベースから画像を削除しました')
-
-                return redirect('AdminApp:next_img_list')  # リダイレクト先を正しく設定
+                return redirect('AdminApp:next_img_list') 
             else:
-                raise Http404("指定された画像が存在しません")
-        except Image.DoesNotExist:
-            # 画像がデータベースに存在しない場合
-            error_message = f"指定された画像はデータベースに存在しません。"
-            return render(request, 'Materials/img_list.html', {'error_message': error_message})
-        except Exception as e:
-            # 他のエラー処理
-            error_message = f"画像の削除中にエラーが発生しました: {str(e)}"
-            return render(request, 'Materials/img_list.html', {'error_message': error_message})
-    else:
-        raise Http404("無効なリクエストです")
+                return JsonResponse({'error': '指定された画像が存在しません'}, status=404)
 
+        except Exception as e:
+            print(f'エラー発生: {str(e)}')  # デバッグ用ログ
+            return JsonResponse({'error': str(e)}, status=500)
+    
+    # POST メソッド以外の場合
+    return JsonResponse({'error': '無効なリクエストです'}, status=400)
 #--------------------------------画像追加・削除--------------------------------
 
 
