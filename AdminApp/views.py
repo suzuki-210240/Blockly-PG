@@ -481,6 +481,23 @@ def delete_img(request):
 
 
 #--------------------------------問題・解答設定----------------------------------------
+#入力された課題番号に文字が含まれていないかチェック
+def check_number(number):
+    try:
+        number = str(number).translate(str.maketrans({
+            '０': '0', '１': '1', '２': '2', '３': '3', '４': '4',
+            '５': '5', '６': '6', '７': '7', '８': '8', '９': '9'
+        }))
+        float(number)
+
+        numbers = re.findall(r'\d+', number)
+        print(numbers)
+
+        
+        return True, str(''.join(numbers))
+    except ValueError:
+        print("ValueError")
+        return False,number
 
 prefix = ""
 #プレフィックスの追加（チュートリアル：t、基本問題：b、応用問題：a）
@@ -498,45 +515,49 @@ def create_number(kadai):
 
 
 def add_kadai_and_answer(request, kadai_id=None):
-    print("start")
+    
     if kadai_id:
         kadai = get_object_or_404(Kadai, id=kadai_id)
         answers = Answer.objects.filter(kadai=kadai)
     else:
         kadai = None
         answers = []
-        
-    print("next1")
+
     # 問題フォーム
     if request.method == "POST":
         kadai_form = KadaiForm(request.POST, instance=kadai)
         answer_form = AnswerForm(request.POST)  # 解答フォーム
         
-        print("next2")
         if kadai_form.is_valid():
             kadai_instance = kadai_form.save(commit=False)  # 問題データを保存前のインスタンス取得
-            print("next3")
-            create_number(kadai_instance)
-            global prefix
-            print(prefix)
+            result,number = check_number(kadai_instance.number)
+            if result:
+                print("go")
+                kadai_instance.number = number
+                create_number(kadai_instance)
+                global prefix
+                print(prefix)
 
-            # 新規作成時、重複チェックを実施
-            if not kadai and Kadai.objects.filter(number=prefix).exists():
-                kadai_form.add_error('number', 'この問題番号は既に存在します。')
+                # 新規作成時、重複チェックを実施
+                if not kadai and Kadai.objects.filter(number=prefix).exists():
+                    kadai_form.add_error('number', 'この問題番号は既に存在します。')
+                    
+                    
                 
-                
-            print("next4")
-            if kadai_form.is_valid():  # 再度バリデーションチェック
-                create_number(kadai_instance)  # プレフィックスを生成する関数（詳細は気にしない）
-                kadai_instance.save()  # 問題データの保存
+                if kadai_form.is_valid():  # 再度バリデーションチェック
+                    create_number(kadai_instance)  # プレフィックスを生成する関数（詳細は気にしない）
+                    kadai_instance.save()  # 問題データの保存
 
-                # 解答フォームが有効な場合にのみ解答を保存
-                if answer_form.is_valid():
-                    answer_instance = answer_form.save(commit=False)
-                    answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
-                    answer_instance.save()
+                    # 解答フォームが有効な場合にのみ解答を保存
+                    if answer_form.is_valid():
+                        answer_instance = answer_form.save(commit=False)
+                        answer_instance.kadai = kadai_instance  # 解答を問題に関連付け
+                        answer_instance.save()
 
-                return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+                    return redirect('AdminApp:admin_kadai_list')  # 遷移先に適宜変更
+            else:
+                print("out")
+                kadai_form.add_error('number', '問題番号に数字以外が含まれています。')
 
     else:
         kadai_form = KadaiForm(instance=kadai)
@@ -560,20 +581,26 @@ def edit_kadai_and_answers(request, kadai_id):
 
         if kadai_form.is_valid() and answer_formset.is_valid():
             kadai_instance = kadai_form.save(commit=False)
-            create_number(kadai_instance)  # プレフィックス再設定
-            kadai_instance.save()
+            result,number = check_number(kadai_instance.number)
+            if result:
+                kadai_instance.number = number
+                create_number(kadai_instance)  # プレフィックス再設定
+                kadai_instance.save()
 
-            # 解答フォームセットの保存
-            instances = answer_formset.save(commit=False)
-            for instance in instances:
-                instance.kadai = kadai_instance
-                instance.save()
+                # 解答フォームセットの保存
+                instances = answer_formset.save(commit=False)
+                for instance in instances:
+                    instance.kadai = kadai_instance
+                    instance.save()
 
-            # 削除された解答を削除
-            for deleted_instance in answer_formset.deleted_objects:
-                deleted_instance.delete()
+                # 削除された解答を削除
+                for deleted_instance in answer_formset.deleted_objects:
+                    deleted_instance.delete()
 
-            return redirect('AdminApp:admin_kadai_list')
+                return redirect('AdminApp:admin_kadai_list')
+            
+            else:
+                kadai_form.add_error('number', '問題番号に数字以外が含まれています。')
 
     else:
         kadai_form = KadaiForm(instance=kadai)
