@@ -1,6 +1,7 @@
 import base64
 import re
 from django import forms
+from django.urls import reverse
 import os,requests,urllib.parse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -405,6 +406,7 @@ def next_img_list(request):
 def add_img(request):
     print('add_img')
     if request.method == 'POST':
+
         # 複数ファイルを取得
         image_files = request.FILES.getlist('image_files')
         print('image_files:', image_files)
@@ -444,7 +446,6 @@ def add_img(request):
     return render(request, 'Materials/img_list.html')
 
 
-from urllib.parse import unquote
 def delete_img(request):
     print('delete_img')  # デバッグ用ログ
     if request.method == 'POST':
