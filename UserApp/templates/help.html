@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockly ヘルプページ</title>
+    <link rel="stylesheet" href="{% static 'css/User/help_styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Blockly ヘルプガイド</h1>
+        <p>各ブロックの種類とその機能について説明します。</p>
+    </header>
+
+    <section class="block-section">
+        <h2>ブロックの種類と説明</h2>
+
+        <!-- 計算ブロック -->
+        <div class="category">
+            <h3>計算</h3>
+            <div class="block">
+                <h4>四則演算</h4>
+                <div class="block-description">
+                    <p>数字ブロックは数字を表します。キーボードから任意の数字を入力することが可能です。</p>
+                    <p>演算ブロックは２つの数字を計算するブロックです。中心の記号をクリックすれば、様々な四則演算を行うことができます。</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-number.png' %}" alt="数字ブロック">
+                <img src="{% static 'menu_img/keisan-kigou.png' %}" alt="演算ブロック">
+                <img src="{% static 'menu_img/keisan-keisan.png' %}" alt="計算ブロック">
+            </div>
+
+            <div class="block">
+                <h4>四捨五入</h4>
+                <div class="block-description">
+                    <p>右に繋げた数字ブロックの数を四捨五入してくれます。</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-shisha.png' %}" alt="四捨五入ブロック">
+            </div>
+
+            <div class="block">
+                <h4>余り</h4>
+                <div class="block-description">
+                    <p>２つの数字ブロックを埋め込んで使います。左の数字を右の数字で割った余りを出力します。</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-amari.png' %}" alt="余りブロック">
+            </div>
+
+            <div class="block">
+                <h4>ランダム整数</h4>
+                <div class="block-description">
+                    <p>２つの数字ブロックを埋め込んで使います。左の数字から右の数字までの範囲でランダムな整数を返します</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-random.png' %}" alt="ランダム整数ブロック">
+            </div>
+
+            <div class="block">
+                <h4>特別な値</h4>
+                <div class="block-description">
+                    <p>右側に数字ブロックを繋げて使います。平方根や絶対値など、選択された特別な値に変換して返します。</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-root.png' %}" alt="特別な値ブロック">
+            </div>
+
+            <div class="block">
+                <h4>三角比</h4>
+                <div class="block-description">
+                    <p>右側に数字ブロックを繋げて使います。正弦や余弦などの三角比にして返します。</p>
+                </div>
+                <img src="{% static 'menu_img/keisan-sankaku.png' %}" alt="三角比ブロック">
+            </div>
+
+        </div>
+        <!--計算ブロック完了 01/17-->
+
+        <!-- コントローラーブロック -->
+        <div class="category">
+            <h3>コントローラ</h3>
+            <div class="block">
+                <h4>条件分岐（if）-１</h4>
+                <div class="block-description">
+                    <p>「もし」の右の部分に条件となるブロックを繋げて使います。条件となるブロックは”ロジック”グループから持ってきてください。</p>
+                    <p>「実行」の右の部分に実行したいプログラムのブロックを繋げてください。条件部分がtrueと判定された時、そのプログラムが実行されます。</p>
+                </div>
+                <img src="{% static 'menu_img/control-if.png' %}" alt="ifブロック">
+            </div>
+
+            <div class="block">
+                <h4>条件分岐（if）-２</h4>
+                <div class="block-description">
+                    <p>「もし」の右の部分に条件となるブロックを繋げて使います。条件となるブロックは”ロジック”グループから持ってきてください。</p>
+                    <p>「実行」の右の部分に実行したいプログラムのブロックを繋げてください。条件部分がtrueと判定された時、そのプログラムが実行されます。</p>
+                    <p>「そうでなければ」の右の部分にも実行したいプログラムのブロックを繋げてください。条件部分がfalseと判定された時、このプログラムが実行されます。</p>
+                </div>
+                <img src="{% static 'menu_img/control-if2.png' %}" alt="ifブロック2">
+            </div>
+        </div>
+        <!--コントローラーブロック完了 01/17-->
+
+        <!-- ループブロック -->
+        <div class="category">
+            <h3>ループ</h3>
+            <div class="block">
+                <h4>繰り返し（for）</h4>
+                <div class="block-description">
+                    <p>ブロック内部に数字ブロックを埋め込んで使います。指定した回数だけ、内部のブロックを繰り返し実行します。</p>
+                </div>
+                <img src="{% static 'menu_img/roop-for.png' %}" alt="forブロック">
+            </div>
+            <div class="block">
+                <h4>繰り返し（while）</h4>
+                <div class="block-description">
+                    <p>指定した条件が満たされる限り繰り返しを続けたり、逆に条件が満たされるまで繰り返しを続けるブロックです。</p>
+                    <p>上の部分に条件となるブロックを繋げ、下の部分に繰り返し実行したいブロックを繋げてください。</p>
+                </div>
+                <img src="{% static 'menu_img/roop-while.png' %}" alt="whileブロック">
+            </div>
+            <div class="block">
+                <h4>繰り返し（forの回数付き）</h4>
+                <div class="block-description">
+                    <p>変数を使いながら指定回数繰り返すforブロックです。セットした変数に数を代入しながらカウントします。</p>
+                    <p>使用する変数は変更可能です。</p>
+                </div>
+                <img src="{% static 'menu_img/roop-for2.png' %}" alt="for2ブロック">
+            </div>
+            <div class="block">
+                <h4>continueとbreak</h4>
+                <div class="block-description">
+                    <p>ループ系のブロックに接続して、繰り返しを終了させたり、以降の処理をスキップして次の回数に進めることができます</p>
+                </div>
+                <img src="{% static 'menu_img/roop-break.png' %}" alt="breakブロック">
+            </div>
+        </div>
+        <!--ループブロック完了 01/20-->
+
+        <!-- ロジックブロック -->
+        <div class="category">
+            <h3>ロジック</h3>
+            <div class="block">
+                <h4>判定</h4>
+                <div class="block-description">
+                    <p>数字ブロックや変数を埋め込んで使います。指定した記号に応じた判定を行い、trueかfalseを返します。</p>
+                    <p>ループやコントローラのブロックと組み合わせて使用してください</p>
+                </div>
+                <img src="{% static 'menu_img/rogic-eq.png' %}" alt="eqブロック">
+            </div>
+            <div class="block">
+                <h4>論理（ORとAND）</h4>
+                <div class="block-description">
+                    <p>数字ブロックや変数を埋め込んで使います。選んだ条件に応じて論理の計算を行います。</p>
+                    <img src="{% static 'menu_img/rogic-ronri.png' %}" alt="ronriブロック">
+                </div>
+            </div>
+        </div>
+        <!--ロジックブロック完了-->
+
+        <!-- テキストブロック -->
+        <div class="category">
+            <h3>テキスト</h3>
+            <div class="block">
+                <h4>テキストの表示</h4>
+                <div class="block-description">
+                    <p>ブロックの中にテキストを入力することで、文字列データを作ることができます。</p>
+                    <p>図のように、表示ブロックと組み合わせれば、任意の文字列を表示させることができます。</p>
+                </div>
+                <img src="{% static 'menu_img/text-moji.png' %}" alt="テキストブロック">
+            </div>
+            <div class="block">
+                <h4>テキストの結合</h4>
+                <div class="block-description">
+                    <p>右側に文字列データを複数繋げると、それらを組み合わせた文字列データを新しく作成するブロックです。</p>
+                </div>
+                <img src="{% static 'menu_img/text-plus.png' %}" alt="テキストplusブロック">
+            </div>
+            <div class="block">
+                <h4>テキストの長さ</h4>
+                <div class="block-description">
+                    <p>文字列データを埋め込んで使います。対象となった文字列データの文字数（長さ）を求めて返します。</p>
+                </div>
+                <img src="{% static 'menu_img/text-length.png' %}" alt="テキストlengthブロック">
+            </div>
+        </div>
+        <!--テキストブロック完了 01/20-->
+
+        <!-- 変数ブロック -->
+<div class="category">
+    <h3>変数</h3>
+    <div class="block">
+        <h4>変数の設定</h4>
+        <div class="block-description">
+            <p>このブロックは変数に値を設定します。変数名と値を指定することで、プログラム内でその変数を利用することができます。</p>
+            <p>変数は、「変数の作成」ボタンをクリックすると作成できます。</p>
+        </div>
+        <img src="{% static 'menu_img/hensu-hensu.png' %}" alt="変数ブロック">
+        <img src="{% static 'menu_img/hensu-make.png' %}" alt="変数設定ブロック">
+    </div>
+</div>
+<!--変数ブロック完了 01/21-->
+
+<!-- リスト操作ブロック -->
+<div class="category">
+    <h3>リスト操作</h3>
+    <div class="block">
+        <h4>リストを作成</h4>
+        <div class="block-description">
+            <p>右側に数字ブロックや文字列ブロックを繋ぐことで、それらの要素を持つリストを作成できます。</p>
+            <p>リストは変数にセットして使ってください。</p>
+        </div>
+        <img src="{% static 'menu_img/list-list.png' %}" alt="リストブロック">
+        <img src="{% static 'menu_img/list-hensu.png' %}" alt="リスト変数ブロック">
+    </div>
+    <div class="block">
+        <h4>リストの長さ</h4>
+        <div class="block-description">
+            <p>ブロックにリストを埋め込むと、そのリストの長さ（要素数）を求めて返します。</p>
+        </div>
+        <img src="{% static 'menu_img/list-length.png' %}" alt="リストの長さブロック">
+    </div>
+    <div class="block">
+        <h4>リストの操作</h4>
+        <div class="block-description">
+            <p>このブロックに埋め込んだリストに対して操作を行うことができます。</p>
+            <p>どのような操作を行うのか、リスト内のどの要素に対してどこから操作するのかも選択できます。</p>
+        </div>
+        <img src="{% static 'menu_img/list-action1.png' %}" alt="リストの操作ブロック１">
+        <img src="{% static 'menu_img/list-action2.png' %}" alt="リストの操作ブロック２">
+        <img src="{% static 'menu_img/list-action3.png' %}" alt="リストの操作ブロック３">
+    </div>
+    <div class="block">
+        <h4>リストに値を挿入</h4>
+        <div class="block-description">
+            <p>このブロックに埋め込まれたリストに対して、任意の値を挿入することができます。</p>
+            <p>「＃」のところにリスト内の位置を、「値：」のところに挿入したい値をセットしてください。</p>
+        </div>
+        <img src="{% static 'menu_img/list-set.png' %}" alt="リストセットブロック">
+    </div>
+    <div class="block">
+        <h4>リストの繰り返し</h4>
+        <div class="block-description">
+            <p>与えられた値を指定回数繰り返してリストを作成します。</p>
+        </div>
+        <img src="{% static 'menu_img/list-roop.png' %}" alt="リストループブロック">
+    </div>
+    <div class="block">
+        <h4>リストを逆順に</h4>
+        <div class="block-description">
+            <p>セットされたリスト内の要素の順番を逆に並べ替えます。</p>
+        </div>
+        <img src="{% static 'menu_img/list-gyaku.png' %}" alt="リスト逆順ブロック">
+    </div>
+</div>
+<!--リスト操作ブロック完了 01/21-->
+
+<!-- 関数ブロック -->
+<div class="category">
+    <h3>関数</h3>
+    <div class="block">
+        <h4>関数の定義</h4>
+        <div class="block-description">
+            <p>このブロックは新しい関数を定義します。関数名と処理を指定することで、後で呼び出すことができます。</p>
+            <p>「返す」と表示されているブロックは返り値を返すことができます。</p>
+        </div>
+        <img src="{% static 'menu_img/kansu-kansu.png' %}" alt="関数定義ブロック">
+        <img src="{% static 'menu_img/kansu-kansu2.png' %}" alt="関数定義ブロック2">
+    </div>
+    <div class="block">
+        <h4>ifブロック</h4>
+        <div class="block-description">
+            <p>返り値を返す時にifの判定ができます。指定された条件を満たす時のみ任意の返り値を返します。</p>
+        </div>
+        <img src="{% static 'menu_img/kansu-if.png' %}" alt="関数ifブロック">
+    </div>
+</div>
+<!--関数ブロック完了 01/21-->
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Blockly アプリ</p>
+    </footer>
+</body>
+</html>

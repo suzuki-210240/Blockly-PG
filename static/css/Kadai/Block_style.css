@@ -52,7 +52,8 @@ footer {
 
 
 h3,h4 {
-    color: #ff5500;
+    color: #ff9100;
+    -webkit-text-stroke: #f5f5f5 0.4px;
     margin: 1px;
 }
 
@@ -128,6 +129,7 @@ textarea {
     margin-left: 10px;
     border: solid 1px #9e9c9c; 
     overflow-y: scroll !important; /* 縦スクロールバーを常に表示 */
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .main_filed,.main_filed-f{
