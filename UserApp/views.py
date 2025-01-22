@@ -41,6 +41,9 @@ def Home (request):
         context
     )
 
+def help(request):
+    return render(request, 'help.html') 
+
 #------------------------------教材一覧---------------------------------------------
 @login_required
 def user_list_files(request):
