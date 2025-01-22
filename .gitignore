@@ -12,4 +12,8 @@ settings.py
 **/migrations/*.py
 !**/migrations/__init__.py
 
+.env
 buckup.txt
+
+Python-3.10.4/
+Python-3.10.4.tar.xz
