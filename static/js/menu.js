@@ -1,32 +1,62 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // ユーザーメニューの処理
   const userMenu = document.getElementById('userMenu');
-  
-  // userMenuが存在する場合のみイベントリスナーを追加
   if (userMenu) {
     userMenu.addEventListener('change', function (event) {
-      const selectedValue = event.target.value; // 選択された値を取得
+      const selectedValue = event.target.value;
       if (selectedValue !== 'username') {
-        // 任意の処理を書くことができます
+        // 必要な処理を書く
       }
-      // 常に「ユーザー名」に戻す
-      event.target.value = 'username'; 
+      event.target.value = 'username';
     });
   }
 
-  // iframeサイズ調整の処理
-  const iframe = document.querySelector('.preview'); // iframeのクラス名を指定
-  
+  // iframeのサイズ調整
+  const iframe = document.querySelector('.preview');
   if (iframe) {
-    // リサイズ時にiframeのサイズを変更
-    window.addEventListener('resize', function () {
-      const aspectRatio = 16 / 9; // 16:9のアスペクト比
-      iframe.style.width = window.innerWidth * 0.9 + 'px'; // 画面幅の90%
-      iframe.style.height = (window.innerWidth * 0.9) / aspectRatio + 'px'; // 高さを計算
-    });
+    const resizeIframe = () => {
+      const aspectRatio = 16 / 9;
+      iframe.style.width = window.innerWidth * 0.9 + 'px';
+      iframe.style.height = (window.innerWidth * 0.9) / aspectRatio + 'px';
+    };
 
-    // 初期サイズの設定
-    const aspectRatio = 16 / 9;
-    iframe.style.width = window.innerWidth * 0.9 + 'px'; // 初期幅
-    iframe.style.height = (window.innerWidth * 0.9) / aspectRatio + 'px'; // 初期高さ
+    window.addEventListener('resize', resizeIframe);
+    resizeIframe(); // 初期設定
+  }
+
+  // サイドバーのメニュー開閉
+  const menu = document.getElementById('menu');
+  const container = document.querySelector('.container');
+  const mainContent = document.querySelector('main');
+  const logo = document.querySelector('.logo');
+
+  if (menu && container) {
+    menu.addEventListener('change', function () {
+      // チェックボックスがチェックされたかどうかでサイドバーの状態を変更
+      if (menu.checked != true) {
+        container.classList.add('collapsed');
+        menu.nextElementSibling.textContent = '>';
+
+        // サイドメニューの状態に応じてmainのpaddingを変更
+        if (mainContent) {
+          mainContent.style.marginLeft = '50px'; // サイドメニューが縮まったときのmargin
+        }
+
+        if (logo) {
+          logo.style.paddingLeft = '60px';
+        }
+      } else {
+        container.classList.remove('collapsed');
+        menu.nextElementSibling.textContent = '<'; // テキスト変更
+
+        if (mainContent) {
+          mainContent.style.marginLeft = '200px'; // 通常時のpadding
+        }
+
+        if (logo) {
+          logo.style.paddingLeft = '200px';
+        }
+      }
+    });
   }
 });
