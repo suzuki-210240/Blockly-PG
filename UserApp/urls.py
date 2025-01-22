@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 app_name = "UserApp"
 urlpatterns = [
     path("", views.Home, name="index"), #メニュー画面
+    path("help/",views.help,name="help"),
     path("user_info/", views.user_info, name='user_info'),  #ユーザー情報管理画面
     path("kadai/", views.Kadai_list, name="kadai_list"),#課題一覧
     path('kadai/<str:kadai_id>/', views.Kadai_open, name='kadai_open'),#課題表示
