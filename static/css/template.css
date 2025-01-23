@@ -15,7 +15,9 @@ body {
 
 .menu {
   position: fixed;
+  top: 7px;
   padding: 0;
+  margin-left: 9px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,8 +102,7 @@ body {
   justify-content: flex-start;
   width: 200px;
   min-height: 100vh;
-  padding: 25px 13px 0px 10px;
-  background-color: #000;
+  background-color: #202020;
   position: fixed;
   z-index: 50;
   transition: all 0.3s ease;
@@ -111,12 +112,11 @@ body {
 .container.collapsed {
   width: 60px;
   /* 縮まった状態の幅 */
-  background-color: #000;
+  background-color: #202020;
 }
 
-.container a {
+.nav a {
   color: #fff;
-  background-color: #000;
   text-decoration: none;
   font-size: 18px;
   text-align: center;

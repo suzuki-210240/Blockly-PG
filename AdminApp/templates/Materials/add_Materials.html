@@ -31,20 +31,10 @@
     
     <div class="Box">
       <div class="container">
-        <input type="checkbox" id="menu" checked/>
-          <label for="menu" class="menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </label>
-        <nuv class="nav">
-          <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
-          <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
-          <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗</a>
-          <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
-        </nuv>
+        <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
+        <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
+        <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
       </div>
-
       <main>
         <h1>教材新規追加</h1>
         <form method="POST" enctype="multipart/form-data" action="{% url 'AdminApp:add_file' %}">
