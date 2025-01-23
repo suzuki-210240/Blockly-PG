@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{title}}[BlocklyCodeAcademy]</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/template.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/material_display.css' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/iframe_style.css' %}"/>
     <script src="{% static 'js/menu.js' %}?v=1.0"></script>
@@ -34,15 +33,15 @@
         </div>
       </div>
     </header>
+    <main>
       <!--教材表示-->
       <div class="pf">
-        <main>
-          <h2 id="materialTitle">{{ title }}</h2>
-          <div class="view-container">
-            <iframe class="view-box" src="{%url 'UserApp:load_file'  file_name=filename%}" frameborder="0"></iframe>
-          </div>
-        </main>
+        <h2 id="materialTitle">{{ title }}</h2>
+        <div class="view-container">
+          <iframe class="view-box" src="{%url 'UserApp:load_file'  file_name=filename%}" frameborder="0"></iframe>
+        </div>
       </div>
+    </main>
     <!--教材表示-->
   </body>
 </html>
