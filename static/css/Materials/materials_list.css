@@ -15,8 +15,8 @@ h1 {
 .page-title {
   display: inline-block;
   position: relative;
-  padding: 15px 20px;
-  font-size: 18px;
+  /*padding: 15px 20px;*/
+  /*font-size: 18px;*/
   /*フォントサイズ*/
   color: #000;
   /*color: #fafafa;
@@ -69,10 +69,11 @@ h1 {
 .table-container {
   width: 85%;
   margin: 30px auto;
-  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  background-color: #fff;
+  /*background: linear-gradient(135deg, #f9fcff, #e3f3f9);*/
   /* 白をベースにした淡い水色のグラデーション */
   padding: 50px 30px 120px 30px;
-  border-radius: 15px;
+  border-radius: 5px;
   /* 角を丸くする */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 控えめなシャドウ */

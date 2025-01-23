@@ -9,11 +9,81 @@
 body {
   min-width: 1250px;
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-  background-color: #dadada81;
+  background-color: #e9f3fc;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
   background-repeat: repeat;
   height: 100vh;
+}
+
+.menu {
+  position: fixed;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(104, 207, 202);
+  border-radius: 50%;
+  transition: transform 250ms ease;
+  cursor: pointer;
+  z-index: 200;
+  
+  span {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #444;
+    transform-origin: center center;
+    transition: transform 250ms ease;
+    
+    &:nth-of-type(1) {
+      transform: translateY(-5px);
+    }
+    
+    &:nth-of-type(3) {
+      transform: translateY(5px);
+    }
+  }
+}
+
+#menu {
+  display: none;
+  
+  &:checked ~ .menu {
+    background-color: transparent;
+    transform: rotate(360deg);
+    transition: transform 250ms ease;
+    
+    span {
+      background-color: #000;
+      transition: transform 250ms ease;
+      
+      &:nth-of-type(1) {
+        transform: translateY(1px) rotate(45deg);
+      }
+      
+      &:nth-of-type(2) {
+        display: none;
+      }
+      
+      &:nth-of-type(3) {
+        transform: translateY(-1px) rotate(-45deg);
+      }
+    }
+  }
+  
+  &:checked ~ .nav {
+    left: 0px;
+    transition: left 500ms ease;
+  }
+}
+
+nuv {
+  margin-top: 70px;
 }
 
 .container {
@@ -21,42 +91,57 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 261px;
+  width: 200px; /* 通常の幅 */
   height: 100vh;
-  padding: 40px 13px 0px 10px;
-  gap: 40px;
-  /*flexのmargin*/
-  background-color: rgb(108, 184, 197);
+  padding: 25px 13px 0px 10px;
+  background-color: rgb(255, 255, 255);
   position: absolute;
+  transition: width 0.3s ease; /* アニメーション効果 */
+}
+
+/* 縮まったサイドバー */
+.container.collapsed {
+  width: 60px; /* 縮まった状態の幅 */
 }
 
 .container a {
-  border: solid 2px #191970;
   color: #000000;
   background-color: #fff;
-  border-radius: 20px;
-  /*padding: 10px 30px;*/
   text-decoration: none;
-  font-size: 20px;
-  box-shadow: 0 5px 0 #191970;
+  font-size: 18px;
   text-align: center;
   transition: .3s;
   width: 150px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.container.collapsed a {
+  opacity: 0;
+  padding-left: 0;
+}
+
+.container .menu-toggle {
+  margin-bottom: 20px;
 }
 
 header {
   display: flex;
   flex-grow: 1;
-  /*background-color: #4be9e1;*/
+  background-color: #fff;
   justify-content: space-between;
-  height: 80px;
+  height: 45px;
   padding: 0;
   position: relative;
   position: absolute;
+  width: 100%;
 }
 
 .logo {
-  padding: 10px 0px 0px 265px; /*サイドメニュー分*/
+  padding: 10px 0px 0px 200px;
+  transition: padding-left 0.3s ease;
 }
 
 .selectdiv {
@@ -125,25 +210,25 @@ main {
   flex-direction: column;
   /*align-items: center;*/
   /* justify-content: center; */ 
-  background-color: #fff;/*#b8e5f0*/
-  border: solid 2px #1d78b1;
-  border-radius: 10px;
+  /*background-color: #ececec;#b8e5f0*/
+  /*border: solid 2px #1d78b1;*/
+  /*border-radius: 10px;*/
   /*margin: 0 15px 15px 0px;/*
   /*width: 1500px;*/
   height: 100hv;
-  margin: 80px 0 0 261px;
+  margin-top: 50px;
+  margin-left: 200px;
   padding: 0;
+  transition: margin-left 0.3s ease;
 }
 
-.main h1 {
-  font: 45px monospace;
-  color: #333;
-  margin: 10px;
-  padding: 10px;
-  line-height: 1.5;
+#c_title {
+  width: 250px;
+  background-color: #ffffffcd;
+  text-align: center;
 }
 
-@media (min-width: 880px) {
+@media (min-width: 845px) {
   .button-container {
     justify-content: space-evenly;
     /* ボタンを均等に配置 */
