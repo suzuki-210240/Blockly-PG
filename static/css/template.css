@@ -1,5 +1,3 @@
-@charset "utf-8";
-
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +6,97 @@
 
 body {
   min-width: 1250px;
-  /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-  background-color: #dadada81;
+  background-color: #e9f3fc;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
   background-repeat: repeat;
   height: 100vh;
+}
+
+.menu {
+  position: fixed;
+  top: 7px;
+  padding: 0;
+  margin-left: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(104, 207, 202);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  z-index: 200;
+
+  span {
+    position: relative;
+    display: block;
+    width: 50%;
+    height: 2px;
+    background-color: #444;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+
+    &:nth-of-type(1) {
+      transform: translateY(-5px);
+    }
+
+    &:nth-of-type(3) {
+      transform: translateY(5px);
+    }
+  }
+}
+
+#menu {
+  display: none;
+
+  &:checked~.menu {
+    background-color: rgb(104, 207, 202);
+    transform: rotate(360deg);
+    transition: transform 0.3s ease;
+
+    span {
+      background-color: #000;
+      transition: transform 0.3s ease;
+
+      &:nth-of-type(1) {
+        transform: translateY(1px) rotate(45deg);
+      }
+
+      &:nth-of-type(2) {
+        display: none;
+      }
+
+      &:nth-of-type(3) {
+        transform: translateY(-1px) rotate(-45deg);
+      }
+    }
+  }
+
+  &:checked~.nav {
+    left: 0px;
+    transition: left 0.2s ease;
+  }
+}
+
+.nav {
+  position: fixed;
+  padding-top: 50px;
+  position: absolute;
+  transition: all 0.3s ease;
+  left: -200px;
+  z-index: 100;
+  margin-top: 25px;
+  width: 200px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.nav.collapsed {
+  width: 60px;
+  left: 0;
 }
 
 .container {
@@ -21,42 +104,62 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 261px;
-  height: 100vh;
-  padding: 40px 13px 0px 10px;
-  gap: 40px;
-  /*flexのmargin*/
-  background-color: rgb(108, 184, 197);
-  position: absolute;
+  width: 200px;
+  min-height: 100vh;
+  background-color: #202020;
+  position: fixed;
+  z-index: 50;
+  transition: all 0.3s ease;
 }
 
-.container a {
-  border: solid 2px #191970;
-  color: #000000;
-  background-color: #fff;
-  border-radius: 20px;
-  /*padding: 10px 30px;*/
+/* 縮まったサイドバー */
+.container.collapsed {
+  width: 60px;
+  background-color: #202020;
+}
+
+.nav a {
+  color: #fff;
   text-decoration: none;
-  font-size: 20px;
-  box-shadow: 0 5px 0 #191970;
+  font-size: 18px;
   text-align: center;
-  transition: .3s;
-  width: 150px;
+  transition: all 0.3s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.container.collapsed a {
+  opacity: 0;
+  padding-left: 0;
+}
+
+/* ロゴが縮小したときのスタイル */
+.logo.collapsed-logo {
+  padding-left: 60px;
+}
+
+/* mainが縮小したときのスタイル */
+main.collapsed-main {
+  margin-left: 60px;
 }
 
 header {
   display: flex;
   flex-grow: 1;
-  /*background-color: #4be9e1;*/
+  background-color: #fff;
   justify-content: space-between;
-  height: 80px;
+  height: 45px;
   padding: 0;
   position: relative;
   position: absolute;
+  width: 100%;
 }
 
 .logo {
-  padding: 10px 0px 0px 265px; /*サイドメニュー分*/
+  padding: 10px 0px 0px 200px;
+  transition: padding-left 0.3s ease;
 }
 
 .selectdiv {
@@ -92,24 +195,89 @@ header {
   flex-grow: 1;
 }
 
+.container.collapsed .nav a img {
+  margin: 0 auto;
+  display: block;
+}
+
+.button1 {
+  padding: 16px 20px 16px 12px;
+}
+
+.button2 {
+  padding: 5px 20px 4px 1px;
+}
+
+.button4 {
+  padding: 9px 20px 9px 5px;
+}
+
+.button3 {
+  padding: 7px 20px 6px 4px;
+}
+
+.button6 {
+  padding: 18px 20px 17px 12px;
+  margin-top: 50px;
+}
+
+.img1 {
+  width: 31px;
+  height: 31px;
+  margin-right: 16px;
+}
+
+.img2 {
+  width: 56px;
+  height: 56px;
+  margin-right: 2px;
+}
+
+.img4 {
+  width: 47px;
+  height: 47px;
+  margin-right: 6px;
+}
+
+.img3 {
+  width: 52px;
+  height: 52px;
+}
+
+.img6 {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+
 .button1:hover {
   background-color: #c4f2cc;
+  color: #2c2c2c;
 }
 
 .button2:hover {
   background-color: #FFFF66;
+  color: #2c2c2c;
 }
 
 .button3:hover {
   background-color: #7FBBDD;
+  color: #2c2c2c;
 }
 
 .button4:hover {
   background-color: #FFC22F;
+  color: #2c2c2c;
 }
 
 .button5:hover {
   background-color: #F58B05;
+  color: #2c2c2c;
+}
+
+.button6:hover {
+  background-color: #dedede;
+  color: #2c2c2c;
 }
 
 .container button:hover {
@@ -123,30 +291,22 @@ main {
   display: flex;
   gap: 10px;
   flex-direction: column;
-  /*align-items: center;*/
-  /* justify-content: center; */ 
-  background-color: #fff;/*#b8e5f0*/
-  border: solid 2px #1d78b1;
-  border-radius: 10px;
-  /*margin: 0 15px 15px 0px;/*
-  /*width: 1500px;*/
-  height: 100hv;
-  margin: 80px 0 0 261px;
+  height: 100vh;
+  margin-top: 50px;
+  margin-left: 200px;
   padding: 0;
+  transition: margin-left 0.3s ease;
 }
 
-.main h1 {
-  font: 45px monospace;
-  color: #333;
-  margin: 10px;
-  padding: 10px;
-  line-height: 1.5;
+#c_title {
+  width: 250px;
+  background-color: #ffffffcd;
+  text-align: center;
 }
 
-@media (min-width: 880px) {
+@media (min-width: 845px) {
   .button-container {
     justify-content: space-evenly;
-    /* ボタンを均等に配置 */
   }
 
   .main {

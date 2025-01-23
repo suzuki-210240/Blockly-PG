@@ -12,7 +12,8 @@ main {
 .table-container {
   width: 85%;
   margin: 30px auto;
-  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  /*background: linear-gradient(135deg, #f9fcff, #e3f3f9);*/
+  background-color: #fff;
   padding: 50px 30px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

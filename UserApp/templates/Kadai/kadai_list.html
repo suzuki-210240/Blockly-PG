@@ -27,14 +27,25 @@
           <div class="Box">
             <!-- メニューバー -->
             <div class="container">
-                <button id="menuToggle" class="menu-toggle">&lt;</button>
-                <a href="{% url 'UserApp:user_list_files' %}" class="button1">教材一覧</a>
-                <a href="{% url 'UserApp:kadai_list' %}" class="button2">課題一覧</a>
-                <a href="{% url 'UserApp:progress' %}" class="button4">課題の進捗<br>確認</a>
-                <a href="{% url 'UserApp:freemode' %}" class="button3">フリーモード</a>
+                <input type="checkbox" id="menu" checked/>
+                <label for="menu" class="menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+                <nav class="nav">
+                    <a href="{% url 'UserApp:user_list_files' %}" class="button1"><img class="img1" src="{% static 'menu_img/material_white.png' %}" alt="教材一覧">教材一覧</a>
+                    <a href="{% url 'UserApp:kadai_list' %}" class="button2"><img class="img2" src="{% static 'menu_img/kadai_white.png' %}" alt="課題一覧">課題一覧</a>
+                    <a href="{% url 'UserApp:progress' %}" class="button4"><img class="img4" src="{% static 'menu_img/list_white.png' %}" alt="課題の進捗">課題の進捗</a>
+                    <a href="{% url 'UserApp:freemode' %}" class="button3"><img class="img3" src="{% static 'menu_img/code_white.png' %}" alt="フリーモード">フリーモード</a>
+                    <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                        <a type="submit" class="button6"><img class="img6" src="{% static 'menu_img/logout_white.png' %}" alt="ログアウト">ログアウト</a>
+                    </form>
+                </nav>
             </div>
             <main>
-                <h1 id="c_title">課題一覧</h1>
+                <p id="c_title">課題一覧</p>
                 <div class="list">
                     {% for category, kadais in categories.items %}
                         <div id="categ">
