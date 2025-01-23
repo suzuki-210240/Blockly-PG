@@ -24,39 +24,21 @@ document.addEventListener('DOMContentLoaded', function () {
     resizeIframe(); // 初期設定
   }
 
-  // サイドバーのメニュー開閉
-  const menu = document.getElementById('menu');
+  const menuCheckbox = document.getElementById('menu');
   const container = document.querySelector('.container');
-  const mainContent = document.querySelector('main');
+  const main = document.querySelector('main');
   const logo = document.querySelector('.logo');
 
-  if (menu && container) {
-    menu.addEventListener('change', function () {
-      // チェックボックスがチェックされたかどうかでサイドバーの状態を変更
-      if (menu.checked != true) {
-        container.classList.add('collapsed');
-        menu.nextElementSibling.textContent = '>';
-
-        // サイドメニューの状態に応じてmainのpaddingを変更
-        if (mainContent) {
-          mainContent.style.marginLeft = '50px'; // サイドメニューが縮まったときのmargin
-        }
-
-        if (logo) {
-          logo.style.paddingLeft = '60px';
-        }
-      } else {
-        container.classList.remove('collapsed');
-        menu.nextElementSibling.textContent = '<'; // テキスト変更
-
-        if (mainContent) {
-          mainContent.style.marginLeft = '200px'; // 通常時のpadding
-        }
-
-        if (logo) {
-          logo.style.paddingLeft = '200px';
-        }
-      }
-    });
-  }
+  // チェックボックスの状態が変わったときの処理
+  menuCheckbox.addEventListener('change', function () {
+    if (!menuCheckbox.checked) {
+      container.classList.add('collapsed');
+      main.classList.add('collapsed-main');
+      logo.classList.add('collapsed-logo');
+    } else {
+      container.classList.remove('collapsed');
+      main.classList.remove('collapsed-main');
+      logo.classList.remove('collapsed-logo');
+    }
+  });
 });
