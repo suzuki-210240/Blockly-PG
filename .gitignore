@@ -12,7 +12,7 @@ settings.py
 **/migrations/*.py
 !**/migrations/__init__.py
 
-.env
+**/.env
 buckup.txt
 
 Python-3.10.4/
