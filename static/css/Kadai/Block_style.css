@@ -46,18 +46,135 @@ footer {
 }
 .logo {
     padding-left: 10px;
+    padding-right: 50px;
 }
 
+.file {
+    padding-right: 10px;
+}
 
+/* 戻るのボタンスタイル */
+.back-button {
+    position: absolute;
+    font-size: 20px;
+    line-height: 1.5;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    letter-spacing: 0.05em;
+    /* 少し間隔を詰める */
+    display: inline-block;
+    padding: 0.2rem 1.2rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.4rem;
+    background-color: transparent;
+    /* 背景色を透明に */
+    border: 2px solid #000;
+    /* ボーダーを追加 */
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+    white-space: nowrap;
+  }
+  
+  .back-button-flat {
+    background: #000;
+    /* 背景色 */
+    color: #fff;
+    /* 文字色 */
+    border-radius: 0;
+    /* ボーダーをなくす */
+    overflow: hidden;
+    /* 余白を隠す */
+    border-radius: 35px;
+  }
+  
+  .back-button-flat span {
+    position: relative;
+    z-index: 1;
+    /* テキストが前面に来るように */
+  }
+  
+  /* ボタンの前に矢印を追加 */
+  .back-button:before {
+    content: "＜";
+    /* 矢印を追加 */
+    font-size: 1rem;
+    /* 矢印の大きさを調整 */
+    margin-right: 10px;
+    /* 矢印とテキストの間に余白を追加 */
+    position: absolute;
+    /* 矢印の位置を調整 */
+    left: -30px;
+    /* 矢印を左に寄せる */
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    /* フォントを指定 */
+  }
+  
+  /* ボタンのホバー時のエフェクト */
+  .back-button-flat:before {
+    content: "＜";
+    /* 矢印を追加 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150%;
+    height: 400%;
+    content: "";
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+    transform: translateX(-100%) translateY(-25%) rotate(45deg);
+    background: #00b7ee;
+    /* 背景色 */
+  }
+  
+  .back-button-flat:hover:before {
+    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+    transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  }
 
+  #sa {
+    margin-right: 200px;
+  }
+
+  .comment {
+    top: 5px;
+  }
+
+  #t_button {
+    text-decoration: none; 
+    display: inline-block;
+    width: 30px; 
+    height: 30px;
+    line-height: 30px; 
+    border: 1px solid #000; 
+    border-radius: 50%; /* 丸くする */
+    text-align: center; 
+    font-size: 16px; 
+    color: #000; 
+    background-color: #fff; 
+    transition: background-color 0.3s, color 0.3s; /* ホバー時のアニメーション */
+}
+
+#t_button:hover {
+    background-color: #000; /* ホバー時の背景色 */
+    color: #fff; /* ホバー時のテキスト色 */
+}
 
 h3,h4 {
     color: #ff9100;
     -webkit-text-stroke: #f5f5f5 0.4px;
     margin: 1px;
 }
-
-
 
 .main_filed-f{
     padding: 1%;
@@ -222,9 +339,6 @@ textarea:disabled {
     background-color: #007BB5; /* ホバー時の背景色を濃い青に */
   }
 
-
-
-
 #overlay {
     position: fixed;
     top: 0;
@@ -248,9 +362,6 @@ canvas {
     pointer-events: none; /* 他の要素を邪魔しないように */
     z-index: 1000; /* 紙吹雪がオーバーレイの下に表示されないように調整 */
 }
-
-
-
 
 
 

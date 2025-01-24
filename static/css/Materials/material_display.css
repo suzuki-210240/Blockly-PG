@@ -5,7 +5,7 @@
 }
 
 body {
-  min-width: 1250px;
+  min-width: 1000px;
   background-color: #e9f3fc;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
@@ -33,7 +33,7 @@ a {
 }
 
 .logo {
-  padding: 10px 0px 0px 15px;
+  padding: 10px 50px 0px 15px;
   transition: padding-left 0.3s ease;
 }
 
@@ -165,7 +165,7 @@ header {
   position: absolute;
   top: 0;
   left: 0;
-  width: 120%;
+  width: 150%;
   height: 400%;
   content: "";
   -webkit-transition: all 0.5s ease-in-out;
@@ -183,5 +183,6 @@ header {
 
 
 #sa {
-  margin-right: 230px;
+  margin-right: 200px;
+  margin-top: -20px;
 }

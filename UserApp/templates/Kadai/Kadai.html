@@ -31,15 +31,10 @@
                 <!-- XML ファイルを読み込むボタン -->
                 <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
             </div>
-            <div class="selectdiv">
-                <label>
-                <select>
-                    <option selected>{{ username }} : {{ user_type }}</option>
-                    <option>設定</option>
-                    <option>アカウント管理</option>
-                    <option>ログアウト</option>
-                </select>
-                </label>
+            <div id="sa">
+                <a href="{% url 'UserApp:kadai_list' %}" class="back-button back-button-flat">
+                  <span class="arrow">＜</span><span>一覧に戻る</span>
+                </a>
             </div>
         </header>
         <main>
