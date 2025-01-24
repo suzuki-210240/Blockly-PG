@@ -5,7 +5,7 @@
 }
 
 body {
-  min-width: 1250px;
+  min-width: 1000px;
   background-color: #e9f3fc;
   background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
   background-size: 16px 16px;
@@ -94,10 +94,10 @@ body {
   overflow: hidden;
 }
 
-.nav.collapsed {
+/*.nav.collapsed {
   width: 60px;
   left: 0;
-}
+}*/
 
 .container {
   display: flex;
@@ -107,7 +107,9 @@ body {
   width: 200px;
   min-height: 100vh;
   background-color: #202020;
-  position: fixed;
+  position: fixed; /* 横スクロールに追従しない */
+  top: 0;
+  left: 0;
   z-index: 50;
   transition: all 0.3s ease;
 }
@@ -130,8 +132,8 @@ body {
   gap: 10px;
 }
 
-.container.collapsed a {
-  opacity: 0;
+.container.collapsed img {
+  opacity: 1;
   padding-left: 0;
 }
 
@@ -158,7 +160,7 @@ header {
 }
 
 .logo {
-  padding: 10px 0px 0px 200px;
+  padding: 10px 15px 0px 200px;
   transition: padding-left 0.3s ease;
 }
 
@@ -195,11 +197,6 @@ header {
   flex-grow: 1;
 }
 
-.container.collapsed .nav a img {
-  margin: 0 auto;
-  display: block;
-}
-
 .button1 {
   padding: 16px 20px 16px 12px;
 }
@@ -216,38 +213,24 @@ header {
   padding: 7px 20px 6px 4px;
 }
 
+.button5 {
+  padding: 5px 20px 5px 4px;
+}
+
 .button6 {
-  padding: 18px 20px 17px 12px;
+  background: none;
+  border: none; 
+  color: #fff;
+  text-align: left; 
+  font-size: 18px; 
   margin-top: 50px;
-}
-
-.img1 {
-  width: 31px;
-  height: 31px;
-  margin-right: 16px;
-}
-
-.img2 {
-  width: 56px;
-  height: 56px;
-  margin-right: 2px;
-}
-
-.img4 {
-  width: 47px;
-  height: 47px;
-  margin-right: 6px;
-}
-
-.img3 {
-  width: 52px;
-  height: 52px;
-}
-
-.img6 {
-  width: 30px;
-  height: 30px;
-  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 18px 20px 17px 12px;
+  width: 100%;
+  transition: all 0.3s ease;
 }
 
 .button1:hover {
@@ -280,6 +263,40 @@ header {
   color: #2c2c2c;
 }
 
+.img1 {
+  width: 31px;
+  height: 31px;
+  margin-right: 16px;
+}
+
+.img2 {
+  width: 56px;
+  height: 56px;
+  margin-right: 2px;
+}
+
+.img4 {
+  width: 47px;
+  height: 47px;
+  margin-right: 6px;
+}
+
+.img3 {
+  width: 52px;
+  height: 52px;
+}
+
+.img5 {
+  width: 55px;
+  height: 55px;
+}
+
+.img6 {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
+
 .container button:hover {
   color: #ffffff;
   transform: translateY(5px);
@@ -302,6 +319,25 @@ main {
   width: 250px;
   background-color: #ffffffcd;
   text-align: center;
+}
+
+#computer-cat {
+  width: 35%;
+  height: 35%;
+  margin-left: 120px;
+  transition: margin-left 0.3s ease;
+}
+
+.container.collapsed #computer-cat {
+  opacity: 0;
+}
+
+#teach-cat {
+  width: 80%;
+  height: 80%;
+  margin-top: 63vh;
+  margin-left: 5px;
+  transition: margin-left 0.3s ease;
 }
 
 @media (min-width: 845px) {

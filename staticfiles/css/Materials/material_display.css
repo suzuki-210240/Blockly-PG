@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 1250px;
+  background-color: #e9f3fc;
+  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+  background-size: 16px 16px;
+  background-repeat: repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 50px;
+}
+
+.pf main {
+  width: 100%;
+  height: 200%;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  padding: 10px 0px 0px 15px;
+  transition: padding-left 0.3s ease;
+}
+
+.selectdiv {
+  min-width: 110px;
+  margin-right: 20px;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  max-width: 300px;
+  height: 33px;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  border: 2px solid #a1a0a0;
+  border-radius: 10px;
+  -ms-word-break: normal;
+  word-break: normal;
+}
+
+header {
+  display: flex;
+  flex-grow: 1;
+  background-color: #fff;
+  justify-content: space-between;
+  height: 45px;
+  padding: 0;
+  position: relative;
+  position: absolute;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-right {
+  display: flex;
+}
+
+.button-container {
+  position: relative;
+  width: 100%;
+  /* 親要素が全幅を持つように */
+  text-align: left;
+  /* 子要素を左寄せ */
+}
+
+/* 戻るのボタンスタイル */
+.back-button {
+  position: absolute;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  letter-spacing: 0.05em;
+  /* 少し間隔を詰める */
+  display: inline-block;
+  padding: 0.2rem 1.2rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.4rem;
+  background-color: transparent;
+  /* 背景色を透明に */
+  border: 2px solid #000;
+  /* ボーダーを追加 */
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  white-space: nowrap;
+}
+
+.back-button-flat {
+  background: #000;
+  /* 背景色 */
+  color: #fff;
+  /* 文字色 */
+  border-radius: 0;
+  /* ボーダーをなくす */
+  overflow: hidden;
+  /* 余白を隠す */
+  border-radius: 35px;
+}
+
+.back-button-flat span {
+  position: relative;
+  z-index: 1;
+  /* テキストが前面に来るように */
+}
+
+/* ボタンの前に矢印を追加 */
+.back-button:before {
+  content: "＜";
+  /* 矢印を追加 */
+  font-size: 1rem;
+  /* 矢印の大きさを調整 */
+  margin-right: 10px;
+  /* 矢印とテキストの間に余白を追加 */
+  position: absolute;
+  /* 矢印の位置を調整 */
+  left: -30px;
+  /* 矢印を左に寄せる */
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  /* フォントを指定 */
+}
+
+/* ボタンのホバー時のエフェクト */
+.back-button-flat:before {
+  content: "＜";
+  /* 矢印を追加 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 400%;
+  content: "";
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-100%) translateY(-25%) rotate(45deg);
+  transform: translateX(-100%) translateY(-25%) rotate(45deg);
+  background: #00b7ee;
+  /* 背景色 */
+}
+
+.back-button-flat:hover:before {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+
+#sa {
+  margin-right: 230px;
+}

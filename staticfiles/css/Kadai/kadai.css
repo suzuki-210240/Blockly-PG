@@ -1,0 +1,170 @@
+@charset "utf-8";
+body {/*
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    width: 100%;
+    height: 10vw;
+    min-width: 880px;*/
+}
+
+
+.list {
+    margin: 10px;
+    padding: 10px;
+    background: linear-gradient(135deg, #f9fcff, #dff3fa);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 控えめなシャドウ */
+    border: 2px solid rgba(220, 230, 240, 0.8);
+    /* 白寄りの薄い境界線 */
+}
+
+h1 {
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 5px;
+    vertical-align: middle;
+    border-radius: 30px;
+}
+
+#c_title {
+    width: 250px;
+    background-color: #ffffffcd;
+    text-align: center;
+}
+
+#c_name {
+    background-color: #ffffff7f;
+    font-weight: bold;
+    font-size: 150%;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+}
+
+
+
+.kadai-table {
+    width: 100%;
+    min-width: 880px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+.kadai-table th,
+.kadai-table td {
+    border: 1px solid #71a0a6;
+    text-align: center;
+    padding: 8px;
+}
+
+.kadai-table th {
+    background-color: #e5f2f0ac;
+    font-weight: bold;
+}
+
+.kadai-table td {
+    background-color: #9fc5e6;
+    font-weight: bold;
+}
+
+
+/* 列ごとの幅を設定 */
+.kadai-table th:nth-child(1),
+.kadai-table td:nth-child(1) {
+    text-align: center;
+    width: 10%;
+    /* 課題番号 */
+}
+
+.kadai-table th:nth-child(2),
+.kadai-table td:nth-child(2) {
+    text-align: left;
+    width: 70%;
+    /* 課題タイトル */
+}
+
+.kadai-table th:nth-child(3),
+.kadai-table td:nth-child(3) {
+    text-align: center;
+    width: 10%;
+    /* 編集 */
+}
+
+.kadai-table th:nth-child(4),
+.kadai-table td:nth-child(4) {
+    text-align: center;
+    width: 10%;
+    /* 削除 */
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: #14cfd6ce;
+}
+
+#border {
+    border: #afafaf7a 5px solid;
+    border-radius: 10px;
+}
+
+.add-container {
+    display: flex;
+    justify-content: center;
+    /* 横方向に中央揃え */
+    margin: 5px 0;
+    /* 上下に余白を追加 */
+    text-align: center;
+  }
+  
+  .add-button {
+    text-decoration: none;
+    /* リンクの下線を削除 */
+    background-color: #007BFF;
+    /* 背景色を設定（好みに応じて変更） */
+    color: white;
+    /* テキスト色を白に設定 */
+    padding: 13px 26px;
+    /* ボタンの内側余白 */
+    border-radius: 8px;
+    /* 角丸を設定 */
+    font-size: 16px;
+    /* テキストサイズ */
+    font-weight: bold;
+    /* 太字 */
+    transition: background-color 0.3s ease;
+    /* ホバー時のアニメーション */
+  }
+  
+  .add-button:hover {
+    background-color: #0056b3;
+    /* ホバー時の背景色変更 */
+  }
+
+#running {
+  color: rgb(15, 0, 230);
+  
+}
+
+#success {
+  color: rgb(0, 180, 39);
+}

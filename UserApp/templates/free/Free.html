@@ -26,6 +26,11 @@
             <!-- XML ファイルを読み込むボタン -->
             <input type="file" id="uploadFile" onchange="loadWorkspaceFromXML(event)" />
         </div>
+        <div id="sa">
+            <a href="{% url 'UserApp:index' %}" class="back-button back-button-flat">
+              <span class="arrow">＜</span><span>一覧に戻る</span>
+            </a>
+        </div>
         <div class="comment">
             <a href="{% url 'UserApp:help' %}" id="t_button" >？</a>
         </div>
