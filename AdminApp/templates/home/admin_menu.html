@@ -20,47 +20,61 @@
       </div>
     </header>
 
-    <main class="Box">
-      <h1>管理者 メニュー</h1>
-      <p>Action List</p>
-
-      <div class="containers">
-        <div class="container1">
-          <!-- 教材管理ボタン -->
-          <form method="post" action="{% url 'AdminApp:admin_list_files' %}">
-            {% csrf_token %}
-            <button type="submit" class="button1">
-              <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
-              教材管理
-            </button>
-          </form>
-
-          <!-- 課題管理ボタン -->
-          <form method="post" action="{% url 'AdminApp:admin_kadai_list' %}">
-            {% csrf_token %}
-            <button type="submit" class="button2">
-              <img src="{% static 'menu_img/kadai.png' %}" alt="課題一覧">
-              課題管理
-            </button>
-          </form>
-
-          <!-- アカウント管理ボタン -->
-          <form method="post" action="{% url 'AdminApp:account_management' %}">
-            {% csrf_token %}
-            <button type="submit" class="button3">
-              <img src="{% static 'menu_img/acount.png' %}" alt="アカウント管理">
-              アカウント管理
-            </button>
-          </form>
-        </div>
-
-        <div class="container3">
-          <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="button6">ログアウト</button>
-          </form>
-        </div>
+    <div class="Box">
+      <div class="container">
+        <nav class="nav">
+          <h2 id="welcome">ようこそ</h2>
+          <h1 class="colorful-text">
+            <span>B</span><span>l</span><span>o</span><span>c</span><span>k</span><span>l</span><span>y</span>
+            <span>C</span><span>o</span><span>d</span><span>e</span>
+            <span>A</span><span>c</span><span>a</span><span>d</span><span>e</span><span>m</span><span>y</span>へ!
+          </h1>
+          <p><span id="b">B</span>locklyCodeAcademyでは、プログラミングの基礎から応用まで楽しく学べます。</p>
+          <p><span id="me">メ</span>ニューから教材の登録や編集、課題の設定、アカウントの管理が行えます。</p>
+          <p><span id="shin">学</span>習者がスムーズに利用できるよう、最新の状態に保つお手伝いをお願いします!</p>
+        </nav>
+        <!--<img class="menu-icon" id="menu-icon" src="{% static 'menu_img/teach-white-cat.png' %}" alt="メニュー猫画像2">-->
       </div>
-    </main>
+      <div class="containers">
+        <main>
+          <!-- 教材管理ボタン -->
+          <h1 id="main-menu">管理者 メニュー</h1>
+          <p id="main-p">Action List</p>
+          <div class="container1">
+            <form method="post" action="{% url 'AdminApp:admin_list_files' %}">
+              {% csrf_token %}
+              <button type="submit" class="button1">
+                <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
+                教材管理
+              </button>
+            </form>
+
+            <!-- 課題管理ボタン -->
+            <form method="post" action="{% url 'AdminApp:admin_kadai_list' %}">
+              {% csrf_token %}
+              <button type="submit" class="button2">
+                <img src="{% static 'menu_img/kadai.png' %}" alt="課題一覧">
+                課題管理
+              </button>
+            </form>
+
+            <!-- アカウント管理ボタン -->
+            <form method="post" action="{% url 'AdminApp:account_management' %}">
+              {% csrf_token %}
+              <button type="submit" class="button3">
+                <img src="{% static 'menu_img/acount.png' %}" alt="アカウント管理">
+                アカウント管理
+              </button>
+            </form>
+          </div>
+          <div class="container3">
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="button6">ログアウト</button>
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
   </body>
 </html>

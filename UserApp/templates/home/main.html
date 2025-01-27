@@ -22,78 +22,79 @@
     </header>
 
     <div class="Box">
-        <div class="container">
-          <nav class="nav">
-            <h2 id="welcome">ようこそ</h2>
-            <h3 class="colorful-text">
-              <span>B</span><span>l</span><span>o</span><span>c</span><span>k</span><span>l</span><span>y</span>
-              <span>C</span><span>o</span><span>d</span><span>e</span>
-              <span>A</span><span>c</span><span>a</span><span>d</span><span>e</span><span>m</span><span>y</span>
-            </h3>
-            <p><span id="b">B</span>locklyCodeAcademyでは、プログラミングの基礎から応用まで楽しく学べます。</p>
-            <p>メニューから学習内容や進捗を確認し、課題に挑戦したり、フリーモードで創造力を発揮したりしましょう!新しいスキルを身につける旅を楽しんでください!</p>
-          </nav>
-          <!--<img class="menu-icon" id="menu-icon" src="{% static 'menu_img/teach-white-cat.png' %}" alt="メニュー猫画像2">-->
-        </div>
-      <main>
-        <h1>ユーザー メニュー</h1>
-      <p>Action List</p>
-      <!--メニューバー-->
-      <div class="containers">
-        <div class="container1">
-          <!-- 教材一覧ボタン -->
-          <form method="post" action="{% url 'UserApp:user_list_files' %}">
-            {% csrf_token %}
-            <button type="submit" class="button1">
-              <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
-              教材一覧
-            </button>
-          </form>
-
-          <!-- 課題一覧ボタン -->
-          <form method="post" action="{% url 'UserApp:kadai_list' %}">
-            {% csrf_token %}
-            <button type="submit" class="button2">
-              <img src="{% static 'menu_img/kadai.png' %}" alt="教材一覧">
-              課題一覧
-            </button>
-          </form>
-
-          <!-- 進捗状況の確認ボタン -->
-          <form action="{% url 'UserApp:progress' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="button5">
-              <img src="{% static 'menu_img/list.png' %}" alt="進捗状況の確認">
-              進捗状況の確認
-            </button>
-          </form>
-        </div>
-        <div class="container2">
-          <!-- フリーモードボタン -->
-          <form method="post" action="{% url 'UserApp:freemode' %}">
-            {% csrf_token %}
-            <button type="submit" class="button3">
-              <img src="{% static 'menu_img/code.png' %}" alt="フリーモード">
-              フリーモード
-            </button>
-          </form>
-
-          <!-- アカウント管理ボタン -->
-          <form method="post" action="{% url 'UserApp:user_info' %}">
-            {% csrf_token %}
-            <button type="submit" class="button4">
-              <img src="{% static 'menu_img/acount.png' %}" alt="教材一覧">
-              アカウント管理
-            </button>
-          </form>
-        </div>
-        <div class="container3">
-          <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="button6">ログアウト</button>
-          </form>
-        </div>
+      <div class="container">
+        <nav class="nav">
+          <h2 id="welcome">ようこそ</h2>
+          <h1 class="colorful-text">
+            <span>B</span><span>l</span><span>o</span><span>c</span><span>k</span><span>l</span><span>y</span>
+            <span>C</span><span>o</span><span>d</span><span>e</span>
+            <span>A</span><span>c</span><span>a</span><span>d</span><span>e</span><span>m</span><span>y</span>へ!
+          </h1>
+          <p><span id="b">B</span>locklyCodeAcademyでは、プログラミングの基礎から応用まで楽しく学べます。</p>
+          <p><span id="me">メ</span>ニューから学習内容や進捗を確認し、課題に挑戦したり、フリーモードで創造力を発揮しましょう!</p>
+          <p><span id="shin">新</span>しいスキルを身につける旅を楽しんでください!</p>
+        </nav>
+        <!--<img class="menu-icon" id="menu-icon" src="{% static 'menu_img/teach-white-cat.png' %}" alt="メニュー猫画像2">-->
       </div>
+      <main>
+        <!--メニューバー-->
+        <div class="containers">
+          <h1 id="main-menu">ユーザー メニュー</h1>
+          <p id="main-p">Action List</p>
+          <div class="container1">
+            <!-- 教材一覧ボタン -->
+            <form method="post" action="{% url 'UserApp:user_list_files' %}">
+              {% csrf_token %}
+              <button type="submit" class="button1">
+                <img src="{% static 'menu_img/material.png' %}" alt="教材一覧">
+                教材一覧
+              </button>
+            </form>
+
+            <!-- 課題一覧ボタン -->
+            <form method="post" action="{% url 'UserApp:kadai_list' %}">
+              {% csrf_token %}
+              <button type="submit" class="button2">
+                <img src="{% static 'menu_img/kadai.png' %}" alt="教材一覧">
+                課題一覧
+              </button>
+            </form>
+
+            <!-- 進捗状況の確認ボタン -->
+            <form action="{% url 'UserApp:progress' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="button5">
+                <img src="{% static 'menu_img/list.png' %}" alt="進捗状況の確認">
+                進捗状況の確認
+              </button>
+            </form>
+          </div>
+          <div class="container2">
+            <!-- フリーモードボタン -->
+            <form method="post" action="{% url 'UserApp:freemode' %}">
+              {% csrf_token %}
+              <button type="submit" class="button3">
+                <img src="{% static 'menu_img/code.png' %}" alt="フリーモード">
+                フリーモード
+              </button>
+            </form>
+
+            <!-- アカウント管理ボタン -->
+            <form method="post" action="{% url 'UserApp:user_info' %}">
+              {% csrf_token %}
+              <button type="submit" class="button4">
+                <img src="{% static 'menu_img/acount.png' %}" alt="教材一覧">
+                アカウント管理
+              </button>
+            </form>
+          </div>
+          <div class="container3">
+            <form action="{% url 'logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="button6">ログアウト</button>
+            </form>
+          </div>
+        </div>
       </main>
     </div>
   </body>

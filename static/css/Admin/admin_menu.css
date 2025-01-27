@@ -1,16 +1,21 @@
 @charset "utf-8";
 
-body {
-  min-width: 880px;
-  background-color: rgb(255, 255, 255);
-  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-  background-size: 16px 16px;
-  background-repeat: repeat;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    min-width: 1150px;
+    background-color: #e9f3fc;
+    background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    height: 100vh;
+  }
 
-/* .user-infoを右上に固定配置 */
 .user-info {
-    position: fixed;
     top: 10px;
     right: 10px;
     background-color: rgba(255, 255, 255, 0.7);
@@ -20,41 +25,46 @@ body {
     z-index: 1000;
 }
 
-/* ヘッダー */
 header {
     display: flex;
+    flex-grow: 1;
+    background-color: #fff;
     justify-content: space-between;
+    height: 45px;
+    padding: 0;
+    position: relative;
+    position: absolute;
     width: 100%;
-    height: 80px;
-    margin-top: 20px;
-    padding: 0 20px;
-}
-
+  }
+  
 .logo {
-    padding-left: 10px;
-    margin-left: 20px;
+  padding: 10px 15px 0px 10px;
+  transition: padding-left 0.3s ease;
 }
-
 /* メインコンテンツ */
-main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #c4e9f2;
-    border: solid 2px #1d78b1;
-    border-radius: 20px;
-    margin: 30px auto auto auto;
-    width: 900px;
-}
-
 .Box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-grow: 1;
 }
 
-/* タイトル（User Menu） */
-.Box h1 {
+main {
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 20px;
+}
+
+#main-menu {
+    color: #fff;
+    border-bottom: 2px solid #16a085;
+    text-align: center;
+}
+
+#main-p {
+    color: #fff;
+    text-align: center;
+}
+
+.form h1 {
     font-size: 36px;
     font-weight: bold;
     color: #333;
@@ -69,29 +79,133 @@ main {
     max-width: 1200px;
 }
 
-.Box p {
+.form p {
     font-size: 20px;
     color: #666;
     text-align: center;
-    margin-bottom: 30px;
+}
+
+/*
+.container {
+    width: 350px;
+    background-color: #202020;
+    height: 100vh;
+}*/
+
+/* サイドバーの全体 */
+.container {
+    background-color: #253544f8; /* 深いブルー系の背景色 */
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    border-right: 2px solid #34495e; /* サイドバーを区切る線 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 軽い影で立体感 */
+    height: 100vh;
+    width: 400px;
+}
+  
+  /* タイトルのデザイン */
+  .container h1 {
+    font-size: 1.8rem;
+    /*color: #1abc9c;*/
+    margin-bottom: 10px;
+    border-bottom: 2px solid #16a085;
+    padding-bottom: 5px;
+  }
+  
+  /* 機能説明のテキスト */
+  .container p {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: left;
+    text-indent: 1em;
+  }
+  
+#b {
+    color: rgb(0, 225, 255);
+    font-size: 26px;
+}
+
+#me {
+    color: rgb(0, 221, 0);
+    font-size: 26px;
+}
+
+#shin {
+    color: yellow;
+    font-size: 26px;
+}
+
+.colorful-text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    -webkit-text-stroke: 1px black;
+  }
+
+  .colorful-text span {
+    font-weight: bold;
+  }
+  
+  
+  .colorful-text span:nth-child(1) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(2) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(3) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(4) { color: yellow; }
+  
+  .colorful-text span:nth-child(5) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(6) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(7) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(8) { color: yellow; }
+  
+  .colorful-text span:nth-child(9) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(10) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(11) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(12) { color: yellow; }
+  
+  .colorful-text span:nth-child(13) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(14) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(15) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(16) { color: yellow; }
+  
+  .colorful-text span:nth-child(17) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(18) { color:rgb(0, 225, 255); }
+  
+  
+
+#welcome {
+    color: #fff;
+    margin-top: 60px;
 }
 
 /* メニューボタン配置 */
 .containers {
-    margin-top: 10px;
+    padding: 40px 60px  ;
+    margin: auto 0 auto 100px; 
+    border-radius: 10px;
+    background-color: #253544f8;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     align-items: center;
     justify-content: center;
-    width: 80%;
-    max-width: 600px;
-    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(220, 230, 240, 0.8);
 }
 
 .container1, .container2 {
     display: flex;
     gap: 20px; /* ボタン間の間隔 */
+}
+
+.container3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
 }
 
 /* ボタンスタイル */
@@ -118,16 +232,15 @@ main {
 /* ログアウトボタン */
 .button6 {
     border: solid 2px #191970;
-      color: #000000;
-      border-radius: 20px;
-      padding: 10px 30px;
-      text-decoration: none;
-      font-size: 20px;
-      box-shadow: 0 5px 0 #191970;
-      width: 100%;
-      margin: 10px 0;
-      text-align: center;
-      transition: .3s;
+    color: #000000;
+    border-radius: 20px;
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 5px 0 #191970;
+    margin: 10px auto;
+    text-align: center;
+    transition: .3s;
 }    
 
 button img {
@@ -163,3 +276,20 @@ button:hover {
     background-color: #F58B05;
 }
 
+#computer-cat {
+    width: 15%;
+    height: 15%;
+    margin-left: 120px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .container.collapsed #computer-cat {
+    opacity: 0;
+  }
+  
+  #menu-icon {
+    width: 40%;
+    height: 30%;
+    margin-left: 5px;
+    transition: margin-left 0.3s ease;
+  }
