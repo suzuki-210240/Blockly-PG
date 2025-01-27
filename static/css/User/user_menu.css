@@ -47,22 +47,9 @@ header {
   flex-grow: 1;
 }
 
-/*
 main {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #c4e9f2;
-    border: solid 2px #1d78b1;
-    border-radius: 20px;
-    margin: auto auto auto 10%;
-    width: 900px;
-}
-
-.Box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: 100px;
+    margin-top: 40px;
 }
 
 /* タイトル（User Menu） */
@@ -87,24 +74,96 @@ main {
     text-align: center;
 }
 
+/*
 .container {
-    width: 400px;
+    width: 350px;
     background-color: #202020;
     height: 100vh;
+}*/
+
+/* サイドバーの全体 */
+.container {
+    background-color: #253544f8; /* 深いブルー系の背景色 */
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    border-right: 2px solid #34495e; /* サイドバーを区切る線 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* 軽い影で立体感 */
+    height: 100vh;
+    width: 400px;
 }
+  
+  /* タイトルのデザイン */
+  .container h3 {
+    font-size: 1.8rem;
+    /*color: #1abc9c;*/
+    margin-bottom: 10px;
+    border-bottom: 2px solid #16a085;
+    padding-bottom: 5px;
+  }
+  
+  /* 機能説明のテキスト */
+  .container p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: left;
+    text-indent: 1em;
+  }
+  
+#b {
+    color: #ff0000;
+}
+
+.colorful-text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  .colorful-text span:nth-child(1) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(2) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(3) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(4) { color: yellow; }
+  
+  .colorful-text span:nth-child(5) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(6) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(7) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(8) { color: yellow; }
+  
+  .colorful-text span:nth-child(9) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(10) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(11) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(12) { color: yellow; }
+  
+  .colorful-text span:nth-child(13) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(14) { color: rgb(0, 225, 255); }
+  .colorful-text span:nth-child(15) { color: rgb(0, 221, 0); }
+  .colorful-text span:nth-child(16) { color: yellow; }
+  
+  .colorful-text span:nth-child(17) { color: rgb(255, 39, 39); }
+  .colorful-text span:nth-child(18) { color:rgb(0, 225, 255); }
+  
+  
 
 #welcome {
     color: #fff;
+    margin-top: 60px;
 }
 
 /* メニューボタン配置 */
 .containers {
     margin-top: 10px;
+    padding: 30px;
+    background-color: #f9f9f9;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(220, 230, 240, 0.8);
 }
 
 .container1, .container2 {
@@ -192,10 +251,9 @@ button:hover {
     opacity: 0;
   }
   
-  #teach-cat {
-    width: 20%;
-    height: 20%;
-    margin-top: 63vh;
+  #menu-icon {
+    width: 40%;
+    height: 30%;
     margin-left: 5px;
     transition: margin-left 0.3s ease;
   }

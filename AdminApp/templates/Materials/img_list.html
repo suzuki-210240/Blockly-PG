@@ -16,32 +16,36 @@
 <body>
   <header>
     <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'menu_img/logo-preview.png' %}"></a>
-    <!-- ユーザー名 -->
-    <div class="selectdiv">
-      <label>
-        <select id="userMenu">
-          <option selected>ユーザー名&emsp;&emsp;<span class="kigou">∨</span></option>
-          <option>設定</option>
-          <option>アカウント管理</option>
-          <option>ログアウト</option>
-        </select>
-      </label>
-    </div>
-    <!-- ユーザー名 -->
   </header>
 
   <div class="Box">
     <!-- メニューバー -->
     <div class="container">
-      <a href="{% url 'AdminApp:admin_list_files' %}" class="button1">教材管理</a>
-      <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2">課題管理</a>
-      <a href="{% url 'AdminApp:account_management' %}" class="button3">アカウント<br>情報管理</a>
+      <input type="checkbox" id="menu" checked/>
+        <label for="menu" class="menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </label>
+        <img class="menu-icon" id="computer-cat" src="{% static 'menu_img/computer-cat-torasiro.png' %}" alt="メニュー猫画像1">
+      <nav class="nav">
+        <a href="{% url 'AdminApp:admin_list_files' %}" class="button1"><img class="img1" src="{% static 'menu_img/material_white.png' %}" alt="教材一覧">教材管理</a>
+        <a href="{% url 'AdminApp:admin_kadai_list' %}" class="button2"><img class="img2" src="{% static 'menu_img/kadai_white.png' %}" alt="課題一覧">課題管理</a>
+        <a href="{% url 'AdminApp:account_management' %}" class="button3"><img class="img5" src="{% static 'menu_img/acount_white.png' %}" alt="アカウント">アカウント<br>情報管理</a>
+        <form action="{% url 'logout' %}" method="post" name="logout">
+          {% csrf_token %}
+          <button type="submit" class="button6">
+            <img class="img6" src="{% static 'menu_img/logout_white.png' %}" alt="ログアウト">ログアウト
+          </button>
+        </form>
+      </nav>
+      <img class="menu-icon" id="teach-cat" src="{% static 'menu_img/teach-white-cat.png' %}" alt="メニュー猫画像2">
     </div>
 
     <!-- メイン -->
     <main>
       <div class="page-title">
-        <h1>画像リスト</h1>
+        <h1 id="c_title">画像リスト</h1>
       </div>
       <div class="table-container">
         <div class="add-container">

@@ -106,7 +106,7 @@ body {
   justify-content: flex-start;
   width: 200px;
   min-height: 100vh;
-  background-color: #202020;
+  background-color: #253544f8;
   position: fixed; /* 横スクロールに追従しない */
   top: 0;
   left: 0;
@@ -117,7 +117,7 @@ body {
 /* 縮まったサイドバー */
 .container.collapsed {
   width: 60px;
-  background-color: #202020;
+  background-color: #253544f8;
 }
 
 .nav a {
@@ -319,6 +319,7 @@ main {
   width: 250px;
   background-color: #ffffffcd;
   text-align: center;
+  font-size: 25px;
 }
 
 #computer-cat {

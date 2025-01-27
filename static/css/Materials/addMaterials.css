@@ -1,30 +1,9 @@
 @charset "utf-8";
-body {
-    background-color: #ffffffd1;
-    background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-    background-size: 16px 16px;
-    background-repeat: repeat;
-    width: 100%;
-    height: 10vw;
-    display: flex;
-    flex-direction: column;
-}
-
-header {
-    margin-top: 12px;
-    margin-bottom: 34px;
-    margin-left: 10px;
-}
-
 main {
     width: 880px;
 }
 
-h1 {
-    margin-left: 15px;
-}
-
-form {
+#add-form {
     margin-left: 110px;
 }
 
