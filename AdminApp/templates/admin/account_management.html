@@ -15,6 +15,12 @@
             <h1>アカウント情報管理</h1>                
         </header>
         <main>
+            <h2>ユーザーの権限変更</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">権限変更</button>
+            </form>
             <h2>アカウント一覧</h2>
             <table border="1">
                 <thead>
@@ -52,16 +58,9 @@
                     {% endfor %}
                 </tbody>
             </table>
-
-            <h2>ユーザーの権限変更</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">権限変更</button>
-            </form>
         </main>
         <footer>
-            <p>&copy; 2024 My Django Application</p>
+            <p>&copy; 2025 BlocklyCodeAcademy</p>
         </footer>
 
         <!--確認用ポップアップ用処理-->
