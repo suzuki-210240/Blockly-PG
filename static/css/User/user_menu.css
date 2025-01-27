@@ -1,16 +1,21 @@
 @charset "utf-8";
 
-body {
-  min-width: 880px;
-  background-color: rgb(255, 255, 255);
-  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-  background-size: 16px 16px;
-  background-repeat: repeat;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    min-width: 1150px;
+    background-color: #e9f3fc;
+    background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    height: 100vh;
+  }
 
-/* .user-infoを右上に固定配置 */
 .user-info {
-    position: fixed;
     top: 10px;
     right: 10px;
     background-color: rgba(255, 255, 255, 0.7);
@@ -20,21 +25,29 @@ body {
     z-index: 1000;
 }
 
-/* ヘッダー */
 header {
     display: flex;
+    flex-grow: 1;
+    background-color: #fff;
     justify-content: space-between;
+    height: 45px;
+    padding: 0;
+    position: relative;
+    position: absolute;
     width: 100%;
-    height: 80px;
-    margin-top: 20px;
-}
-
+  }
+  
 .logo {
-    padding-left: 10px;
-    margin-left: 20px;
+  padding: 10px 15px 0px 10px;
+  transition: padding-left 0.3s ease;
+}
+/* メインコンテンツ */
+.Box {
+  display: flex;
+  flex-grow: 1;
 }
 
-/* メインコンテンツ */
+/*
 main {
     display: flex;
     align-items: center;
@@ -42,7 +55,7 @@ main {
     background-color: #c4e9f2;
     border: solid 2px #1d78b1;
     border-radius: 20px;
-    margin: 50px auto auto 30%;
+    margin: auto auto auto 10%;
     width: 900px;
 }
 
@@ -72,7 +85,16 @@ main {
     font-size: 20px;
     color: #666;
     text-align: center;
-    margin-bottom: 30px;
+}
+
+.container {
+    width: 400px;
+    background-color: #202020;
+    height: 100vh;
+}
+
+#welcome {
+    color: #fff;
 }
 
 /* メニューボタン配置 */
@@ -83,9 +105,6 @@ main {
     gap: 20px;
     align-items: center;
     justify-content: center;
-    width: 80%;
-    max-width: 600px;
-    margin: auto;
 }
 
 .container1, .container2 {
@@ -162,3 +181,21 @@ button:hover {
     background-color: #F58B05;
 }
 
+#computer-cat {
+    width: 15%;
+    height: 15%;
+    margin-left: 120px;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .container.collapsed #computer-cat {
+    opacity: 0;
+  }
+  
+  #teach-cat {
+    width: 20%;
+    height: 20%;
+    margin-top: 63vh;
+    margin-left: 5px;
+    transition: margin-left 0.3s ease;
+  }
