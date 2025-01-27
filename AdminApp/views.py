@@ -498,6 +498,26 @@ def check_number(number):
     except ValueError:
         print("ValueError")
         return False,number
+    
+# def re_check_number(number):
+#     try:
+#         if ('b' in number) or ('a' in number) or ('t' in number):
+            
+#         number = str(number).translate(str.maketrans({
+#             '０': '0', '１': '1', '２': '2', '３': '3', '４': '4',
+#             '５': '5', '６': '6', '７': '7', '８': '8', '９': '9'
+#         }))
+#         float(number)
+
+#         numbers = re.findall(r'\d+', number)
+#         print(numbers)
+
+        
+#         return True, str(''.join(numbers))
+#     except ValueError:
+#         print("ValueError")
+#         return False,number
+
 
 prefix = ""
 #プレフィックスの追加（チュートリアル：t、基本問題：b、応用問題：a）
