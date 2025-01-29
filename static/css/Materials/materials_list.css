@@ -131,20 +131,35 @@
   padding-right: 50px;
 }
 
-
-.action-button {
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
+#edit {
+  background-color: #fff;
+  color: #000;
   border-radius: 15px;
   padding: 5px 18px;
   font-size: 17px;
   cursor: pointer;
   margin-left: 20px;
+  border: solid 0.5px #8f8f8f;
 }
 
-.action-button:hover {
+#edit:hover {
   background-color: #cceaff;
+}
+
+#delete {
+  background-color: #253544f8;
+  color: #fff;
+  border-radius: 15px;
+  padding: 5px 18px;
+  font-size: 17px;
+  cursor: pointer;
+  margin-left: 20px;
+  border: solid 0.5px #8f8f8f;
+}
+
+#delete:hover {
+  background-color: #cceaff;
+  color: #000;
 }
 
 main {

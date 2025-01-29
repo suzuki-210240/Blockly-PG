@@ -109,6 +109,18 @@
   font-size: 17px;
 }
 
+.delete-img {
+  background-color: #ffffff;
+  color: #000000;
+  border: solid 0.5px #8f8f8f;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+
+.delete-img:hover {
+  background-color: #cceaff;
+}
+
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -123,9 +135,9 @@
 
 
 .action-button {
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
+  background-color: #253544f8;
+  color: #fff;
+  border: solid 0.5px #8f8f8f;
   border-radius: 15px;
   padding: 5px 18px;
   font-size: 17px;
@@ -135,6 +147,7 @@
 
 .action-button:hover {
   background-color: #cceaff;
+  color: #000;
 }
 
 .img-box {

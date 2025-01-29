@@ -67,9 +67,9 @@
                   <input type="hidden" name="url" value="{{ url }}">
                   <div class="button-container">
                     <!-- 編集ボタン -->
-                    <button class="action-button" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
+                    <button class="action-button" id="edit" type="submit" value="post" formaction="{% url 'AdminApp:edit_materials' %}">編集</button>
                     <!-- 削除ボタン -->
-                    <button class="action-button" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
+                    <button class="action-button" id="delete" type="submit" value="delete" formaction="{% url 'AdminApp:delete_materials' %}">削除</button>
                   </div>
                 </div>
               </form>
