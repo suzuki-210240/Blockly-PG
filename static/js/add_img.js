@@ -2,23 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
   const addButton = document.querySelector('.add-button');
   const addImgButton = document.getElementById('add-img');
   const imgBox = document.getElementById('img-box');
-  const backButton = document.querySelector('.back-button');
+  const backButton = document.getElementById('yameru-button');
 
   if (!addImgButton) {
     console.error('add-imgボタンが見つかりません');
   } else {
     console.log('add-imgボタンが見つかりました');
-    
 
-    if(addButton){
+    if (addButton) {
       addButton.addEventListener('click', function () {
         let imgBoxForm = document.querySelector('.img-box');
 
-        // img-boxフォームを表示
-        imgBoxForm.style.display = 'block';
-        this.style.display = 'none'; // 追加ボタンを非表示
+        if (imgBoxForm) {
+          imgBoxForm.style.display = 'block';
+          this.style.display = 'none'; // 追加ボタンを非表示
+        }
       });
     }
+
     // 「画像新規追加」ボタンをクリックしたときの処理
     addImgButton.addEventListener('click', function () {
       let fileInputs = imgBox.querySelectorAll('input[type="file"]');
@@ -67,13 +68,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 「やめる」ボタンを押したときにimg-boxを隠す処理
-  backButton.addEventListener('click', function (event) {
-    event.preventDefault(); // リンクのデフォルト動作を防ぐ
-    let imgBoxForm = document.querySelector('.img-box');
+  // 「やめる」ボタンを押したときに img-box を隠す処理
+  if (backButton) {
+    backButton.addEventListener('click', function (event) {
+      event.preventDefault(); // デフォルト動作を防ぐ
+      let imgBoxForm = document.querySelector('.img-box');
 
-    // img-boxフォームを隠し、add-buttonを再表示
-    imgBoxForm.style.display = 'none';
-    document.querySelector('.add-button').style.display = 'inline-block'; // 「画像新規追加」ボタンを再表示
-  });
+      if (imgBoxForm) {
+        imgBoxForm.style.display = 'none';
+      }
+      if (addButton) {
+        addButton.style.display = 'inline-block'; // 「画像新規追加」ボタンを再表示
+      }
+    });
+  } else {
+    console.error('やめるボタン (yameru-button) が見つかりません');
+  }
 });

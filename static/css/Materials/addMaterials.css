@@ -3,10 +3,6 @@ main {
     width: 880px;
 }
 
-#add-form {
-    margin-left: 110px;
-}
-
 input {
     margin-top: 6px;
     margin-left: 14px;
@@ -41,6 +37,10 @@ input {
     /* エラーメッセージを強調 */
     padding-top: 5px;
     /* エラーメッセージと入力フィールドの間に余白 */
+}
+
+#add-form {
+    margin-left: 110px;
 }
 
 .file-box {

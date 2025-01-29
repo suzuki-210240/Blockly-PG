@@ -45,35 +45,36 @@
         <h1 id="c_title">教材新規追加</h1>
         <form method="POST" enctype="multipart/form-data" action="{% url 'AdminApp:add_file' %}" id="add-form">
           {% csrf_token %}
-          <div class="sub-title-box">
-            <label id="sub-title" for="title">教材タイトル</label>
-            <p class="rule">(日本語・半角英数)</p>
-            {% if error_message %}
-              <p class="error-message">{{ error_message }}</p>
+          <div class="form-box">
+            <div class="sub-title-box">
+              <label id="sub-title" for="title">教材タイトル</label>
+              <p class="rule">(日本語・半角英数)</p>
+              {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+              {% endif %}
+              <input type="text" id="title" name="title" value="{{ form.title.value }}" required maxlength="40" size="40" />
+              {% if form.title.errors %}
+                <p class="error-message">{{ form.title.errors }}</p>
+              {% endif %}
+            </div>
+            <div class="file-box">
+              <label id="sub-title" for="file">教材ファイル</label>
+              <input type="file" id="file" name="html_file" required accept=".html" />
+              <p class="attention">※教材ファイル内の画像名と画像リスト内の画像名を一致させてください</p>
+            </div>
+          </div>
+          <div class="img-box">
+            <label id="sub-title" for="file">画像ファイル</label>
+            <button type="button" name="add-img" id="add-img">フォーム追加＋</button>
+            <div id="img-box">
+              <!-- ここに追加される画像ファイルの入力フィールド -->
+            </div>
+            {% if form.file.errors %}
+              <p class="error-message">{{ form.img.errors }}</p>
             {% endif %}
-            <input type="text" id="title" name="title" value="{{ form.title.value }}" required maxlength="40" size="40" />
-            {% if form.title.errors %}
-              <p class="error-message">{{ form.title.errors }}</p>
-            {% endif %}
+            <a href="{% url 'AdminApp:admin_list_files' %}" class="yameru-button" >やめる</a>
+            <button class="submit-button" type="submit">登録</button>
           </div>
-          <div class="file-box">
-            <label id="sub-title" for="file">教材ファイル</label>
-            <input type="file" id="file" name="html_file" required accept=".html" />
-            <p class="attention">※HTMLファイル内の画像名と画像リスト内の画像名を一致させてください</p>
-          </div>
-        </form>
-        <form class="img-box" id="add-form" action="{% url 'AdminApp:add_img' %}" >
-          <h3>画像追加フォーム</h3>
-          <label id="sub-title" for="file">画像ファイル</label>
-          <button type="button" name="add-img" id="add-img">フォーム追加＋</button>
-          <div id="img-box">
-            <!-- ここに追加される画像ファイルの入力フィールド -->
-          </div>
-          {% if form.file.errors %}
-            <p class="error-message">{{ form.img.errors }}</p>
-          {% endif %}
-          <a href="{% url 'AdminApp:admin_list_files' %}" class="yameru-button" >やめる</a>
-          <button class="submit-button" type="submit">登録</button>
         </form>
         
         <div class="view-box">

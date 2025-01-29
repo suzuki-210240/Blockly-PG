@@ -1,7 +1,6 @@
 .page-title {
   display: inline-block;
   position: relative;
-  padding: 15px 20px;
   font-size: 18px;
   /*フォントサイズ*/
   color: #000;
@@ -43,22 +42,14 @@
   /* ホバー時の背景色変更 */
 }
 
-/*
 .table-container {
   width: 85%;
   margin: 30px auto;
-  background-color: #e6e5e5;
-  padding: 50px 30px 120px 30px;
-  border-radius: 15px;
-}*/
-
-.table-container {
-  width: 85%;
-  margin: 30px auto;
-  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  background-color: #fff;
+  /*background: linear-gradient(135deg, #f9fcff, #e3f3f9);*/
   /* 白をベースにした淡い水色のグラデーション */
   padding: 50px 30px 120px 30px;
-  border-radius: 15px;
+  border-radius: 5px;
   /* 角を丸くする */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 控えめなシャドウ */
@@ -152,6 +143,11 @@
   max-width: 400px;
 }
 
+#input-img {
+  margin-left: 60px;
+  margin-top: 10px;
+}
+
 #add-img {
   margin-left: 24px;
   background-color: #fff;
@@ -169,6 +165,10 @@
 
 .img-button {
   display: flex;
+}
+
+#sub-title {
+  margin-left: 60px;
 }
 
 .submit-button {
