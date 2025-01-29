@@ -60,11 +60,13 @@
             <input type="file" id="file" name="image_files" accept=".jpg, .png, .jpeg, .gif, .svg, .ico"/>
             <!-- ここに追加される画像ファイルの入力フィールド -->
           </div>
-          <a href="{% url 'AdminApp:admin_list_files' %}" class="back-button" >やめる</a>
-          <button class="submit-button" type="submit">登録</button>
+          <div class="img-button">
+            <a class="yameru-button">やめる</a>
+            <button class="submit-button" type="submit">登録</button>
+          </div>
         </form>
 
-        <p style="color: red;">※HTMLファイル内の画像名と画像リスト内の画像名を一致させてください</p>
+        <p style="color: red; margin-top: 25px;">※教材ファイル内の画像名と画像リスト内の画像名を一致させてください</p>
         <div class="table-header">
           <span class="table-title">タイトル</span>
           <span class="action-title">操作</span>
