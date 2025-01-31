@@ -34,7 +34,7 @@ header {
 }
 
 .title {
-    flex-grow: 1; /* 残りのスペースを使って中央配置 */
+    flex-grow: 1;
     text-align: center;
 }
 

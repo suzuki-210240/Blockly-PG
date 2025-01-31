@@ -1,16 +1,43 @@
 /*user_info.css*/
 /*ユーザー情報管理画面のデザイン*/
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
 body {
     min-width: 880px;
 }
 
-header{
+header {
     background-color: #d4eced;
+    text-align: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    display: flex;
 }
 
-header a{
-    border: #007bff solid 2px;
+.buck-button {
+    flex: 0 0 auto;
+}
+
+#back{
+    background-color: #d4eced;
+    font-size: 20px;
+    margin-right: 15px;
+    border: none; 
+    outline: none;
+}
+
+#back:hover{
+    background-color: #bee8bf;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
 }
 
 /*全体のコンテナ*/
