@@ -9,10 +9,14 @@
     </head>
     <body>
         <header>
-            <a href="{% url 'UserApp:index' %}">
-                <button id="back">＜戻る</button>
-            </a>
-            <h2>ユーザー情報の管理</h2>
+            <div class="back-button">
+                <a href="{% url 'UserApp:index' %}">
+                    <button id="back">＜戻る</button>
+                </a>
+            </div>
+            <div class="title">
+                <h2>ユーザー情報の管理</h2>
+            </div>
         </header>
         <main>
             <div class="container">
