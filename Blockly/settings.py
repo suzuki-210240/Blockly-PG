@@ -97,27 +97,27 @@ WSGI_APPLICATION = 'Blockly.wsgi.application'
 #     }
 # }
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'blockly_pg', # データベース名
+#        'USER': 'user',  # または 'ユーザー名'
+#        'PASSWORD': 'pass',  # パスワード
+#        'HOST': 'localhost', #切り替える
+#        'PORT': '3306',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blockly_pg', # データベース名
-        'USER': 'user',  # または 'ユーザー名'
-        'PASSWORD': 'pass',  # パスワード
-        'HOST': 'localhost', #切り替える
-        'PORT': '3306',
+        'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='3306'),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql'),
-#         'NAME': config('DB_NAME'),
-#         'USER': config('DB_USER'),
-#         'PASSWORD': config('DB_PASSWORD'),
-#         'HOST': config('DB_HOST', default='localhost'),
-#         'PORT': config('DB_PORT', default='3306'),
-#     }
-# }
 
 
 # Password validation
