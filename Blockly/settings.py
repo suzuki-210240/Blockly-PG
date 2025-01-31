@@ -97,17 +97,6 @@ WSGI_APPLICATION = 'Blockly.wsgi.application'
 #     }
 # }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'blockly_pg', # データベース名
-#        'USER': 'user',  # または 'ユーザー名'
-#        'PASSWORD': 'pass',  # パスワード
-#        'HOST': 'localhost', #切り替える
-#        'PORT': '3306',
-#    }
-#}
-
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE', default='django.db.backends.mysql'),
