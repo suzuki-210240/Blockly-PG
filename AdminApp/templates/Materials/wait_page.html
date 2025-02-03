@@ -8,7 +8,7 @@
     <title>リダイレクト中</title>
     <!-- 3秒後に教材一覧へリダイレクト -->
     <meta http-equiv="refresh" content="2; url={% url 'AdminApp:admin_list_files' %}">
-    
+
     <script>
         // JavaScriptでもリダイレクト（メタタグが無効な場合の保険）
         setTimeout(function() {
@@ -32,5 +32,14 @@
 
         <p>自動的に教材一覧へ移動します。</p>
     </main>
+    <h1>リダイレクト中</h1>
+
+    {% if success_message %}
+        <p class="success-message">{{ success_message }}</p>
+    {% elif error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+
+    <p>3秒後に教材一覧へ移動します。</p>
 </body>
 </html>
