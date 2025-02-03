@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>リダイレクト中</title>
-    <!-- 5秒後に別ページへリダイレクト -->
+    <!-- リダイレクト -->
     <!-- 教材一覧へ戻る -->
     <meta http-equiv="refresh" content="3; url={% url 'AdminApp:admin_list_files' %}">
 </head>
 <body>
-    <h1>しばらくお待ちください...</h1>
+    <h1>{% if success_message %}
+        <p class="success-message">{{ success_message }}</p>
+      {% endif %}
+    </h1>
     <p>3秒後に教材一覧へ移動します。</p>
 </body>
 </html>
