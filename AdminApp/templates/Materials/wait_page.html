@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>リダイレクト中</title>
-    <!-- リダイレクト -->
-    <!-- 教材一覧へ戻る -->
+    <!-- 3秒後に教材一覧へリダイレクト -->
     <meta http-equiv="refresh" content="3; url={% url 'AdminApp:admin_list_files' %}">
+    
+    <script>
+        // JavaScriptでもリダイレクト（メタタグが無効な場合の保険）
+        setTimeout(function() {
+            window.location.href = "{% url 'AdminApp:admin_list_files' %}";
+        }, 3000);
+    </script>
 </head>
 <body>
-    <h1>{% if success_message %}
+    <h1>リダイレクト中</h1>
+
+    {% if success_message %}
         <p class="success-message">{{ success_message }}</p>
-      {% endif %}
-    </h1>
+    {% elif error_message %}
+        <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+
     <p>3秒後に教材一覧へ移動します。</p>
 </body>
 </html>
