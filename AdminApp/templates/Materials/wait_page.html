@@ -9,7 +9,10 @@
     <meta http-equiv="refresh" content="3; url={% url 'AdminApp:admin_list_files' %}">
 </head>
 <body>
-    <h1>しばらくお待ちください...</h1>
+    <h1>{% if success_message %}
+        <p class="success-message">{{ success_message }}</p>
+      {% endif %}
+    </h1>
     <p>3秒後に教材一覧へ移動します。</p>
 </body>
 </html>
