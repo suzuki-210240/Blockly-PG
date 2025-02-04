@@ -194,6 +194,20 @@ def admin_list_files(request):
     # フォルダ内のファイルがある場合に表示
     return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
 
+def download_template(request):
+    # ダウンロードするファイルのパスを指定
+    file_path = os.path.join(settings.BASE_DIR, 'static','admin', 'template', 'template_material.html')
+    print(file_path)
+
+    # ファイルが存在する場合、ダウンロードを開始
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type='application/octet-stream')
+            response['Content-Disposition'] = f'attachment; filename={os.path.basename(file_path)}'
+            return response
+    else:
+        # ファイルが見つからなかった場合、404エラーを返す
+        return HttpResponse('File not found', status=404)
 
 #----------------------------教材一覧リスト-----------------------------------
 

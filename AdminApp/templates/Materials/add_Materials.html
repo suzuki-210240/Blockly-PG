@@ -60,7 +60,8 @@
             <div class="file-box">
               <label id="sub-title" for="file">教材ファイル</label>
               <input type="file" id="file" name="html_file" required accept=".html" />
-              <p class="attention">※教材ファイル内の画像名と画像リスト内の画像名を一致させてください</p>
+              <p class="attention">※画像を挿入する場合はhtmlファイルに&#123;% load static %&#125; <br>
+                画像URLは src="&#123;% static 'images/画像リスト内画像名' %&#125;" と記述してください</p>
             </div>
           </div>
           <a href="{% url 'AdminApp:admin_list_files' %}" class="yameru-button" >やめる</a>

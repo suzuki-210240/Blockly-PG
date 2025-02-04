@@ -1,0 +1,125 @@
+<!--教材用サンプルhtml-->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ソートについて</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#f5f7fa] p-6 font-roboto">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-[#2c3e50] mb-6">ソートアルゴリズムについて</h1>
+
+    <div class="mb-8">
+      <p class="text-[#34495e] text-lg leading-relaxed mb-4">
+        ソートは、データを特定の順序に並べ替える操作です。例えば、数字のリスト[5, 2, 8, 1, 9]を、昇順に並べ替えると[1, 2, 5, 8, 9]になります。ソートアルゴリズムは、データの効率的な整理と検索に役立ちます。
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">1, ソートアルゴリズムの重要な理由</h2>
+      <pre>
+        <b>・データの検索が効率的になる</b>
+        <b>・情報の可読性が向上する</b>
+        <b>・多くの高度なアルゴリズムの基礎となる</b>
+      </pre>
+    </div>
+
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">2, ソートアルゴリズムの種類</h2>
+      <div class="flex flex-col md:flex-row gap-6">
+        <!-- バブルソート -->
+        <div class="flex-1 border-2 border-[#3498db] rounded-lg p-4">
+          <div class="text-center">
+            <i class="fas fa-sort-alpha-down text-3xl text-[#3498db] mb-2"></i>
+            <h3 class="font-bold mb-2">バブルソート</h3>
+            <p>隣接する要素を比較し、順序が逆の場合に交換することでソートします。</p>
+          </div>
+        </div>
+        <!-- 選択ソート -->
+        <div class="flex-1 border-2 border-[#e74c3c] rounded-lg p-4">
+          <div class="text-center">
+            <i class="fas fa-sort-numeric-down text-3xl text-[#e74c3c] mb-2"></i>
+            <h3 class="font-bold mb-2">選択ソート</h3>
+            <p>リストから最小（または最大）の要素を選択し、先頭の要素と交換することでソートします。</p>
+          </div>
+        </div>
+        <!-- 挿入ソート -->
+        <div class="flex-1 border-2 border-[#2ecc71] rounded-lg p-4">
+          <div class="text-center">
+            <i class="fas fa-sort-amount-down text-3xl text-[#2ecc71] mb-2"></i>
+            <h3 class="font-bold mb-2">挿入ソート</h3>
+            <p>未ソート部分から要素を取り出し、ソート済み部分の適切な位置に挿入することでソートします。</p>
+          </div>
+        </div>
+        <!-- クイックソート -->
+        <div class="flex-1 border-2 border-[#f39c12] rounded-lg p-4">
+          <div class="text-center">
+            <i class="fas fa-random text-3xl text-[#f39c12] mb-2"></i>
+            <h3 class="font-bold mb-2">クイックソート</h3>
+            <p>データを中央値で分割して、それぞれ個別にソートするアルゴリズムです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">ソートアルゴリズムの比較</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-[#f8f9fa]">
+              <th class="border p-3 text-left">アルゴリズム</th>
+              <th class="border p-3 text-left">時間計算量</th>
+              <th class="border p-3 text-left">特徴</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border p-3">バブルソート</td>
+              <td class="border p-3">O(n^2)</td>
+              <td class="border p-3">実装が簡単だが、効率が悪い</td>
+            </tr>
+            <tr>
+              <td class="border p-3">選択ソート</td>
+              <td class="border p-3">O(n^2)</td>
+              <td class="border p-3">比較回数が多いが、交換回数が少ない</td>
+            </tr>
+            <tr>
+              <td class="border p-3">挿入ソート</td>
+              <td class="border p-3">O(n^2)</td>
+              <td class="border p-3">ほぼソート済みのデータに対して効率的</td>
+            </tr>
+            <tr>
+              <td class="border p-3">クイックソート</td>
+              <td class="border p-3">O(n log n)</td>
+              <td class="border p-3">平均的に高速だが、最悪の場合は遅い</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-[#f8f9fa] p-6 rounded-lg">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">ソートアルゴリズムのフローチャート</h2>
+      <div class="mt-8">
+        <p><strong>バブルソートのフローチャート</strong></p>
+        <img src="/static/images/bubble-sort-flow.png" alt="bubbleソートflow" class="w-full rounded-lg shadow-lg">
+      </div>
+    </div>
+
+    <div class="bg-[#f8f9fa] p-6 rounded-lg">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">ソートアルゴリズムのビジュアル例</h2>
+      <img src="/static/images/sort-image.png" alt="ソートのイメージ" class="w-full rounded-lg shadow-lg">
+    </div>
+  </div>
+</body>
+</html>

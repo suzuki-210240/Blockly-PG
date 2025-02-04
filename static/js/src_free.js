@@ -9,7 +9,7 @@
 //-------------自由制作用javascript------------------
  var flg = 0;
 // Blockly で作成されたコードを実行する関数
-function runCode() {
+/*function runCode() {
     var code = Blockly.JavaScript.workspaceToCode(workspace); // Blocklyからコードを取得
    
     try {
@@ -36,6 +36,40 @@ function runCode() {
         const errorElement = document.createElement('span');
         errorElement.innerText = "エラー: " + e.message;
         output.appendChild(errorElement); // エラーメッセージを追加
+        output.scrollTop = output.scrollHeight;
+    }
+}*/
+
+function runCode() {
+    var code = Blockly.JavaScript.workspaceToCode(workspace); // Blocklyからコードを取得
+    const output = document.getElementById('output');
+    output.innerHTML = ""; // 実行ごとにクリア
+
+    try {
+        // console.log の出力を `output` に反映
+        let oldLog = console.log;
+        console.log = function (message) {
+            const resultElement = document.createElement('span');
+            resultElement.innerText = "結果: " + message + "\n";
+            output.appendChild(resultElement);
+            output.scrollTop = output.scrollHeight;
+            oldLog.apply(console, arguments); // 元の console.log も実行
+        };
+
+        // `alert()` を `console.log()` に変換
+        code = code.replace(/alert\(/g, "console.log(");
+
+        // eval でコード実行
+        eval(code);
+
+        // console.log を元に戻す
+        console.log = oldLog;
+    } catch (e) {
+        // エラー時の処理
+        const errorElement = document.createElement('span');
+        errorElement.style.color = "red";
+        errorElement.innerText = "エラー: " + e.message;
+        output.appendChild(errorElement);
         output.scrollTop = output.scrollHeight;
     }
 }
