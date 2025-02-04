@@ -43,14 +43,23 @@
   /* ホバー時の背景色変更 */
 }
 
-/*
-.table-container {
-  width: 85%;
-  margin: 30px auto;
-  background-color: #e6e5e5;
-  padding: 50px 30px 120px 30px;
-  border-radius: 15px;
-}*/
+.download-button {
+  text-decoration: none;
+  background-color: rgb(0, 201, 107);
+  color: white;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  outline: none; 
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: rgb(0, 180, 96);
+}
 
 .table-container {
   width: 85%;
