@@ -12,8 +12,8 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    min-width: 1420px;
     height: 100%;
-    min-width: 880px;
     background-color: rgb(166, 240, 240);
 }
 
@@ -366,6 +366,7 @@ canvas {
 
 
 /* 画面幅が1200px未満のとき */
+/*
 @media screen and (max-width: 1500px) {
 
     h3,h4 {
@@ -394,35 +395,35 @@ canvas {
 
     #blocklyDiv {
         width: 99%; /* 横幅を90%に変更 */
-        height: 95%; /* 高さを600pxに変更 */
-        border: #a1a0a0 1px solid;
+/*        height: 95%; /* 高さを600pxに変更 */
+/*        border: #a1a0a0 1px solid;
     }
 
     #exampleOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 100%; /* 高さを600pxに変更 */
-        font-size: 10px;
+/*        height: 100%; /* 高さを600pxに変更 */
+/*        font-size: 10px;
     }
 
     #codeOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 100%; /* 高さを600pxに変更 */
-    }
+/*        height: 100%; /* 高さを600pxに変更 */
+/*    }
 
     #codeOutput2 {
         width: 90%; /* 横幅を90%に変更 */
-        height: 50%; /* 高さを600pxに変更 */
-    }
+/*        height: 50%; /* 高さを600pxに変更 */
+/*    }
 
 
     #output {
         width: 90%; /* 出力エリアを画面幅に合わせる */
-        height: 30%; /* 高さを縮小 */
-    }
+/*        height: 30%; /* 高さを縮小 */
+/*    }
 
     .button_area button {
         font-size: 10px; /* ボタンの文字サイズ */
-        width: 75px;
+/*        width: 75px;
       }
 
     .selectdiv {
