@@ -1,4 +1,3 @@
-import base64
 import re
 from django import forms
 from django.urls import reverse
@@ -8,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.admin.views.decorators import staff_member_required
-from .models import Material, Kadai, Answer, Image
+from .models import Material, Kadai, Answer
 from .forms import  KadaiForm,AnswerForm, ValidateMaterialForm,AnswerFormSet
 from django.core.files.storage import default_storage
 from django.core.exceptions import ValidationError
@@ -195,6 +194,20 @@ def admin_list_files(request):
     # フォルダ内のファイルがある場合に表示
     return render(request, 'Materials/admin_materials_list.html', {'files_with_urls': files_with_urls})
 
+def download_template(request):
+    # ダウンロードするファイルのパスを指定
+    file_path = os.path.join(settings.BASE_DIR, 'static','admin', 'template', 'template_material.html')
+    print(file_path)
+
+    # ファイルが存在する場合、ダウンロードを開始
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type='application/octet-stream')
+            response['Content-Disposition'] = f'attachment; filename={os.path.basename(file_path)}'
+            return response
+    else:
+        # ファイルが見つからなかった場合、404エラーを返す
+        return HttpResponse('File not found', status=404)
 
 #----------------------------教材一覧リスト-----------------------------------
 
@@ -248,14 +261,8 @@ def add_file(request):
                         for chunk in uploaded_file.chunks():
                             destination.write(chunk)
 
-                    # 画像ファイルを保存(複数)
-                    for image in image_file:
-                        with open(f'static/images/{image.name}', 'wb+') as destination:
-                            for chunk in image.chunks():
-                                destination.write(chunk)
-
                                 # 正常終了時
-                                return render(request, 'Materials/wait_page.html')
+                    return render(request, 'Materials/wait_page.html', {'success_message': f"{original_file_name} を追加しました。"})
 
             except IntegrityError:
                 # 一意制約違反などのデータベースエラー処理

@@ -48,6 +48,12 @@
         <div class="add-container">
           <a href="{% url 'AdminApp:add_materials' %}" class="add-button">教材新規追加</a>
           <a href="{% url 'AdminApp:next_img_list' %}" class="add-button">画像リスト</a>
+          <form method="post" action="{% url 'AdminApp:download_template' %}" >
+            {% csrf_token %}
+            <button type="submit" class="download-button">
+                教材テンプレート<br>ダウンロード
+            </button>
+          </form>
         </div>
         <div class="table-header">
           <span class="table-title">タイトル</span>

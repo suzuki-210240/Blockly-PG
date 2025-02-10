@@ -26,6 +26,7 @@ urlpatterns = [
     path('add_kadai/',views.add_kadai_and_answer,name='add_kadai'),#課題追加関数呼び出し
     path('edit_kadai/<str:kadai_id>',views.edit_kadai_and_answers,name='edit_kadai'),#課題編集関数呼び出し
     path('delete_kadai/<str:kadai_id>',views.delete_kadai,name='delete_kadai'),#課題削除関数呼び出し
+    path('download_template/', views.download_template, name='download_template'), # テンプレート教材ダウンロード関数呼び出し
 ]
 
 if settings.DEBUG:
