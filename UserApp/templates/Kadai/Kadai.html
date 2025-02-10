@@ -18,7 +18,7 @@
                 const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
             </script>
 
-        <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/kadai_block_style.css' %}">
 
     </head>
     <body  data-return-url="{% url 'UserApp:index' %}">
@@ -71,7 +71,7 @@
                         <button id="checkCodeButton" onclick="checkCode()">解答を送信</button>
                         <!--組んだブロックのコード変換と送信-->
                         <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                        <button onclick="clearConsole()">クリア</button>
+                        <button id="clear" onclick="clearConsole()">クリア</button>
                     </div>
 
                     <!--出力結果を表示するエリア-->

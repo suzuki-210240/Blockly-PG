@@ -316,7 +316,7 @@ textarea:disabled {
     border: none; /* ボーダーを削除 */
     border-radius: 5px; /* 角を丸める */
     text-align: center;
-    min-width: 32%;
+    min-width: 23%;
     background-color: #ffc22f;  /* 背景色 */
     color: white; /* 文字色 */
     cursor: pointer; /* カーソルをポインタに変更 */
