@@ -8,7 +8,7 @@
     <script src="{% static 'js/blockly/blocks_compressed.js' %}"></script>
     <script src="{% static 'js/blockly/javascript_compressed.js' %}"></script>
     <script src="{% static 'js/blockly/python_compressed.js' %}"></script>
-    <script src="{% static 'js/blockly/ja.js' %}">
+    <script src="{% static 'js/blockly/ja.js' %}"></script>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script>
         const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
@@ -49,7 +49,7 @@
 
                     <!--組んだブロックのコード変換と送信-->
                     <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                    <button onclick="clearConsole()">クリア</button>
+                    <button id="clear" onclick="clearConsole()">クリア</button>
                 </div>
                 {% comment %} <textarea id="output" rows="10" cols="50" disabled></textarea> {% endcomment %}
                 <div id="output">--------ここに結果が出力されます--------</div>
