@@ -7,7 +7,7 @@
 
 
 //-------------自由制作用javascript------------------
- var flg = 0;
+var flg = 0;
 // Blockly で作成されたコードを実行する関数
 function runCode() {
     var code = Blockly.JavaScript.workspaceToCode(workspace); // Blocklyからコードを取得
@@ -42,6 +42,7 @@ function runCode() {
         output.scrollTop = output.scrollHeight;
     }
 }
+
 
 function clearConsole() {
     document.getElementById('output').innerHTML = '--------ここに結果出力されます-------- '; // 出力エリアを空にする

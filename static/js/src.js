@@ -44,6 +44,7 @@ function runCode() {
 }
 
 
+
 function change(mode_id,tab_id){
     const modes = document.querySelectorAll('.mode');
     modes.forEach(mode => mode.classList.remove('active'));
