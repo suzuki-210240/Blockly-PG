@@ -288,6 +288,7 @@ textarea {
 #codeOutput2 {
     height: 70%;
     border-color: black;
+    margin-top: 10px;
 }
 
 #codeOutput,#codeOutput2 {
