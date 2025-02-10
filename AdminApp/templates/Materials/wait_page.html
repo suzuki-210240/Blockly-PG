@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/wait_page.css' %}" />
     <title>リダイレクト中</title>
     <!-- 3秒後に教材一覧へリダイレクト -->
     <meta http-equiv="refresh" content="3; url={% url 'AdminApp:admin_list_files' %}">
@@ -15,6 +17,10 @@
     </script>
 </head>
 <body>
+    <header>
+        <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'menu_img/logo-preview.png' %}"></a>
+    </header>
+
     <h1>リダイレクト中</h1>
 
     {% if success_message %}
