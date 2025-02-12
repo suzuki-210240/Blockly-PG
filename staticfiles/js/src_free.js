@@ -7,38 +7,42 @@
 
 
 //-------------自由制作用javascript------------------
- var flg = 0;
+var flg = 0;
 // Blockly で作成されたコードを実行する関数
 function runCode() {
     var code = Blockly.JavaScript.workspaceToCode(workspace); // Blocklyからコードを取得
-   
+    const output = document.getElementById('output');
+    output.innerHTML = ""; // 実行ごとにクリア
+
     try {
-        // eval を使ってコードを実行し、結果を表示
-        var result = eval(code);
-        // 結果を表示
+        // console.log の出力を `output` に反映
+        let oldLog = console.log;
+        console.log = function (message) {
+            const resultElement = document.createElement('span');
+            resultElement.innerText = "結果: " + message + "\n";
+            output.appendChild(resultElement);
+            output.scrollTop = output.scrollHeight;
+            oldLog.apply(console, arguments); // 元の console.log も実行
+        };
 
-        const output = document.getElementById('output');
-        const resultElement = document.createElement('span'); // 新しい行を作成
-        if  (flg == 0) {
-            resultElement.innerText = "\n" +"結果: " + result + "\n";
-            flg = 1;
-        }else{
-            resultElement.innerText = "結果: " + result + "\n";
-        }
-        
-        output.appendChild(resultElement); // 結果を追加
+        // `alert()` を `console.log()` に変換
+        code = code.replace(/alert\(/g, "console.log(");
 
-        // 自動スクロール
-        output.scrollTop = output.scrollHeight;
+        // eval でコード実行
+        eval(code);
+
+        // console.log を元に戻す
+        console.log = oldLog;
     } catch (e) {
-        // エラーが発生した場合
-        const output = document.getElementById('output');
+        // エラー時の処理
         const errorElement = document.createElement('span');
+        errorElement.style.color = "red";
         errorElement.innerText = "エラー: " + e.message;
-        output.appendChild(errorElement); // エラーメッセージを追加
+        output.appendChild(errorElement);
         output.scrollTop = output.scrollHeight;
     }
 }
+
 
 function clearConsole() {
     document.getElementById('output').innerHTML = '--------ここに結果出力されます-------- '; // 出力エリアを空にする

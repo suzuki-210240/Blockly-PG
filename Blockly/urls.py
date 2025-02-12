@@ -25,6 +25,7 @@ urlpatterns = [
     path("sort/", views.sort, name="sort"), #アプリを振り分けるメソッドへ
     path("logout/", LogoutView.as_view(), name="logout"),   #ログアウトするメソッドへ
     path("register/", views.register, name="register"), #アカウント新規作成メソッドへ
+    
 
 
     path("test/", include("App.urls")), #テスト領域のURL

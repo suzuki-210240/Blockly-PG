@@ -15,6 +15,8 @@ from pathlib import Path
 from decouple import config
 import environ
 
+env = environ.Env()
+environ.Env.read_env(env_file='/home/ec2-user/Blockly-PG/.env')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS',default=[])
 
 
 # Application definition
@@ -62,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_http_referrer_policy.middleware.ReferrerPolicyMiddleware', #----------
+    'Blockly.middleware.AddCOOPHeaderMiddleware',  
 ]
 
 ROOT_URLCONF = 'Blockly.urls'
@@ -131,7 +134,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
+LANGUAGES = [
+    ('ja', 'Japanese'),
+    # 他の言語設定
+]
 LANGUAGE_CODE = 'ja'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -145,6 +156,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
@@ -155,7 +168,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRFの設定
-CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://localhost:8000']
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS',default=[])
 
 LOGIN_URL = '/login/'
 #LOGIN_URL = '/login/'

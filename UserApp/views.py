@@ -207,6 +207,87 @@ def Kadai_open(request, kadai_id):
 
 #-------------------------------正誤判定----------------------------------------------
 
+@csrf_exempt
+def check_code(request):
+    print('start1')
+
+    if request.method != 'POST':
+        return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
+
+    try:
+        data = json.loads(request.body)
+        submitted_code = data.get('code')
+        kadai_id = data.get('kadai_id')
+
+        print(f'問題番号: {kadai_id}')
+        print(f'ユーザーコード: {submitted_code}')
+
+        # 該当する課題を取得
+        kadai = get_object_or_404(Kadai, number=kadai_id)
+        test_case = Answer.objects.filter(kadai=kadai).first()
+
+        if not test_case:
+            return JsonResponse({"error": "該当するテストコードが見つかりません"}, status=404)
+
+        test_code = test_case.a_text
+        print(f'テストコード: {test_code}')
+
+        #user_script_path = 'C:\\Users\\210011\\AppData\\Local\\Temp\\tmpvgor2261.py'
+        #test_script_path = 'C:\\Users\\210011\\AppData\\Local\\Temp\\tmpsabkhcux.py'
+
+        user_script_path = None
+        test_script_path = None
+
+        try:
+            # ユーザーコードを一時ファイルに保存
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as user_script:
+                user_script.write(submitted_code.encode('utf-8'))
+                user_script_path = user_script.name
+                print(f'ユーザーコードを保存: {user_script_path}')
+
+            # テストコードを一時ファイルに保存
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".py") as test_script:
+                test_script.write(test_code.encode('utf-8'))
+                test_script_path = test_script.name
+                print(f'テストコードを保存: {test_script_path}')
+
+            # ユーザーコードを実行するために、テストスクリプトと一緒に実行
+            result = subprocess.run(
+                ["python", test_script_path, user_script_path], 
+                capture_output=True, text=True, timeout=10
+            )
+
+            print(f"stdout: {result.stdout}")
+            print(f"stderr: {result.stderr}")
+            print(f"returncode: {result.returncode}")
+
+            # 結果が期待通りか判定
+            is_correct = result.returncode == 0
+            
+            # 課題進行状況の更新
+            user = request.user
+            progress, _ = KadaiProgress.objects.get_or_create(user=user, kadai=kadai)
+            progress.progress = '完了' if is_correct else '実行中'
+            progress.save()
+
+            return JsonResponse({"isCorrect": is_correct, "output": result.stdout})
+
+        except subprocess.TimeoutExpired:
+            return JsonResponse({"error": "テストの実行がタイムアウトしました"}, status=500)
+        except Exception as e:
+            return JsonResponse({"error": f"テストの実行に失敗しました: {e}"}, status=500)
+        finally:
+            if user_script_path and os.path.exists(user_script_path):
+                os.remove(user_script_path)
+            if test_script_path and os.path.exists(test_script_path):
+                os.remove(test_script_path)
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "無効なJSONデータです"}, status=400)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
+
+'''
 #あらかじめ用意する解答/--複数行の文字列リテラル--/
 @csrf_exempt
 def check_code(request):
@@ -289,7 +370,7 @@ def check_code(request):
 
     # POSTメソッド以外でリクエストされた場合
     return JsonResponse({"error": "POSTメソッドで送信してください"}, status=400)
-
+'''
 #-------------------------------------------------------------------------------------
 
 

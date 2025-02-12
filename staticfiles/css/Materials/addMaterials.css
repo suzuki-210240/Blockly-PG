@@ -1,31 +1,7 @@
 @charset "utf-8";
-body {
-    background-color: #ffffffd1;
-    background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-    background-size: 16px 16px;
-    background-repeat: repeat;
-    width: 100%;
-    height: 10vw;
-    display: flex;
-    flex-direction: column;
-}
-
-header {
-    margin-top: 12px;
-    margin-bottom: 34px;
-    margin-left: 10px;
-}
 
 main {
     width: 880px;
-}
-
-h1 {
-    margin-left: 15px;
-}
-
-form {
-    margin-left: 110px;
 }
 
 input {
@@ -55,13 +31,18 @@ input {
     font-size: 14px;
 }
 
-.error-message, .attention {
+.error-message,
+.attention {
     color: red;
     font-size: 14px;
     font-weight: bold;
     /* エラーメッセージを強調 */
     padding-top: 5px;
     /* エラーメッセージと入力フィールドの間に余白 */
+}
+
+#add-form {
+    margin-left: 110px;
 }
 
 .file-box {
@@ -73,7 +54,8 @@ input {
     margin-top: 20px;
 }
 
-.buack-button ,.submit-button {
+.back-button,
+.submit-button {
     background-color: #fff;
     border: solid 2px #191970;
     color: #000;
@@ -171,4 +153,3 @@ iframe {
 .img-box {
     margin-top: 20px;
 }
-

@@ -1,26 +1,6 @@
-body {
-  background-image: linear-gradient(transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06)), linear-gradient(90deg, transparent 95%, rgba(0, 0, 0, .06) 50%, rgba(0, 0, 0, .06));
-  background-size: 16px 16px;
-  background-repeat: repeat;
-  width: 100%;
-  height: 10vw;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  margin-bottom: 34px;
-  margin-left: 10px;
-}
-
-h1 {
-  margin: 0px 5px 0px 5px;
-}
-
 .page-title {
   display: inline-block;
   position: relative;
-  padding: 15px 20px;
   font-size: 18px;
   /*フォントサイズ*/
   color: #000;
@@ -62,22 +42,14 @@ h1 {
   /* ホバー時の背景色変更 */
 }
 
-/*
 .table-container {
   width: 85%;
   margin: 30px auto;
-  background-color: #e6e5e5;
-  padding: 50px 30px 120px 30px;
-  border-radius: 15px;
-}*/
-
-.table-container {
-  width: 85%;
-  margin: 30px auto;
-  background: linear-gradient(135deg, #f9fcff, #e3f3f9);
+  background-color: #fff;
+  /*background: linear-gradient(135deg, #f9fcff, #e3f3f9);*/
   /* 白をベースにした淡い水色のグラデーション */
   padding: 50px 30px 120px 30px;
-  border-radius: 15px;
+  border-radius: 5px;
   /* 角を丸くする */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 控えめなシャドウ */
@@ -137,6 +109,18 @@ h1 {
   font-size: 17px;
 }
 
+.delete-img {
+  background-color: #ffffff;
+  color: #000000;
+  border: solid 0.5px #8f8f8f;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+
+.delete-img:hover {
+  background-color: #cceaff;
+}
+
 .button-container {
   display: flex;
   justify-content: flex-end;
@@ -146,14 +130,14 @@ h1 {
   width: auto;
   margin-top: 10px;
   margin-bottom: 5px;
-  padding-right: 50px;
+  padding-right: 92px;
 }
 
 
 .action-button {
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
+  background-color: #253544f8;
+  color: #fff;
+  border: solid 0.5px #8f8f8f;
   border-radius: 15px;
   padding: 5px 18px;
   font-size: 17px;
@@ -163,8 +147,88 @@ h1 {
 
 .action-button:hover {
   background-color: #cceaff;
+  color: #000;
 }
 
-main {
-  width: 1500px;
+.img-box {
+  border: 2px solid #ccc;
+  flex-wrap: nowrap;
+  max-width: 400px;
+}
+
+#input-img {
+  margin-left: 60px;
+  margin-top: 10px;
+}
+
+#add-img {
+  margin-left: 24px;
+  background-color: #fff;
+  border: solid 0.5px #333;
+  color: #333;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 1px 16px;
+  cursor: pointer;
+}
+
+#add-img:hover {
+  background-color: #ecfa24;
+}
+
+.img-button {
+  display: flex;
+}
+
+#sub-title {
+  margin-left: 60px;
+}
+
+.submit-button {
+  background-color: #fff;
+  border: solid 2px #191970;
+  color: #000;
+  border-radius: 50px;
+  /* 楕円形を作るための角丸 */
+  margin: 20px;
+  padding: 10px 50px;
+  /* 内側の余白 */
+  text-align: center;
+  /* テキストの中央揃え */
+  font-size: 18px;
+  /* フォントサイズ */
+  text-decoration: none;
+  /* 下線を消す */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  /* ホバー時のアニメーション */
+  cursor: pointer;
+  /* カーソルをポインターに変更 */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  /* ボタンに影を追加 */
+}
+
+/* ホバー時の背景色変更とアニメーション */
+.submit-button:hover {
+  background-color: #ecfa24;
+  /* ホバー時の背景色 */
+  transform: scale(1.05);
+  /* ボタンが少し大きくなる */
+}
+
+/* 戻るボタン */
+.yameru-button {
+  background-color: #fff;
+  border: solid 2px #333;
+  color: #333;
+  border-radius: 50px;
+  margin: 20px;
+  padding: 10px 50px;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.yameru-button:hover {
+  background-color: #ccc;
+  transform: scale(1.05);
 }
