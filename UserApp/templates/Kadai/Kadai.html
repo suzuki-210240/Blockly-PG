@@ -9,7 +9,7 @@
             <script src="{% static 'js/blockly/blocks_compressed.js' %}"></script>
             <script src="{% static 'js/blockly/javascript_compressed.js' %}"></script>
             <script src="{% static 'js/blockly/python_compressed.js' %}"></script>
-            <script src="{% static 'js/blockly/ja.js' %}">
+            <script src="{% static 'js/blockly/ja.js' %}"></script>
             <script src="https://unpkg.com/blockly/blockly.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
@@ -18,10 +18,10 @@
                 const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
             </script>
 
-        <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/Block_style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%static 'css/Kadai/kadai_block_style.css' %}">
 
     </head>
-    <body  data-return-url="{% url 'UserApp:index' %}">
+    <body  data-return-url="{% url 'UserApp:kadai_list' %}">
         <header>
             <a href="{% url 'UserApp:kadai_list' %}"><img class="logo" src="{% static 'menu_img/logo-preview.png' %}"></a>
             <div class="file">
@@ -71,7 +71,7 @@
                         <button id="checkCodeButton" onclick="checkCode()">解答を送信</button>
                         <!--組んだブロックのコード変換と送信-->
                         <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                        <button onclick="clearConsole()">クリア</button>
+                        <button id="clear" onclick="clearConsole()">クリア</button>
                     </div>
 
                     <!--出力結果を表示するエリア-->

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>条件分岐について</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-[#f5f7fa] p-6 font-roboto">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <h1 class="text-3xl font-bold text-[#2c3e50] mb-6">条件分岐について</h1>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">条件分岐とは？</h2>
+      <p class="text-[#34495e] mb-4">条件分岐は、特定の条件に基づいて、異なる処理を実行するための方法です。`if`文を使用します。</p>
+      <pre><code>
+x = 10
+if x > 5:
+  print("xは5より大きい")  # 条件が真の場合
+else:
+  print("xは5以下")  # 条件が偽の場合
+      </code></pre>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">複数の条件分岐</h2>
+      <p class="text-[#34495e] mb-4">`elif`を使うと、複数の条件を順番にチェックできます。</p>
+      <pre><code>
+x = 10
+if x > 10:
+  print("xは10より大きい")
+elif x == 10:
+  print("xは10と等しい")
+else:
+  print("xは10より小さい")
+      </code></pre>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">条件分岐の使いどころ</h2>
+      <p class="text-[#34495e] mb-4">条件分岐は、ユーザー入力の判定や、プログラムの状態に応じた処理の切り替えに役立ちます。</p>
+      <pre><code>
+age = 18
+if age >= 20:
+  print("成人です")
+else:
+  print("未成年です")
+      </code></pre>
+    </div>
+  </div>
+</body>
+</html>

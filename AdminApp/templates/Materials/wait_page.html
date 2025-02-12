@@ -1,15 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Materials/wait_page.css' %}" />
     <title>リダイレクト中</title>
-    <!-- 5秒後に別ページへリダイレクト -->
-    <!-- 教材一覧へ戻る -->
-    <meta http-equiv="refresh" content="3; url={% url 'AdminApp:admin_list_files' %}">
+    <!-- 3秒後に教材一覧へリダイレクト -->
+    <meta http-equiv="refresh" content="2; url={% url 'AdminApp:admin_list_files' %}">
+
+    <script>
+        // JavaScriptでもリダイレクト（メタタグが無効な場合の保険）
+        setTimeout(function() {
+            window.location.href = "{% url 'AdminApp:admin_list_files' %}";
+        }, 3000);
+    </script>
 </head>
 <body>
-    <h1>しばらくお待ちください...</h1>
-    <p>3秒後に教材一覧へ移動します。</p>
+    <header>
+        <a href="{% url 'AdminApp:index' %}"><img class="logo" src="{% static 'menu_img/logo-preview.png' %}"></a>
+    </header>
+
+    <main>
+        <h1>一覧更新中．．．</h1>
+
+        {% if success_message %}
+            <p class="success-message">{{ success_message }}</p>
+        {% elif error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+
+        <p>自動的に教材一覧へ移動します。</p>
+    </main>
+    
 </body>
 </html>

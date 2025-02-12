@@ -5,15 +5,12 @@ html,body,main,header,footer{
     font-family: "Shippori Antique", sans-serif;
 }
 
-
-
 html,
 body {
     margin: 0;
     padding: 0;
-    width: 100%;
+    min-width: 1420px;
     height: 100%;
-    min-width: 880px;
     background-color: rgb(166, 240, 240);
 }
 
@@ -291,6 +288,7 @@ textarea {
 #codeOutput2 {
     height: 70%;
     border-color: black;
+    margin-top: 10px;
 }
 
 #codeOutput,#codeOutput2 {
@@ -308,18 +306,27 @@ textarea:disabled {
     background-color: #f5f5f5;
 }
 
+.button_area {
+    display: flex;
+    justify-content: space-between; /* 均等配置 */
+}
+
 .button_area button {
     font-size: 16px; /* ボタンの文字サイズ */
-    padding: 10px 20px; /* ボタン内の余白 */
+    padding: 10px; /* ボタン内の余白 */
     border: none; /* ボーダーを削除 */
-    width: 150px;
     border-radius: 5px; /* 角を丸める */
+    text-align: center;
+    min-width: 32%;
     background-color: #ffc22f;  /* 背景色 */
     color: white; /* 文字色 */
     cursor: pointer; /* カーソルをポインタに変更 */
     transition: background-color 0.3s; /* ホバー時の背景色変更をスムーズに */
   }
 
+  #clear {
+    margin-right: 10px;
+  }
   /* ホバー時のスタイル */
   .button_area button:hover {
     color: #000000;
@@ -363,9 +370,12 @@ canvas {
     z-index: 1000; /* 紙吹雪がオーバーレイの下に表示されないように調整 */
 }
 
+@media (min-width: 1420px) {
 
+}
 
 /* 画面幅が1200px未満のとき */
+/*
 @media screen and (max-width: 1500px) {
 
     h3,h4 {
@@ -394,35 +404,35 @@ canvas {
 
     #blocklyDiv {
         width: 99%; /* 横幅を90%に変更 */
-        height: 95%; /* 高さを600pxに変更 */
-        border: #a1a0a0 1px solid;
+/*        height: 95%; /* 高さを600pxに変更 */
+/*        border: #a1a0a0 1px solid;
     }
 
     #exampleOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 100%; /* 高さを600pxに変更 */
-        font-size: 10px;
+/*        height: 100%; /* 高さを600pxに変更 */
+/*        font-size: 10px;
     }
 
     #codeOutput {
         width: 90%; /* 横幅を90%に変更 */
-        height: 100%; /* 高さを600pxに変更 */
-    }
+/*        height: 100%; /* 高さを600pxに変更 */
+/*    }
 
     #codeOutput2 {
         width: 90%; /* 横幅を90%に変更 */
-        height: 50%; /* 高さを600pxに変更 */
-    }
+/*        height: 50%; /* 高さを600pxに変更 */
+/*    }
 
 
     #output {
         width: 90%; /* 出力エリアを画面幅に合わせる */
-        height: 30%; /* 高さを縮小 */
-    }
+/*        height: 30%; /* 高さを縮小 */
+/*    }
 
     .button_area button {
         font-size: 10px; /* ボタンの文字サイズ */
-        width: 75px;
+/*        width: 75px;
       }
 
     .selectdiv {

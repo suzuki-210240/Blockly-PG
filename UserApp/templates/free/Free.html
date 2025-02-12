@@ -1,6 +1,6 @@
 {%load static %}
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>自由製作画面</title>
@@ -8,7 +8,7 @@
     <script src="{% static 'js/blockly/blocks_compressed.js' %}"></script>
     <script src="{% static 'js/blockly/javascript_compressed.js' %}"></script>
     <script src="{% static 'js/blockly/python_compressed.js' %}"></script>
-    <script src="{% static 'js/blockly/ja.js' %}">
+    <script src="{% static 'js/blockly/ja.js' %}"></script>
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script>
         const csrfToken = "{{ csrf_token }}"; // Djangoが生成したCSRFトークンを取得
@@ -43,7 +43,6 @@
             
             <div class="sub_field">
                 <!--コードを表示するエリア-->
-                <h4>コード</h4>
                 <textarea id="codeOutput2" rows="10" cols="50" disabled>ここにコードが生成されます</textarea>
             
                  <!--出力結果を表示するエリア-->
@@ -54,7 +53,7 @@
 
                     <!--組んだブロックのコード変換と送信-->
                     <button id="generateCodeButton" onclick="generateCode()">コードを出力</button>
-                    <button onclick="clearConsole()">クリア</button>
+                    <button id="clear" onclick="clearConsole()">クリア</button>
                 </div>
                 <div id="output">--------ここに結果が出力されます--------</div>
             </div>

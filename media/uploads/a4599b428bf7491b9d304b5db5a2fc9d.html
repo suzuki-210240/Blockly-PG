@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>配列について</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .samplecode {
+        background-color: #FFC;
+        border: 1px solid #000;
+        margin-left: 0;
+        padding: 20px;
+        white-space: pre;
+        font-size: 14pt;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen bg-[#f5f7fa] p-6 font-roboto">
+    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-[#2c3e50] mb-6">
+        基本的なデータ構造について
+      </h1>
+
+      <div class="mb-8">
+        <p class="text-[#34495e] text-lg leading-relaxed mb-4">
+          データ構造とは、データを効率的に管理、格納、整理するための方法や形式のことです。適切なデータ構造を選択することで、プログラムの性能と可読性を大幅に向上させることができます。本節ではで、基本的なデータ構造(変数、配置,リスト、スタック、キュー、スタック)について学びます。
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-4">１，変数とは？</h2>
+          <p>変数は、データを入れる箱のようなもので、変数名を付けて区別します。</p>
+          <p>変数はプログラムで使用するデータを一時的に格納するために用いられ、データを使用する際には、変数名を指定して、処理をします。</p>
+
+          <h2 class="text-2xl font-bold mt-6 mb-4">２，変数の代入について</h2>
+          <p>変数にデータを格納することを<span class="font-bold">「代入」</span>といい、数値や文字、計算結果、他の変数の値を、代入することができます。代入を示す書式は、<code>変数名 = 値;</code>　または　<code>代入先変数名 = 式;</code>です。</p>
+          <br>
+          <pre class="samplecode">
+【例】
+x = 10; // xに10を代入
+(変数名 = 値;)            
+y = x + 5; // xに5を加えた値をyに代入
+(代入先変数名 = 式;)
+z = y; // yの値をzに代入 
+(代入先変数名 = 代入元変数名;)
+        </pre>
+          <p class="text-red-500">
+            代入先の変数に元々格納されていたデータは上書きされ、新しいデータが格納されます。また、変数どうしの代入の場合は、代入元の変数の値が代入先の変数にコピーされます。（図１）※代入元の値は変化しません ※値が変化しない数値や文字列を定数といいます。
+          </p>
+
+          <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図１：変数値の代入と更新</h2>
+          <img src="/static/images/hensu-dainyu.png" alt="変数の代入" class="w-full rounded-lg shadow-lg">
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">
+         3、 配列の基本
+        </h2>
+        <p class="text-[#34495e] text-lg leading-relaxed mb-4">
+          配列は、同じデータ型の複数の変数を連続して配置するデータ構造です。変数というデータを入れる箱が連なったものだと考えるとわかりやすいでしょう。各変数を要素を結び、要素が横方向に並ぶ配列を<span class="font-bold">「1次元配列」</span>といいます。また、縦と横に並ぶ配列を<span class="font-bold">「2次元配列」</span>といいます。(図２) 要素の指定は、配列につけた配列名と要素の位置を示す<span class="font-bold">添字（インデックス）</span>を指定します。添字が０からか、１から始まるかは問題によって異なるため注意しましょう。
+        </p>
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="flex-1 border-2 border-[#3498db] rounded-lg p-4">
+            <div class="text-center">
+              <i class="fas fa-code text-3xl text-[#3498db] mb-2"></i>
+              <h3 class="font-bold mb-2">配列の宣言</h3>
+              <p>
+                配列は、以下のように宣言します:
+                <code>let(int) arr = [1, 2, 3];</code>
+              </p>
+            </div>
+          </div>
+          <div class="flex-1 border-2 border-[#e74c3c] rounded-lg p-4">
+            <div class="text-center">
+              <i class="fas fa-search text-3xl text-[#e74c3c] mb-2"></i>
+              <h3 class="font-bold mb-2">配列のアクセス</h3>
+              <p>
+                配列の要素には、インデックスを使用してアクセスします:
+                <code>arr[0]</code>
+              </p>
+            </div>
+          </div>
+          <div class="flex-1 border-2 border-[#2ecc71] rounded-lg p-4">
+            <div class="text-center">
+              <i class="fas fa-edit text-3xl text-[#2ecc71] mb-2"></i>
+              <h3 class="font-bold mb-2">配列の操作</h3>
+              <p>
+                配列の要素を変更するには、以下のようにします:
+                <code>arr[0] = 10;</code>
+              </p>
+            </div>
+          </div>
+        </div>
+        <pre class="samplecode">
+【要素の指定の書式】
+1次元配列の場合：配列名[インデックス]
+2次元配列の場合：配列名[行のインデックス][列のインデックス]    
+# Pythonでの配列（リスト）の例
+fruits = ["リンゴ", "バナナ", "オレンジ"]
+print(fruits[0])  # インデックスで要素にアクセス
+                  </pre>
+
+          <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">図２：一次元配列と二次元配列</h2>
+          <img src="/static/images/1jigen-hairetu.png" alt="1次元配列" class="w-full rounded-lg shadow-lg">
+          <br>
+          <img src="/static/images/2jigen-hairetu.png" alt="2次元配列" class="w-full rounded-lg shadow-lg"> 
+      </div>
+
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">（補足） 配列のメソッド</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead>
+              <tr>
+                <th class="py-2 px-4 border-b">メソッド</th>
+                <th class="py-2 px-4 border-b">説明</th>
+                <th class="py-2 px-4 border-b">例</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-2 px-4 border-b">push()</td>
+                <td class="py-2 px-4 border-b">配列の末尾に要素を追加する</td>
+                <td class="py-2 px-4 border-b">arr.push(4);</td>
+              </tr>
+              <tr>
+                <td class="py-2 px-4 border-b">pop()</td>
+                <td class="py-2 px-4 border-b">配列の末尾の要素を削除する</td>
+                <td class="py-2 px-4 border-b">arr.pop();</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">
+          4. 配列を利用した計算例
+        </h2>
+        <pre class="samplecode">
+【例】
+# 配列を用いて数学の合計を計算
+scores = [80, 90, 85, 70]
+total = sum(scores)
+print(total) # 合計値
+        </pre>
+      </div>
+
+    </div>
+  </body>
+</html>
