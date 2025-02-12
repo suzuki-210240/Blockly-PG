@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ループについて</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-[#f5f7fa] p-6 font-roboto">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <h1 class="text-3xl font-bold text-[#2c3e50] mb-6">ループについて</h1>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">ループとは？</h2>
+      <p class="text-[#34495e] mb-4">ループは、同じ処理を繰り返し行いたい時に使用します。Pythonには`for`文や`while`文があります。</p>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">for文の使い方</h2>
+      <p class="text-[#34495e] mb-4">`for`文を使うと、指定した回数だけ繰り返し処理を行います。</p>
+      <pre><code>
+for i in range(5):
+  print(i)  # 0から4までの数字を出力
+      </code></pre>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">while文の使い方</h2>
+      <p class="text-[#34495e] mb-4">`while`文は、指定した条件が真である間、処理を繰り返します。</p>
+      <pre><code>
+x = 0
+while x < 5:
+  print(x)
+  x += 1  # xを1ずつ増加
+      </code></pre>
+    </div>
+
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-[#2c3e50] mb-4">ループの応用例</h2>
+      <p class="text-[#34495e] mb-4">ループを使うと、リストの全ての要素を一度に処理することができます。</p>
+      <pre><code>
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+  print(fruit)  # リストの全要素を順番に出力
+      </code></pre>
+    </div>
+  </div>
+</body

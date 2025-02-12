@@ -58,6 +58,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'your_google_client_secret'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -169,6 +170,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CSRFの設定
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS',default=[])
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 LOGIN_URL = '/login/'
 #LOGIN_URL = '/login/'
