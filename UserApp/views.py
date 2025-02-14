@@ -12,6 +12,10 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from .forms import UserUpdateForm, PasswordChangeFormCustom
+import tempfile
+import subprocess
+import sys
+
 
 @login_required
 def Home (request):
@@ -232,9 +236,6 @@ def check_code(request):
         test_code = test_case.a_text
         print(f'テストコード: {test_code}')
 
-        #user_script_path = 'C:\\Users\\210011\\AppData\\Local\\Temp\\tmpvgor2261.py'
-        #test_script_path = 'C:\\Users\\210011\\AppData\\Local\\Temp\\tmpsabkhcux.py'
-
         user_script_path = None
         test_script_path = None
 
@@ -253,7 +254,7 @@ def check_code(request):
 
             # ユーザーコードを実行するために、テストスクリプトと一緒に実行
             result = subprocess.run(
-                ["python", test_script_path, user_script_path], 
+                [sys.executable, test_script_path, user_script_path], 
                 capture_output=True, text=True, timeout=10
             )
 

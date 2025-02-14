@@ -184,8 +184,10 @@ function displayCorrectOverlay() {
         overlay.style.display = "block";
         overlay.innerHTML = `
         <h1 style="color: red; font-size: 48px;">正解！</h1>
-        <a href="${returnUrl}" style="display: inline-block; margin-top: 20px; font-size: 20px; color: white; background: red; padding: 10px; text-decoration: none; border-radius: 5px;">戻る</a>
     `;
+    setTimeout(() => {
+        overlay.style.display = "none"; // 1秒後にオーバーレイを非表示
+    }, 1000);
     },500);
 }
 
